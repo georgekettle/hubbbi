@@ -5,4 +5,18 @@
 
 
 <%= render "components/headers/header", header: 'Header', subheader: "Subheader" %>
+<%= render "shared/container", classes: "p-4" do %>
+  <% Content.first(3).each do |content| %>
+    <div class="pb-2">
+      <%= render "contents/card", content: content %>
+    </div>
+  <% end %>
 
+  <div class="flex flex-wrap -mx-2">
+    <% Content.first(3).each do |content| %>
+      <div class="p-2 w-1/2">
+        <%= render "contents/card", content: content %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
