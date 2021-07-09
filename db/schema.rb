@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_065907) do
+ActiveRecord::Schema.define(version: 2021_07_09_070811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "content_permissions", force: :cascade do |t|
+    t.bigint "permission_id", null: false
+    t.bigint "content_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["content_id"], name: "index_content_permissions_on_content_id"
+    t.index ["permission_id"], name: "index_content_permissions_on_permission_id"
+  end
 
   create_table "contents", force: :cascade do |t|
     t.string "title"
@@ -78,6 +87,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_065907) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "content_permissions", "contents"
+  add_foreign_key "content_permissions", "permissions"
   add_foreign_key "group_member_permissions", "group_members"
   add_foreign_key "group_member_permissions", "permissions"
   add_foreign_key "group_members", "groups"
