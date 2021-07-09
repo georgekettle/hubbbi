@@ -6,10 +6,10 @@
 
   <body class="bg-contrast-50 w-screen h-screen">
     <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' unless @hide_navbar %>
     <div class="body-content">
       <%= yield %>
     </div>
-    <%= render 'shared/navbar' if user_signed_in? %>
     <%= render 'shared/load_screen' %> <!-- will disappear once tailwind is loaded -->
   </body>
 </html>
