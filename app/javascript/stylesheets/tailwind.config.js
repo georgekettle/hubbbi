@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -18,7 +20,7 @@ module.exports = {
       // generate these below at www.tailwindshades.com
       contrast: {
         DEFAULT: '#FFA80A',
-        '50': '#FFFAF0',
+        '50': '#FFFDFC',
         '100': '#FFF1D6',
         '200': '#FFDFA3',
         '300': '#FFCD70',

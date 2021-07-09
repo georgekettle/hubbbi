@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AkademyProject</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+    <%= render 'shared/head' %>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
+  <body class="bg-contrast-50 w-screen h-screen">
     <%= render 'shared/flashes' %>
-
-    <%= yield %>
+    <div class="body-content">
+      <%= yield %>
+    </div>
+    <%= render 'shared/navbar' if user_signed_in? %>
+    <%= render 'shared/load_screen' %> <!-- will disappear once tailwind is loaded -->
   </body>
 </html>
