@@ -1,0 +1,116 @@
+.alert.alert-danger {
+  @apply px-3 p-2 bg-red-500 text-white rounded-md text-sm mb-2;
+}
+
+.form-group {
+  @apply mb-2;
+
+  label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  input, .icon-input {
+    @apply focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm sm:text-sm border border-gray-300 rounded-md;
+  }
+
+  .icon-input {
+    @apply p-2 bg-white flex items-center;
+
+    input {
+      @apply mt-0 p-0 focus:ring-transparent focus:border-transparent shadow-none border-transparent rounded-none;
+    }
+
+    svg {
+      @apply flex-shrink-0 stroke-current text-gray-400 h-4 w-4;
+    }
+  }
+
+  .icon-input.active {
+    @apply ring-contrast-200 border-contrast-200 border-2;
+
+    svg {
+      @apply stroke-current text-contrast;
+    }
+  }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full p-2;
+  }
+
+  [type='checkbox'],
+  [type='radio'] {
+    @apply text-primary;
+  }
+
+  .form-check {
+    @apply flex items-center w-full;
+
+    label {
+      @apply ml-2;
+    }
+
+    input {
+      @apply mt-0 rounded-full p-2;
+    }
+  }
+
+  small {
+    @apply text-xs text-gray-400;
+  }
+
+  .invalid-feedback {
+    @apply text-xs text-red-500 mt-1;
+  }
+
+  input.is-invalid {
+    @apply border-red-500 bg-red-50;
+  }
+}
+
+.form-actions {
+  [type='submit'] {
+    @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-contrast-200 cursor-pointer;
+
+    svg {
+      @apply h-5 w-5 stroke-2 stroke-current text-white;
+    }
+  }
+}
+
+.form-btn {
+  @apply inline-flex justify-center py-2 px-4 border border-gray-100 shadow-sm text-sm font-medium rounded-md text-primary bg-white hover:bg-white hover:shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-contrast-200 cursor-pointer;
+
+  svg {
+    @apply h-5 w-5 stroke-2 stroke-current text-primary mr-2;
+  }
+}
+
+.form-btn.form-btn-primary {
+  @apply inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-contrast-200 cursor-pointer;
+
+  svg {
+    @apply h-5 w-5 stroke-2 stroke-current text-white mr-2;
+  }
+}
+
+.choices__input.choices__input--cloned {
+  @apply inline focus:ring-transparent shadow-none bg-transparent;
+}
+
+.choices__inner {
+  @apply mt-1 bg-white focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm sm:text-sm border-gray-300 rounded-md;
+}

@@ -1,15 +1,15 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
+  <div class="alert alert-info alert-dismissible fade show bg-contrast-100 text-contrast-800 p-2 px-3 flex items-center justify-between text-sm sm:px-6 px-4" role="alert">
     <%= notice %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close close text-lg p-1 rounded-full h-6 w-6 flex items-center justify-center bg-black bg-opacity-0 hover:bg-opacity-5" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 <% end %>
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
+  <div class="alert alert-info alert-dismissible fade show bg-green-100 text-green-800 p-2 px-3 flex items-center justify-between text-sm sm:px-6 px-4" role="alert">
     <%= alert %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close close text-lg p-1 rounded-full h-6 w-6 flex items-center justify-center bg-black bg-opacity-0 hover:bg-opacity-5" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>

@@ -1,25 +1,33 @@
-<h2>Sign up</h2>
+<div class="w-screen h-screen flex items-center justify-center flex-col overflow-scroll pb-16">
+  <div class="p-3 mb-2 flex items-center flex-col">
+    <%= link_to root_path, class: "w-20 h-20 bg-contrast-300 rounded-full flex items-center justify-center mb-3" do %>
+      <%= image_tag asset_url('logo.svg'), class: 'w-14' %>
+    <% end %>
+    <h2 class="font-bold text-3xl mb-3 text-center">Create an account</h2>
+    <p class="text-gray-400 text-sm text-center">Start creating your community today!</p>
+  </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="w-screen sm:w-96">
+      <div class="px-4 py-5">
+          <%= f.error_notification %>
+          <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      input_html: { autocomplete: "new-password" } %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+          <div class="form-actions">
+            <%= f.button :submit, "Sign up", class: 'w-full' %>
+          </div>
+          <p class="text-gray-400 text-sm mt-2 text-center">or <%= link_to "Log in", new_session_path(resource_name), class: 'color-link' %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
