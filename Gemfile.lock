@@ -201,6 +201,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tailwindcss-rails (0.3.3)
+      rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -255,6 +257,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   spring
+  tailwindcss-rails (~> 0.3.3)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
