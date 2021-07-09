@@ -1,20 +1,31 @@
-<h2>Log in</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="w-screen h-screen flex items-center justify-center flex-col overflow-scroll pb-16">
+  <div class="p-3 mb-2 flex items-center flex-col">
+    <%= link_to root_path, class: "w-20 h-20 bg-contrast-300 rounded-full flex items-center justify-center mb-3" do %>
+      <%= image_tag asset_url('logo.svg'), class: 'w-14' %>
+    <% end %>
+    <h2 class="font-bold text-3xl mb-3 text-center">Log in to your account</h2>
+    <p class="text-gray-400 text-sm text-center">or <%= link_to "Sign up", new_registration_path(resource_name), class: 'text-blazeOrange' %></p>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="w-screen sm:w-96">
+      <div class="px-4 py-5">
+          <%= f.input :email,
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+          <div class="hidden">
+            <%= f.input :remember_me, as: :boolean, input_html: { value: true } if devise_mapping.rememberable? %>
+          </div>
 
-<%= render "devise/shared/links" %>
+          <div class="form-actions">
+            <%= f.button :submit, "Log in", class: 'w-full' %>
+          </div>
+          <%= link_to "Forgot your password?", new_password_path(resource_name), class: 'gray-link text-center block text-sm mt-2' %>
+      </div>
+    </div>
+  <% end %>
+</div>

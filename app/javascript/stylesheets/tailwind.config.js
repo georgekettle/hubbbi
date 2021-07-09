@@ -32,7 +32,7 @@ module.exports = {
         '900': '#3D2800'
       },
       primary: {
-        DEFAULT: '#8349A6',
+        DEFAULT: '#673A83',
         '50': '#ECE3F3',
         '100': '#E1D1EB',
         '200': '#CAAEDB',
