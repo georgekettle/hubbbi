@@ -5,5 +5,8 @@ class Content < ApplicationRecord
 
   enum status: { draft: 1, published: 2 }
 
+  # infinite self nesting capability
   acts_as_nested_set
+  # tags
+  acts_as_taggable_on :tags
 end

@@ -66,3 +66,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "tailwindcss-rails", "~> 0.3.3"
 # for the nested content pages
 gem 'awesome_nested_set'
+# for tags on content
+gem 'acts-as-taggable-on', '~> 7.0'
+
