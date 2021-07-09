@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_09_064601) do
+ActiveRecord::Schema.define(version: 2021_07_09_064931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_member_permissions", force: :cascade do |t|
+    t.bigint "permission_id", null: false
+    t.bigint "group_member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_member_id"], name: "index_group_member_permissions_on_group_member_id"
+    t.index ["permission_id"], name: "index_group_member_permissions_on_permission_id"
+  end
 
   create_table "group_members", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -53,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_07_09_064601) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "group_member_permissions", "group_members"
+  add_foreign_key "group_member_permissions", "permissions"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
   add_foreign_key "permissions", "groups"
