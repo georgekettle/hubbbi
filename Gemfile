@@ -64,3 +64,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "tailwindcss-rails", "~> 0.3.3"
+# for the nested content pages
+gem 'awesome_nested_set'
