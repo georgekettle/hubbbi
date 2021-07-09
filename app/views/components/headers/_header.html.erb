@@ -1,0 +1,23 @@
+<% left ||= nil %>
+<% right ||= nil %>
+<% back_link ||= :back %>
+<% subheader ||= nil %>
+<% header_link ||= nil %>
+
+<div class="shadow-sm bg-white top-0 w-full flex-shrink-0 h-14">
+  <%= render 'shared/container', classes: 'flex items-center' do %>
+    <div class="w-full flex items-center justify-between relative py-3 px-2 lg:px-0">
+        <% if left %>
+          <%= left %>
+        <% else %>
+          <%= link_to back_link, class: 'icon-btn transparent' do %>
+            <%= render 'icons/arrow_left' %>
+          <% end %>
+        <% end %>
+
+        <%= right if right %>
+    </div>
+    <!-- header title (in center) -->
+    <%= render 'components/headers/header_title', header: header, subheader: subheader %>
+  <% end %>
+</div>
