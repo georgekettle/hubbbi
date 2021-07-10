@@ -38,4 +38,15 @@
       </div>
     <% end %>
   </div>
+
+  <!-- user list item -->
+  <div class="mb-4">
+    <%= render "components/headers/section_header", title: "Group members", icon:"members" %>
+
+    <% User.first(5).each do |user| %>
+      <div class="mb-2">
+        <%= render 'users/list_item', user: user %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
