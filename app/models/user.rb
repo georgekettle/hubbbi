@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :groups, through: :group_members
 
   def full_name
-    super.downcase.titleize
+    super ? super.downcase.titleize : super
   end
 end
