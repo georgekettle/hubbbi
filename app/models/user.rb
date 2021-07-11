@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true
 
+  has_one_attached :avatar
+
   def full_name
     super ? super.downcase.titleize : super
   end
