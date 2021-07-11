@@ -7,7 +7,7 @@
   <body class="bg-contrast-50">
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' unless @hide_navbar %>
-    <div class="body-content">
+    <div class="body-content pb-24 md:pb-0">
       <%= yield %>
     </div>
     <%= render 'shared/load_screen' %> <!-- will disappear once tailwind is loaded -->
