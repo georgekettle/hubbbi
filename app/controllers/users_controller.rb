@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update]
+
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to edit_user_path(@user), notice: "Your profile has been successfully updated"
     else
@@ -13,6 +13,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+    authorize @user
+  end
 
   def user_params
     params.require(:user).permit(:full_name, :display_name)
