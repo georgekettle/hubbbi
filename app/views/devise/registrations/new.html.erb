@@ -1,4 +1,4 @@
-<div class="w-screen h-screen flex items-center justify-center flex-col overflow-scroll pb-16">
+<div class="w-screen md:h-screen flex items-center justify-center flex-col overflow-scroll md:pb-16 pt-12 md:pt-0">
   <div class="p-3 mb-2 flex items-center flex-col">
     <%= link_to root_path, class: "w-20 h-20 bg-contrast-300 rounded-full flex items-center justify-center mb-3" do %>
       <%= image_tag asset_url('logo.svg'), class: 'w-14' %>
@@ -15,6 +15,9 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+          <%= f.input :full_name,
+                required: true,
+                input_html: { autocomplete: "name" }%>
           <%= f.input :password,
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
