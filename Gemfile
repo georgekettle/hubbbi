@@ -72,4 +72,6 @@ gem 'awesome_nested_set'
 gem 'acts-as-taggable-on', '~> 7.0'
 # transactional emails
 gem 'postmark-rails'
+# authorization
+gem 'pundit'
 
