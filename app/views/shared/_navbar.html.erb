@@ -1,4 +1,4 @@
-<div class="bg-primary-600 flex justify-between items-center p-5 px-4 sm:px-6">
+<div class="hidden md:flex bg-primary-600 justify-between items-center p-5 px-4 sm:px-6">
   <%= link_to root_path, class: "flex items-center" do %>
     <%= image_tag asset_url('logo.svg'), class: 'w-6 mr-2' %>
     <h4 class="tracking-tight text-white font-semibold hidden sm:block">Akademy project</h4>
@@ -12,4 +12,18 @@
     </div>
   <% end %>
 </div>
+
+<% if user_signed_in? %>
+  <div class="md:hidden fixed w-screen bg-white z-10 border-t bottom-0 left-0 flex items-center justify-center p-2 pb-3">
+    <%= link_to root_path, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+      <%= render "icons/home", classes: "h-7 w-7" %>
+    <% end %>
+    <%= link_to root_path, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+      <%= render "icons/library", classes: "h-7 w-7" %>
+    <% end %>
+    <%= link_to root_path, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+      <%= render "icons/profile", classes: "h-7 w-7" %>
+    <% end %>
+  </div>
+<% end %>
 
