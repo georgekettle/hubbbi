@@ -6,13 +6,18 @@
 
     <div class="form-inputs">
       <div class="form-group">
-        <%= f.label :avatar %>
-        <%= f.file_field :avatar, direct_upload: true, data: { controller: 'uploader' } %>
+        <%= f.label :avatar, required: true %>
+        <%= f.file_field :avatar,
+                direct_upload: true,
+                required: true,
+                accept:"image/png, image/jpeg, image/gif",
+                data: { controller: 'uploader' } %>
       </div>
     </div>
 
     <div class="form-actions">
       <%= f.button :submit, "Update avatar", class: "w-full" %>
     </div>
+    <p class="text-center mt-1 text-gray-400 text-xs">Don't press until you see <span class="text-green-500">green</span> on the image</p>
   <% end %>
 <% end %>
