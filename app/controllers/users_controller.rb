@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user].nil? || params[:user][:avatar]&.length < 1
+    if params[:user].nil? || (params[:user][:avatar] && params[:user][:avatar]&.length < 1)
       redirect_back fallback_location: edit_user_path, alert: "Oops, there was an error updating your profile"
     elsif @user.update(user_params)
       redirect_to edit_user_path(@user), notice: "Your profile has been successfully updated"
