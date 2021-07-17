@@ -1,0 +1,18 @@
+<%= render "components/headers/header", header: 'Edit avatar', subheader: @user.full_name, back_link: edit_user_path(@user) %>
+
+<%= render 'shared/container', classes: 'p-4' do %>
+  <%= simple_form_for(@user) do |f| %>
+    <%= render 'shared/form_errors', form: f %>
+
+    <div class="form-inputs">
+      <div class="form-group">
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar, direct_upload: true, data: { controller: 'uploader' } %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update avatar", class: "w-full" %>
+    </div>
+  <% end %>
+<% end %>

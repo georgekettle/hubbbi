@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :edit_avatar]
 
   def edit
   end
@@ -12,7 +12,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_avatar
+
+  end
+
   private
+
+  def update_params_to_hash
+
+  end
 
   def set_user
     @user = User.find(params[:id])
@@ -20,6 +28,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:full_name, :display_name)
+    params.require(:user).permit(:full_name, :display_name, :avatar)
   end
 end
