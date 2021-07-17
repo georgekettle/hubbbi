@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update] do
+    member do
+      get :edit_avatar
+    end
+  end
   resources :group_members, only: :show
   devise_for :users
   root to: 'pages#home'

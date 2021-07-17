@@ -74,4 +74,6 @@ gem 'acts-as-taggable-on', '~> 7.0'
 gem 'postmark-rails'
 # authorization
 gem 'pundit'
+# image hostng
+gem 'cloudinary', '~> 1.16.0'
 

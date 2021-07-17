@@ -1,10 +1,17 @@
 <div class="w-screen md:h-screen flex items-center justify-center flex-col overflow-scroll md:pb-16 pt-12 md:pt-0">
   <div class="p-3 mb-2 flex items-center flex-col">
     <h2 class="font-bold text-3xl mb-3 text-center">Edit your profile</h2>
+    <p class="text-gray-400 text-sm text-center">or <%= link_to "Edit your account", edit_user_registration_path, class: 'text-contrast' %></p>
   </div>
   <%= simple_form_for @user do |f| %>
     <div class="w-screen sm:w-96">
       <div class="px-4 py-5">
+        <div class="form-group flex items-center">
+          <%= render 'components/avatar', user: @user, classes: "mr-2", size: 16 %>
+          <%= link_to edit_avatar_user_path(@user), class: 'btn form-btn' do %>
+            <%= render 'icons/image' %> Change avatar
+          <% end %>
+        </div>
         <%= f.input :full_name,
                     required: true,
                     autofocus: true,

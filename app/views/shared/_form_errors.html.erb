@@ -1,0 +1,15 @@
+<% if form.object.errors.present? %>
+  <div class="bg-red-200 p-2 rounded-lg flex items-center mb-1" data-controller="dismissable">
+    <div class="flex items-center flex-grow-1 w-full">
+      <h6 class="text-xs inline-block p-1 px-2 bg-red-500 rounded text-white flex-shrink-0 mr-2">Errors</h6>
+      <div>
+        <% form.object.errors.full_messages.each do |error| %>
+          <p class="text-xs"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
+    <div data-action="click->dismissable#remove" class="h-6 w-6 flex items-center justify-center rounded-full hover:bg-white hover:bg-opacity-20 cursor-pointer flex-shrink-0">
+      <%= render 'icons/close', classes: 'h-3 w-3 text-white' %>
+    </div>
+  </div>
+<% end %>

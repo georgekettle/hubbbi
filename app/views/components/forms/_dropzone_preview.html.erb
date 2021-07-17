@@ -1,0 +1,38 @@
+<% if false %>
+  <div class="dz-preview dz-file-preview">
+    <div class="dz-details">
+      <div class="dz-filename"><span data-dz-name></span></div>
+      <div class="dz-size" data-dz-size></div>
+      <img data-dz-thumbnail />
+    </div>
+    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+    <div class="dz-success-mark"><span>✔</span></div>
+    <div class="dz-error-mark"><span>✘</span></div>
+    <div class="dz-error-message"><span data-dz-errormessage></span></div>
+  </div>
+<% end %>
+
+
+<div class="dz-preview dz-image-preview dz-processing dz-success dz-complete">
+  <div class="dz-image">
+    <img data-dz-thumbnail="" alt="" src="">
+  </div>
+  <div class="dz-details">
+    <div class="dz-size">
+      <span data-dz-size=""><strong>0.1</strong> MB</span>
+    </div>
+    <div class="dz-filename">
+      <span data-dz-name="">jelly-monster-1494767.jpg</span>
+    </div>
+  </div>
+  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+  <div class="dz-error-message">
+    <span data-dz-errormessage=""></span>
+  </div>
+  <div class="dz-success-mark">
+    <%= render 'icons/check', classes:'stroke-current text-green-500 h-4 w-4' %>
+  </div>
+  <div class="dz-error-mark">
+    <%= render 'icons/warning', classes:'stroke-current text-white h-4 w-4' %>
+  </div>
+</div>
