@@ -1,0 +1,13 @@
+<%= render "components/headers/header", header: "All members", subheader: @group.name, back_link: group_path(@group) do %>
+  <% if policy(@group).update? %>
+    <%= link_to new_group_group_member_path(@group), class: 'icon-btn' do %>
+      <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render "shared/container", classes: "p-4" do %>
+  <% @group_members.each do |member| %>
+    <%= render "list_item", group_member: member %>
+  <% end %>
+<% end %>

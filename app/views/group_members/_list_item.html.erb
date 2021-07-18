@@ -1,0 +1,9 @@
+<%= link_to group_member do %>
+  <div class="w-full rounded-lg flex items-center justify-between hover:bg-gray-900 hover:bg-opacity-5 mb-2 p-1">
+    <div class="flex items-center">
+      <!-- avatar -->
+      <%= render "components/avatar", user: group_member.user %>
+      <h4 class="ml-2"><%= group_member.user.full_name %></h4>
+    </div>
+  </div>
+<% end %>
