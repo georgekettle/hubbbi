@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get :settings
     end
   end
+  resources :contents, only: :index
   resources :users, only: [:edit, :update] do
     member do
       get :edit_avatar
