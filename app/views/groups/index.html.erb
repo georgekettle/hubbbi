@@ -1,1 +1,6 @@
 <%= render "components/headers/header", header: "Select a group", hide_back_link: true %>
+
+<%= render 'shared/container', classes: 'p-4' do %>
+  <%= render "components/headers/section_header", title: "Your groups", icon:"members" %>
+  <%= render :partial => "group", :collection => @groups %>
+<% end %>

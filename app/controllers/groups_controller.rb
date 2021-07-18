@@ -1,7 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :settings]
 
+  def index
+    @groups = current_user.groups
+  end
+
   def show
+    session[:selected_group] = @group
   end
 
   def new
