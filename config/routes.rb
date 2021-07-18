@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :groups, only: [:show, :new, :create]
   resources :users, only: [:edit, :update] do
     member do
       get :edit_avatar

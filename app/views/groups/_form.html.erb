@@ -1,0 +1,6 @@
+<%= simple_form_for @group do |f| %>
+  <%= f.input :name, required: true, autofocus: true %>
+  <div class="form-actions">
+    <%= f.submit class: 'w-full' %>
+  </div>
+<% end %>

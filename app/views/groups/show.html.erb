@@ -1,0 +1,9 @@
+<%= render "components/headers/header", header: @group.name, subheader: "Group" %>
+
+<%= render "shared/container", classes: "p-4" do %>
+  <% if @group.content %>
+    <p class="text-green-500 text-xs p-3 text-center">This group does have content</p>
+  <% else %>
+    <p class="text-red-500 text-xs p-3 text-center">This group has no content</p>
+  <% end %>
+<% end %>
