@@ -1,6 +1,6 @@
 <%= render "components/headers/header", header: @group.name, subheader: "Group" do %>
   <% if policy(@group).update? %>
-    <%= link_to edit_group_path(@group), class: 'icon-btn transparent' do %>
+    <%= link_to settings_group_path(@group), class: 'icon-btn transparent' do %>
       <%= render 'icons/settings', classes:"text-gray-900 stroke-current" %>
     <% end %>
   <% end %>

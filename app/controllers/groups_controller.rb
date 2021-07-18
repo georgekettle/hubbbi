@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :settings]
 
   def show
   end
@@ -28,6 +28,17 @@ class GroupsController < ApplicationController
       redirect_to @group, notice: "Your group has successfully been updated"
     else
       render :edit, alert: "Oops... Something went wrong when updating your group"
+    end
+  end
+
+  def settings
+  end
+
+  def destroy
+    if @group.destroy
+      redirect_to groups_path, notice: "Your group has successfully been destroyed"
+    else
+      render :settings, alert: "Oops... Something went wrong when deleting your group"
     end
   end
 
