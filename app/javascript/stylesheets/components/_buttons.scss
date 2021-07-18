@@ -13,3 +13,11 @@
     @apply text-red-500;
   }
 }
+
+.icon-btn {
+  @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100;
+
+  svg {
+    @apply h-5 w-5 stroke-2 stroke-current text-gray-900;
+  }
+}
