@@ -1,3 +1,4 @@
+<% hide_back_link ||= false %>
 <% back_link ||= :back %>
 <% subheader ||= nil %>
 <% header_link ||= nil %>
@@ -6,13 +7,15 @@
   <%= render 'shared/container', classes: 'flex items-center px-2' do %>
     <div class="w-full flex items-center justify-between relative py-3 px-2 lg:px-0">
 
+      <% unless hide_back_link %>
         <%= link_to back_link, class: 'icon-btn transparent' do %>
           <%= render 'icons/arrow_left' %>
         <% end %>
+      <% end %>
 
-        <div class="flex items-center">
-          <%= yield %>
-        </div>
+      <div class="flex items-center">
+        <%= yield %>
+      </div>
     </div>
     <!-- header title (in center) -->
     <%= render 'components/headers/header_title', header: header, subheader: subheader %>

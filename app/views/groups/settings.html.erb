@@ -1,0 +1,20 @@
+<%= render "components/headers/header", back_link: @group, header: @group.name, subheader: "Group settings" %>
+
+<%= render "shared/container", classes: "p-4" do %>
+  <% if policy(@group).update? %>
+    <div class="mb-4">
+      <%= render "components/headers/section_header", title: "Edit", icon:"edit" %>
+      <%= render "components/quick_link", link: edit_group_path(@group), title: "Edit details", subtitle: "Name & cover photo etc." %>
+    </div>
+  <% end %>
+
+  <% if policy(@group).destroy? %>
+    <div class="mb-4">
+      <%= render "components/headers/section_header", title: "Delete", icon:"bin" %>
+      <%= link_to @group, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'}, class: "button button-destroy w-full" do %>
+        Delete this group
+      <% end %>
+      <p class="text-center mt-1 text-gray-400 text-xs"><span class="text-red-500">Be aware:</span> This will delete the group and all it's content</p>
+    </div>
+  <% end %>
+<% end %>

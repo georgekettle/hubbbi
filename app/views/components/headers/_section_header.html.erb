@@ -1,11 +1,9 @@
 <% icon ||= nil %>
 <% title ||= "Title" %>
-<% right ||= nil %>
 
 <div class="w-full mb-2 flex items-center justify-between">
   <div class="flex items-center">
-    <%= render "icons/#{icon}", classes:"text-gray-400 stroke-current" if icon %>
-    <h4 class="ml-1 text-sm font-medium text-gray-400 tracking-tight"><%= title.capitalize %></h4>
+    <%= render "icons/#{icon}", classes:"text-gray-400 stroke-current h-4 w-4" if icon %>
+    <h4 class="ml-2 text-sm font-medium text-gray-400 tracking-tight"><%= title.capitalize %></h4>
   </div>
-  <%= right if right %>
 </div>

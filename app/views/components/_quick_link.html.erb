@@ -1,7 +1,12 @@
-<%= link_to "#", class: "w-full rounded-2xl p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+<% link ||= '#' %>
+<% subtitle ||= nil %>
+
+<%= link_to link, class: "w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
   <div>
-    <h4 class="leading-tight">Book a session</h4>
-    <h6 class="text-xs text-gray-400">Let’s have a chat guys 👋🏻</h6>
+    <h4 class="leading-tight"><%= title %></h4>
+    <% if subtitle %>
+      <h6 class="text-xs text-gray-400"><%= subtitle %></h6>
+    <% end %>
   </div>
   <div class="h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2">
     <%= render 'icons/arrow_right', classes: "stroke-current text-white" %>
