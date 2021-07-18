@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show]
+  before_action :set_group, only: [:show, :edit, :update]
 
   def show
   end
@@ -17,6 +17,17 @@ class GroupsController < ApplicationController
       redirect_to @group, notice: "Your group has successfully been created"
     else
       render :new, alert: "Oops... Something went wrong when creating your group"
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @group.update(group_params)
+      redirect_to @group, notice: "Your group has successfully been updated"
+    else
+      render :edit, alert: "Oops... Something went wrong when updating your group"
     end
   end
 
