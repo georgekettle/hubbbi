@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2419px" height="1480px" viewBox="0 0 2419 1480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Oval + Oval Copy 5 Mask Copy Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="62.4392948%" x2="50%" y2="2.77555756e-15%" id="linearGradient-1">
+            <stop stop-color="#FFDFA3" offset="0%"></stop>
+            <stop stop-color="#FFF1D6" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="2419" height="1480"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Oval-+-Oval-Copy-5-Mask-Copy-Copy">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            <circle id="Oval" fill="#FFA80A" mask="url(#mask-3)" cx="1862.5" cy="69.5" r="977.5"></circle>
+            <circle id="Oval-Copy-5" fill="#FFCD70" mask="url(#mask-3)" cx="744.5" cy="1685.5" r="744.5"></circle>
+        </g>
+    </g>
+</svg>
