@@ -7,7 +7,9 @@
 <% end %>
 
 <%= render "shared/container", classes: "p-4" do %>
-  <% @group_members.each do |member| %>
-    <%= render "list_item", group_member: member %>
+  <% @group_members.each_with_index do |member, index| %>
+    <div style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
+      <%= render "list_item", group_member: member %>
+    </div>
   <% end %>
 <% end %>

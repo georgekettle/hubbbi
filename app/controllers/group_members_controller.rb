@@ -1,9 +1,8 @@
 class GroupMembersController < ApplicationController
   before_action :set_group, only: [:new, :create, :index]
+  before_action :set_group_member, only: [:show, :update]
 
   def show
-    @group_member = GroupMember.find(params[:id])
-    authorize @group_member
   end
 
   def index
@@ -29,6 +28,14 @@ class GroupMembersController < ApplicationController
     end
   end
 
+  def update
+    if @group_member.update(group_member_params)
+      redirect_to group_group_members_path(@group_member.group), notice: "#{@group_member.user.full_name_or_email} was successfully updated"
+    else
+      redirect_back fallback_location: group_group_members_path(@group_member.group), alert: "Oops, there was an error updating user #{@group_member.user.full_name_or_email}"
+    end
+  end
+
   private
 
   def email_is_member?
@@ -37,6 +44,11 @@ class GroupMembersController < ApplicationController
 
   def set_group
     @group = Group.find(params[:group_id])
+  end
+
+  def set_group_member
+    @group_member = GroupMember.find(params[:id])
+    authorize @group_member
   end
 
   def group_member_params
