@@ -14,16 +14,20 @@
           <%= f.input :email,
                 required: true,
                 autofocus: true,
+                placeholder: example_email,
                 input_html: { autocomplete: "email" }%>
           <%= f.input :full_name,
                 required: true,
+                placeholder: example_name,
                 input_html: { autocomplete: "name" }%>
           <%= f.input :password,
                       required: true,
+                      placeholder: example_password,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                       input_html: { autocomplete: "new-password" } %>
           <%= f.input :password_confirmation,
                       required: true,
+                      placeholder: example_password,
                       input_html: { autocomplete: "new-password" } %>
 
           <div class="form-actions">

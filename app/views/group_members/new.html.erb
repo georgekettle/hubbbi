@@ -5,7 +5,7 @@
     <%= f.label :email %>
     <div class="flex w-full">
       <div class="flex-grow">
-        <%= f.input :email, input_html: {class: "rounded-r-none"}, label: false, autofocus: true, required: true, placeholder: "barack_obama@gmail.com" %>
+        <%= f.input :email, input_html: {class: "rounded-r-none"}, label: false, autofocus: true, required: true, placeholder: example_email %>
       </div>
       <div class="flex-shrink-0">
         <%= f.input :role, collection: GroupMember.roles.keys, input_html: {class: "rounded-l-none border-l-0"}, label: false, include_blank: false, include_hidden: false %>
