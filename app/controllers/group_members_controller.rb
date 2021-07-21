@@ -3,6 +3,7 @@ class GroupMembersController < ApplicationController
   before_action :set_group_member, only: [:show, :update, :destroy]
 
   def show
+    @current_user_group_member = current_user.group_members.find_by(group: @group_member.group)
   end
 
   def index
