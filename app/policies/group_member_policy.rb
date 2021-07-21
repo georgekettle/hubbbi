@@ -11,6 +11,10 @@ class GroupMemberPolicy < ApplicationPolicy
     group_admin? || belongs_to_user?
   end
 
+  def destroy?
+    group_admin? || belongs_to_user?
+  end
+
   private
 
   def belongs_to_user?

@@ -1,6 +1,6 @@
 class GroupMembersController < ApplicationController
   before_action :set_group, only: [:new, :create, :index]
-  before_action :set_group_member, only: [:show, :update]
+  before_action :set_group_member, only: [:show, :update, :destroy]
 
   def show
   end
@@ -33,6 +33,15 @@ class GroupMembersController < ApplicationController
       redirect_to group_group_members_path(@group_member.group), notice: "#{@group_member.user.full_name_or_email} was successfully updated"
     else
       redirect_back fallback_location: group_group_members_path(@group_member.group), alert: "Oops, there was an error updating user #{@group_member.user.full_name_or_email}"
+    end
+  end
+
+  def destroy
+    @group_member.destroy
+    if @group_member.user == current_user
+      redirect_to groups_path, notice: "You successfully removed yourself from #{@group_member.group.name.capitalize}"
+    else
+      redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "You successfully removed #{@group_member.user.full_name_or_email} from the group"
     end
   end
 
