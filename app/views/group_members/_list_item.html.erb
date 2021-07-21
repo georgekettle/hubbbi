@@ -27,10 +27,10 @@
           data-transition-leave-from="opacity-100 scale-100"
           data-transition-leave-to="opacity-0 scale-95"
         >
-          <%= link_to("Remove all permissions", group_member_path(group_member, group_member: { :role => "member" }), method: :patch, class: "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm") unless group_member.role == "member" %>
-          <%= link_to("Make editor", group_member_path(group_member, group_member: { :role => "editor" }), method: :patch, class: "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm") unless group_member.role == "editor" %>
-          <%= link_to("Make admin", group_member_path(group_member, group_member: { :role => "admin" }), method: :patch, data: {confirm: "Are you sure you'd like to do this? (#{group_member.user.full_name_or_email} will have the same permissions as yourself)"}, class: "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm") unless group_member.role == "admin" %>
-          <%= link_to("Remove from group", group_member_path(group_member), method: :delete, data: {confirm: "Are you sure you'd like to remove #{group_member.user.full_name_or_email} from the group"}, class: "text-red-700 hover:bg-red-100 hover:text-red-900 block px-4 py-2 text-sm") %>
+          <%= link_to("Remove all permissions", group_member_path(group_member, group_member: { :role => "member" }), method: :patch, class: "dropdown-link") unless group_member.role == "member" %>
+          <%= link_to("Make editor", group_member_path(group_member, group_member: { :role => "editor" }), method: :patch, class: "dropdown-link") unless group_member.role == "editor" %>
+          <%= link_to("Make admin", group_member_path(group_member, group_member: { :role => "admin" }), method: :patch, data: {confirm: "Are you sure you'd like to do this? (#{group_member.user.full_name_or_email} will have the same permissions as yourself)"}, class: "dropdown-link") unless group_member.role == "admin" %>
+          <%= link_to("Remove from group", group_member_path(group_member), method: :delete, data: {confirm: "Are you sure you'd like to remove #{group_member.user.full_name_or_email} from the group"}, class: "dropdown-link-danger") %>
         </div>
       </div>
     </div>
