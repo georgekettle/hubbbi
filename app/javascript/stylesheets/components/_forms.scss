@@ -2,14 +2,15 @@
   @apply px-3 p-2 bg-red-500 text-white rounded-md text-sm mb-2;
 }
 
+label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
 .form-group {
   @apply mb-2;
 
-  label {
-    @apply block text-sm font-medium text-gray-700 mb-1;
-  }
-
-  input, .icon-input {
+  // styles for select chevron (bg image) in assets/stylesheets/forms.scss
+  input, select, .icon-input {
     @apply focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm sm:text-sm border border-gray-300 rounded-md;
   }
 
@@ -49,6 +50,10 @@
   textarea,
   select {
     @apply w-full p-2;
+  }
+
+  select {
+    @apply pr-8;
   }
 
   [type='checkbox'],

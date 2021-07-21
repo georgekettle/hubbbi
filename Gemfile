@@ -10,7 +10,7 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem 'sass-rails'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -76,4 +76,5 @@ gem 'postmark-rails'
 gem 'pundit'
 # image hostng
 gem 'cloudinary', '~> 1.16.0'
-
+# invite people via email
+gem 'devise_invitable', '~> 2.0.0'

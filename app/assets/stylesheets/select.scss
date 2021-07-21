@@ -1,0 +1,10 @@
+select {
+  -webkit-appearance: none!important;
+  -moz-appearance: none!important;
+  appearance: none!important;       /* Remove default arrow */
+  -webkit-appearance: none;
+  background-image: image-url('select_chevron.svg');   /* Add custom arrow */
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) 50%;
+  background-size: 10px;
+}
