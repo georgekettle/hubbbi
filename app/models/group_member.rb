@@ -5,4 +5,12 @@ class GroupMember < ApplicationRecord
   has_many :permissions, through: :group_member_permissions
 
   enum role: { member: 1, editor: 2, admin: 3 }
+  attribute :email, :string
+
+  validates :user, uniqueness: { scope: :group, message: 'Looks like this email is already a group member' }
+  before_validation :set_user_id, if: :email?
+
+  def set_user_id
+    self.user = User.invite!(email: email)
+  end
 end

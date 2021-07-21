@@ -3,7 +3,7 @@
     <div class="flex items-center">
       <!-- avatar -->
       <%= render "components/avatar", user: group_member.user %>
-      <h4 class="ml-2"><%= group_member.user.full_name %></h4>
+      <h4 class="ml-2"><%= group_member.user.full_name_or_email %></h4>
     </div>
   </div>
 <% end %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { invitations: 'users/invitations' }
   resources :groups do
-    resources :group_members, only: [:index, :new]
+    resources :group_members, only: [:index, :new, :create]
     member do
       get :settings
     end
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
     end
   end
   resources :group_members, only: [:show]
-  devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -76,4 +76,5 @@ gem 'postmark-rails'
 gem 'pundit'
 # image hostng
 gem 'cloudinary', '~> 1.16.0'
-
+# invite people via email
+gem 'devise_invitable', '~> 2.0.0'
