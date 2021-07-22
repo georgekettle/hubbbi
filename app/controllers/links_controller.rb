@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_linkable, only: [:new, :create]
-  before_action :set_link, only: [:edit, :update]
+  before_action :set_link, only: [:edit, :update, :destroy]
 
   def create
     @link = @linkable.links.new(link_params)
@@ -21,6 +21,11 @@ class LinksController < ApplicationController
     else
       render :edit, alert: "Oops... Something went wrong when updating your link"
     end
+  end
+
+  def destroy
+    @link.destroy
+    redirect_to @link.linkable, notice: "Link was successfully deleted"
   end
 
   private

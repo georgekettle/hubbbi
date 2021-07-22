@@ -25,7 +25,7 @@
         >
           <%= link_to "Go to link", "#{link.url}", class: "dropdown-link", target: :_blank %>
           <%= link_to "Update link", edit_link_path(link), class: "dropdown-link" %>
-          <%= link_to 'Delete link', groups_path, class: "dropdown-link-danger" %>
+          <%= link_to 'Delete link', link, method: :delete, class: "dropdown-link-danger" %>
         </div>
       </div>
     </div>
