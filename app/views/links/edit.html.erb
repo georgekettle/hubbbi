@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Edit link", back_link: @link.linkable %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render 'links/form', link: @link, linkable: @link.linkable, not_nested: true %>
+<% end %>

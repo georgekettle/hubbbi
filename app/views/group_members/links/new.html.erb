@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Create a link", subheader: "For your profile", back_link: @linkable %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render 'links/form', linkable: @linkable, link: @link %>
+<% end %>

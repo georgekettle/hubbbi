@@ -1,0 +1,46 @@
+<% if link.linkable.class == GroupMember && policy(link.linkable).links? %>
+  <div class="w-full relative">
+    <div class="w-full rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
+      <div>
+        <h4 class="leading-tight"><%= link.title %></h4>
+        <% if link.subtitle.present? %>
+          <h6 class="text-xs text-gray-400"><%= link.subtitle %></h6>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <div data-controller="dropdown" class="relative">
+        <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
+          <%= render 'icons/options', classes: "text-gray-400" %>
+        </button>
+
+        <div
+          data-dropdown-target="menu"
+          class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+          data-transition-enter-from="opacity-0 scale-95"
+          data-transition-enter-to="opacity-100 scale-100"
+          data-transition-leave-from="opacity-100 scale-100"
+          data-transition-leave-to="opacity-0 scale-95"
+        >
+          <%= link_to "Go to link", "#{link.url}", class: "dropdown-link", target: :_blank %>
+          <%= link_to "Update link", edit_link_path(link), class: "dropdown-link" %>
+          <%= link_to 'Delete link', link, method: :delete, class: "dropdown-link-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= link_to "#{link.url}", target: :_blank, class: "w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+    <div>
+      <h4 class="leading-tight"><%= link.title %></h4>
+      <% if link.subtitle.present? %>
+        <h6 class="text-xs text-gray-400"><%= link.subtitle %></h6>
+      <% end %>
+    </div>
+    <div class="h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2">
+      <%= render 'icons/arrow_right', classes: "stroke-current text-white" %>
+    </div>
+  <% end %>
+<% end %>
+
