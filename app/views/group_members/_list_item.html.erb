@@ -29,7 +29,13 @@
         >
           <%= link_to("Remove all permissions", group_member_path(group_member, group_member: { :role => "member" }), method: :patch, class: "dropdown-link") unless group_member.role == "member" %>
           <%= link_to("Make editor", group_member_path(group_member, group_member: { :role => "editor" }), method: :patch, class: "dropdown-link") unless group_member.role == "editor" %>
-          <%= link_to("Make admin", group_member_path(group_member, group_member: { :role => "admin" }), method: :patch, data: {confirm: "Are you sure you'd like to do this? (#{group_member.user.full_name_or_email} will have the same permissions as yourself)"}, class: "dropdown-link") unless group_member.role == "admin" %>
+          <%= link_to(
+                    "Make admin",
+                    group_member_path(group_member,
+                    group_member: { :role => "admin" }),
+                    method: :patch,
+                    data: {confirm: "Are you sure you'd like to do this?\n#{group_member.user.full_name_or_email} will have the same permissions as yourself, including deleting this group"}, class: "dropdown-link"
+                  ) unless group_member.role == "admin" %>
           <%= link_to("Remove from group", group_member_path(group_member), method: :delete, data: {confirm: "Are you sure you'd like to remove #{group_member.user.full_name_or_email} from the group"}, class: "dropdown-link-danger") %>
         </div>
       </div>
