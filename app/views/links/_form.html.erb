@@ -1,0 +1,8 @@
+<%= simple_form_for([linkable, link]) do |f| %>
+  <%= f.input :url %>
+  <%= f.input :title %>
+  <%= f.input :subtitle %>
+  <div class="form-actions">
+    <%= f.submit class: 'w-full' %>
+  </div>
+<% end %>
