@@ -1,9 +1,10 @@
 class GroupMember < ApplicationRecord
+  include Linkable
+
   belongs_to :user
   belongs_to :group
   has_many :group_member_permissions, dependent: :destroy
   has_many :permissions, through: :group_member_permissions
-  has_many :links, as: :linkable, dependent: :destroy
 
   enum role: { member: 1, editor: 2, admin: 3 }
   attribute :email, :string
