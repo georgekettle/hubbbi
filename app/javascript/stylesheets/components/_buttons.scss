@@ -21,3 +21,15 @@
     @apply h-5 w-5 stroke-2 stroke-current text-gray-900;
   }
 }
+
+.icon-btn.faded {
+  svg {
+    @apply text-gray-400;
+  }
+
+  &:hover {
+    svg {
+      @apply text-gray-900;
+    }
+  }
+}
