@@ -32,7 +32,13 @@
   <p class="text-sm text-gray-400">A little description about myself</p>
 
   <div class="mt-6 w-full">
-    <%= render "components/headers/section_header", title: "Quick links", icon:"zap" %>
+    <%= render "components/headers/section_header", title: "Quick links", icon:"zap" do %>
+      <% if policy(@group_member).links? %>
+        <%= link_to new_group_member_link_path(@group_member), class: "icon-btn" do %>
+          <%= render 'icons/plus_circle' %>
+        <% end %>
+      <% end %>
+    <% end %>
     <% @group_member.links.each do |link| %>
       <div class="pb-2 w-full">
         <%= render "links/link", link: link %>
