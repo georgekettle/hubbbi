@@ -39,8 +39,9 @@
         <% end %>
       <% end %>
     <% end %>
-    <% @group_member.links.each do |link| %>
-      <div class="pb-2 w-full">
+    <% @group_member.links.each_with_index do |link, index| %>
+      <% zindex = 500 - index %>
+      <div class="pb-2 w-full relative" style="z-index: <%= zindex %>">
         <%= render "links/link", link: link %>
       </div>
     <% end %>

@@ -12,9 +12,10 @@ Rails.application.routes.draw do
       get :edit_avatar
     end
   end
-  resources :group_members, only: [:show, :update, :destroy], shallow: true do
+  resources :group_members, only: [:show, :update, :destroy] do
     resources :links, only: [:new, :create], module: "group_members"
   end
+  resources :links, only: [:edit, :update]
   # root directs to groups#index if logged in:
   root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   root to: 'pages#home'
