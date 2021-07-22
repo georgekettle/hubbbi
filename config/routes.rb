@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       get :edit_avatar
     end
   end
-  resources :group_members, only: [:show]
+  resources :group_members, only: [:show, :update, :destroy]
+  root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
