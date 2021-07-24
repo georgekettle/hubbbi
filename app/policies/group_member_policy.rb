@@ -29,8 +29,6 @@ class GroupMemberPolicy < ApplicationPolicy
     user.group_members.find_by(group: group, role: [:admin])
   end
 
-  private
-
   def belongs_to_user?
     record.user == user
   end

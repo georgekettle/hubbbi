@@ -1,4 +1,7 @@
 <%= render "components/headers/header", header: @course.title, subheader: "Course", back_link: group_path(@course.group) do %>
+  <%= link_to course_course_members_path(@course), class: 'icon-btn' do %>
+    <%= render 'icons/members', classes:"text-gray-900 stroke-current" %>
+  <% end %>
   <div data-controller="dropdown" class="relative">
     <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
       <%= render 'icons/options', classes: "h-5 w-5" %>
