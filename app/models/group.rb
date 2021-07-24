@@ -4,8 +4,4 @@ class Group < ApplicationRecord
   has_many :courses, dependent: :destroy
 
   has_one_attached :cover
-
-  def name
-    super.capitalize
-  end
 end
