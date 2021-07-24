@@ -3,6 +3,8 @@ class GroupMember < ApplicationRecord
 
   belongs_to :user
   belongs_to :group
+  has_many :course_members, dependent: :destroy
+  has_many :courses, through: :course_members
 
   enum role: { member: 1, editor: 2, admin: 3 }
   attribute :email, :string
