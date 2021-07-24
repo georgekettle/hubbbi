@@ -43,33 +43,6 @@ ActiveRecord::Schema.define(version: 2021_07_22_014911) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "content_permissions", force: :cascade do |t|
-    t.bigint "permission_id", null: false
-    t.bigint "content_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["content_id"], name: "index_content_permissions_on_content_id"
-    t.index ["permission_id"], name: "index_content_permissions_on_permission_id"
-  end
-
-  create_table "contents", force: :cascade do |t|
-    t.string "title"
-    t.string "subtitle"
-    t.integer "status", default: 0, null: false
-    t.integer "parent_id"
-    t.integer "lft", null: false
-    t.integer "rgt", null: false
-    t.integer "depth", default: 0, null: false
-    t.integer "children_count", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "group_id"
-    t.index ["group_id"], name: "index_contents_on_group_id"
-    t.index ["lft"], name: "index_contents_on_lft"
-    t.index ["parent_id"], name: "index_contents_on_parent_id"
-    t.index ["rgt"], name: "index_contents_on_rgt"
-  end
-
   create_table "group_member_permissions", force: :cascade do |t|
     t.bigint "permission_id", null: false
     t.bigint "group_member_id", null: false
@@ -168,9 +141,6 @@ ActiveRecord::Schema.define(version: 2021_07_22_014911) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "content_permissions", "contents"
-  add_foreign_key "content_permissions", "permissions"
-  add_foreign_key "contents", "groups"
   add_foreign_key "group_member_permissions", "group_members"
   add_foreign_key "group_member_permissions", "permissions"
   add_foreign_key "group_members", "groups"
