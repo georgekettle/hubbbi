@@ -1,4 +1,4 @@
-<%= render "components/headers/header", header: "Add participants", subheader: "To #{@course.title}" %>
+<%= render "components/headers/header", header: "Add participants", subheader: "To #{@course.title}", back_link: course_course_members_path(@course) %>
 <%= render "shared/container", classes: "p-4" do %>
   <%= render 'form', course: @course %>
 <% end %>

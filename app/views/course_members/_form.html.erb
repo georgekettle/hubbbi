@@ -1,7 +1,10 @@
 <%= simple_form_for [course, course.course_members.new] do |f| %>
-  <%= f.input :id, :as => :check_boxes, label: false do %>
+  <%= f.input :id, :as => :check_boxes, label: "" do %>
     <%= f.collection_check_boxes :id, (course.group.group_members - course.group_members), :id, :name do |builder| %>
-      <%= content_tag(:div, :class => "any") { builder.check_box + builder.label } %>
+      <%= content_tag(:div, :class => "any") do %>
+        <%= builder.check_box(class:"group-member-checkbox") %>
+        <%= builder.label {|label| render("group_members/checkbox_item", group_member: builder.object ) } %>
+      <% end %>
     <% end %>
   <% end %>
   <div class="form-actions">
