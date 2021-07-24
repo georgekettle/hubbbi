@@ -7,6 +7,14 @@ class CoursePolicy < ApplicationPolicy
     group_admin_or_editor?
   end
 
+  def update?
+    group_admin_or_editor?
+  end
+
+  def settings?
+    group_admin_or_editor?
+  end
+
   private
 
   def course_member?

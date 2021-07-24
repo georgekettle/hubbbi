@@ -1,6 +1,5 @@
-<% not_nested ||= false %>
+<% path = link.new_record? ? [link.linkable, link] : link %>
 
-<% path = not_nested ? link : [linkable, link] %>
 <%= simple_form_for(path) do |f| %>
   <%= f.input :url, input_html: { type: 'url' }, placeholder: "https://www.twitter.com", hint: "Must include 'https://' or 'http://'" %>
   <%= f.input :title, placeholder: "Explain your link" %>

@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: :show
+  before_action :set_course, only: [:show, :edit, :update, :settings]
   before_action :set_group, only: [:new, :create]
 
   def show
@@ -20,6 +20,20 @@ class CoursesController < ApplicationController
     else
       render :new, alert: "Oops... Something went wrong when creating course"
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @course.update(course_params)
+      redirect_to @course, notice: "Your course has successfully been updated"
+    else
+      render :edit, alert: "Oops... Something went wrong when updating your course"
+    end
+  end
+
+  def settings
   end
 
   private
