@@ -3,6 +3,10 @@ class CoursePolicy < ApplicationPolicy
     course_member? || group_admin_or_editor?
   end
 
+  def create?
+    group_admin_or_editor?
+  end
+
   private
 
   def course_member?
@@ -10,6 +14,6 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def group_admin_or_editor?
-    record.group_members.find_by(role: ["admin", "editor"], user: user)
+    record.group.group_members.find_by(role: ["admin", "editor"], user: user)
   end
 end

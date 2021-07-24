@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { invitations: 'users/invitations' }
   resources :groups do
     resources :group_members, only: [:index, :new, :create]
+    resources :courses, only: [:new, :create]
     member do
       get :settings
     end

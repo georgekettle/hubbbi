@@ -1,7 +1,7 @@
 <%= link_to group, class: "mb-2 block" do %>
   <% if group.cover.attached? %>
-    <%= render "components/card", title: group.name, subtitle: "#{group.group_members.count} members", image: group.cover %>
+    <%= render "components/card", title: group.name, subtitle: pluralize(group.group_members.count, "member"), image: group.cover %>
   <% else %>
-    <%= render "components/card", title: group.name, subtitle: "#{group.group_members.count} members", no_shadow: true %>
+    <%= render "components/card", title: group.name, subtitle: pluralize(group.group_members.count, "member"), no_shadow: true %>
   <% end %>
 <% end %>
