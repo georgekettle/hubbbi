@@ -1,3 +1,22 @@
-<%= render "components/headers/header", header: @course.title, subheader: "Course", back_link: group_path(@course.group) %>
+<%= render "components/headers/header", header: @course.title, subheader: "Course", back_link: group_path(@course.group) do %>
+  <div data-controller="dropdown" class="relative">
+    <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
+      <%= render 'icons/options', classes: "h-5 w-5" %>
+    </button>
 
+    <div
+      data-dropdown-target="menu"
+      class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+      data-transition-enter-from="opacity-0 scale-95"
+      data-transition-enter-to="opacity-100 scale-100"
+      data-transition-leave-from="opacity-100 scale-100"
+      data-transition-leave-to="opacity-0 scale-95"
+    >
+      <% if policy(@course).update? %>
+        <%= link_to("Course settings", settings_course_path(@course), class: "dropdown-link") %>
+      <% end %>
+      <%# link_to("Leave this course", course_member_path(@current_user_course_member), method: :delete, data: {confirm: "Are you sure you'd like to remove yourself from this course"}, class: "dropdown-link-danger") %>
+    </div>
+  </div>
+<% end %>
 <%= render "pages/page_content", page: @course.page %>

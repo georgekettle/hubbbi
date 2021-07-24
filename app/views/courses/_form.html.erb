@@ -1,4 +1,6 @@
-<%= simple_form_for [course.group, course] do |f| %>
+<% path = course.new_record? ? [course.group, course] : course %>
+
+<%= simple_form_for(path) do |f| %>
   <%= f.input :title %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>

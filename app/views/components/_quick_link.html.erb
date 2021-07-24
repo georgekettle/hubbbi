@@ -1,11 +1,11 @@
-<%= link_to "#{url}", target: :_blank, class: "w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
-    <div>
-      <h4 class="leading-tight"><%= title %></h4>
-      <% if subtitle.present? %>
-        <h6 class="text-xs text-gray-400"><%= subtitle %></h6>
-      <% end %>
-    </div>
-    <div class="h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2">
-      <%= render 'icons/arrow_right', classes: "stroke-current text-white" %>
-    </div>
-  <% end %>
+<%= link_to "#{url}", class: "w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+  <div>
+    <h4 class="leading-tight"><%= title %></h4>
+    <% if subtitle.present? %>
+      <h6 class="text-xs text-gray-400"><%= subtitle %></h6>
+    <% end %>
+  </div>
+  <div class="h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2">
+    <%= render 'icons/arrow_right', classes: "stroke-current text-white" %>
+  </div>
+<% end %>

@@ -6,8 +6,5 @@ class Course < ApplicationRecord
 
   has_one_attached :cover
 
-  # status
-  enum status: { draft: 0, published: 1 }
-
   validates :title, presence: true
 end
