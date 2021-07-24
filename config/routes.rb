@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :links, only: [:new, :create], module: "group_members"
   end
   resources :links, only: [:edit, :update, :destroy]
-  resources :courses, only: [:show, :edit, :update] do
+  resources :courses, only: [:show, :edit, :update, :destroy] do
     member do
       get :settings
     end

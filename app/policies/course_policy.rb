@@ -15,6 +15,10 @@ class CoursePolicy < ApplicationPolicy
     group_admin_or_editor?
   end
 
+  def destroy?
+    group_admin_or_editor?
+  end
+
   private
 
   def course_member?
