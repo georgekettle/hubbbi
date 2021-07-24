@@ -15,4 +15,8 @@ class GroupMember < ApplicationRecord
   def set_user_id
     self.user = User.invite!(email: email)
   end
+
+  def name
+    user.full_name_or_email
+  end
 end

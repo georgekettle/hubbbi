@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :course_members, only: [:destroy]
+
   # root directs to groups#index if logged in:
   root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   root to: 'pages#home'
