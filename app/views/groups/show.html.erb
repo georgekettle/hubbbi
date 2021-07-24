@@ -24,5 +24,6 @@
 <% end %>
 
 <%= render "shared/container", classes: "p-4" do %>
-  <p class="text-red-500 text-xs p-3 text-center">Courses will go here</p>
+  <%= render "components/headers/section_header", title: "Your courses", icon:"library" %>
+  <%= render :partial => "courses/course", :collection => @courses %>
 <% end %>

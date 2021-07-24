@@ -8,6 +8,8 @@ class GroupsController < ApplicationController
   def show
     session[:selected_group] = @group
     @current_user_group_member = current_user.group_members.find_by(group: @group)
+    @courses = @current_user_group_member.courses
+    @courses = @group.courses if @current_user_group_member.role == ('admin' || 'editor')
   end
 
   def new
