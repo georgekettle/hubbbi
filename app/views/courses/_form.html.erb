@@ -1,7 +1,7 @@
 <% path = course.new_record? ? [course.group, course] : course %>
 
 <%= simple_form_for(path) do |f| %>
-  <%= f.label :cover, required: true %>
+  <%= f.label :cover, label: 'Cover image', required: true %>
   <%= f.file_field :cover,
           direct_upload: true,
           required: true,
