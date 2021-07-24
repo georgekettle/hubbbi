@@ -53,15 +53,6 @@ ActiveRecord::Schema.define(version: 2021_07_24_040018) do
     t.index ["page_id"], name: "index_courses_on_page_id"
   end
 
-  create_table "group_member_permissions", force: :cascade do |t|
-    t.bigint "permission_id", null: false
-    t.bigint "group_member_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_member_id"], name: "index_group_member_permissions_on_group_member_id"
-    t.index ["permission_id"], name: "index_group_member_permissions_on_permission_id"
-  end
-
   create_table "group_members", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
@@ -95,14 +86,6 @@ ActiveRecord::Schema.define(version: 2021_07_24_040018) do
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "permissions", force: :cascade do |t|
-    t.string "title", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_permissions_on_group_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -161,10 +144,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_040018) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "courses", "groups"
   add_foreign_key "courses", "pages"
-  add_foreign_key "group_member_permissions", "group_members"
-  add_foreign_key "group_member_permissions", "permissions"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
-  add_foreign_key "permissions", "groups"
   add_foreign_key "taggings", "tags"
 end
