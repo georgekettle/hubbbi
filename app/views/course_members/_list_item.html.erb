@@ -1,0 +1,35 @@
+<% group_member = course_member.group_member %>
+
+<div class="w-full relative mb-2 hover:bg-gray-900 hover:bg-opacity-5 rounded-lg">
+  <%= link_to group_member do %>
+    <div class="w-full flex items-center justify-between p-1">
+      <div class="w-full flex items-center justify-between">
+        <div class="flex items-center">
+          <!-- avatar -->
+          <%= render "components/avatar", user: group_member.user %>
+          <h4 class="ml-2"><%= group_member.user.full_name_or_email %></h4>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% if policy(group_member).admin_or_editor? && !policy(group_member).belongs_to_user? %>
+    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <div data-controller="dropdown" class="relative">
+        <button type="button" class="icon-btn faded" data-action="dropdown#toggle click@window->dropdown#hide">
+          <%= render 'icons/options' %>
+        </button>
+
+        <div
+          data-dropdown-target="menu"
+          class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+          data-transition-enter-from="opacity-0 scale-95"
+          data-transition-enter-to="opacity-100 scale-100"
+          data-transition-leave-from="opacity-100 scale-100"
+          data-transition-leave-to="opacity-0 scale-95"
+        >
+          <%= link_to("Remove from course", group_member_path(group_member), method: :delete, data: {confirm: "Are you sure you'd like to remove #{group_member.user.full_name_or_email} from this course"}, class: "dropdown-link-danger") %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,7 +1,7 @@
 <%= link_to course, class: "mb-2 block" do %>
   <% if course.cover.attached? %>
-    <%= render "components/card", title: course.title, subtitle: pluralize(course.course_members.count, "member"), image: cl_image_path(course.cover.key) %>
+    <%= render "components/card", title: course.title, subtitle: pluralize(course.course_members.count, "participant"), image: cl_image_path(course.cover.key) %>
   <% else %>
-    <%= render "components/card", title: course.title, subtitle: pluralize(course.course_members.count, "member"), no_shadow: true %>
+    <%= render "components/card", title: course.title, subtitle: pluralize(course.course_members.count, "participant"), no_shadow: true %>
   <% end %>
 <% end %>
