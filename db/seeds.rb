@@ -29,7 +29,7 @@ puts "Creating group members"
 puts "Finished creating group members"
 
 puts "Creating courses for group"
-  year_one_course = academy_group.courses.create!(title: "Year 1", status: "published", page: Page.create!(title: "Year 1", status: "published"))
+  year_one_course = academy_group.courses.create!(title: "Year 1", page: Page.create!(title: "Year 1", status: "published"))
   foundations_course = academy_group.courses.create!(title: "Foundations", page: Page.create!(title: "Foundations", status: "published"))
 puts "Finished creating courses for groups"
 
