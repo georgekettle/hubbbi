@@ -1,4 +1,4 @@
-<%= link_to group, class: "mb-2" do %>
+<%= link_to group, class: "mb-2 block" do %>
   <% if group.cover.attached? %>
     <%= render "components/card", title: group.name, subtitle: "#{group.group_members.count} members", image: group.cover %>
   <% else %>
