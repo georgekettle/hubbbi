@@ -1,7 +1,7 @@
 <%= link_to group, class: "mb-2" do %>
   <% if group.cover.attached? %>
-    <%= render "contents/card", title: group.name, subtitle: "#{group.group_members.count} members", image: group.cover %>
+    <%= render "components/card", title: group.name, subtitle: "#{group.group_members.count} members", image: group.cover %>
   <% else %>
-    <%= render "contents/card", title: group.name, subtitle: "#{group.group_members.count} members", no_shadow: true %>
+    <%= render "components/card", title: group.name, subtitle: "#{group.group_members.count} members", no_shadow: true %>
   <% end %>
 <% end %>
