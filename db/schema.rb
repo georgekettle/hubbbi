@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_042232) do
     t.bigint "group_id", null: false
     t.bigint "page_id", null: false
     t.string "title", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_courses_on_group_id"
@@ -92,7 +93,7 @@ ActiveRecord::Schema.define(version: 2021_07_24_042232) do
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
-    t.boolean "published"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
