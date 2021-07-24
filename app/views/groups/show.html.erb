@@ -25,5 +25,5 @@
 
 <%= render "shared/container", classes: "p-4" do %>
   <%= render "components/headers/section_header", title: "Your courses", icon:"library" %>
-  <%= render :partial => "courses/course", :collection => @group.courses %>
+  <%= render :partial => "courses/course", :collection => @courses %>
 <% end %>
