@@ -4,7 +4,7 @@
   <% if policy(@group).update? %>
     <div class="mb-4">
       <%= render "components/headers/section_header", title: "Edit", icon:"edit" %>
-      <%= render "components/quick_link", link: edit_group_path(@group), title: "Edit details", subtitle: "Name & cover photo etc." %>
+      <%= render "components/quick_link", url: edit_group_path(@group), title: "Edit details", subtitle: "Name & cover photo etc." %>
     </div>
   <% end %>
 
