@@ -99,13 +99,10 @@ ActiveRecord::Schema.define(version: 2021_07_25_094041) do
 
   create_table "sections", force: :cascade do |t|
     t.bigint "page_id", null: false
-    t.string "sectionable_type", null: false
-    t.bigint "sectionable_id", null: false
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["page_id"], name: "index_sections_on_page_id"
-    t.index ["sectionable_type", "sectionable_id"], name: "index_sections_on_sectionable"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
