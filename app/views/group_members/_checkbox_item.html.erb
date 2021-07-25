@@ -1,0 +1,16 @@
+<div class="checkbox-item">
+  <div class="w-full flex items-center justify-between p-1">
+    <div class="w-full flex items-center justify-between">
+      <div class="flex items-center">
+        <!-- avatar -->
+        <%= render "components/avatar", user: group_member.user %>
+        <h4 class="ml-2"><%= group_member.user.full_name_or_email %></h4>
+      </div>
+    </div>
+  </div>
+  <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+    <div class="check-mark">
+      <%= render "icons/check", stroke: 3 %>
+    </div>
+  </div>
+</div>

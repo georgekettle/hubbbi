@@ -1,0 +1,34 @@
+.group-member-checkbox {
+  position: absolute;
+  transform: scale(0);
+}
+
+.group-member-checkbox + label {
+  cursor: pointer;
+
+  .checkbox-item {
+    @apply  w-full relative mb-2 hover:bg-gray-900 hover:bg-opacity-5 rounded-lg;
+  }
+
+  .check-mark {
+    @apply bg-opacity-10 rounded-full h-5 w-5 bg-gray-900 flex items-center justify-center;
+
+    svg {
+      @apply opacity-0 stroke-current text-white h-2.5 w-2.5;
+    }
+  }
+}
+
+.group-member-checkbox:checked + label {
+  .checkbox-item {
+    @apply  bg-contrast-200;
+  }
+
+  .check-mark {
+    @apply bg-opacity-100;
+
+    svg {
+      @apply opacity-100;
+    }
+  }
+}

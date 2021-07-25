@@ -52,6 +52,8 @@ group :development do
   gem 'spring'
   # email in development
   gem "letter_opener"
+  # for seeding data
+  gem "faker"
 end
 
 group :test do
