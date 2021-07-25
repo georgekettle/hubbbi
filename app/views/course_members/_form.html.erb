@@ -9,7 +9,9 @@
       <% end %>
     <% end %>
   <% end %>
-  <div class="form-actions">
-    <%= f.button :submit, "Add participants", class: 'w-full' %>
+  <div class="form-actions fixed bottom-0 w-full left-0 bg-white border-t border-gray-200">
+    <%= render "shared/container", classes: "p-4" do %>
+      <%= f.button :submit, "Add participants", class: 'w-full' %>
+    <% end %>
   </div>
 <% end %>

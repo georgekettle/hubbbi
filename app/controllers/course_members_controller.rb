@@ -1,5 +1,6 @@
 class CourseMembersController < ApplicationController
   before_action :set_course, only: [:new, :create]
+  before_action :hide_navbar, only: [:new]
 
   def index
     @course = Course.find(params[:course_id])
