@@ -9,4 +9,8 @@ class Page < ApplicationRecord
   enum status: { draft: 0, published: 1 }
   # tags
   acts_as_taggable_on :tags
+
+  def group
+    self.courses.first.group
+  end
 end

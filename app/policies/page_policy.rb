@@ -15,6 +15,6 @@ class PagePolicy < ApplicationPolicy
   end
 
   def admin_or_editor?
-    record.group_members.find_by(user: user, role: [:admin, :editor])
+    record.group.group_members.find_by(user: user, role: [:admin, :editor])
   end
 end

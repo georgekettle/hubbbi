@@ -16,7 +16,7 @@
       data-transition-leave-to="opacity-0 scale-95"
     >
       <%= link_to("Course settings", settings_course_path(@course), class: "dropdown-link") if policy(@course).update? %>
-      <%= link_to("Leave this course", course_member_path(@current_user_course_member), method: :delete, data: {confirm: "Are you sure you'd like to remove yourself from this course"}, class: "dropdown-link-danger") %>
+      <%= link_to("Leave this course", course_member_path(@current_user_course_member), method: :delete, data: {confirm: "Are you sure you'd like to remove yourself from this course"}, class: "dropdown-link-danger") if @current_user_course_member %>
     </div>
   </div>
 <% end %>
