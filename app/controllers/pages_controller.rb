@@ -1,6 +1,17 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  before_action :set_page, only: :edit
 
-  def home
+  def edit
+  end
+
+  private
+
+  def set_page
+    @page = Page.find(params[:id])
+    authorize @page
+  end
+
+  def page_params
+    params.require(:page).permit(:title, :subtitle, :banner, :status)
   end
 end

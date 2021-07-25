@@ -1,3 +1,14 @@
 <%= render "shared/container", classes: "p-4" do %>
-  <p class="text-xs text-center text-red-500">Page contents to go here</p>
+  <% if policy(page).update? %>
+    <div class="w-full rounded-lg bg-primary-100 p-4 sm:flex items-center justify-between">
+      <div class="mb-4 sm:mb-0">
+        <h4 class="tracking-tight">Would you like to edit this page?</h4>
+        <p class="text-xs opacity-50">Only admins and editors can see this message</p>
+      </div>
+      <%= link_to edit_page_path(page), class: 'button w-full sm:w-auto' do %>
+        <%= render "icons/edit", classes: "mr-2" %>
+        Edit page
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contents, only: :index
+  resources :pages, only: :edit
 
   resources :users, only: [:edit, :update] do
     member do
@@ -34,6 +34,6 @@ Rails.application.routes.draw do
 
   # root directs to groups#index if logged in:
   root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
-  root to: 'pages#home'
+  root to: 'home#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

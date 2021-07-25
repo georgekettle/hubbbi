@@ -19,10 +19,9 @@
     <%= link_to home_link, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
       <%= render "icons/home", classes: "h-7 w-7" %>
     <% end %>
-    <% content_link = selected_group ? contents_path : groups_path %>
-    <%= link_to content_link, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
-      <%= render "icons/library", classes: "h-7 w-7" %>
-    <% end %>
+    <%# link_to courses_path, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+      <%# render "icons/library", classes: "h-7 w-7" %>
+    <%# end %>
     <% profile_link = selected_group ? group_member_path(selected_group_member) : groups_path %>
     <%= link_to profile_link, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
       <%= render "icons/profile", classes: "h-7 w-7" %>
