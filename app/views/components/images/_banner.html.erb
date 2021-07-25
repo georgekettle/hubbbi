@@ -1,0 +1,6 @@
+<% no_shadow ||= false %>
+<% image_path ||= asset_path 'default_cover.svg' %>
+<% background_style = no_shadow ? "background-image: url(#{image_path})" : "background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)), url(#{image_path})" %>
+
+<div class="w-full rounded-2xl h-40 flex items-end bg-center bg-cover" style="<%= background_style %>">
+</div>
