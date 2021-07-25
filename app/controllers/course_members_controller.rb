@@ -23,7 +23,11 @@ class CourseMembersController < ApplicationController
     @course_member = CourseMember.find(params[:id])
     authorize @course_member
     @course_member.destroy
-    redirect_to course_course_members_path(@course_member.course), notice: "#{@course_member.user.full_name_or_email} was successfully removed from the course"
+    if @course_member.user == current_user
+      redirect_to group_path(@course_member.group), notice: "You successfully removed yourself from #{@course_member.course.title.capitalize}"
+    else
+      redirect_back fallback_location: course_course_members_path(@course_member.course), notice: "#{@course_member.user.full_name_or_email} was successfully removed from the course"
+    end
   end
 
   private
