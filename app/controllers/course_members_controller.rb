@@ -19,6 +19,13 @@ class CourseMembersController < ApplicationController
     end
   end
 
+  def destroy
+    @course_member = CourseMember.find(params[:id])
+    authorize @course_member
+    @course_member.destroy
+    redirect_to course_course_members_path(@course_member.course), notice: "#{@course_member.user.full_name_or_email} was successfully removed from the course"
+  end
+
   private
 
   def add_participants
