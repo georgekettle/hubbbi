@@ -7,7 +7,7 @@ label {
 }
 
 input, select, .icon-input {
-  @apply focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm sm:text-sm border border-gray-300 rounded-md;
+  @apply focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm text-sm sm:text-base border border-gray-200 rounded-md;
 }
 
 .form-group {
@@ -15,7 +15,7 @@ input, select, .icon-input {
 
   // styles for select chevron (bg image) in assets/stylesheets/forms.scss
   input, select, .icon-input {
-    @apply focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm sm:text-sm border border-gray-300 rounded-md;
+    @apply focus:ring-contrast-200 focus:border-contrast-200 block shadow-sm text-sm sm:text-base border border-gray-200 rounded-md;
   }
 
   .icon-input {

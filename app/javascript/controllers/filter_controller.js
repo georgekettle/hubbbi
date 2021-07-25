@@ -15,7 +15,7 @@ export default class extends Controller {
   }
 
   applyFilter(query) {
-    const childDivs = Array.from(this.containerTarget.children).filter(elem => elem.tagName === 'DIV')
+    const childDivs = Array.from(this.containerTarget.querySelectorAll('.filter-item'))
     childDivs.forEach((elem) => {
       var elemText = elem.dataset.filterText;
       if (elemText) {
