@@ -1,0 +1,81 @@
+.animated {
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    // transform: scale(0.99);
+    opacity: 0;
+  }
+
+  to {
+    // transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-timing-function: ease-out;
+  animation-name: fadeIn;
+}
+
+
+@keyframes fadeOut {
+  from {
+    // transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    // transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation-timing-function: ease-out;
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOutShrink {
+  from {
+    max-height: 150px;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    max-height: 0px;
+    transform: scale(0);
+    opacity: 0;
+    overflow: hidden;
+    padding: 0px;
+    display: none;
+  }
+}
+
+.fadeOutShrink {
+  animation-timing-function: ease-out;
+  animation-name: fadeOutShrink;
+}
+
+@keyframes fadeInExpand {
+  from {
+    max-height: 0px;
+    transform: scale(0);
+    opacity: 0;
+    overflow: none;
+  }
+
+  to {
+    max-height: 200px;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.fadeInExpand {
+  animation-timing-function: ease-out;
+  animation-name: fadeInExpand;
+}

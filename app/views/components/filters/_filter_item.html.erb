@@ -1,0 +1,8 @@
+<% classes ||= "" %>
+<% ids ||= "" %>
+<% data ||= {} %>
+<% data[:filter_text] = filter_text %>
+
+<%= content_tag :div, id:ids, class: "filter-item #{classes}", data: data do %>
+  <%= yield %>
+<% end %>

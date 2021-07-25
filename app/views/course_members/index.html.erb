@@ -7,9 +7,11 @@
 <% end %>
 
 <%= render "shared/container", classes: "p-4" do %>
-  <% @course_members.each_with_index do |member, index| %>
-    <div style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
-      <%= render "list_item", course_member: member %>
-    </div>
+  <%= render('components/filters/search_filter', container_id:'course_members', placeholder:'Search users') do %>
+    <% @course_members.each_with_index do |member, index| %>
+      <div class="filter-item" data-filter-text="<%= "#{member.user.full_name} #{member.user.display_name} #{member.user.email}" %>" style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
+        <%= render "list_item", course_member: member %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
