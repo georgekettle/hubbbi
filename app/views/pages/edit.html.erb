@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Edit page", subheader: @page.title %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render 'form', page: @page %>
+<% end %>
