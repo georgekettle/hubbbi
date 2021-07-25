@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_24_042232) do
+ActiveRecord::Schema.define(version: 2021_07_25_094041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,17 @@ ActiveRecord::Schema.define(version: 2021_07_24_042232) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.string "sectionable_type", null: false
+    t.bigint "sectionable_id", null: false
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["page_id"], name: "index_sections_on_page_id"
+    t.index ["sectionable_type", "sectionable_id"], name: "index_sections_on_sectionable"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -157,5 +168,6 @@ ActiveRecord::Schema.define(version: 2021_07_24_042232) do
   add_foreign_key "courses", "pages"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
+  add_foreign_key "sections", "pages"
   add_foreign_key "taggings", "tags"
 end
