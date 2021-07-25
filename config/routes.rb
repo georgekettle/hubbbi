@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :pages, only: :edit
+  resources :pages, only: [:edit, :update, :show]
 
   resources :users, only: [:edit, :update] do
     member do
