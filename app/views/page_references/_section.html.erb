@@ -1,0 +1,7 @@
+<div class="-mx-1 flex flex-wrap">
+  <% page_references.each do |ref| %>
+    <div class="p-1 w-1/2">
+      <%= render "page_references/page_reference", page_reference: ref %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<% page = page_reference.page %>
+<% image_path = page.cover.attached? ? cl_image_path(page.cover.key) : asset_path('default_cover.svg') %>
+<% background_style = page.cover.attached? ? "background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)), url(#{image_path})" : "background-image: url(#{image_path})" %>
+
+<%= link_to ref.page, class: "w-full" do %>
+  <div class="w-full rounded-2xl h-40 flex items-end bg-center bg-cover" style="<%= background_style %>">
+    <div class="flex items-center justify-between w-full p-4">
+      <div>
+        <h4 class="text-white leading-tight"><%= page.title %></h4>
+        <% if page.subtitle %>
+          <p class="text-white leading-tight text-sm opacity-70"><%= page.subtitle %></p>
+        <% end %>
+      </div>
+      <div class="h-8 w-8 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 ml-1">
+        <%= render 'icons/arrow_right' %>
+      </div>
+    </div>
+  </div>
+<% end %>

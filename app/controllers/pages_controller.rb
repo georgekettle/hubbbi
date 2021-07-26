@@ -24,6 +24,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:title, :subtitle, :status, covers: [])
+    params.require(:page).permit(:title, :subtitle, :status, :cover)
   end
 end

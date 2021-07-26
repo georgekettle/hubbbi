@@ -1,12 +1,10 @@
 <%= simple_form_for(page) do |f| %>
   <%= f.label :covers, label: 'Cover images', required: true %>
-  <%= f.file_field :covers,
+  <%= f.file_field :cover,
           direct_upload: true,
           required: true,
           accept:"image/png, image/jpeg, image/gif",
-          data: { controller: 'uploader' },
-          input_html: { multiple: true },
-          hint: "Only the first will be used for the cover photo" %>
+          data: { controller: 'uploader' } %>
   <%= f.input :title %>
   <%= f.input :subtitle %>
   <div class="form-actions">
