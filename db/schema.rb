@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_25_120612) do
+ActiveRecord::Schema.define(version: 2021_07_26_045919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 2021_07_25_120612) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id", null: false
+    t.index ["group_id"], name: "index_pages_on_group_id"
   end
 
   create_table "section_elements", force: :cascade do |t|
@@ -183,6 +185,7 @@ ActiveRecord::Schema.define(version: 2021_07_25_120612) do
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
   add_foreign_key "page_references", "pages"
+  add_foreign_key "pages", "groups"
   add_foreign_key "section_elements", "sections"
   add_foreign_key "sections", "pages"
   add_foreign_key "taggings", "tags"

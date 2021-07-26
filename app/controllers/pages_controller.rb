@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:edit, :update, :show]
 
   def show
-    redirect_to @page.courses.first if @page.courses.any?
+    redirect_to @page.course if @page.course
   end
 
   def edit

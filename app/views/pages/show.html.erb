@@ -1,2 +1,2 @@
-<%= render "components/headers/header", header: @page.title, subheader: @page.subtitle %>
+<%= render "components/headers/header", header: @page.title, subheader: @page.subtitle, back_link: @page.parent_page || @page.belonging_to_course %>
 <%= render "pages/page_content", page: @page %>

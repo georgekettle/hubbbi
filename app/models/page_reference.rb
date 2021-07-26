@@ -1,7 +1,7 @@
 class PageReference < ApplicationRecord
   include ActionView::Helpers
 
-  belongs_to :page
+  belongs_to :page, dependent: :destroy
   has_one :section_element, :as =>:element
   has_one :section, :through => :section_element
 
