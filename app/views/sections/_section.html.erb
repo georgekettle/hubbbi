@@ -1,12 +1,7 @@
-<%= render "components/headers/section_header", title: section.element_type, icon:"library" %>
-
 <!-- case statement to decide which collection of section elements to render -->
 <% case section.element_type %>
 <% when "PageReference" %>
-  <%= render :partial => "page_references/section", :locals => {page_references: section.elements} %>
-  <div>
-    <%# render :partial => "page_references/page_reference", :collection => section.elements, :as => :page_reference %>
-  </div>
+  <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section} %>
 <% else %>
   <div class="p-4 rounded-lg bg-gray-200">
     <h4 class="tracking-tight">No contents for this section</h4>

@@ -3,6 +3,10 @@ class PagePolicy < ApplicationPolicy
     course_member? || admin_or_editor?
   end
 
+  def create?
+    admin_or_editor?
+  end
+
   def update?
     admin_or_editor?
   end

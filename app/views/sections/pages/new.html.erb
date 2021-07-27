@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Create page", back_link: @section.page %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render "form", section: @section, page: @page %>
+<% end %>
