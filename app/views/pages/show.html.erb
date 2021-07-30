@@ -1,2 +1,8 @@
-<%= render "components/headers/header", header: @page.title, subheader: @page.subtitle, back_link: @page.parent_page || @page.belonging_to_course %>
+<%= render "components/headers/header", header: @page.title, subheader: @page.subtitle, back_link: @page.parent_page || @page.belonging_to_course do %>
+  <% if policy(@page).update? %>
+    <%= link_to edit_sections_page_path(@page), class: 'icon-btn' do %>
+      <%= render 'icons/edit_sections', classes:"text-gray-900 stroke-current" %>
+    <% end %>
+  <% end %>
+<% end %>
 <%= render "pages/page_content", page: @page %>

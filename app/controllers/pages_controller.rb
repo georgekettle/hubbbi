@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :show]
+  before_action :set_page, only: [:edit, :update, :show, :edit_sections]
 
   def show
     redirect_to @page.course if @page.course
@@ -14,6 +14,10 @@ class PagesController < ApplicationController
     else
       render :edit, alert: "Oops... Something went wrong when updating the page"
     end
+  end
+
+  def edit_sections
+    hide_navbar
   end
 
   private

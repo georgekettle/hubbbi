@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :pages, only: [:edit, :update, :show]
+  resources :pages, only: [:edit, :update, :show] do
+    member do
+      get :edit_sections
+    end
+  end
+
   resources :sections, only: [] do
     resources :pages, only: [:new, :create], controller: 'sections/pages'
   end

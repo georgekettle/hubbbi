@@ -1,7 +1,27 @@
 .dropdown-link {
-  @apply text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm;
+  @apply text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm flex items-center;
+
+  svg {
+    @apply stroke-current text-gray-700 h-5 w-5 mr-2;
+  }
+
+  &:hover {
+    svg {
+      @apply text-gray-900;
+    }
+  }
 }
 
 .dropdown-link-danger {
   @apply text-red-700 hover:bg-red-100 hover:text-red-900 block px-4 py-2 text-sm;
+
+  svg {
+    @apply stroke-current text-red-700 h-5 w-5 mr-2;
+  }
+
+  &:hover {
+    svg {
+      @apply text-red-900;
+    }
+  }
 }
