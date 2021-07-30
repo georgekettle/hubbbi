@@ -1,15 +1,21 @@
-<%= render "components/headers/section_header", title: "Content", icon:"library" do %>
-  <% if policy(section.page).update? %>
-    <%= link_to new_section_page_path(section), class: 'icon-btn faded' do %>
-      <%= render "icons/plus_circle" %>
+<div class="section"></div>
+
+<% if false %>
+  <%= render "components/headers/section_header", title: "Content", icon:"library" do %>
+    <% if policy(section.page).update? %>
+      <%= link_to new_section_page_path(section), class: 'icon-btn faded' do %>
+        <%= render "icons/plus_circle" %>
+      <% end %>
     <% end %>
   <% end %>
+
+  <div class="-mx-1 flex flex-wrap">
+    <% page_references.each do |ref| %>
+      <div class="p-1 w-1/2">
+        <%= render "page_references/page_reference", page_reference: ref %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
-<div class="-mx-1 flex flex-wrap">
-  <% page_references.each do |ref| %>
-    <div class="p-1 w-1/2">
-      <%= render "page_references/page_reference", page_reference: ref %>
-    </div>
-  <% end %>
-</div>
+
