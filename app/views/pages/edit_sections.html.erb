@@ -25,7 +25,7 @@
   <%= render "shared/container", classes: "p-4" do %>
     <% @page.sections.each do |section| %>
       <%= render "sections/dropzone", position: section.position %>
-      <%= render 'sections/section', section: section %>
+      <%= render 'sections/section', section: section, editable: true %>
     <% end %>
     <%= render "sections/dropzone", position: @page.sections.count + 1 %>
   <% end %>

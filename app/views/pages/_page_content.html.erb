@@ -15,8 +15,9 @@
   <% end %>
 
   <div class="mb-4">
-    <%= render('components/images/banner', image_path: cl_image_path(page.cover.key)) if page.cover.attached? %>
-    <%= render('components/images/banner', no_shadow: true) unless page.cover.attached? %>
+    <% element = page.course ? page.course : page %>
+    <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
+    <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
   </div>
 
   <% page.sections.each do |section| %>

@@ -1,7 +1,9 @@
+<% editable ||= false %>
+
 <div class="mb-4 w-full">
   <% case section.element_type %>
   <% when "PageReference" %>
-    <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section} %>
+    <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section, editable: editable} %>
   <% else %>
     <div class="p-4 rounded-lg bg-gray-200">
       <h4 class="tracking-tight">No contents for this section</h4>

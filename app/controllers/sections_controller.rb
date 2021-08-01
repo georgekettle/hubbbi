@@ -1,4 +1,6 @@
 class SectionsController < ApplicationController
+  before_action :set_section, only: :destroy
+
   def create
     @page = Page.find(params[:page_id])
     @section = @page.sections.new(section_params)
@@ -22,7 +24,17 @@ class SectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @section.destroy
+    redirect_to edit_sections_page_path(@section.page), notice: "Section has successfully been deleted"
+  end
+
   private
+
+  def set_section
+    @section = Section.find(params[:id])
+    authorize @section
+  end
 
   def section_params
     params.require(:section).permit(:position)
