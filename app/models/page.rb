@@ -2,7 +2,7 @@ class Page < ApplicationRecord
   has_one :course
 
   # targeting child associations of pages
-  has_many :sections, dependent: :destroy, -> { order(position: :asc) }
+  has_many :sections, -> { order(:position) }, dependent: :destroy
   has_many :section_elements, through: :sections
   has_many :page_references, :through => :section_elements, :source => :element, :source_type => 'PageReference'
   has_many :pages, through: :page_references

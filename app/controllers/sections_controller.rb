@@ -26,12 +26,7 @@ class SectionsController < ApplicationController
 
   def section_params
     params.require(:section).permit(:position)
-    # params.require(:section).permit(:position, section_elements: [element: {:element_type}])
   end
-
-  # def section_element_params
-  #   params.require(:section_element).permit(:element_type)
-  # end
 
   def element_params
     params.require(:element).permit()
