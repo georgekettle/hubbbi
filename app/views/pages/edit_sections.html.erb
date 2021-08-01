@@ -32,7 +32,7 @@
 
   <div data-drag-drop-editor-target="dropzone" class="fixed w-screen bg-white border-t border-gray-200 bottom-0 left-0 p-2 pb-3 flex items-center justify-center overflow-scroll">
     <% (1..7).each do |num| %>
-      <div data-create-section="<%= JSON.generate({section: {position: 2}, element: {element_type: "PageReference"}}) %>" class="item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1">
+      <div data-create-section="<%= JSON.generate({section: {position: nil}, element: {element_type: "PageReference"}}) %>" style="touch-action: none" class="handle item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1">
         <%= render "icons/library", classes: "stroke-current text-primary" %>
       </div>
     <% end %>

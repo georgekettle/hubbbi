@@ -14,7 +14,10 @@ export default class extends Controller {
     this.dragula = dragula(this.dropzoneTargets, {
       revertOnSpill: true,
       removeOnSpill: true,
-      copy: true
+      copy: true,
+      moves: function (el, container, handle) {
+        return el.classList.contains('handle');
+      }
     });
 
     this.setupDragStart()
