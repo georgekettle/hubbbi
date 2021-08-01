@@ -31,8 +31,10 @@ puts "Creating group members"
 puts "Finished creating group members"
 
 puts "Creating courses for group"
-  year_one_course = academy_group.courses.create!(title: "Year 1", page: Page.create!(title: "Year 1", status: "published"))
-  foundations_course = academy_group.courses.create!(title: "Foundations", page: Page.create!(title: "Foundations", status: "published"))
+  year_one_page = Page.create!(title: "Year 1", status: "published")
+  year_one_course = academy_group.courses.create!(title: "Year 1", page: year_one_page)
+  foundations_page = Page.create!(title: "Foundations", status: "published")
+  foundations_course = academy_group.courses.create!(title: "Foundations", page: foundations_page)
 puts "Finished creating courses for groups"
 
 puts "Creating course members"
@@ -46,3 +48,24 @@ puts "Creating course members"
     foundations_course.course_members.create!(group_member: member)
   end
 puts "Finished creating course members"
+
+puts "Creating pages for foundations course"
+  sub_patterns = Page.create!(title: "Subconscious patterns", subtitle:"They're always running", status: "published")
+  beliefs = Page.create!(title: "Beliefs", subtitle:"How these affect our view", status: "published")
+  mirroring = Page.create!(title: "Mirroring", subtitle:"Personal persuasion", status: "draft")
+puts "Finished creating pages for foundations course"
+
+puts "Creating page references"
+  sub_patterns_ref = PageReference.create!(page: sub_patterns)
+  beliefs_ref = PageReference.create!(page: beliefs)
+  mirroring_ref = PageReference.create!(page: mirroring)
+puts "Finished creating page references"
+
+puts "Creating sections for foundations course"
+  foundation_section = foundations_page.sections.create!(position: 0)
+
+
+  foundation_section.section_elements.create!(element: sub_patterns_ref)
+  foundation_section.section_elements.create!(element: beliefs_ref)
+  foundation_section.section_elements.create!(element: mirroring_ref)
+puts "Finished creating sections for foundations course"

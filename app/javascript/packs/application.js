@@ -30,3 +30,4 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 import "stylesheets/application"
+require("dragula")

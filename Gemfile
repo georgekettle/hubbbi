@@ -78,3 +78,5 @@ gem 'pundit'
 gem 'cloudinary', '~> 1.16.0'
 # invite people via email
 gem 'devise_invitable', '~> 2.0.0'
+# for positioning sections in order
+gem 'acts_as_list'

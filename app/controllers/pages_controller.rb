@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :show]
+  before_action :set_page, only: [:edit, :update, :show, :edit_sections]
 
   def show
-    redirect_to @page.courses.first if @page.courses.any?
+    redirect_to @page.course if @page.course
   end
 
   def edit
@@ -16,6 +16,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def edit_sections
+    hide_navbar
+  end
+
   private
 
   def set_page
@@ -24,6 +28,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:title, :subtitle, :status, covers: [])
+    params.require(:page).permit(:title, :subtitle, :status, :cover)
   end
 end
