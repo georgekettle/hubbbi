@@ -1,41 +1,43 @@
 <%= render "components/headers/header", header: "Edit content", subheader: @page.title, back_link: @page %>
 <%# render "pages/page_content", page: @page, edit_message: true %>
 
-<%= render "shared/container", classes: "p-4" do %>
-  <% unless @page.course %>
-    <div class="w-full rounded-lg bg-primary-100 p-4 mb-4 sm:flex items-center justify-between mb-4">
-      <div class="mb-4 sm:mb-0">
-        <h4 class="tracking-tight">Would you like to edit the details?</h4>
-        <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
-      </div>
-      <%= link_to edit_page_path(@page), class: 'button w-full sm:w-auto' do %>
-        <%= render "icons/edit", classes: "mr-2" %>
-        Edit details
-      <% end %>
-    </div>
-  <% end %>
-
+<div data-controller="sortable" data-sortable-target="scrollContainer" style="height: calc(100vh - 3.5rem)" class="overflow-scroll">
   <div>
-    <%= render('components/images/banner', image_path: cl_image_path(@page.cover.key)) if @page.cover.attached? %>
-    <%= render('components/images/banner', no_shadow: true) unless @page.cover.attached? %>
-  </div>
-<% end %>
-
-<div data-controller="drag-drop-editor" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" class="pb-24">
-  <%= render "shared/container", classes: "p-4" do %>
-    <div data-controller="sortable" data-sortable-target="container">
-      <% @page.sections.each do |section| %>
-        <%= render 'sections/section', section: section, editable: true %>
+    <%= render "shared/container", classes: "p-4" do %>
+      <% unless @page.course %>
+        <div class="w-full rounded-lg bg-primary-100 p-4 mb-4 sm:flex items-center justify-between mb-4">
+          <div class="mb-4 sm:mb-0">
+            <h4 class="tracking-tight">Would you like to edit the details?</h4>
+            <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
+          </div>
+          <%= link_to edit_page_path(@page), class: 'button w-full sm:w-auto' do %>
+            <%= render "icons/edit", classes: "mr-2" %>
+            Edit details
+          <% end %>
+        </div>
       <% end %>
-    </div>
-    <%= render "sections/dropzone", position: @page.sections.count + 1 %>
-  <% end %>
 
-  <div data-drag-drop-editor-target="dropzone" class="fixed w-screen bg-white border-t border-gray-200 bottom-0 left-0 p-2 pb-3 flex items-center justify-center overflow-scroll">
-    <% (1..7).each do |num| %>
-      <div data-create-section="<%= JSON.generate({section: {position: nil}, element: {element_type: "PageReference"}}) %>" style="touch-action: none" class="handle item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1">
-        <%= render "icons/library", classes: "stroke-current text-primary" %>
+      <div>
+        <%= render('components/images/banner', image_path: cl_image_path(@page.cover.key)) if @page.cover.attached? %>
+        <%= render('components/images/banner', no_shadow: true) unless @page.cover.attached? %>
       </div>
     <% end %>
+  </div>
+
+  <div data-controller="drag-drop-editor" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" class="pb-24">
+    <%= render "shared/container", classes: "p-4" do %>
+      <div data-sortable-target="container">
+        <% @page.sections.each do |section| %>
+          <%= render 'sections/section', section: section, editable: true %>
+        <% end %>
+      <%= render "sections/dropzone", position: @page.sections.count + 1 %>
+      </div>
+    <% end %>
+
+    <div data-drag-drop-editor-target="dropzone" class="fixed w-screen bg-white border-t border-gray-200 bottom-0 left-0 p-2 pb-3 flex items-center justify-center overflow-scroll">
+      <div data-create-section="<%= JSON.generate({section: {position: nil}, element: {element_type: "PageReference"}}) %>" style="touch-action: none" class="handle item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1 cursor-pointer">
+        <%= render "icons/library", classes: "stroke-current text-primary" %>
+      </div>
+    </div>
   </div>
 </div>

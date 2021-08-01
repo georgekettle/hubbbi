@@ -1,8 +1,9 @@
 import { Controller } from "stimulus"
 var dragula = require("dragula")
+var autoScroll = require('dom-autoscroller')
 
 export default class extends Controller {
-  static targets = ["item", "container"]
+  static targets = ["item", "container", "scrollContainer"]
 
   connect() {
     this.initSortable()
@@ -12,11 +13,24 @@ export default class extends Controller {
   initSortable() {
     this.dragula = dragula(this.containerTargets, {
       revertOnSpill: true,
-      removeOnSpill: true,
+      removeOnSpill: false,
       moves: function (item, container, handle) {
         return handle.classList.contains('handle');
       }
     });
+
+    if (this.hasScrollContainerTarget) {
+      const dragulaObject = this.dragula
+      this.scroll = autoScroll(this.scrollContainerTargets, {
+          margin: 200,
+          maxSpeed: 8,
+          scrollWhenOutside: true,
+          autoScroll: function(){
+              //Only scroll when the pointer is down, and there is a child being dragged.
+              return this.down && dragulaObject.dragging;
+          }
+      });
+    }
   }
 
   setupOnDrop() {
