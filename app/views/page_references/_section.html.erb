@@ -1,6 +1,4 @@
-<div class="section"></div>
-
-<% if false %>
+<div class="section">
   <%= render "components/headers/section_header", title: "Content", icon:"library" do %>
     <% if policy(section.page).update? %>
       <%= link_to new_section_page_path(section), class: 'icon-btn faded' do %>
@@ -16,6 +14,6 @@
       </div>
     <% end %>
   </div>
-<% end %>
+</div>
 
 
