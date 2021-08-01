@@ -1,9 +1,11 @@
 <% editable ||= false %>
 
-<div class="mb-4 w-full">
-  <% if editable %>
+<% if editable %>
+  <div class="mb-4" data-sortable-target="item" data-section-id="<%= section.id %>" data-update-url="<%= section_path(section) %>">
     <%= render "sections/dropzone", position: section.position %>
-  <% end %>
+<% else %>
+  <div class="mb-4">
+<% end %>
 
   <% case section.element_type %>
   <% when "PageReference" %>

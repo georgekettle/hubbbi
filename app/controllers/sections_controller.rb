@@ -25,7 +25,7 @@ class SectionsController < ApplicationController
     respond_to do |format|
       if @section.update(section_params)
         format.html  { redirect_to edit_sections_page_path(@section.page), notice: "Section has been successfully updated" }
-        format.json  { render json: { section: render_to_string(partial: 'sections/section', locals: { section: @section, editable: true }) } }
+        format.json  { render json: { section: render_to_string(partial: 'sections/section.html.erb', :formats => :html, locals: { section: @section, editable: true }) }.to_json }
       else
         format.html { redirect_to edit_sections_page_path(@section.page), alert: "Oops, there was an error updating this section" }
         format.json { render json: @section.errors, status: :unprocessable_entity }
