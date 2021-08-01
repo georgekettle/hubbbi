@@ -23,10 +23,11 @@
 
 <div data-controller="drag-drop-editor" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" class="pb-24">
   <%= render "shared/container", classes: "p-4" do %>
-    <% @page.sections.each do |section| %>
-      <%= render "sections/dropzone", position: section.position %>
-      <%= render 'sections/section', section: section, editable: true %>
-    <% end %>
+    <div data-controller="sortable">
+      <% @page.sections.each do |section| %>
+        <%= render 'sections/section', section: section, editable: true %>
+      <% end %>
+    </div>
     <%= render "sections/dropzone", position: @page.sections.count + 1 %>
   <% end %>
 

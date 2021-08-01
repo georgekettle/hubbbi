@@ -1,4 +1,4 @@
-.drop-container {
+.dropzone {
   @apply p-0 bg-transparent rounded-lg mb-0 border-dashed border-contrast-700 border-0 w-full transition-all overflow-hidden;
 
   h4 {
@@ -6,7 +6,7 @@
   }
 }
 
-.drop-container.active {
+.dropzone.active {
   @apply p-4 h-auto bg-contrast-200 mb-2 border transition-all;
 
   h4 {
@@ -14,7 +14,7 @@
   }
 }
 
-.drop-container.hover-over {
+.dropzone.hover-over {
   h4 {
     @apply h-0;
   }

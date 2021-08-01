@@ -15,10 +15,7 @@ class SectionsController < ApplicationController
     authorize @section
 
     if @section.save
-      render json: {
-        section: render_to_string(partial: 'sections/section', locals: { section: @section }),
-        dropzone: render_to_string(partial: 'sections/dropzone', locals: { position: @section.position })
-      }
+      render json: { section: render_to_string(partial: 'sections/section', locals: { section: @section, editable: true }) }
     else
       redirect_to edit_sections_page_path(@page), alert: "Oops, there was an error creating this section"
     end

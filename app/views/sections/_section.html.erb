@@ -1,6 +1,10 @@
 <% editable ||= false %>
 
 <div class="mb-4 w-full">
+  <% if editable %>
+    <%= render "sections/dropzone", position: section.position %>
+  <% end %>
+
   <% case section.element_type %>
   <% when "PageReference" %>
     <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section, editable: editable} %>

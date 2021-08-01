@@ -75,11 +75,10 @@ export default class extends Controller {
   }
 
   handleSuccess(data, target, controller) {
-    target.insertAdjacentHTML('beforebegin', data.dropzone)
-    let newDropzone = target.previousElementSibling
-    target.insertAdjacentHTML('beforebegin', data.section)
-    // newDropzone.setAttribute('data-drag-drop-editor-target', `dropzone`)
-    controller.dragula.containers.push(newDropzone);
+    target.parentElement.insertAdjacentHTML('beforebegin', data.section)
+    let newSection = target.parentElement.previousElementSibling
+    let newDropzone = newSection.querySelector('.dropzone')
+    controller.dragula.containers.push(newDropzone)
     // update the data-position of each drop dropzone to sit inline with UI
     controller.updateDropzonePositions()
   }
