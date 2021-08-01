@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: :destroy
+  before_action :set_section, only: [:update, :destroy]
 
   def create
     @page = Page.find(params[:page_id])
@@ -18,6 +18,18 @@ class SectionsController < ApplicationController
       render json: { section: render_to_string(partial: 'sections/section', locals: { section: @section, editable: true }) }
     else
       redirect_to edit_sections_page_path(@page), alert: "Oops, there was an error creating this section"
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @section.update(section_params)
+        format.html  { redirect_to edit_sections_page_path(@section.page), notice: "Section has been successfully updated" }
+        format.json  { render json: { section: render_to_string(partial: 'sections/section', locals: { section: @section, editable: true }) } }
+      else
+        format.html { redirect_to edit_sections_page_path(@section.page), alert: "Oops, there was an error updating this section" }
+        format.json { render json: @section.errors, status: :unprocessable_entity }
+      end
     end
   end
 
