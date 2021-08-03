@@ -50,3 +50,19 @@
     }
   }
 }
+
+.icon-btn.white {
+  @apply bg-white bg-opacity-20;
+
+  svg {
+    @apply text-white;
+  }
+
+  &:hover {
+    @apply bg-white bg-opacity-90;
+
+    svg {
+      @apply text-gray-900;
+    }
+  }
+}

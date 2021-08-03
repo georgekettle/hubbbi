@@ -6,7 +6,6 @@
 <% else %>
   <div class="mb-4">
 <% end %>
-
   <% case section.section_type %>
   <% when "page_reference" %>
     <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section, editable: editable} %>

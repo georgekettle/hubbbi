@@ -8,7 +8,7 @@
           <div class="mr-2">
             <%= render "components/saving" %>
           </div>
-          <%= render "sections/options_dropdown", section: section do %>
+          <%= render "components/dropdowns/options_dropdown" do %>
             <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
           <% end %>
           <div class="handle icon-btn faded relative overflow-hidden">
