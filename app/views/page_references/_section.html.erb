@@ -1,7 +1,7 @@
 <% editable ||= false %>
 
 <div class="section">
-  <%= render "components/headers/section_header", title: "Content", icon:"library" do %>
+  <%= render "components/headers/section_header", title: "Pages", icon:"library" do %>
     <% if editable %>
       <div class="flex items-center">
         <% if policy(section.page).update? %>
