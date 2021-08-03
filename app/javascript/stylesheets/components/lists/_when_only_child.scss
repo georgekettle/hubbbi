@@ -1,0 +1,7 @@
+.show-when-only-child {
+  @apply hidden;
+}
+
+.show-when-only-child:only-child {
+  @apply block;
+}

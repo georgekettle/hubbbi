@@ -6,14 +6,10 @@
 <% else %>
   <div class="mb-4">
 <% end %>
-
-  <% case section.element_type %>
-  <% when "PageReference" %>
+  <% case section.section_type %>
+  <% when "page_reference" %>
     <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section, editable: editable} %>
   <% else %>
-    <div class="p-4 rounded-lg bg-gray-200">
-      <h4 class="tracking-tight">No contents for this section</h4>
-      <p class="text-xs opacity-50">Section type: <%= section.element_type %></p>
-    </div>
+    <%= render :partial => "sections/unknown_section", :locals => {page_references: section.elements, section: section, editable: editable} %>
   <% end %>
 </div>

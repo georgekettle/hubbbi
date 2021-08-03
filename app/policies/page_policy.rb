@@ -11,6 +11,10 @@ class PagePolicy < ApplicationPolicy
     admin_or_editor?
   end
 
+  def destroy?
+    admin_or_editor?
+  end
+
   def edit_sections?
     admin_or_editor?
   end

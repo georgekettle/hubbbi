@@ -38,7 +38,7 @@
     <% end %>
 
     <div data-drag-drop-editor-target="dropzone" class="fixed w-screen bg-white border-t border-gray-200 bottom-0 left-0 p-2 pb-3 flex items-center justify-center overflow-scroll">
-      <div data-create-section="<%= JSON.generate({section: {position: nil}, element: {element_type: "PageReference"}}) %>" style="touch-action: none" class="handle item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1 cursor-pointer">
+      <div data-create-section="<%= JSON.generate({section: {position: nil, section_type: :page_reference}}) %>" style="touch-action: none" class="handle item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1 cursor-pointer">
         <%= render "icons/library", classes: "stroke-current text-primary" %>
       </div>
     </div>
