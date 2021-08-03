@@ -4,9 +4,6 @@ var autoScroll = require('dom-autoscroller')
 
 export default class extends Controller {
   static targets = ["item", "container", "scrollContainer"]
-  static values = {
-    handle: String
-  }
 
   connect() {
     this.initSortable()
@@ -14,12 +11,11 @@ export default class extends Controller {
   }
 
   initSortable() {
-    let controller = this
     this.dragula = dragula(this.containerTargets, {
       revertOnSpill: true,
       removeOnSpill: false,
       moves: function (item, container, handle) {
-        return handle.classList.contains(controller.handleValue);
+        return handle.classList.contains('handle');
       }
     });
 
@@ -41,23 +37,24 @@ export default class extends Controller {
     const controller = this
     this.dragula.on('drop', (el, target, source, sibling) => {
       controller.setAsSaving(el)
+      controller.updatePositions()
       const position = controller.getElementPosition(el)
-      controller.updateItem(el, position, controller.handleSuccess, controller.handleError)
+      controller.updateSection(el, position, controller.handleSuccess, controller.handleError)
     })
   }
 
-  setAsSaving(item) {
-    const savingBadge = item.querySelector('.saving-badge')
+  setAsSaving(section) {
+    const savingBadge = section.querySelector('.saving-badge')
     savingBadge && savingBadge.classList.add('saving')
   }
 
-  setAsSaved(item) {
-    const savingBadge = item.querySelector('.saving-badge')
+  setAsSaved(section) {
+    const savingBadge = section.querySelector('.saving-badge')
     savingBadge && savingBadge.classList.add('saved')
   }
 
-  unsetSaveStatus(item) {
-    const savingBadge = item.querySelector('.saving-badge')
+  unsetSaveStatus(section) {
+    const savingBadge = section.querySelector('.saving-badge')
     savingBadge && savingBadge.classList.remove('saved', 'saving')
   }
 
@@ -65,20 +62,31 @@ export default class extends Controller {
     return Array.from(el.parentElement.children).indexOf(el) + 1
   }
 
-  handleSuccess(data, item, controller) {
+  updatePositions() {
+    let dropzones = document.querySelectorAll('.dropzone')
+    dropzones.forEach((dropzone, index) => {
+      dropzone.setAttribute('data-position', index + 1)
+    })
+  }
+
+  handleSuccess(data, section, controller) {
     // set as saved
-    controller.setAsSaved(item)
-    setTimeout(function(){ controller.unsetSaveStatus(item) }, 3000);
+    controller.setAsSaved(section)
+    setTimeout(function(){ controller.unsetSaveStatus(section) }, 3000);
   }
 
   handleError(err) {
     console.log("ERROR:", err)
   }
 
-  updateItem(item, position, successCallback, errorCallback) {
+  updateSection(section, position, successCallback, errorCallback) {
     const controller = this
-    const body = JSON.parse(`{ "${item.dataset.elementName}": { "position": ${position} } }`)
-    const url = `${item.dataset.url}.json`
+    const url = `${section.dataset.updateUrl}.json`
+    const body = {
+      section: {
+        position: position
+      }
+    }
     let CSRFToken = document.querySelector('meta[name="csrf-token"]').content
     fetch(url, {
       method: 'PATCH',
@@ -90,7 +98,7 @@ export default class extends Controller {
     })
     .then(response => response.json())
     // .then(data => console.log(data))
-    .then(data => successCallback(data, item, controller))
+    .then(data => successCallback(data, section, controller))
     .catch(err => errorCallback(err));
   }
 }

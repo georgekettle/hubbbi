@@ -1,6 +1,6 @@
 class Section < ApplicationRecord
   belongs_to :page
-  has_many :section_elements, dependent: :destroy
+  has_many :section_elements, -> { order(position: :asc) }, dependent: :destroy
   has_many :elements, :through => :section_elements, :source => :element, :source_type => 'PageReference'
 
   enum section_type: [:page_reference]

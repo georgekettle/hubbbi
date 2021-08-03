@@ -1,7 +1,7 @@
 <% editable ||= false %>
 
 <% if editable %>
-  <div class="mb-4 relative" data-sortable-target="item" data-section-id="<%= section.id %>" data-update-url="<%= section_path(section) %>">
+  <div class="mb-4 relative" data-section-sortable-target="item" data-section-id="<%= section.id %>" data-update-url="<%= section_path(section) %>">
     <%= render "sections/dropzone", position: section.position %>
 <% else %>
   <div class="mb-4">

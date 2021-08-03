@@ -1,0 +1,11 @@
+<% page = page_ref.page %>
+<div class="flex items-center">
+  <% image_path = page.cover.attached? ? cl_image_path(page.cover.key) : asset_path('default_cover.svg') %>
+  <div class="rounded h-12 w-12 overflow-hidden" style="background-size: cover; background-image: url(<%= image_path %>)"></div>
+  <div class="ml-2">
+    <h4><%= page.title.truncate(25) %></h4>
+    <% if page.subtitle %>
+      <p class="text-xs text-gray-400"><%= page.subtitle.truncate(30) %></p>
+    <% end %>
+  </div>
+</div>

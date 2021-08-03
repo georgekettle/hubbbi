@@ -18,7 +18,10 @@ Rails.application.routes.draw do
 
   resources :sections, only: [:destroy, :update] do
     resources :pages, only: [:new, :create], controller: 'sections/pages'
+    resources :section_elements, only: :index
   end
+
+  resources :section_elements, only: :update
 
   resources :users, only: [:edit, :update] do
     member do

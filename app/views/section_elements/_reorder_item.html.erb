@@ -1,0 +1,14 @@
+<div class="w-full relative mb-2 hover:bg-gray-900 hover:bg-opacity-5 rounded-lg">
+  <div class="w-full flex items-center justify-between p-1">
+    <%= yield %>
+    <div class="flex items-center flex-shrink-0">
+      <div class="mr-2">
+        <%= render "components/saving" %>
+      </div>
+      <div class="page-ref-handle icon-btn faded relative overflow-hidden">
+        <%= render "icons/handle", classes: "page-handle h-4 w-4" %>
+        <div class="page-ref-handle absolute h-full w-full top-0 left-0"></div>
+      </div>
+    </div>
+  </div>
+</div>
