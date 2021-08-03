@@ -1,0 +1,27 @@
+<% editable ||= false %>
+
+<div class="section">
+  <%= render "components/headers/section_header", title: "Unknown section", icon:"question_cards" do %>
+    <% if editable %>
+      <div class="flex items-center">
+        <% if policy(section.page).update? %>
+          <div class="mr-2">
+            <%= render "components/saving" %>
+          </div>
+          <%= render "components/dropdowns/options_dropdown" do %>
+            <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+          <% end %>
+          <div class="handle icon-btn faded relative overflow-hidden">
+            <%= render "icons/handle", classes: "handle h-4 w-4" %>
+            <div class="handle absolute h-full w-full top-0 left-0"></div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="-mx-1 p-4 rounded-lg bg-gray-200">
+    <h4 class="tracking-tight">No contents for this section yet</h4>
+    <p class="text-xs opacity-50">Section type: <%= section.section_type %> - <%= section.id %></p>
+  </div>
+</div>

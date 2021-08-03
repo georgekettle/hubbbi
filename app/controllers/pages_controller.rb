@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :show, :edit_sections]
+  before_action :set_page, only: [:edit, :update, :show, :edit_sections, :destroy]
 
   def show
     redirect_to @page.course if @page.course
@@ -14,6 +14,12 @@ class PagesController < ApplicationController
     else
       render :edit, alert: "Oops... Something went wrong when updating the page"
     end
+  end
+
+  def destroy
+    @page.destroy
+    redirect_path = @page.has_parent? ? @page.parent_page : @page.belonging_to_course
+    redirect_to redirect_path, notice: "You successfully deleted your page"
   end
 
   def edit_sections
