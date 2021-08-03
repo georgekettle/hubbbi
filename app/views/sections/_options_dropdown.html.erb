@@ -15,6 +15,6 @@
     data-transition-leave-from="opacity-100 scale-100"
     data-transition-leave-to="opacity-0 scale-95"
   >
-    <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+    <%= yield %>
   </div>
 </div>

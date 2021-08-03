@@ -1,0 +1,38 @@
+.saving-badge {
+  .status-saving {
+    @apply hidden items-center opacity-100;
+  }
+
+  .status-saved {
+    @apply hidden items-center opacity-100;
+  }
+}
+
+
+.saving-badge.saving {
+  .status-saving {
+    @apply flex;
+  }
+
+  .status-saved {
+    @apply hidden;
+  }
+}
+
+.saving-badge.saved {
+  .status-saving {
+    @apply hidden;
+  }
+
+  .status-saved {
+    @apply flex;
+    animation: hideSaved 0.3s ease-in-out 3s forwards;
+  }
+}
+
+@-webkit-keyframes hideSaved {
+    to {
+        opacity: 0;
+        visibility:hidden;
+    }
+}

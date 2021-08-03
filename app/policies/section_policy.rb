@@ -3,6 +3,10 @@ class SectionPolicy < ApplicationPolicy
     admin_or_editor?
   end
 
+  def update?
+    admin_or_editor?
+  end
+
   def destroy?
     admin_or_editor?
   end

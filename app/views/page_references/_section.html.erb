@@ -3,9 +3,21 @@
 <div class="section">
   <%= render "components/headers/section_header", title: "Content", icon:"library" do %>
     <% if editable %>
-      <% if policy(section.page).update? %>
-        <%= render "sections/options_dropdown", section: section %>
-      <% end %>
+      <div class="flex items-center">
+        <% if policy(section.page).update? %>
+          <div class="mr-2">
+            <%= render "components/saving" %>
+          </div>
+          <%= render "sections/options_dropdown", section: section do %>
+            <%= link_to "Add page", new_section_page_path(section), class: 'dropdown-link' %>
+            <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+          <% end %>
+          <div class="handle icon-btn faded relative overflow-hidden">
+            <%= render "icons/handle", classes: "handle h-4 w-4" %>
+            <div class="handle absolute h-full w-full top-0 left-0"></div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
 

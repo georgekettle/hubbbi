@@ -1,6 +1,12 @@
 <% editable ||= false %>
 
-<div class="mb-4 w-full">
+<% if editable %>
+  <div class="mb-4 relative" data-sortable-target="item" data-section-id="<%= section.id %>" data-update-url="<%= section_path(section) %>">
+    <%= render "sections/dropzone", position: section.position %>
+<% else %>
+  <div class="mb-4">
+<% end %>
+
   <% case section.element_type %>
   <% when "PageReference" %>
     <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section, editable: editable} %>

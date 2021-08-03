@@ -1,12 +1,12 @@
 import { Controller } from "stimulus"
 var dragula = require("dragula")
+var autoScroll = require('dom-autoscroller')
 
 export default class extends Controller {
-  static targets = ["dropzone"]
+  static targets = ["dropzone", "scrollContainer"]
   static values = { url: String }
 
   connect() {
-    // this.initDroppable()
     this.initDragula()
   }
 
@@ -14,17 +14,36 @@ export default class extends Controller {
     this.dragula = dragula(this.dropzoneTargets, {
       revertOnSpill: true,
       removeOnSpill: true,
+      direction: 'vertical',
       copy: true,
       moves: function (el, container, handle) {
         return el.classList.contains('handle');
       }
     });
 
+    // autoscroll on drag
+    this.setupAutoScroll()
+
     this.setupDragStart()
     this.setupDropzoneHover()
     this.setupDropzoneHoverExit()
     this.setupDropzoneDrop()
     this.setupDragEnd()
+  }
+
+  setupAutoScroll() {
+    if (this.hasScrollContainerTarget) {
+      const dragulaObject = this.dragula
+      this.scroll = autoScroll(this.scrollContainerTargets, {
+          margin: 200,
+          maxSpeed: 20,
+          scrollWhenOutside: true,
+          autoScroll: function(){
+              //Only scroll when the pointer is down, and there is a child being dragged.
+              return this.down && dragulaObject.dragging;
+          }
+      });
+    }
   }
 
   setupDragStart() {
@@ -75,11 +94,10 @@ export default class extends Controller {
   }
 
   handleSuccess(data, target, controller) {
-    target.insertAdjacentHTML('beforebegin', data.dropzone)
-    let newDropzone = target.previousElementSibling
-    target.insertAdjacentHTML('beforebegin', data.section)
-    // newDropzone.setAttribute('data-drag-drop-editor-target', `dropzone`)
-    controller.dragula.containers.push(newDropzone);
+    target.parentElement.insertAdjacentHTML('beforebegin', data.section)
+    let newSection = target.parentElement.previousElementSibling
+    let newDropzone = newSection.querySelector('.dropzone')
+    controller.dragula.containers.push(newDropzone)
     // update the data-position of each drop dropzone to sit inline with UI
     controller.updateDropzonePositions()
   }

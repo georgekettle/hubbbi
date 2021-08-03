@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sections, only: [:destroy] do
+  resources :sections, only: [:destroy, :update] do
     resources :pages, only: [:new, :create], controller: 'sections/pages'
   end
 

@@ -16,7 +16,7 @@
 }
 
 .icon-btn {
-  @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100;
+  @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 cursor-pointer;
 
   svg {
     @apply h-5 w-5 stroke-2 stroke-current text-gray-900;
@@ -29,6 +29,22 @@
   }
 
   &:hover {
+    svg {
+      @apply text-gray-900;
+    }
+  }
+}
+
+.icon-btn.faded-highlight {
+  @apply bg-gray-100;
+
+  svg {
+    @apply text-gray-800;
+  }
+
+  &:hover {
+    @apply bg-gray-200;
+
     svg {
       @apply text-gray-900;
     }
