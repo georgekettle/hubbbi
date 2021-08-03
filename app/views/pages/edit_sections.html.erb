@@ -1,7 +1,7 @@
 <%= render "components/headers/header", header: "Edit content", subheader: @page.title, back_link: @page %>
 <%# render "pages/page_content", page: @page, edit_message: true %>
 
-<div data-controller="sortable" data-sortable-target="scrollContainer" style="height: calc(100vh - 3.5rem)" class="overflow-scroll">
+<div data-controller="sortable drag-drop-editor" data-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-scroll">
   <div>
     <%= render "shared/container", classes: "p-4" do %>
       <% unless @page.course %>
@@ -18,19 +18,22 @@
       <% end %>
 
       <div>
-        <%= render('components/images/banner', image_path: cl_image_path(@page.cover.key)) if @page.cover.attached? %>
-        <%= render('components/images/banner', no_shadow: true) unless @page.cover.attached? %>
+        <% element = @page.course ? @page.course : @page %>
+    <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
+    <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
       </div>
     <% end %>
   </div>
 
-  <div data-controller="drag-drop-editor" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" class="pb-24">
+  <div class="pb-24">
     <%= render "shared/container", classes: "p-4" do %>
       <div data-sortable-target="container">
         <% @page.sections.each do |section| %>
           <%= render 'sections/section', section: section, editable: true %>
         <% end %>
-      <%= render "sections/dropzone", position: @page.sections.count + 1 %>
+        <div class="mb-4 py-2 relative">
+          <%= render "sections/dropzone", position: @page.sections.count + 1 %>
+        </div>
       </div>
     <% end %>
 

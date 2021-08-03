@@ -23,7 +23,7 @@ export default class extends Controller {
       const dragulaObject = this.dragula
       this.scroll = autoScroll(this.scrollContainerTargets, {
           margin: 200,
-          maxSpeed: 8,
+          maxSpeed: 20,
           scrollWhenOutside: true,
           autoScroll: function(){
               //Only scroll when the pointer is down, and there is a child being dragged.

@@ -1,12 +1,12 @@
 import { Controller } from "stimulus"
 var dragula = require("dragula")
+var autoScroll = require('dom-autoscroller')
 
 export default class extends Controller {
-  static targets = ["dropzone"]
+  static targets = ["dropzone", "scrollContainer"]
   static values = { url: String }
 
   connect() {
-    // this.initDroppable()
     this.initDragula()
   }
 
@@ -21,11 +21,29 @@ export default class extends Controller {
       }
     });
 
+    // autoscroll on drag
+    this.setupAutoScroll()
+
     this.setupDragStart()
     this.setupDropzoneHover()
     this.setupDropzoneHoverExit()
     this.setupDropzoneDrop()
     this.setupDragEnd()
+  }
+
+  setupAutoScroll() {
+    if (this.hasScrollContainerTarget) {
+      const dragulaObject = this.dragula
+      this.scroll = autoScroll(this.scrollContainerTargets, {
+          margin: 200,
+          maxSpeed: 20,
+          scrollWhenOutside: true,
+          autoScroll: function(){
+              //Only scroll when the pointer is down, and there is a child being dragged.
+              return this.down && dragulaObject.dragging;
+          }
+      });
+    }
   }
 
   setupDragStart() {
