@@ -62,7 +62,7 @@ puts "Creating page references"
 puts "Finished creating page references"
 
 puts "Creating sections for foundations course"
-  foundation_section = foundations_page.sections.create!(position: 0)
+  foundation_section = foundations_page.sections.create!(position: 0, section_type: :page_reference)
 
 
   foundation_section.section_elements.create!(element: sub_patterns_ref)
