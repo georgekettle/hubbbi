@@ -1,7 +1,7 @@
 <%= render "components/headers/header", header: "Edit content", subheader: @page.title, back_link: @page %>
 <%# render "pages/page_content", page: @page, edit_message: true %>
 
-<div data-controller="sortable drag-drop-editor" data-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-scroll">
+<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-scroll">
   <div>
     <%= render "shared/container", classes: "p-4" do %>
       <% unless @page.course %>
@@ -27,7 +27,7 @@
 
   <div class="pb-24">
     <%= render "shared/container", classes: "p-4" do %>
-      <div data-sortable-target="container">
+      <div data-section-sortable-target="container">
         <% @page.sections.each do |section| %>
           <%= render 'sections/section', section: section, editable: true %>
         <% end %>

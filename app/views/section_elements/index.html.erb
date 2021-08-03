@@ -1,0 +1,15 @@
+<%= render "components/headers/header", header: "Reorder pages", back_link: edit_sections_page_path(@section.page) %>
+<%= render "shared/container", classes: "p-4" do %>
+  <div data-controller="sortable" data-sortable-target="container" data-sortable-handle-value="page-ref-handle" data-sortable-url-value="page-ref-handle">
+    <% @elements.each do |element| %>
+      <div data-sortable-target="item" data-url="<%= section_element_path(element) %>" data-element-name="section_element">
+        <%= render "section_elements/reorder_item", element: element do %>
+          <% case @section.section_type %>
+          <% when "page_reference" %>
+            <%= render 'page_references/reorder_item', page_ref: element %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

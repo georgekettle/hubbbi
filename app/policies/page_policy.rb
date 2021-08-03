@@ -22,8 +22,7 @@ class PagePolicy < ApplicationPolicy
   private
 
   def course_member?
-    record.course_members.where(group_member: {user: user}) # must update this!
-    # must figure out how to get the course and course member of current user
+    record.course_members.where(group_member: {user: user})
   end
 
   def admin_or_editor?
