@@ -31,3 +31,6 @@ document.addEventListener('turbolinks:load', () => {
 
 import "stylesheets/application"
 require("dragula")
+
+require("trix")
+require("@rails/actiontext")
