@@ -19,8 +19,8 @@
 
       <div>
         <% element = @page.course ? @page.course : @page %>
-    <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
-    <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
+        <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
+        <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
       </div>
     <% end %>
   </div>
@@ -37,9 +37,14 @@
       </div>
     <% end %>
 
-    <div data-drag-drop-editor-target="dropzone" class="fixed w-screen bg-white border-t border-gray-200 bottom-0 left-0 p-2 pb-3 flex items-center justify-center overflow-scroll">
-      <div data-create-section="<%= JSON.generate({section: {position: nil, section_type: :page_reference}}) %>" style="touch-action: none" class="handle item rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center bg-primary-200 hover:bg-primary-300 mr-1 cursor-pointer">
-        <%= render "icons/library", classes: "stroke-current text-primary" %>
+    <div class="fixed w-screen bg-contrast-100 border-t border-gray-200 bottom-0 left-0 pb-3 px-0 z-10">
+      <div class="inline-flex items-center justify-center p-1 px-3 bg-contrast-200 w-full mb-1">
+        <%= render "icons/drag", classes: "stroke-current text-contrast-800 h-3.5 w-3.5 mr-2" %>
+        <h4 class="text-contrast-800 text-sm">Drag & drop elements below:</h4>
+      </div>
+      <div data-drag-drop-editor-target="dropzone" class="w-full flex items-center justify-center overflow-scroll">
+        <%= render 'sections/drag_element', section_type: :page_reference, title: "Pages", icon: 'library' %>
+        <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
       </div>
     </div>
   </div>
