@@ -1,7 +1,7 @@
 <% editable ||= false %>
 
 <div class="section">
-  <%= render "components/headers/section_header", title: "Unknown section", icon:"question_cards" do %>
+  <%= render "components/headers/section_header", title: "Text", icon:"paragraph" do %>
     <% if editable %>
       <div class="flex items-center">
         <% if policy(section.page).update? %>
@@ -21,7 +21,18 @@
   <% end %>
 
   <div class="-mx-1 p-4 rounded-lg bg-gray-200">
-    <h4 class="tracking-tight">Not sure what section you're trying to create</h4>
-    <p class="text-xs opacity-50">Section(type: <%= section.section_type %> | id: <%= section.id %>)</p>
+    <% section.texts.each do |text| %>
+      <%= simple_form_for text do |f| %>
+        <%= render 'texts/custom_trix_editor', form: f %>
+        <%= f.submit class: "button" %>
+      <% end %>
+    <% end %>
+
+    <% if section.texts.count == 0 %>
+      <%= simple_form_for [section, section.texts.new] do |f| %>
+        <%= f.rich_text_area :content %>
+        <%= f.submit class: "button" %>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -8,7 +8,9 @@
 <% end %>
   <% case section.section_type %>
   <% when "page_reference" %>
-    <%= render :partial => "page_references/section", :locals => {page_references: section.elements, section: section, editable: editable} %>
+    <%= render :partial => "page_references/section", :locals => {page_references: section.page_references, section: section, editable: editable} %>
+  <% when "text" %>
+    <%= render :partial => "texts/section", :locals => {texts: section.texts, section: section, editable: editable} %>
   <% else %>
     <%= render :partial => "sections/unknown_section", :locals => {page_references: section.elements, section: section, editable: editable} %>
   <% end %>
