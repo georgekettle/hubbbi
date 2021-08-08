@@ -114,7 +114,6 @@ export default class extends Controller {
   }
 
   setPageStatus(status) {
-
     const pageSaveStatus = document.getElementById('edit-section-saving-badge')
     if (pageSaveStatus) {
       pageSaveStatus.classList.remove('saved', 'saving')
