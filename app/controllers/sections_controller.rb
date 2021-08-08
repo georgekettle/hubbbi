@@ -4,7 +4,7 @@ class SectionsController < ApplicationController
   def create
     @page = Page.find(params[:page_id])
     @section = @page.sections.new(section_params)
-    # create_text_element if @section.section_type == "text"
+    create_text_element if @section.section_type == "text" # needed for form fields
     authorize @section
 
     if @section.save
