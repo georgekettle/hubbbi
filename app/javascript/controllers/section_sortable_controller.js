@@ -37,25 +37,11 @@ export default class extends Controller {
     const controller = this
     this.dragula.on('drop', (el, target, source, sibling) => {
       controller.setAsSaving(el)
+      controller.setPageStatus("saving")
       controller.updatePositions()
       const position = controller.getElementPosition(el)
       controller.updateSection(el, position, controller.handleSuccess, controller.handleError)
     })
-  }
-
-  setAsSaving(section) {
-    const savingBadge = section.querySelector('.saving-badge')
-    savingBadge && savingBadge.classList.add('saving')
-  }
-
-  setAsSaved(section) {
-    const savingBadge = section.querySelector('.saving-badge')
-    savingBadge && savingBadge.classList.add('saved')
-  }
-
-  unsetSaveStatus(section) {
-    const savingBadge = section.querySelector('.saving-badge')
-    savingBadge && savingBadge.classList.remove('saved', 'saving')
   }
 
   getElementPosition(el) {
@@ -72,6 +58,7 @@ export default class extends Controller {
   handleSuccess(data, section, controller) {
     // set as saved
     controller.setAsSaved(section)
+    controller.setPageStatus("saved")
     setTimeout(function(){ controller.unsetSaveStatus(section) }, 3000);
   }
 
@@ -100,5 +87,28 @@ export default class extends Controller {
     // .then(data => console.log(data))
     .then(data => successCallback(data, section, controller))
     .catch(err => errorCallback(err));
+  }
+
+  setAsSaving(section) {
+    const savingBadge = section.querySelector('.saving-badge')
+    savingBadge && savingBadge.classList.add('saving')
+  }
+
+  setAsSaved(section) {
+    const savingBadge = section.querySelector('.saving-badge')
+    savingBadge && savingBadge.classList.add('saved')
+  }
+
+  unsetSaveStatus(section) {
+    const savingBadge = section.querySelector('.saving-badge')
+    savingBadge && savingBadge.classList.remove('saved', 'saving')
+  }
+
+  setPageStatus(status) {
+    const pageSaveStatus = document.getElementById('edit-section-saving-badge')
+    if (pageSaveStatus) {
+      pageSaveStatus.classList.remove('saved', 'saving')
+      pageSaveStatus.classList.add(status)
+    }
   }
 }
