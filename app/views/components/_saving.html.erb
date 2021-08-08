@@ -1,4 +1,6 @@
-<div class="saving-badge">
+<% ids ||= "" %>
+
+<div class="saving-badge" id="<%= ids %>">
   <div class="status-saving">
     <%= render "icons/saving", classes: "w-3 h-3 stroke-current text-gray-400 animate-spin mr-1" %>
     <h6 class="text-gray-400 text-xs">Saving</h6>

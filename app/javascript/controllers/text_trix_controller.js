@@ -52,7 +52,8 @@ export default class extends Controller {
   }
 
   sendRequest(controller) {
-    controller.setAsSaving()
+    controller.setSectionStatus("saving")
+    controller.setPageStatus("saving")
     let CSRFToken = document.querySelector('meta[name="csrf-token"]').content
     const textData = {
       text: {
@@ -74,7 +75,8 @@ export default class extends Controller {
   }
 
   successCallback(data) {
-    this.setAsSaved()
+    this.setSectionStatus("saved")
+    this.setPageStatus("saved")
     const controller = this
     setTimeout(function(){ controller.unsetSaveStatus() }, 3000);
   }
@@ -101,18 +103,22 @@ export default class extends Controller {
     }
   }
 
-  setAsSaving() {
+  setSectionStatus(status) {
     const savingBadge = this.element.querySelector('.saving-badge')
-    savingBadge && savingBadge.classList.add('saving')
-  }
-
-  setAsSaved() {
-    const savingBadge = this.element.querySelector('.saving-badge')
-    savingBadge && savingBadge.classList.add('saved')
+    savingBadge && savingBadge.classList.add(status)
   }
 
   unsetSaveStatus() {
     const savingBadge = this.element.querySelector('.saving-badge')
     savingBadge && savingBadge.classList.remove('saved', 'saving')
+  }
+
+  setPageStatus(status) {
+
+    const pageSaveStatus = document.getElementById('edit-section-saving-badge')
+    if (pageSaveStatus) {
+      pageSaveStatus.classList.remove('saved', 'saving')
+      pageSaveStatus.classList.add(status)
+    }
   }
 }
