@@ -1,0 +1,48 @@
+#trix-content,
+trix-editor {
+  @apply outline-none relative;
+
+  h1 {
+    @apply text-3xl text-gray-800 font-semibold tracking-tight leading-normal;
+  }
+
+  h2 {
+    @apply text-xl text-gray-800 font-semibold tracking-tight leading-normal;
+  }
+
+  h3 {
+    @apply font-medium text-contrast-800 p-1 px-2 rounded bg-contrast-200 inline-block text-xs;
+  }
+
+  div {
+    @apply text-gray-400 font-light leading-snug;
+
+    strong {
+      @apply text-gray-800 font-medium;
+    }
+  }
+
+  * {
+    @apply m-0;
+  }
+}
+
+.page-trix-toolbar {
+  @apply absolute flex items-center top-0 left-0 bg-white border border-gray-200 shadow-xl rounded-xl p-1 z-20;
+
+  .icon-btn {
+    @apply rounded-lg;
+  }
+
+  .icon-btn.trix-active {
+    @apply bg-primary-100;
+
+    svg {
+      @apply stroke-current text-primary-700;
+    }
+  }
+}
+
+trix-editor:empty:not(:focus)::before {
+  @apply text-gray-400 font-light leading-snug;
+}

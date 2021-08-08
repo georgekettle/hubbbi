@@ -7,7 +7,6 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import 'controllers'
 
 Rails.start()
 Turbolinks.start()
@@ -31,3 +30,25 @@ document.addEventListener('turbolinks:load', () => {
 
 import "stylesheets/application"
 require("dragula")
+
+import Trix from 'trix'
+
+addEventListener("trix-before-initialize", () => {
+  console.log("Hello there");
+  Object.assign(Trix.config.blockAttributes, {
+    heading2: {
+      tagName: "h2",
+      terminal: true,
+      breakOnReturn: true,
+      group: false
+    },
+    heading3: {
+      tagName: "h3",
+      terminal: true,
+      breakOnReturn: true,
+      group: false
+    }
+  })
+})
+
+import 'controllers'

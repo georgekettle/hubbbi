@@ -1,0 +1,64 @@
+<% editable ||= false %>
+<% text = section.texts.first %>
+
+<% if editable %>
+  <div class="section" data-controller="text-trix" data-text-trix-url-value="<%= text_path(section.texts.first) %>.json">
+    <trix-toolbar id="text_toolbar_<%= text.id %>" class="hidden page-trix-toolbar" data-text-trix-target="toolbar">
+      <button type="button" class="icon-btn" data-trix-attribute="heading1" title="Heading" tabindex="-1">
+        <%= render "icons/trix/header_one", classes: "h-4 h-4" %>
+      </button>
+      <button type="button" class="icon-btn" data-trix-attribute="heading2" title="Subheading" tabindex="-1">
+        <%= render "icons/trix/header_two", classes: "h-4 h-4" %>
+      </button>
+      <button type="button" class="icon-btn" data-trix-attribute="heading3" title="Subheading" tabindex="-1">
+        <%= render "icons/trix/header_three", classes: "h-4 h-4" %>
+      </button>
+      <button type="button" class="icon-btn" data-trix-attribute="bold" data-trix-key="b" title="Bold" tabindex="-1">
+        <%= render "icons/trix/bold", classes: "h-4 h-4" %>
+      </button>
+    </trix-toolbar>
+
+    <div class="w-full relative z-10">
+      <%= render "components/headers/section_header", title: "Text", icon:"paragraph" do %>
+        <% if editable %>
+          <div class="flex items-center">
+            <% if policy(section.page).update? %>
+              <div class="mr-2">
+                <%= render "components/saving" %>
+              </div>
+              <%= render "components/dropdowns/options_dropdown" do %>
+                <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+              <% end %>
+              <div class="handle icon-btn faded relative overflow-hidden">
+                <%= render "icons/handle", classes: "handle h-4 w-4" %>
+                <div class="handle absolute h-full w-full top-0 left-0"></div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div>
+      <% section.texts.each do |text| %>
+        <%= simple_form_for text do |f| %>
+          <div id="trix-content">
+            <trix-editor id="trix-content" toolbar="text_toolbar_<%= f.object.id %>" input="text_input_<%= f.object.id %>" data-text-trix-target="editor" data-value="<%= f.object.content.body ? f.object.content.body.to_html : '' %>" placeholder="Start writing here..."></trix-editor>
+            <%= f.hidden_field :content, id: "text_input_#{f.object.id}" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="section">
+    <div>
+      <% section.texts.each do |text| %>
+        <div id="trix-content" class="w-full mb-2">
+          <%= text.content %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
