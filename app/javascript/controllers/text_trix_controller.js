@@ -1,19 +1,24 @@
 import { Controller } from "stimulus"
-import * as Trix from "trix"
+import Trix from "trix"
 
 export default class extends Controller {
   static targets = ["editor", "toolbar"]
   static values = { url: String }
 
   initialize() {
-    if (this.hasEditorTarget) this.resetEditorInnerHTML()
-
-    this.addH2()
-    this.addH3()
-
+    this.trix = Trix
+    this.beforeInitialize()
     this.onFocus()
     this.onBlur()
     this.onChange()
+    this.resetEditorInnerHTML()
+  }
+
+  beforeInitialize() {
+    if (this.hasEditorTarget) {
+      this.addH2()
+      this.addH3()
+    }
   }
 
   resetEditorInnerHTML() {
@@ -37,7 +42,12 @@ export default class extends Controller {
 
     this.editorTarget.addEventListener('trix-change', (e) => {
       if (this.requestTimout) clearTimeout(this.requestTimout);
-      this.requestTimout = setTimeout(function(){ controller.sendRequest(controller) }, 2000);
+      if (!!this.hasResetEditorHTML) {
+        this.requestTimout = setTimeout(function(){
+          controller.sendRequest(controller)
+        }, 2000);
+      }
+      this.hasResetEditorHTML = true
     })
   }
 
@@ -74,7 +84,7 @@ export default class extends Controller {
   }
 
   addH2() {
-    Trix.config.blockAttributes.heading2 = {
+    this.trix.config.blockAttributes.heading2 = {
       tagName: "h2",
       terminal: true,
       breakOnReturn: true,
@@ -83,7 +93,7 @@ export default class extends Controller {
   }
 
   addH3() {
-    Trix.config.blockAttributes.heading3 = {
+    this.trix.config.blockAttributes.heading3 = {
       tagName: "h3",
       terminal: true,
       breakOnReturn: true,
