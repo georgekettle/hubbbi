@@ -45,7 +45,7 @@ export default class extends Controller {
       if (!!this.hasResetEditorHTML) {
         this.requestTimout = setTimeout(function(){
           controller.sendRequest(controller)
-        }, 2000);
+        }, 1500);
       }
       this.hasResetEditorHTML = true
     })
