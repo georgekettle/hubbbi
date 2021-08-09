@@ -1,8 +1,8 @@
 <div class="w-full">
-  <div class="overflow-hidden rounded-2xl relative">
+  <div class="overflow-hidden rounded-2xl">
     <%= cl_image_tag image.picture.key %>
   </div>
   <% if image.title.present? %>
-    <h4 class="text-xs text-gray-400 mt-2"><%= image.title %></h4>
+    <h4 class="text-xs text-gray-400 mt-2 pl-1"><%= image.title %></h4>
   <% end %>
 </div>
