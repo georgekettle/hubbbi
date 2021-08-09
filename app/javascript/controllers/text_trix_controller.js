@@ -7,11 +7,11 @@ export default class extends Controller {
 
   initialize() {
     this.trix = Trix
+    this.resetEditorInnerHTML()
     this.beforeInitialize()
     this.onFocus()
     this.onBlur()
-    this.onChange()
-    this.resetEditorInnerHTML()
+    this.setOnChange()
   }
 
   beforeInitialize() {
@@ -37,17 +37,15 @@ export default class extends Controller {
     })
   }
 
-  onChange() {
+  setOnChange() {
     const controller = this
 
     this.editorTarget.addEventListener('trix-change', (e) => {
       if (this.requestTimout) clearTimeout(this.requestTimout);
-      if (!!this.hasResetEditorHTML) {
-        this.requestTimout = setTimeout(function(){
-          controller.sendRequest(controller)
-        }, 1500);
-      }
-      this.hasResetEditorHTML = true
+
+      this.requestTimout = setTimeout(function(){
+        controller.sendRequest(controller)
+      }, 1000)
     })
   }
 
