@@ -24,13 +24,19 @@
     </div>
   <% end %>
 
-  <div class="-mx-2">
-    <div data-controller="slider" class="outline-none">
-      <% images.each do |image| %>
-        <div class="p-2 w-2/3 sm:w-1/2">
-          <%= render "images/image", image: image, editable: editable %>
-        </div>
-      <% end %>
+  <div class="-mx-2 relative">
+    <div data-controller="slider">
+      <div class="px-2 flex items-center justify-between">
+        <h4 class="text-sm"></h4>
+        <div data-slider-target="buttons" class="flex items-center"></div>
+      </div>
+      <div data-slider-target="container" class="outline-none">
+        <% images.each do |image| %>
+          <div class="p-2 w-2/3 sm:w-1/2">
+            <%= render "images/image", image: image, editable: editable %>
+          </div>
+        <% end %>
+      </div>
     </div>
     <% if editable %>
       <div class="show-when-only-child p-1 w-full">
