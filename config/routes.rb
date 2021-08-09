@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :section_elements, only: :update
   resources :texts, only: :update
+  resources :images, only: [:destroy]
 
   resources :users, only: [:edit, :update] do
     member do

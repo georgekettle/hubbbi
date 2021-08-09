@@ -18,12 +18,6 @@
           <% end %>
         </div>
       <% end %>
-
-      <div>
-        <% element = @page.course ? @page.course : @page %>
-        <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
-        <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
-      </div>
     <% end %>
   </div>
 
