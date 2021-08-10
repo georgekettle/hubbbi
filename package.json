@@ -16,6 +16,8 @@
     "filepond-plugin-file-validate-type": "^1.2.6",
     "filepond-plugin-image-edit": "^1.6.3",
     "filepond-plugin-image-preview": "^4.6.7",
+    "flickity": "^2.2.2",
+    "flickity-imagesloaded": "^2.0.0",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "postcss": "^7",

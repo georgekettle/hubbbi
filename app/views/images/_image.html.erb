@@ -1,0 +1,19 @@
+<% editable ||= false %>
+
+<div class="w-full">
+  <div class="overflow-hidden rounded-2xl relative">
+    <%= cl_image_tag image.picture.key %>
+
+    <% if editable %>
+      <div class="absolute top-4 left-4">
+        <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn white", direction: "left" do %>
+          <%= link_to "Edit image", edit_image_path(image), class: "dropdown-link" %>
+          <%= link_to("Delete image", image_path(image), method: :delete, data: {confirm: "Are you sure you'd like to delete this image?"}, class: "dropdown-link-danger") %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <% if image.title.present? %>
+    <h4 class="text-xs text-gray-400 mt-2 pl-1"><%= image.title %></h4>
+  <% end %>
+</div>

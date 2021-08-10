@@ -18,12 +18,6 @@
           <% end %>
         </div>
       <% end %>
-
-      <div>
-        <% element = @page.course ? @page.course : @page %>
-        <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
-        <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
-      </div>
     <% end %>
   </div>
 
@@ -47,6 +41,8 @@
       <div data-drag-drop-editor-target="dropzone" class="w-full flex items-center justify-center overflow-scroll">
         <%= render 'sections/drag_element', section_type: :page_reference, title: "Pages", icon: 'library' %>
         <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
+        <%= render 'sections/drag_element', section_type: :image, title: "Image(s)", icon: 'image' %>
+      </div>
       </div>
     </div>
   </div>

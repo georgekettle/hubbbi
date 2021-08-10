@@ -1,26 +1,22 @@
 <% edit_message ||= false %>
 
-<%= render "shared/container", classes: "p-4" do %>
-  <% if policy(page).update? && edit_message && !page.course %>
-    <div class="w-full rounded-lg bg-primary-100 p-4 sm:flex items-center justify-between mb-4">
-      <div class="mb-4 sm:mb-0">
-        <h4 class="tracking-tight">Would you like to edit the details?</h4>
-        <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
+<div class="overflow-x-hidden">
+  <%= render "shared/container", classes: "p-4" do %>
+    <% if policy(page).update? && edit_message && !page.course %>
+      <div class="w-full rounded-lg bg-primary-100 p-4 sm:flex items-center justify-between mb-4">
+        <div class="mb-4 sm:mb-0">
+          <h4 class="tracking-tight">Would you like to edit the details?</h4>
+          <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
+        </div>
+        <%= link_to edit_page_path(page), class: 'button w-full sm:w-auto' do %>
+          <%= render "icons/edit", classes: "mr-2" %>
+          Edit details
+        <% end %>
       </div>
-      <%= link_to edit_page_path(page), class: 'button w-full sm:w-auto' do %>
-        <%= render "icons/edit", classes: "mr-2" %>
-        Edit details
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
 
-  <div class="mb-4">
-    <% element = page.course ? page.course : page %>
-    <%= render('components/images/banner', image_path: cl_image_path(element.cover.key)) if element.cover.attached? %>
-    <%= render('components/images/banner', no_shadow: true) unless element.cover.attached? %>
-  </div>
-
-  <% page.sections.each do |section| %>
-    <%= render 'sections/section', section: section %>
+    <% page.sections.each do |section| %>
+      <%= render 'sections/section', section: section %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
