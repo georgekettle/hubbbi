@@ -11,7 +11,7 @@
             </div>
             <%= render "components/dropdowns/options_dropdown" do %>
               <%= link_to "Add image", new_section_image_path(section), class: 'dropdown-link' %>
-              <%# link_to "Reorder pages", section_section_elements_path(section), class: 'dropdown-link' %>
+              <%= link_to "Reorder pages", section_section_elements_path(section), class: 'dropdown-link' %>
               <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
             <% end %>
             <div class="handle icon-btn faded relative overflow-hidden">
@@ -26,16 +26,6 @@
 
   <div class="-mx-2 relative">
     <% if images.empty? && editable %>
-      <!-- <div class="p-2 w-full">
-        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-          <h4 class="tracking-tight text-center">Add a new image</h4>
-          <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
-          <%= link_to new_section_image_path(section), class: 'button' do %>
-            <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
-            Add image
-          <% end %>
-        </div>
-      </div> -->
       <%= render 'components/carousel' do %>
         <div class="p-2 w-2/3 sm:w-1/2">
           <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">

@@ -1,0 +1,9 @@
+<div class="flex items-center">
+  <div class="rounded h-12 w-12 overflow-hidden" style="background-size: cover; background-image: url(<%= cl_image_path(image.picture.key) %>)"></div>
+  <div class="ml-2">
+    <!-- <h4><%# page.title.truncate(25) %></h4> -->
+    <% if image.title %>
+      <p class="text-xs text-gray-400"><%= image.title.truncate(30) %></p>
+    <% end %>
+  </div>
+</div>
