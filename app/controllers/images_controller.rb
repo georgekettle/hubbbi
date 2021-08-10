@@ -1,5 +1,16 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:destroy]
+  before_action :set_image, only: [:edit, :update, :destroy]
+
+  def edit
+  end
+
+  def update
+    if @image.update(image_params)
+      redirect_to edit_sections_page_path(@image.page), notice: "Image successfully updated"
+    else
+      render :edit, alert: "Oops... Something went wrong when updating image"
+    end
+  end
 
   def destroy
     @image.destroy

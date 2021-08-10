@@ -2,6 +2,14 @@
   @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 cursor-pointer;
 
   svg {
-    @apply h-5 w-5 stroke-2 stroke-current text-gray-900;
+    @apply h-5 w-5 stroke-2 fill-current stroke-current text-gray-900;
+  }
+}
+
+.flickity-button:disabled {
+  @apply cursor-not-allowed;
+
+  svg {
+    @apply fill-current stroke-current text-gray-300;
   }
 }

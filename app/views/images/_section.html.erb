@@ -25,30 +25,35 @@
   <% end %>
 
   <div class="-mx-2 relative">
-    <div data-controller="slider">
-      <div class="px-2 flex items-center justify-between">
-        <h4 class="text-sm"></h4>
-        <div data-slider-target="buttons" class="flex items-center"></div>
+    <% if images.empty? && editable %>
+      <div class="p-2 w-full">
+        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+          <h4 class="tracking-tight text-center">Add a new image</h4>
+          <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
+          <%= link_to new_section_image_path(section), class: 'button' do %>
+            <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
+            Add image
+          <% end %>
+        </div>
       </div>
-      <div data-slider-target="container" class="outline-none">
+    <% else %>
+      <%= render 'components/carousel' do %>
         <% images.each do |image| %>
           <div class="p-2 w-2/3 sm:w-1/2">
             <%= render "images/image", image: image, editable: editable %>
           </div>
         <% end %>
-      </div>
-    </div>
-    <% if editable %>
-      <div class="show-when-only-child p-1 w-full">
-        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-          <h4 class="tracking-tight text-center">Add a new image</h4>
-          <p class="text-xs text-gray-400 mb-2 text-center">Images help to break up large sections of text and hold people's attention</p>
-          <%= link_to new_section_image_path(section), class: 'button' do %>
-            <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
-            Add an image
-          <% end %>
-        </div>
-      </div>
+        <% if editable %>
+          <div class="p-2 w-2/3 sm:w-1/2">
+            <div class="p-4 rounded-xl bg-gray-100 w-full border-dashed border border-gray-400 flex flex-col items-center">
+              <%= link_to new_section_image_path(section), class: 'icon-btn' do %>
+                <%= render "icons/image_add" %>
+              <% end %>
+              <h4 class="tracking-tight text-center">Add image</h4>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 </div>

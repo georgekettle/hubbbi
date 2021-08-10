@@ -7,7 +7,7 @@
     <% if editable %>
       <div class="absolute top-4 left-4">
         <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn white", direction: "left" do %>
-          <%# link_to "Edit image", "#", class: "dropdown-link" %>
+          <%= link_to "Edit image", edit_image_path(image), class: "dropdown-link" %>
           <%= link_to("Delete image", image_path(image), method: :delete, data: {confirm: "Are you sure you'd like to delete this image?"}, class: "dropdown-link-danger") %>
         <% end %>
       </div>

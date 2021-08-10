@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Update image", back_link: edit_sections_page_path(@image.page) %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render "form", image: @image %>
+<% end %>

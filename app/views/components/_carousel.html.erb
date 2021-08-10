@@ -1,0 +1,11 @@
+<% header ||= "" %>
+
+<div data-controller="slider">
+  <div class="px-2 flex items-center justify-between">
+    <h4 class="text-sm"></h4>
+    <div data-slider-target="buttons" class="flex items-center"></div>
+  </div>
+  <div data-slider-target="container" class="outline-none">
+    <%= yield %>
+  </div>
+</div>
