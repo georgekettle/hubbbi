@@ -14,12 +14,8 @@ class Uploader {
     // start upload
     this.upload.create((error, blob) => {
       if (error) {
-        // Handle the error
         console.log("error")
       } else {
-        // Add an appropriately-named hidden input to the form
-        // with a value of blob.signed_id
-        console.log("success")
         this.onLoad(blob.signed_id)
       }
     })

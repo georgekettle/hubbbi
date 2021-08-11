@@ -27,9 +27,29 @@ export default class extends Controller {
       server: {
           process: this.uploadFile,
       },
+      onaddfilestart: (file) => { this.isLoadingCheck() },
+      onprocessfile: (files) => { this.isLoadingCheck() }
     });
     const pqinaLogo = document.querySelector('.filepond--credits');
     pqinaLogo && pqinaLogo.remove();
+  }
+
+  isLoadingCheck() {
+    const isLoading = this.pond.getFiles().filter(x=>x.status !== 5).length !== 0
+    const submitButtons = this.form.querySelectorAll('[type="submit"]')
+    if(isLoading) {
+      submitButtons.forEach((submit) => {
+        debugger
+        submit.disabled = true
+        submit.dataset.originalValue = submit.value
+        submit.value = 'Uploading image...'
+      })
+    } else {
+      submitButtons.forEach((submit) => {
+        submit.disabled = false
+        submit.value = submit.dataset.originalValue
+      })
+    }
   }
 
   uploadFile(fieldName, file, metadata, load, error, progress, abort) {
