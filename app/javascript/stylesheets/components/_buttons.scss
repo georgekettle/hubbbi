@@ -15,6 +15,10 @@
   }
 }
 
+.button:disabled {
+  @apply bg-gray-200 text-gray-400 hover:bg-gray-200 cursor-not-allowed;
+}
+
 .icon-btn {
   @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 cursor-pointer;
 
