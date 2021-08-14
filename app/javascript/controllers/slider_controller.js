@@ -8,10 +8,12 @@ export default class extends Controller {
   connect() {
     this.initSlider()
     this.moveNavButtons()
+    this.initOnDragStart()
+    this.initOnDragEnd()
   }
 
   initSlider() {
-    var flkty = new Flickity( this.containerTarget, {
+    this.flkty = new Flickity(this.containerTarget, {
       // options
       cellAlign: 'left',
       contain: true,
@@ -26,5 +28,20 @@ export default class extends Controller {
     Array.from(navButtons).forEach((button) => {
       this.buttonsTarget.insertAdjacentElement('beforeend', button)
     })
+  }
+
+  initOnDragStart() {
+    this.flkty.on( 'dragStart', function( event, pointer ) {
+      document.body.dataset.dragging = true
+    });
+  }
+
+  initOnDragEnd() {
+    this.flkty.on( 'dragEnd', function( event, pointer ) {
+      // this is just in case the lightbox does not set it as false
+      setTimeout(() => {
+        document.body.dataset.dragging = false
+      }, 50);
+    });
   }
 }

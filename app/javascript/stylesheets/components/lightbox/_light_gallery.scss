@@ -1,0 +1,60 @@
+.lg-next,
+.lg-prev {
+  @apply rounded-full h-10 w-10 flex items-center justify-center bg-black bg-opacity-10;
+
+  svg {
+    @apply h-6 w-6 transition-transform;
+  }
+
+  &:hover {
+    @apply bg-black bg-opacity-20;
+
+    svg {
+      @apply h-7 w-7 transform scale-110
+    }
+  }
+
+  &::after,
+  &::before {
+    @apply hidden;
+  }
+}
+
+.lg-toolbar {
+  .lg-counter {
+    @apply h-16 w-16 ml-3 flex items-center justify-center p-0;
+  }
+
+  .lg-close,
+  .lg-download {
+    @apply h-16 w-10 flex items-center justify-center p-0;
+
+    svg {
+      @apply h-5 w-5;
+    }
+
+    &::after,
+    &::before {
+      @apply hidden;
+    }
+  }
+
+  .lg-close {
+    @apply mr-6;
+    svg {
+      @apply h-3.5 w-3.5;
+    }
+  }
+
+  .lg-counter {
+    @apply font-sans font-medium;
+  }
+}
+
+.lg-counter-current {
+  @apply mr-0.5;
+}
+
+.lg-counter-all {
+  @apply ml-0.5;
+}

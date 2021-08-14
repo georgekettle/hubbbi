@@ -39,7 +39,6 @@ export default class extends Controller {
     const submitButtons = this.form.querySelectorAll('[type="submit"]')
     if(isLoading) {
       submitButtons.forEach((submit) => {
-        debugger
         submit.disabled = true
         submit.dataset.originalValue = submit.value
         submit.value = 'Uploading image...'
