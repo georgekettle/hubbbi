@@ -2,7 +2,9 @@
 
 <div class="w-full">
   <div class="overflow-hidden rounded-2xl relative">
-    <%= cl_image_tag image.picture.key %>
+    <%= link_to image.picture.service_url, data:{ src: image.picture.service_url, lightbox_target: 'item' }, class:"gallery-item" do %>
+      <%= cl_image_tag image.picture.key %>
+    <% end %>
 
     <% if editable %>
       <div class="absolute top-4 left-4">
