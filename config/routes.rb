@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :section_elements, only: :update
   resources :texts, only: :update
   resources :images, only: [:destroy, :edit, :update]
+  resources :videos, only: [:edit, :update]
 
   resources :users, only: [:edit, :update] do
     member do
