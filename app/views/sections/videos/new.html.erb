@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Create video", back_link: edit_sections_page_path(@section.page) %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render "form", section: @section, video: @video %>
+<% end %>

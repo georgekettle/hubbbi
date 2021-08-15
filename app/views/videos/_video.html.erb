@@ -1,0 +1,35 @@
+<% editable ||= false %>
+
+<div class="w-full">
+  <div class="video-card">
+    <% if video.url %>
+      <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
+        <!-- YouTube Video --->
+        <a
+            data-lg-size="1280-720"
+            data-src="<%= video.url %>"
+            data-poster="<%= video.info.thumbnail_large %>"
+            data-lightbox-target='item'
+            class="gallery-item w-full overflow-hidden"
+        >
+            <img
+                width="300"
+                height="100"
+                class="object-cover w-full h-full"
+                src="<%= video.info.thumbnail_maxres || video.info.thumbnail_large_2x || video.info.thumbnail_large %>"
+            />
+            <div class="darken-image">
+              <div class="play-button">
+                <%= render 'icons/play' %>
+              </div>
+            </div>
+        </a>
+      </div>
+    <% else %>
+      <div class="w-full rounded-xl bg-gray-400 h-24"></div>
+    <% end %>
+  </div>
+  <% if video.title.present? %>
+    <h4 class="text-xs text-gray-400 mt-2 pl-1"><%= video.title %></h4>
+  <% end %>
+</div>

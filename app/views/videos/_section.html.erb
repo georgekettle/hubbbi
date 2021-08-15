@@ -1,0 +1,44 @@
+<% editable ||= false %>
+
+<div class="section">
+  <% if editable %>
+    <div class="w-full relative z-10">
+      <%= render "components/headers/section_header", title: "Video", icon:"video" do %>
+        <div class="flex items-center">
+          <% if policy(section.page).update? %>
+            <div class="mr-2">
+              <%= render "components/saving" %>
+            </div>
+            <%= render "components/dropdowns/options_dropdown" do %>
+              <% if videos.empty? %>
+                <%= link_to "Add video", new_section_video_path(section), class: 'dropdown-link' %>
+              <% end %>
+              <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+            <% end %>
+            <div class="handle icon-btn faded relative overflow-hidden">
+              <%= render "icons/handle", classes: "handle h-4 w-4" %>
+              <div class="handle absolute h-full w-full top-0 left-0"></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="relative">
+    <% if videos.present? %>
+      <div class="w-full">
+        <%= render "videos/video", video: videos.first, editable: editable %>
+      </div>
+    <% elsif editable %>
+      <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+        <h4 class="tracking-tight text-center">Add a new video</h4>
+        <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
+        <%= link_to new_section_video_path(section), class: 'button' do %>
+          <%= render "icons/video", classes: "stroke-current text-white mr-2" %>
+          Add video
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -11,8 +11,10 @@
     <%= render :partial => "page_references/section", :locals => {page_references: section.page_references, section: section, editable: editable} %>
   <% when "text" %>
     <%= render :partial => "texts/section", :locals => {texts: section.texts, section: section, editable: editable} %>
-    <% when "image" %>
+  <% when "image" %>
     <%= render :partial => "images/section", :locals => {images: section.images, section: section, editable: editable} %>
+  <% when "video" %>
+    <%= render :partial => "videos/section", :locals => {videos: section.videos, section: section, editable: editable} %>
   <% else %>
     <%= render :partial => "sections/unknown_section", :locals => {page_references: section.elements, section: section, editable: editable} %>
   <% end %>
