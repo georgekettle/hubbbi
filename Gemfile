@@ -80,3 +80,5 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'devise_invitable', '~> 2.0.0'
 # for positioning sections in order
 gem 'acts_as_list'
+# for video uploads from youtube/vimeo
+gem 'video_info'

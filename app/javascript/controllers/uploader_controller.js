@@ -17,13 +17,15 @@ FilePond.registerPlugin(
 
 export default class extends Controller {
   static targets = ["container"]
+  static values = { filetypes: Array }
 
   initialize() {
     this.form = this.element.form;
+    this.filetypesValue ||= ['image/png', 'image/jpeg', 'image/gif'];
 
     this.pond = FilePond.create(this.element, {
-      labelIdle: `Drag & Drop your picture or <span class="filepond--label-action">Browse</span>`,
-      acceptedFileTypes: ['image/png', 'image/jpeg', 'image/gif'],
+      labelIdle: `Drag & Drop your file or <span class="filepond--label-action">Browse</span>`,
+      acceptedFileTypes: this.filetypesValue,
       server: {
           process: this.uploadFile,
       },
@@ -41,7 +43,7 @@ export default class extends Controller {
       submitButtons.forEach((submit) => {
         submit.disabled = true
         submit.dataset.originalValue = submit.value
-        submit.value = 'Uploading image...'
+        submit.value = 'Uploading file...'
       })
     } else {
       submitButtons.forEach((submit) => {

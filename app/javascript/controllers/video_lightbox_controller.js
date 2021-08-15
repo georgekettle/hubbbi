@@ -1,7 +1,6 @@
 import { Controller } from "stimulus"
 import lightGallery from '../components/light_gallery/light_gallery'
 // import lgVideo from '../components/light_gallery/lg_video'
-import lgVideo from 'lightgallery/plugins/video'
 
 export default class extends Controller {
   static targets = ["gallery", "item"]
@@ -10,36 +9,16 @@ export default class extends Controller {
     this.initCloseButton()
     this.initDownloadButton()
     this.initLightGallery()
-    this.initPreventOpenOnDrag()
-    this.moved = false
   }
 
   initLightGallery() {
     this.lg = lightGallery(this.galleryTarget, {
         selector: ".gallery-item",
         speed: 500,
-        videojs: true,
-        videojsOptions: {
-            muted: true,
-        },
-        plugins: [lgVideo],
+        isMobile: true,
         container: document.body,
         nextHtml: this.nextHTML(),
         prevHtml: this.prevHTML()
-    })
-  }
-
-  initPreventOpenOnDrag() {
-    const self = this
-    this.galleryTarget.addEventListener('lgBeforeOpen', (e) => {
-      if (document.body.dataset.dragging === "true") {
-        self.lg.lgOpened = true
-
-        setTimeout(() => {
-          self.lg.lgOpened = false
-          document.body.dataset.dragging = false
-        }, 5);
-      }
     })
   }
 
