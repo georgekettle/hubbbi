@@ -12,7 +12,7 @@
             </div>
             <%= render "components/dropdowns/options_dropdown" do %>
               <%= link_to "Add link", new_section_link_path(section), class: 'dropdown-link' %>
-              <%# link_to "Reorder links", section_section_elements_path(section), class: 'dropdown-link' %>
+              <%= link_to "Reorder links", section_section_elements_path(section), class: 'dropdown-link' %>
               <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
             <% end %>
             <div class="handle icon-btn faded relative overflow-hidden">

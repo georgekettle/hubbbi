@@ -9,6 +9,8 @@
             <%= render 'page_references/reorder_item', page_ref: element %>
           <% when "image" %>
             <%= render 'images/reorder_item', image: element %>
+          <% when "link" %>
+            <%= render 'links/reorder_item', link: element %>
           <% end %>
         <% end %>
       </div>

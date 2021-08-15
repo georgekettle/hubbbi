@@ -1,0 +1,11 @@
+<div class="flex items-center">
+  <div class="rounded h-12 w-12 overflow-hidden bg-primary-100 flex items-center justify-center">
+    <%= render 'icons/zap', classes: "h-5 w-5 stroke-current text-primary-600" %>
+  </div>
+  <div class="ml-2">
+    <h4><%= link.title.truncate(25) %></h4>
+    <% if link.subtitle %>
+      <p class="text-xs text-gray-400"><%= link.subtitle.truncate(30) %></p>
+    <% end %>
+  </div>
+</div>
