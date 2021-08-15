@@ -15,6 +15,8 @@
     <%= render :partial => "images/section", :locals => {images: section.images, section: section, editable: editable} %>
   <% when "video" %>
     <%= render :partial => "videos/section", :locals => {videos: section.videos, section: section, editable: editable} %>
+  <% when "link" %>
+    <%= render :partial => "links/section", :locals => {links: section.links, section: section, editable: editable} %>
   <% else %>
     <%= render :partial => "sections/unknown_section", :locals => {page_references: section.elements, section: section, editable: editable} %>
   <% end %>

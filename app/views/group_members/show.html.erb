@@ -39,9 +39,10 @@
       <% end %>
     <% end %>
     <% @group_member.links.each_with_index do |link, index| %>
-      <% zindex = 500 - index %>
-      <div class="pb-2 w-full relative" style="z-index: <%= zindex %>">
-        <%= render "links/link", link: link %>
+      <% z_index = 500 - index %>
+      <div class="pb-2 w-full relative" style="z-index: <%= z_index %>">
+        <% editable = (link.linkable.class == GroupMember && policy(link.linkable).links?) %>
+        <%= render "links/link", link: link, editable: editable %>
       </div>
     <% end %>
   </div>

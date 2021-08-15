@@ -1,0 +1,8 @@
+<%= simple_form_for [section, link] do |f| %>
+  <%= f.input :url, input_html: { type: 'url' }, placeholder: "https://www.twitter.com", hint: "Must include 'https://' or 'http://'" %>
+  <%= f.input :title, placeholder: "Explain your link" %>
+  <%= f.input :subtitle, placeholder: "Explain your link in more detail" %>
+  <div class="form-actions">
+    <%= f.submit class: 'w-full' %>
+  </div>
+<% end %>

@@ -17,7 +17,11 @@ class LinksController < ApplicationController
 
   def update
     if @link.update(link_params)
-      redirect_to @link.linkable, notice: "Your link has successfully been updated"
+      if @link.linkable
+        redirect_to @link.linkable, notice: "Your link has successfully been updated"
+      else
+        redirect_to edit_sections_page_path(@link.page), notice: "Your link has successfully been updated"
+      end
     else
       render :edit, alert: "Oops... Something went wrong when updating your link"
     end
@@ -25,14 +29,19 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
-    redirect_to @link.linkable, notice: "Link was successfully deleted"
+    if @link.linkable
+      redirect_to @link.linkable, notice: "Link was successfully deleted"
+    else
+      redirect_to edit_sections_page_path(@link.page), notice: "Link was successfully deleted"
+    end
   end
 
   private
 
   def set_link
     @link = Link.find(params[:id])
-    authorize @link.linkable, :links?
+    authorize @link.linkable, :links? if @link.linkable
+    authorize @link.page if @link.page
   end
 
   def link_params
