@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :pages, only: [:new, :create], controller: 'sections/pages'
     resources :images, only: [:new, :create], controller: 'sections/images'
     resources :videos, only: [:new, :create], controller: 'sections/videos'
+    resources :links, only: [:new, :create], controller: 'sections/links'
     resources :section_elements, only: :index
   end
 

@@ -5,12 +5,13 @@ class Section < ApplicationRecord
   has_many :texts, :through => :section_elements, :source => :element, :source_type => 'Text'
   has_many :images, :through => :section_elements, :source => :element, :source_type => 'Image'
   has_many :videos, :through => :section_elements, :source => :element, :source_type => 'Video'
+  has_many :links, :through => :section_elements, :source => :element, :source_type => 'Link'
 
-  enum section_type: [:page_reference, :text, :image, :video]
+  enum section_type: [:page_reference, :text, :image, :video, :link]
 
   acts_as_list scope: :page
 
   def elements
-    page_references + texts + images + videos
+    page_references + texts + images + videos + links
    end
 end

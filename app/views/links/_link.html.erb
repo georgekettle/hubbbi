@@ -1,4 +1,6 @@
-<% if link.linkable.class == GroupMember && policy(link.linkable).links? %>
+<% editable ||= false %>
+
+<% if editable %>
   <div class="w-full relative">
     <div class="w-full rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
       <div>
