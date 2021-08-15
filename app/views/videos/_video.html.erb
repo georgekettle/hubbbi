@@ -1,7 +1,7 @@
 <% editable ||= false %>
 
 <div class="w-full">
-  <div class="overflow-hidden rounded-2xl relative">
+  <div class="video-card">
     <% if video.url %>
       <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
         <!-- YouTube Video --->
@@ -18,6 +18,11 @@
                 class="object-cover w-full h-full"
                 src="<%= video.info.thumbnail_maxres || video.info.thumbnail_large_2x || video.info.thumbnail_large %>"
             />
+            <div class="darken-image">
+              <div class="play-button">
+                <%= render 'icons/play' %>
+              </div>
+            </div>
         </a>
       </div>
     <% else %>
