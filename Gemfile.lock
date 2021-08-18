@@ -150,6 +150,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
+      racc (~> 1.4)
     oga (3.3)
       ast
       ruby-ll (~> 2.1)
@@ -292,6 +294,7 @@ GEM
 PLATFORMS
   x86_64-darwin-18
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   acts-as-taggable-on (~> 7.0)
