@@ -1,0 +1,18 @@
+<nav aria-label="breadcrumb" data-controller="breadcrumbs">
+  <ol class="breadcrumbs no-scrollbar">
+    <div class="p-2 inline"></div>
+    <% hidden_crumbs = (1...breadcrumb_trail.count - 2) %>
+    <% breadcrumb_trail.each_with_index do |crumb, index| %>
+      <%= render('icons/dots', classes: "pointer-cursor stroke-current text-gray-200 p-2 py-1 hover:bg-gray-200 hover:text-gray-400 w-8 h-6 inline mr-2 rounded-lg") if index == 1 %>
+      <li class="breadcrumb <%= crumb.current? ? "current" : "" %> <%= hidden_crumbs.include?(index)  ? "hidden" : "" %>">
+        <%= link_to crumb.name, crumb.url, (crumb.current? ? {"aria-current" => "page"} : {}) %>
+        <% unless crumb.current? %>
+          <span>
+            <%= render "icons/chevron_right", classes: "stroke-current text-gray-400 h-2 w-2 inline ml-2" %>
+          </span>
+        <% end %>
+      </li>
+    <% end %>
+    <div class="p-2 inline"></div>
+  </ol>
+</nav>

@@ -1,6 +1,11 @@
 <% edit_message ||= false %>
 
 <div class="overflow-x-hidden">
+  <% if breadcrumb_trail.any? %>
+    <%= render "shared/container", classes: "py-4" do %>
+      <%= render 'components/breadcrumbs/navigation' %>
+    <% end %>
+  <% end %>
   <%= render "shared/container", classes: "p-4" do %>
     <% if policy(page).update? && edit_message && !page.course %>
       <div class="w-full rounded-lg bg-primary-100 p-4 sm:flex items-center justify-between mb-4">

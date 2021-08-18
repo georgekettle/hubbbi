@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def show
     redirect_to @page.course if @page.course
+    set_breadcrumbs
   end
 
   def edit
@@ -27,6 +28,14 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def set_breadcrumbs
+    breadcrumb "Back to course", course_path(@page.belonging_to_course)
+    @page.ancestors.each do |page|
+      breadcrumb page.title.truncate(20), page_path(page)
+    end
+    breadcrumb @page.title.truncate(20), page_path(@page)
+  end
 
   def set_page
     @page = Page.find(params[:id])
