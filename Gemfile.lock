@@ -150,6 +150,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
+      racc (~> 1.4)
     oga (3.3)
       ast
       ruby-ll (~> 2.1)
@@ -221,6 +223,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rollbar (3.2.0)
     ruby-ll (2.1.2)
       ansi
       ast
@@ -291,6 +294,8 @@ GEM
 
 PLATFORMS
   x86_64-darwin-18
+  x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   acts-as-taggable-on (~> 7.0)
@@ -306,6 +311,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   jbuilder (~> 2.7)
+  launchy
   letter_opener
   listen (~> 3.3)
   pg (~> 1.1)
@@ -317,6 +323,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
   redis (~> 4.0)
+  rollbar
   sass-rails
   selenium-webdriver
   simple_form
