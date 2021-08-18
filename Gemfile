@@ -33,7 +33,8 @@ gem 'devise'
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
-gem 'rollbar' #for error tracking
+gem 'rollbar' # for error tracking
+gem 'newrelic_rpm' # for measuring performance
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
