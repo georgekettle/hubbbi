@@ -86,3 +86,5 @@ gem 'devise_invitable', '~> 2.0.0'
 gem 'acts_as_list'
 # for video uploads from youtube/vimeo
 gem 'video_info'
+# for breadcrumb navigation on pages
+gem "loaf"

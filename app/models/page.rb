@@ -32,6 +32,16 @@ class Page < ApplicationRecord
     !!page
   end
 
+  def ancestors
+    pages = []
+    current_page = self
+    while current_page.has_parent?
+      pages << current_page unless current_page == self
+      current_page = current_page.parent_page
+    end
+    pages.reverse
+  end
+
   def belonging_to_course
     course = self.course || nil
     page = self
