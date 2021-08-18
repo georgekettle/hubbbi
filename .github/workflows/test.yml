@@ -14,9 +14,9 @@ jobs:
     env:
       RAILS_ENV: test
       NODE_ENV: test
-    runs-on: ubuntu-latest
-    # NEW! Adds postgres service. Must come before `steps`.
+    runs-on: ubuntu-latest # runner
     services:
+      # Label used to access the service container
       postgres:
         # Docker Hub image
         image: postgres
@@ -31,11 +31,10 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    # END NEW
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up Ruby # An action to install Ruby and gems
+      - name: Checkout repository # copies repo in runner
+        uses: actions/checkout@v2 # short for https://github.com/actions/checkout
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1 # short for https://github.com/ruby/setup-ruby
         with:
           # runs 'bundle install' and caches installed gems automatically
@@ -55,10 +54,10 @@ jobs:
       - name: Yarn install
         run: yarn install --frozen-lockfile
       - name: Prepare DB
-        run: | # Pipe is important, adds line breaks
+        run: |
           cp config/database.github.yml config/database.yml
-          bundle exec rails db:test:prepare
-        - name: Run model tests
-          run: bundle exec rails test
-        - name: Run system tests
-          run: bundle exec rails test:system
+          bundle exec rails db:create db:migrate
+      - name: Run model tests
+        run: bundle exec rails test
+      - name: Run system tests
+        run: bundle exec rails test:system
