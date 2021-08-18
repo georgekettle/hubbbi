@@ -223,6 +223,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rollbar (3.2.0)
     ruby-ll (2.1.2)
       ansi
       ast
@@ -310,6 +311,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   jbuilder (~> 2.7)
+  launchy
   letter_opener
   listen (~> 3.3)
   pg (~> 1.1)
@@ -321,6 +323,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4)
   redis (~> 4.0)
+  rollbar
   sass-rails
   selenium-webdriver
   simple_form
