@@ -310,6 +310,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   jbuilder (~> 2.7)
+  launchy
   letter_opener
   listen (~> 3.3)
   pg (~> 1.1)
