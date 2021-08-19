@@ -10,6 +10,7 @@
     "@vimeo/player": "^2.16.0",
     "autoprefixer": "^9",
     "bootstrap": "4.6",
+    "choices.js": "^9.0.1",
     "dom-autoscroller": "^2.3.4",
     "dragula": "^3.7.3",
     "filepond": "^4.28.2",

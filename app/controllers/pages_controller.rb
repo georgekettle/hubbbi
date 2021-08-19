@@ -43,6 +43,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:title, :subtitle, :status, :cover)
+    params.require(:page).permit(:title, :subtitle, :status, :cover, :tag_list)
   end
 end
