@@ -1,44 +1,76 @@
 import { Controller } from "stimulus"
+import Isotope from "isotope-layout"
 
 export default class extends Controller {
-  static targets = ["search", "container"]
+  static targets = ["container", "toggle"]
 
   initialize() {
-    this.hasSearchTarget && this.initSearch();
+    this.hasContainerTarget && this.initFilter();
+    this.activeFilters = []
   }
 
-  initSearch() {
-    this.searchTarget.addEventListener('keyup', (e) => {
-      let query = e.currentTarget.value.toLowerCase();
-      this.applyFilter(query);
-    })
-  }
-
-  applyFilter(query) {
-    const childDivs = Array.from(this.containerTarget.querySelectorAll('.filter-item'))
-    childDivs.forEach((elem) => {
-      var elemText = elem.dataset.filterText;
-      if (elemText) {
-        this.isQueryMatch(elemText, query) && this.showElement(elem)
-        !this.isQueryMatch(elemText, query) && this.hideElement(elem)
+  initFilter() {
+    this.iso = new Isotope(this.containerTarget, {
+      itemSelector: '#filter-item',
+      masonry: {
+        columnWidth: 0
       }
-    })
+    });
   }
 
-  isQueryMatch(text, query) {
-    return text.toLowerCase().indexOf(query) !== -1
+  removeFilters() {
+    this.iso.arrange({
+      // item element provided as argument
+      filter: '*'
+    });
   }
 
-
-  showElement(elem) {
-    if (elem.classList.contains('fadeOutShrink')) {
-      elem.classList.add('animated','fadeInExpand');
-      elem.classList.remove('fadeOutShrink');
+  applyFilters(e) {
+    const activeFilters = this.activeFilters
+    if (activeFilters.length > 0) {
+      this.iso.arrange({
+        // item element provided as argument
+        filter: function( itemElem ) {
+          const itemFilters = JSON.parse(itemElem.dataset.filters)
+          const intersection = activeFilters.filter(x => itemFilters.includes(x))
+          return intersection.length
+        }
+      });
+    } else {
+      this.removeFilters()
     }
   }
 
-  hideElement(elem) {
-    elem.classList.add('animated','fadeOutShrink');
-    elem.classList.remove('fadeInExpand');
+  addFilter(button) {
+    button.classList.add('active')
+    const buttonFilters = JSON.parse(button.dataset.filters)
+    this.activeFilters = [].concat(this.activeFilters, buttonFilters)
+  }
+
+  removeFilter(button) {
+    button.classList.remove('active')
+    const buttonFilters = JSON.parse(button.dataset.filters)
+    this.activeFilters = this.activeFilters.filter(x => !buttonFilters.includes(x))
+  }
+
+  toggleFilter(e) {
+    const toggleButton = e.currentTarget
+    if (toggleButton.classList.contains('active')) {
+      this.removeFilter(toggleButton)
+    } else {
+      this.addFilter(toggleButton)
+    }
+
+    this.applyFilters()
+    // toggleButton.classList.add('active')
+    // const toggleButtonFilters = JSON.parse(toggleButton.dataset.filters)
+    // this.iso.arrange({
+    //   // item element provided as argument
+    //   filter: function( itemElem ) {
+    //     const itemFilters = JSON.parse(itemElem.dataset.filters)
+    //     const intersection = toggleButtonFilters.filter(x => itemFilters.includes(x))
+    //     return intersection.length
+    //   }
+    // });
   }
 }

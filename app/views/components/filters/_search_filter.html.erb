@@ -1,11 +1,11 @@
 <% container_id ||= "" %>
 <% placeholder ||= "Search..." %>
 
-<div data-controller="filter">
+<div data-controller="search-filter">
   <div class="form-group pb-0"> <!-- toggle class defined outside  -->
-    <input type="text" placeholder="<%= placeholder %>" data-filter-target="search">
+    <input type="text" placeholder="<%= placeholder %>" data-search-filter-target="search">
   </div>
-  <div data-filter-target="container" id="<%= container_id %>">
+  <div data-search-filter-target="container" id="<%= container_id %>">
     <%= yield %>
     <div class="filter-sizer-element"></div>
   </div>

@@ -22,7 +22,7 @@ module Sections
     private
 
     def page_params
-      params.require(:page).permit(:title, :subtitle, :cover)
+      params.require(:page).permit(:title, :subtitle, :cover, :tag_list)
     end
 
     def set_section

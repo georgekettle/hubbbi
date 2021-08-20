@@ -1,0 +1,15 @@
+.tag {
+  @apply py-1.5 px-2.5 rounded-lg cursor-pointer border-2 border-gray-100 hover:border-gray-200 whitespace-nowrap;
+
+  h4 {
+    @apply text-sm;
+  }
+}
+
+.active .tag {
+  @apply bg-gray-800 border-gray-800;
+
+  h4 {
+    @apply text-white;
+  }
+}
