@@ -24,11 +24,7 @@
     </div>
   <% end %>
 
-  <div class="w-full mb-2 flex flex-wrap">
-    <% section.tags.where('taggings_count > 0').order(taggings_count: :desc).each do |tag| %>
-      <%= render 'components/tags/tag', tag: tag %>
-    <% end %>
-  </div>
+  <%= render 'components/tags/tags', tags: section.tags_by_popularity %>
 
   <div class="-mx-1 flex flex-wrap">
     <% page_references.each do |ref| %>

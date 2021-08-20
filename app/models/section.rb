@@ -13,6 +13,10 @@ class Section < ApplicationRecord
 
   acts_as_list scope: :page
 
+  def tags_by_popularity
+    tags.where('taggings_count > 0').order(taggings_count: :desc).uniq
+  end
+
   def elements
     page_references + texts + images + videos + links
    end
