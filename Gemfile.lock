@@ -73,6 +73,8 @@ GEM
     aws_cf_signer (0.1.3)
     bcrypt (3.1.16)
     bindex (0.8.1)
+    binding_of_caller (1.0.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.7.5)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -92,6 +94,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    debug_inspector (1.1.0)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -137,6 +140,11 @@ GEM
     loofah (2.10.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    magic_test (0.0.6)
+      capybara (~> 3.0)
+      pry
+      pry-stack_explorer
+      rails (~> 6.0)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.1)
@@ -152,8 +160,6 @@ GEM
     newrelic_rpm (7.2.0)
     nio4r (2.5.7)
     nokogiri (1.11.7-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     oga (3.3)
       ast
@@ -173,6 +179,9 @@ GEM
       pry (~> 0.13.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    pry-stack_explorer (0.6.1)
+      binding_of_caller (~> 1.0)
+      pry (~> 0.13)
     public_suffix (4.0.6)
     puma (5.3.2)
       nio4r (~> 2.0)
@@ -296,9 +305,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  x86_64-darwin-18
   x86_64-darwin-20
-  x86_64-linux
 
 DEPENDENCIES
   acts-as-taggable-on (~> 7.0)
@@ -318,6 +325,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.3)
   loaf
+  magic_test
   newrelic_rpm
   pg (~> 1.1)
   postmark-rails
