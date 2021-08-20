@@ -14,7 +14,15 @@ class Section < ApplicationRecord
   acts_as_list scope: :page
 
   def tags_by_popularity
-    tags.where('taggings_count > 0').order(taggings_count: :desc).uniq
+    count_hash = {}
+    tags.each do |tag|
+      if count_hash[tag.id]
+        count_hash[tag.id] += 1
+      else
+        count_hash[tag.id] = 1
+      end
+    end
+    tags.sort_by{ |tag| -count_hash[tag.id] }.uniq # potentially make quicker
   end
 
   def elements
