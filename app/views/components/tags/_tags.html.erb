@@ -1,4 +1,7 @@
-<div class=" mb-2 relative">
+<div class="mb-2 relative flex items-center">
+  <div class="h-full flex items-center flex-shrink-0 pr-4">
+    <%= render 'icons/tag', classes:"stroke-current text-gray-400 h-4 w-4" %>
+  </div>
   <div class="w-full flex overflow-x-scroll no-scrollbar">
     <% tags.each_with_index do |tag, index| %>
       <div class="mb-1 mr-1" data-action="click->filter#toggleFilter" data-filter-target="toggle" data-filters="[<%= tag.id %>]">
