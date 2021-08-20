@@ -5,4 +5,6 @@ class Group < ApplicationRecord
   has_many :pages, through: :courses
 
   has_one_attached :cover
+
+  validates :name, presence: true
 end
