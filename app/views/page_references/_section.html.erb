@@ -24,25 +24,27 @@
     </div>
   <% end %>
 
-  <%= render 'components/tags/tags', tags: section.tags_by_popularity %>
+  <div data-controller="filter">
+    <%= render 'components/tags/tags', tags: section.tags_by_popularity %>
 
-  <div class="-mx-1 flex flex-wrap">
-    <% page_references.each do |ref| %>
-      <div class="p-1 w-1/2">
-        <%= render "page_references/page_reference", page_reference: ref, editable: editable %>
-      </div>
-    <% end %>
-    <% if editable %>
-      <div class="show-when-only-child p-1 w-full">
-        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-          <h4 class="tracking-tight text-center">Add a new page</h4>
-          <p class="text-xs text-gray-400 mb-2 text-center">By addng pages, you can break this page up into modules</p>
-          <%= link_to new_section_page_path(section), class: 'button' do %>
-            <%= render "icons/library", classes: "stroke-current text-white mr-2" %>
-            Add a page
-          <% end %>
+    <div class="-mx-1 flex flex-wrap" data-filter-target="container">
+      <% page_references.each do |ref| %>
+        <div id="filter-item" data-filters="<%= ref.page.tags.map(&:id) %>" class="p-1 w-1/2">
+          <%= render "page_references/page_reference", page_reference: ref, editable: editable %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+      <% if editable %>
+        <div class="show-when-only-child p-1 w-full">
+          <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+            <h4 class="tracking-tight text-center">Add a new page</h4>
+            <p class="text-xs text-gray-400 mb-2 text-center">By addng pages, you can break this page up into modules</p>
+            <%= link_to new_section_page_path(section), class: 'button' do %>
+              <%= render "icons/library", classes: "stroke-current text-white mr-2" %>
+              Add a page
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
