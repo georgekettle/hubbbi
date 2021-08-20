@@ -25,7 +25,7 @@
   <% end %>
 
   <div data-controller="filter">
-    <%= render 'components/tags/tags', tags: section.tags_by_popularity %>
+    <%= render('components/tags/tags', tags: section.tags_by_popularity) if section.tags_by_popularity.any? %>
 
     <div class="-mx-1 flex flex-wrap" data-filter-target="container">
       <% page_references.each do |ref| %>
