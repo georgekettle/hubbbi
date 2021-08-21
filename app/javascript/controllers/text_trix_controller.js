@@ -1,12 +1,12 @@
 import { Controller } from "stimulus"
-import Trix from "trix"
+// import Trix from "trix"
 
 export default class extends Controller {
   static targets = ["editor", "toolbar"]
   static values = { url: String }
 
   initialize() {
-    this.trix = Trix
+    this.trix = require("trix")
     this.resetEditorInnerHTML()
     this.beforeInitialize()
     this.onFocus()
