@@ -1,0 +1,20 @@
+<%= render "components/headers/header", back_link: @page, header: @page.title, subheader: "Page settings" %>
+
+<%= render "shared/container", classes: "p-4" do %>
+  <% if policy(@page).update? %>
+    <div class="mb-4">
+      <%= render "components/headers/section_header", title: "Edit", icon:"edit" %>
+      <%= render "components/quick_link", url: edit_page_path(@page), title: "Edit details", subtitle: "Title, tags & cover photo etc." %>
+    </div>
+  <% end %>
+
+  <% if policy(@page).destroy? %>
+    <div class="mb-4">
+      <%= render "components/headers/section_header", title: "Delete", icon:"bin" %>
+      <%= link_to @page, method: :delete, data: {confirm: 'Are you sure? This action cannot be undone'}, class: "button button-destroy w-full" do %>
+        Delete this page
+      <% end %>
+      <p class="text-center mt-1 text-gray-400 text-xs"><span class="text-red-500">Be aware:</span> This will delete the page and all it's content</p>
+    </div>
+  <% end %>
+<% end %>

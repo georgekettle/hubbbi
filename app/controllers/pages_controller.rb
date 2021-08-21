@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :show, :edit_sections, :destroy]
+  before_action :set_page, only: [:edit, :update, :show, :destroy, :edit_sections, :settings]
 
   def show
     redirect_to @page.course if @page.course
@@ -25,6 +25,9 @@ class PagesController < ApplicationController
 
   def edit_sections
     hide_navbar
+  end
+
+  def settings
   end
 
   private
