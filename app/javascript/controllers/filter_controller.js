@@ -2,11 +2,14 @@ import { Controller } from "stimulus"
 import Isotope from "isotope-layout"
 
 export default class extends Controller {
-  static targets = ["container", "toggle"]
+  static targets = ["container", "toggle", 'showMoreContainer']
+  static values = { showCount: Number }
 
   initialize() {
-    this.hasContainerTarget && this.initFilter();
+    this.hasContainerTarget && this.initFilter()
     this.activeFilters = []
+    this.extrasHidden = true
+    this.showCountValue && this.hideExtras()
   }
 
   initFilter() {
@@ -19,10 +22,14 @@ export default class extends Controller {
   }
 
   removeFilters() {
-    this.iso.arrange({
-      // item element provided as argument
-      filter: '*'
-    });
+    if (this.extrasHidden) {
+      this.hideExtras()
+    } else {
+      this.iso.arrange({
+        // item element provided as argument
+        filter: '*'
+      })
+    }
   }
 
   applyFilters(e) {
@@ -62,15 +69,35 @@ export default class extends Controller {
     }
 
     this.applyFilters()
-    // toggleButton.classList.add('active')
-    // const toggleButtonFilters = JSON.parse(toggleButton.dataset.filters)
-    // this.iso.arrange({
-    //   // item element provided as argument
-    //   filter: function( itemElem ) {
-    //     const itemFilters = JSON.parse(itemElem.dataset.filters)
-    //     const intersection = toggleButtonFilters.filter(x => itemFilters.includes(x))
-    //     return intersection.length
-    //   }
-    // });
+  }
+
+  hideExtras() {
+    this.extrasHidden = true
+    if (this.hasShowMoreContainerTarget) {
+      this.showMoreContainerTarget.classList.remove('active')
+    }
+    this.iso.arrange({
+      // item element provided as argument
+      filter: ':not(.initially-hidden)'
+    });
+  }
+
+  showExtras() {
+    this.extrasHidden = false
+    if (this.hasShowMoreContainerTarget) {
+      this.showMoreContainerTarget.classList.add('active')
+    }
+    this.iso.arrange({
+      // item element provided as argument
+      filter: '*'
+    })
+  }
+
+  toggleExtras() {
+    if (this.extrasHidden) {
+      this.showExtras()
+    } else {
+      this.hideExtras()
+    }
   }
 }

@@ -1,0 +1,41 @@
+.page-reference.show-more {
+  @apply p-1 w-1/2 cursor-pointer;
+
+  .show-more-card {
+    @apply border border-gray-200 w-full rounded-2xl h-40 flex items-end bg-white border-dashed;
+
+    .show-more-card-info {
+      @apply flex items-center justify-between w-full p-4;
+
+      .show-more-text {
+        @apply leading-tight;
+      }
+
+      .show-less-text {
+        @apply leading-tight hidden;
+      }
+
+      .show-more-button {
+        @apply h-8 w-8 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0 ml-1 transform transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer;
+      }
+    }
+  }
+}
+
+.page-reference.show-more.active {
+  .show-more-card {
+    .show-more-card-info {
+      .show-more-text {
+        @apply hidden;
+      }
+
+      .show-less-text {
+        @apply block;
+      }
+
+      .show-more-button {
+        @apply rotate-180;
+      }
+    }
+  }
+}
