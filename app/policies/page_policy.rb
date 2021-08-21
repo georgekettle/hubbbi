@@ -19,6 +19,10 @@ class PagePolicy < ApplicationPolicy
     admin_or_editor?
   end
 
+  def settings?
+    admin_or_editor?
+  end
+
   private
 
   def course_member?

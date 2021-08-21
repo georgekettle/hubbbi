@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :sections, only: :create
     member do
       get :edit_sections
+      get :settings
     end
   end
 
