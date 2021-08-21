@@ -29,7 +29,8 @@
 
     <div class="-mx-1 flex flex-wrap" data-filter-target="container">
       <% page_references.each_with_index do |ref, index| %>
-        <div id="filter-item" data-filters="<%= ref.page.tags.map(&:id) %>" class="p-1 w-1/2 <%= (shown_count - index - 2).negative? ? 'initially-hidden' : '' %>">
+        <% initially_hidden = (shown_count - index - 2).negative? && shown_count != page_references.count %>
+        <div id="filter-item" data-filters="<%= ref.page.tags.map(&:id) %>" class="p-1 w-1/2 <%= initially_hidden ? 'initially-hidden' : '' %>">
           <%= render "page_references/page_reference", page_reference: ref, editable: editable %>
         </div>
       <% end %>
