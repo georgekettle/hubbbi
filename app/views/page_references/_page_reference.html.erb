@@ -23,6 +23,7 @@
     <div class="absolute top-4 left-4">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn white", direction: "left" do %>
         <%= link_to "Edit content", edit_sections_page_path(page), class: "dropdown-link" %>
+        <%= link_to "Settings", settings_page_path(page), class: "dropdown-link" %>
         <%= link_to("Delete page", page_path(page), method: :delete, data: {confirm: "Are you sure you'd like to delete this page?"}, class: "dropdown-link-danger") %>
       <% end %>
     </div>
