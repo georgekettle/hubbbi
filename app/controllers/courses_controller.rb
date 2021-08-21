@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   def show
     session[:selected_course] = @course
     @current_user_course_member = @course.course_members.find_by(group_member: current_user.group_members)
+    set_breadcrumbs
   end
 
   def new
@@ -47,6 +48,11 @@ class CoursesController < ApplicationController
   end
 
   private
+
+  def set_breadcrumbs
+    breadcrumb "All courses", group_path(@course.group)
+    breadcrumb @course.title, course_path(@course)
+  end
 
   def course_params
     params.require(:course).permit(:title, :cover)
