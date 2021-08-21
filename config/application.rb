@@ -11,10 +11,12 @@ module AkademyProject
     config.generators do |generate|
       generate.assets false
       generate.helper false
-      generate.test_framework :test_unit, fixture: false
+      generate.test_framework nil
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    # to use routes for error pages (404/500...)
+    config.exceptions_app = self.routes
 
     # Configuration for the application, engines, and railties goes here.
     #

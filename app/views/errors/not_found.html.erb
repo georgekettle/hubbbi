@@ -1,0 +1,14 @@
+<div class="w-screen md:h-screen flex items-center justify-center flex-col overflow-scroll md:pb-16 pt-12 md:pt-0">
+  <div class="p-3 mb-2 flex items-center flex-col">
+    <%= link_to root_path, class: "w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mb-10" do %>
+      <%= image_tag asset_url('logo.svg'), class: 'w-14' %>
+    <% end %>
+    <h4 class="font-medium tracking-loose text-contrast-500 text-sm">404 ERROR</h4>
+    <h1 class="font-bold text-4xl text-center mb-1">Page not found</h1>
+    <p class="text-gray-400 text-sm text-center mb-6">Sorry, we couldn't find the page you're looking for.</p>
+    <%= link_to root_path, class:"button" do %>
+      Go back home
+      <%= render 'icons/arrow_right', classes:"w-5 h-5 ml-2" %>
+    <% end %>
+  </div>
+</div>
