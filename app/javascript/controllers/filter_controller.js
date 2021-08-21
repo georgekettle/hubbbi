@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import Isotope from "isotope-layout"
 
 export default class extends Controller {
-  static targets = ["container", "toggle", 'showMoreText', 'showMoreContainer']
+  static targets = ["container", "toggle", 'showMoreContainer']
   static values = { showCount: Number }
 
   initialize() {
@@ -73,9 +73,6 @@ export default class extends Controller {
 
   hideExtras() {
     this.extrasHidden = true
-    if (this.hasShowMoreTarget) {
-      this.showMoreTextTarget.innerText = 'Show more'
-    }
     if (this.hasShowMoreContainerTarget) {
       this.showMoreContainerTarget.classList.remove('active')
     }
@@ -87,9 +84,6 @@ export default class extends Controller {
 
   showExtras() {
     this.extrasHidden = false
-    if (this.hasShowMoreTarget) {
-      this.showMoreTextTarget.innerText = 'Show less'
-    }
     if (this.hasShowMoreContainerTarget) {
       this.showMoreContainerTarget.classList.add('active')
     }
