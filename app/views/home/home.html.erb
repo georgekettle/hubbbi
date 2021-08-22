@@ -1,4 +1,23 @@
-<%= render "components/headers/header", header: 'Header', subheader: "Subheader" %>
-<% if user_signed_in? %>
-  <%= link_to "Your groups", groups_path %>
-<% end %>
+<div class="h-screen w-screen relative">
+  <div class="home-background">
+
+  </div>
+  <div class="w-full h-full flex flex-col items-center justify-center z-10 relative pb-10">
+    <%# render 'config/logo_text', classes: "fill-current stroke-current text-primary-500" %>
+    <div class="mb-10 flex flex-col items-center">
+      <%= link_to root_path, class: "flex items-center mb-4" do %>
+        <%# image_tag asset_url('logo.svg'), class: 'w-12 mr-2 w-6 mr-2 fill-current text-primary-600' %>
+        <h1 class="tracking-tight text-gray-800 text-3xl font-semibold hidden sm:block">Akademy project</h1>
+      <% end %>
+      <p class="text-sm text-gray-400 text-center max-w-md">We help teachers, trainers, coaches and gurus to not only create content, but also a thriving community based around their teachings. We call it connection based learning.</p>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Your groups", groups_path %>
+    <% else %>
+      <%= link_to "Signup", new_user_registration_path, class: "button w-56 flex mb-2" %>
+      <%= link_to "Login", new_user_session_path, class: "text-gray-400 text-sm hover:text-gray-800 pointer-cursor" %>
+    <% end %>
+  </div>
+</div>
+
+
