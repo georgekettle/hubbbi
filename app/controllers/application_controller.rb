@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     redirect_back fallback_location: root_path
   end
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   private
 
   def skip_pundit?
