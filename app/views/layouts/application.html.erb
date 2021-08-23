@@ -12,7 +12,8 @@
 
   <body class="bg-contrast-50">
     <%= render 'shared/flashes' %>
-    <%= render 'shared/navbar' unless @hide_navbar %>
+    <%= render 'shared/desktop_navbar' unless @hide_desktop_navbar %>
+    <%= render 'shared/mobile_navbar' unless @hide_navbar %>
     <div class="body-content pb-24 md:pb-0">
       <%= yield %>
     </div>

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_selected_group
   include Pundit
 
   # Pundit: white-list approach.
@@ -20,6 +21,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def set_selected_group
+    if session[:selected_group] && session[:selected_group]['id']
+      @selected_group = Group.find(session[:selected_group]['id'])
+    else
+      @selected_group = nil
+    end
+  end
+
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^home$)|(^errors$)/
   end
@@ -33,5 +42,9 @@ class ApplicationController < ActionController::Base
 
   def hide_navbar
     @hide_navbar = true
+  end
+
+  def hide_desktop_navbar
+    @hide_desktop_navbar = true
   end
 end
