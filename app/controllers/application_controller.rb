@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_selected_group
+  before_action :set_selected_group # needed for navbar
   include Pundit
 
   # Pundit: white-list approach.
@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
   def set_selected_group
     if session[:selected_group] && session[:selected_group]['id']
       @selected_group = Group.find(session[:selected_group]['id'])
+      UpdateUserSelectedGroupJob.perform_later(@selected_group, current_user) unless current_user.selected_group == @selected_group
+    elsif current_user&.selected_group
+      @selected_group = current_user.selected_group
     else
+      # user must select a group when using app
       redirect_to groups_path if user_signed_in?
       @selected_group = nil
     end
