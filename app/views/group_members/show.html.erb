@@ -1,4 +1,4 @@
-<% if policy(@group_member).update? && @current_user_group_member != @group_member %>
+<% if policy(@group_member).update? %>
   <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile" do %>
     <div data-controller="dropdown" class="relative">
       <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
@@ -13,10 +13,16 @@
         data-transition-leave-from="opacity-100 scale-100"
         data-transition-leave-to="opacity-0 scale-95"
       >
-        <%= link_to("Remove all permissions", group_member_path(@group_member, group_member: { :role => "member" }), method: :patch, class: "dropdown-link") unless @group_member.role == "member" %>
-        <%= link_to("Make editor", group_member_path(@group_member, group_member: { :role => "editor" }), method: :patch, class: "dropdown-link") unless @group_member.role == "editor" %>
-        <%= link_to("Make admin", group_member_path(@group_member, group_member: { :role => "admin" }), method: :patch, data: {confirm: "Are you sure you'd like to do this? (#{@group_member.user.full_name_or_email} will have the same permissions as yourself)"}, class: "dropdown-link") unless @group_member.role == "admin" %>
-        <%= link_to("Remove from group", group_member_path(@group_member), method: :delete, data: {confirm: "Are you sure you'd like to remove #{@group_member.user.full_name_or_email} from the group"}, class: "dropdown-link-danger") %>
+        <% if @current_user_group_member == @group_member %>
+          <%= link_to "Update profile", edit_user_path(current_user), class: "dropdown-link" %>
+          <%= link_to "Leave group", group_member_path(@group_member), method: :delete, data: {confirm: "Are you sure you'd like to leave the group"}, class: "dropdown-link-danger" %>
+        <% else %>
+          <%= link_to("Remove all permissions", group_member_path(@group_member, group_member: { :role => "member" }), method: :patch, class: "dropdown-link") unless @group_member.role == "member" %>
+          <%= link_to("Make editor", group_member_path(@group_member, group_member: { :role => "editor" }), method: :patch, class: "dropdown-link") unless @group_member.role == "editor" %>
+          <%= link_to("Make admin", group_member_path(@group_member, group_member: { :role => "admin" }), method: :patch, data: {confirm: "Are you sure you'd like to do this? (#{@group_member.user.full_name_or_email} will have the same permissions as yourself)"}, class: "dropdown-link") unless @group_member.role == "admin" %>
+          <%= link_to("Remove from group", group_member_path(@group_member), method: :delete, data: {confirm: "Are you sure you'd like to remove #{@group_member.user.full_name_or_email} from the group"}, class: "dropdown-link-danger") %>
+        <% end %>
+
       </div>
     </div>
   <% end %>
