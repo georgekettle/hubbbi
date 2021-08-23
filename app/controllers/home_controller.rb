@@ -3,5 +3,6 @@ class HomeController < ApplicationController
 
   def home
     hide_navbar
+    hide_desktop_navbar
   end
 end

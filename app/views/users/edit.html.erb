@@ -8,15 +8,15 @@
       <div class="px-4 py-5">
         <div class="form-group flex items-center">
           <%= render 'components/avatar', user: @user, classes: "mr-2", size: 16 %>
-          <%= link_to edit_avatar_user_path(@user), class: 'btn form-btn' do %>
-            <%= render 'icons/image' %> Change avatar
+          <%= link_to edit_avatar_user_path(@user), class: 'button' do %>
+            <%= render 'icons/image', classes:"mr-2" %> Change avatar
           <% end %>
         </div>
         <%= f.input :full_name,
                     required: true,
                     autofocus: true,
                     input_html: { autocomplete: "name" }%>
-        <%= f.input :display_name%>
+        <%= f.input :display_name %>
         <div class="form-actions">
           <%= f.button :submit, "Update", class: 'w-full' %>
         </div>

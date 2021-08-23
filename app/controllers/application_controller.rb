@@ -34,4 +34,8 @@ class ApplicationController < ActionController::Base
   def hide_navbar
     @hide_navbar = true
   end
+
+  def hide_desktop_navbar
+    @hide_desktop_navbar = true
+  end
 end
