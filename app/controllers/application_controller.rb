@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
     if session[:selected_group] && session[:selected_group]['id']
       @selected_group = Group.find(session[:selected_group]['id'])
     else
+      redirect_to groups_path if user_signed_in?
       @selected_group = nil
     end
   end

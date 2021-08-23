@@ -1,13 +1,17 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy, :settings]
+  skip_before_action :set_selected_group, only: [:index, :show]
 
   def index
     @groups = current_user.groups
+    hide_navbar
+    hide_desktop_navbar
   end
 
   def show
     session[:selected_group] = @group
     set_selected_group
+    UpdateUserSelectedGroupJob.perform_later(@group, current_user)
     @current_user_group_member = current_user.group_members.find_by(group: @group)
     @courses = @current_user_group_member.courses
     @courses = @group.courses if @current_user_group_member.role == ('admin' || 'editor')
