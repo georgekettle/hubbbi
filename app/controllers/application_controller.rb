@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :set_selected_group # needed for navbar
+  include Authorizable
   include Pundit
 
   # Pundit: white-list approach.
@@ -24,13 +22,6 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^home$)|(^errors$)/
-  end
-
-  def configure_permitted_parameters
-    keys = [:full_name]
-    devise_parameter_sanitizer.permit(:sign_up, keys: keys)
-    devise_parameter_sanitizer.permit(:account_update, keys: keys)
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: keys)
   end
 
   def hide_navbar
