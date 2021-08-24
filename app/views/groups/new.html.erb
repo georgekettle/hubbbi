@@ -1,4 +1,4 @@
-<%= render "components/headers/header", header: "Create group", subheader: "Ooh exciting!" %>
+<%= render "components/headers/header", header: "Create group", subheader: "Ooh exciting!", back_link: groups_path %>
 <%= render "shared/container", classes: "p-4" do %>
   <%= render 'form', group: @group %>
 <% end %>

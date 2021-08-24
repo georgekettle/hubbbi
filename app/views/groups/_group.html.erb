@@ -1,7 +1,9 @@
 <%= link_to group, class: "mb-2 block" do %>
-  <% if group.cover.attached? %>
-    <%= render "components/card", title: group.name, subtitle: pluralize(group.group_members.count, "member"), image: cl_image_path(group.cover.key) %>
-  <% else %>
-    <%= render "components/card", title: group.name, subtitle: pluralize(group.group_members.count, "member"), no_shadow: true %>
-  <% end %>
+  <div class="flex items-center">
+    <%= render 'groups/avatar', group: group, size: 12 %>
+    <div class="ml-2">
+      <h4><%= group.name.truncate(25) %></h4>
+      <p class="text-xs text-gray-400"><%= pluralize(group.group_members.count, "member") %></p>
+    </div>
+  </div>
 <% end %>

@@ -8,7 +8,7 @@
 }
 
 .button.button-destroy {
-  @apply border border-gray-200 hover:border-red-300 bg-white hover:bg-red-100 text-red-500;
+  @apply border border-gray-200 hover:border-red-300 bg-white hover:bg-red-100 text-red-500 hover:scale-100;
 
   svg {
     @apply text-red-500;
