@@ -1,7 +1,6 @@
 <%= render "components/headers/header", header: "Edit content", subheader: @page.title, back_link: @page do %>
   <%= render "components/saving", ids:"edit-section-saving-badge" %>
 <% end %>
-<%# render "pages/page_content", page: @page, edit_message: true %>
 
 <div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
   <div class="pb-24">

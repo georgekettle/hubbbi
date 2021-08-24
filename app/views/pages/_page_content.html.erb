@@ -7,19 +7,6 @@
     <% end %>
   <% end %>
   <%= render "shared/container", classes: "p-4" do %>
-    <% if policy(page).update? && edit_message && !page.course %>
-      <div class="w-full rounded-lg bg-primary-100 p-4 sm:flex items-center justify-between mb-4">
-        <div class="mb-4 sm:mb-0">
-          <h4 class="tracking-tight">Would you like to edit the details?</h4>
-          <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
-        </div>
-        <%= link_to edit_page_path(page), class: 'button w-full sm:w-auto' do %>
-          <%= render "icons/edit", classes: "mr-2" %>
-          Edit details
-        <% end %>
-      </div>
-    <% end %>
-
     <% page.sections.each do |section| %>
       <%= render 'sections/section', section: section %>
     <% end %>
