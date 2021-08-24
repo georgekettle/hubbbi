@@ -1,6 +1,5 @@
 class Page < ApplicationRecord
   has_one :course
-
   # targeting child associations of pages
   has_many :sections, -> { order(:position) }, dependent: :destroy
   has_many :section_elements, through: :sections
@@ -50,6 +49,10 @@ class Page < ApplicationRecord
       course = page.course if page.course
     end
     course
+  end
+
+  def group
+    belonging_to_course.group
   end
 
   def course_members
