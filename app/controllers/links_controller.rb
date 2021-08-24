@@ -43,7 +43,6 @@ class LinksController < ApplicationController
   def set_link
     @link = Link.find(params[:id])
     authorize @link.linkable, :links? if @link.linkable
-    byebug
     set_selected_group(@link.linkable.group) if @link.linkable
     authorize @link.page if @link.page
     set_selected_group(@link.page) if @link.page
