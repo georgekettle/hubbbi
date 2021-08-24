@@ -22,21 +22,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # switch for concern
-  # def set_selected_group
-  #   # does not yet cater for landing on a random page
-  #   if session[:selected_group] && session[:selected_group]['id']
-  #     @selected_group = Group.find(session[:selected_group]['id'])
-  #     UpdateUserSelectedGroupJob.perform_later(@selected_group, current_user) unless current_user.selected_group == @selected_group
-  #   elsif current_user&.selected_group
-  #     @selected_group = current_user.selected_group
-  #   else
-  #     # user must select a group when using app
-  #     redirect_to(groups_path, notice: "You must select a group first") if user_signed_in?
-  #     @selected_group = nil
-  #   end
-  # end
-
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^home$)|(^errors$)/
   end
