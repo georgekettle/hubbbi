@@ -27,5 +27,9 @@ class Section < ApplicationRecord
 
   def elements
     page_references + texts + images + videos + links
-   end
+  end
+
+  def group
+    page.group
+  end
 end
