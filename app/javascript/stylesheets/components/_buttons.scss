@@ -27,6 +27,10 @@
   @apply bg-gray-200 text-gray-400 hover:bg-gray-200 cursor-not-allowed;
 }
 
+.button-list-add {
+  @apply p-3 rounded-md border border-dashed hover:border-transparent hover:bg-black hover:bg-opacity-5 w-full flex items-center justify-center tracking-tight text-sm text-gray-400 hover:text-gray-600 transition ease-in-out duration-300;
+}
+
 .icon-btn {
   @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 cursor-pointer;
 
