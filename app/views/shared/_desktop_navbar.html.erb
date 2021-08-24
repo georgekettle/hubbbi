@@ -1,7 +1,7 @@
-<div class="hidden md:flex bg-primary-600 justify-between items-center p-5 px-4 sm:px-6" style="z-index: 999">
-  <%= link_to root_path, class: "flex items-center" do %>
-    <%= image_tag asset_url('logo_light.svg'), class: 'w-6 mr-2' %>
-    <h4 class="tracking-tight text-white font-semibold hidden sm:block">Akademy project</h4>
+<div class="hidden md:flex bg-primary-600 justify-between items-center p-4 sm:px-6" style="z-index: 999">
+  <%= link_to groups_path, class: "flex items-center transition duration-300 ease-in-out p-1 pr-4 rounded-md hover:bg-white bg-opacity-10 hover:bg-opacity-5 cursor-pointer" do %>
+    <%= render 'groups/avatar', group: @selected_group, size: 10 %>
+    <h4 class="ml-4 tracking-tight text-white font-semibold hidden sm:block"><%= @selected_group.name %></h4>
   <% end %>
   <div class="flex items-center" style="z-index: 1000">
     <% if user_signed_in? %>
