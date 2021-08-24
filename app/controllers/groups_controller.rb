@@ -1,13 +1,17 @@
 class GroupsController < ApplicationController
+  include Groupable # for set_selected_group method
+
   before_action :set_group, only: [:show, :edit, :update, :destroy, :settings]
 
   def index
     @groups = current_user.groups
+    hide_navbar
+    hide_desktop_navbar
   end
 
   def show
-    session[:selected_group] = @group
-    set_selected_group
+    # grab from concern or from params instead
+    # session[:selected_group] = @group
     @current_user_group_member = current_user.group_members.find_by(group: @group)
     @courses = @current_user_group_member.courses
     @courses = @group.courses if @current_user_group_member.role == ('admin' || 'editor')
@@ -15,11 +19,15 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    set_selected_group(@group)
     authorize @group
+    hide_navbar
+    hide_desktop_navbar
   end
 
   def create
     @group = Group.new(group_params)
+    set_selected_group(@group)
     @group.group_members.new(user: current_user, role: :admin)
     authorize @group
     if @group.save
@@ -59,6 +67,7 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+    set_selected_group(@group)
     authorize @group
   end
 end

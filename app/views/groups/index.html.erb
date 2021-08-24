@@ -6,5 +6,16 @@
 
 <%= render 'shared/container', classes: 'p-4' do %>
   <%= render "components/headers/section_header", title: "Your groups", icon:"members" %>
-  <%= render :partial => "group", :collection => @groups %>
+  <% if @groups.any? %>
+    <%= render :partial => "group", :collection => @groups %>
+  <% else %>
+    <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+      <h4 class="tracking-tight text-center">Create a group to get started</h4>
+      <p class="text-xs text-gray-400 mb-2 text-center">Once you've created a group, you can build courses and start attracting your community</p>
+      <%= link_to new_group_path, class: 'button' do %>
+        <%= render "icons/members", classes: "stroke-current text-white mr-2" %>
+        Add a group
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

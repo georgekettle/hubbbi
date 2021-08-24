@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :edit_avatar]
+  before_action :hide_all_navbars
 
   def edit
   end
@@ -15,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def edit_avatar
-
   end
 
   private

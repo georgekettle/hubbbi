@@ -1,3 +1,11 @@
 .filepond--root {
   @apply font-sans;
 }
+
+.filepond--drop-label {
+  @apply border border-dashed border-gray-300 bg-white rounded-md;
+}
+
+.filepond--label-action {
+  @apply p-2 rounded-md bg-primary-50 text-primary-600 pt-1 no-underline cursor-pointer hover:bg-primary-100 hover:text-primary-700;
+}

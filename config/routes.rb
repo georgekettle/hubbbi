@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { invitations: 'users/invitations' }
+  devise_for :users, controllers: {
+    invitations: 'users/invitations',
+    registrations: "registrations",
+    sessions: "sessions" }
 
   resources :groups do
     resources :group_members, only: [:index, :new, :create]

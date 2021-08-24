@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  include Groupable # for set_selected_group method
+
   before_action :set_linkable, only: [:new, :create]
   before_action :set_link, only: [:edit, :update, :destroy]
 
@@ -41,7 +43,9 @@ class LinksController < ApplicationController
   def set_link
     @link = Link.find(params[:id])
     authorize @link.linkable, :links? if @link.linkable
+    set_selected_group(@link.linkable.group) if @link.linkable
     authorize @link.page if @link.page
+    set_selected_group(@link.page) if @link.page
   end
 
   def link_params
