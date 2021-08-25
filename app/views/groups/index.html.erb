@@ -1,5 +1,5 @@
 <%= render "components/headers/header", header: "Select a group", hide_back_link: true do %>
-  <%= link_to new_group_path, class: 'icon-btn' do %>
+  <%= link_to new_group_path, class: 'icon-btn', id: "new-group-link" do %>
     <%= render 'icons/plus_circle', classes:"text-gray-900 stroke-current" %>
   <% end %>
 <% end %>

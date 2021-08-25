@@ -1,0 +1,29 @@
+---
+section_1:
+  id: 1
+  page_id: 2
+  position: 1
+  created_at: 2021-08-18 02:20:54.663392000 Z
+  updated_at: 2021-08-20 11:49:19.059292000 Z
+  section_type: 0
+section_3:
+  id: 3
+  page_id: 2
+  position: 2
+  created_at: 2021-08-20 11:49:25.330980000 Z
+  updated_at: 2021-08-20 11:49:51.295356000 Z
+  section_type: 3
+section_5:
+  id: 5
+  page_id: 3
+  position: 1
+  created_at: 2021-08-20 11:50:14.792463000 Z
+  updated_at: 2021-08-20 11:50:14.792463000 Z
+  section_type: 1
+section_6:
+  id: 6
+  page_id: 3
+  position: 2
+  created_at: 2021-08-20 11:50:16.689319000 Z
+  updated_at: 2021-08-20 11:50:16.689319000 Z
+  section_type: 0
