@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :show, :edit_sections, :destroy]
+  include Groupable # for set_selected_group method
+
+  before_action :set_page, only: [:edit, :update, :show, :destroy, :edit_sections, :settings]
 
   def show
     redirect_to @page.course if @page.course
@@ -27,6 +29,9 @@ class PagesController < ApplicationController
     hide_navbar
   end
 
+  def settings
+  end
+
   private
 
   def set_breadcrumbs
@@ -39,6 +44,7 @@ class PagesController < ApplicationController
 
   def set_page
     @page = Page.find(params[:id])
+    set_selected_group(@page)
     authorize @page
   end
 

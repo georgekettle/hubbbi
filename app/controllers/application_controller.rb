@@ -1,33 +1,10 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  include Pundit
+  include Authenticatable
+  include Authorizable
+  include NavbarHideable
 
-  # Pundit: white-list approach.
-  after_action :verify_authorized, except: :index, unless: :skip_pundit?
-  # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
-
-  # Uncomment when you *really understand* Pundit!
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
-    redirect_back fallback_location: root_path
-  end
-
-  private
-
-  def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^home$)/
-  end
-
-  def configure_permitted_parameters
-    keys = [:full_name]
-    devise_parameter_sanitizer.permit(:sign_up, keys: keys)
-    devise_parameter_sanitizer.permit(:account_update, keys: keys)
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: keys)
-  end
-
-  def hide_navbar
-    @hide_navbar = true
+  def default_url_options
+    # for Heroku and meta.yml/meta tags with meta_image
+    { host: ENV["DOMAIN"] || "localhost:3000" }
   end
 end

@@ -2,11 +2,18 @@
 <html>
   <head>
     <%= render 'shared/head' %>
+    <% if false %>
+      <!-- ADD THESE TO INDIVIDUAL PAGES TO SET INDIVIDUAL META TAGS THAT ARE RELEVANT FOR SINGLE PAGES -->
+      <%# content_for :meta_title, "Teaching kids play by Alice Kettle" %>
+      <%# content_for :meta_description, "Alice is a world renowned researcher and practitioner of teaching kids and parents the importance of play in early childhood development" %>
+      <%# content_for :meta_image, '<image_url>' %>
+    <% end %>
   </head>
 
   <body class="bg-contrast-50">
     <%= render 'shared/flashes' %>
-    <%= render 'shared/navbar' unless @hide_navbar %>
+    <%= render 'shared/desktop_navbar' unless @hide_desktop_navbar %>
+    <%= render 'shared/mobile_navbar' unless @hide_navbar %>
     <div class="body-content pb-24 md:pb-0">
       <%= yield %>
     </div>

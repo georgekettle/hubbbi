@@ -9,7 +9,7 @@
       <div class="px-4 py-5">
         <%= f.error_notification %>
 
-        <%= f.input :email, required: true, autofocus: true, placeholder: example_email, %>
+        <%= f.input :email, required: true, autofocus: true, placeholder: example_email %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>

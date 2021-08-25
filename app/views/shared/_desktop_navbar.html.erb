@@ -1,0 +1,38 @@
+<div class="hidden md:flex bg-primary-600 justify-between items-center p-4 sm:px-6" style="z-index: 999">
+  <%= link_to groups_path, class: "flex items-center transition duration-300 ease-in-out p-1 pr-4 rounded-md hover:bg-white bg-opacity-10 hover:bg-opacity-5 cursor-pointer" do %>
+    <%= render 'groups/avatar', group: @selected_group, size: 10 %>
+    <h4 class="ml-3 tracking-tight text-white font-semibold hidden sm:block"><%= @selected_group.name %></h4>
+  <% end %>
+  <div class="flex items-center" style="z-index: 1000">
+    <% if user_signed_in? %>
+      <%= link_to group_path(@selected_group), class:'opacity-50 hover:opacity-100 transition duration-300 ease-in-out flex items-center text-white mr-4 inline-block p-2 px-3 rounded-md hover:bg-white bg-opacity-5 hover:bg-opacity-5 cursor-pointer tracking-tight' do %>
+        <%= render "icons/library", classes: 'w-5 h-5 stroke-current text-white mr-2' %>
+        Courses
+      <% end %>
+      <div data-controller="dropdown" class="relative h-10">
+        <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
+          <%= render "components/avatar", user: current_user, size: 10 %>
+        </button>
+
+        <div
+          data-dropdown-target="menu"
+          class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+          data-transition-enter-from="opacity-0 scale-95"
+          data-transition-enter-to="opacity-100 scale-100"
+          data-transition-leave-from="opacity-100 scale-100"
+          data-transition-leave-to="opacity-0 scale-95"
+        >
+          <% if @selected_group %>
+            <% selected_group_member = GroupMember.find_by(group: @selected_group, user: current_user) %>
+            <%= link_to("Profile", group_member_path(selected_group_member), class: "dropdown-link") if selected_group_member %>
+          <% end %>
+          <%= link_to "Update profile", edit_user_path(current_user), class: "dropdown-link" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-link-danger" %>
+        </div>
+      </div>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "text-white text-sm bg-black bg-opacity-20 hover:bg-opacity-30 p-2 rounded-md px-4 font-medium" %>
+      <%= link_to "Signup", new_user_registration_path, class: "text-primary-700 text-sm bg-white p-2 rounded-md px-4 font-medium ml-2" %>
+    <% end %>
+  </div>
+</div>

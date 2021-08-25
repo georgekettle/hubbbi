@@ -1,4 +1,4 @@
-<div class="w-full relative mb-2 hover:bg-gray-900 hover:bg-opacity-5 rounded-lg">
+<div class="w-full relative mb-2 hover:bg-black hover:bg-opacity-5 rounded-lg">
   <%= link_to group_member do %>
     <div class="w-full flex items-center justify-between p-1">
       <div class="w-full flex items-center justify-between">
@@ -13,7 +13,7 @@
   <% if policy(group_member).admin_or_editor? && !policy(group_member).belongs_to_user? %>
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <div data-controller="dropdown" class="relative">
-        <button type="button" class="p-1 px-2 rounded flex items-center bg-bg-gray-900 bg-opacity-5 hover:bg-gray-900 hover:bg-opacity-10" data-action="dropdown#toggle click@window->dropdown#hide">
+        <button type="button" class="p-1 px-2 rounded flex items-center bg-black bg-opacity-5 hover:bg-black hover:bg-opacity-10" data-action="dropdown#toggle click@window->dropdown#hide">
           <h4 class="text-xs"><%= group_member.role.capitalize %></h4>
           <%= render 'icons/select_chevron', classes: "stroke-current text-gray-900 ml-2 h-2 w-2" %>
         </button>

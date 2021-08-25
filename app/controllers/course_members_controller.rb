@@ -1,9 +1,12 @@
 class CourseMembersController < ApplicationController
+  include Groupable # for set_selected_group method
+
   before_action :set_course, only: [:new, :create]
   before_action :hide_navbar, only: [:new]
 
   def index
     @course = Course.find(params[:course_id])
+    set_selected_group(@course)
     @course_members = @course.course_members
   end
 
@@ -21,6 +24,7 @@ class CourseMembersController < ApplicationController
 
   def destroy
     @course_member = CourseMember.find(params[:id])
+    set_selected_group(@course_member)
     authorize @course_member
     @course_member.destroy
     if @course_member.user == current_user
@@ -42,6 +46,7 @@ class CourseMembersController < ApplicationController
 
   def set_course
     @course = Course.find(params[:course_id])
+    set_selected_group(@course)
     authorize @course
   end
 end

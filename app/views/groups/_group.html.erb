@@ -1,7 +1,14 @@
-<%= link_to group, class: "mb-2 block" do %>
-  <% if group.cover.attached? %>
-    <%= render "components/card", title: group.name, subtitle: pluralize(group.group_members.count, "member"), image: cl_image_path(group.cover.key) %>
-  <% else %>
-    <%= render "components/card", title: group.name, subtitle: pluralize(group.group_members.count, "member"), no_shadow: true %>
-  <% end %>
+<%= link_to group, class: "mb-2 block p-1 md:pr-3 rounded-md hover:bg-black hover:bg-opacity-5" do %>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <%= render 'groups/avatar', group: group, size: 12 %>
+      <div class="ml-2">
+        <h4><%= group.name.truncate(25) %></h4>
+        <p class="text-xs text-gray-400"><%= pluralize(group.group_members.count, "member") %></p>
+      </div>
+    </div>
+    <div class="h-8 w-8 rounded-full hover:bg-black hover:bg-opacity-5 flex items-center justify-center flex-shrink-0 ml-1 transform transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
+      <%= render "icons/arrow_right" %>
+    </div>
+  </div>
 <% end %>

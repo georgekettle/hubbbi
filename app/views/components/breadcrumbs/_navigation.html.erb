@@ -5,15 +5,15 @@
     <% breadcrumb_trail.each_with_index do |crumb, index| %>
       <% if index == 1 && breadcrumb_trail.count > 3 %>
         <div data-action="click->breadcrumbs#expandNav" data-breadcrumbs-target="toggle">
-          <%= render 'icons/dots', classes: "pointer-cursor stroke-current text-gray-400 p-2 py-1 hover:bg-gray-200 hover:text-gray-800 w-8 h-6 inline rounded-lg -ml-1" %>
-          <%= render "icons/chevron_right", classes: "stroke-current text-gray-400 h-2 w-2 inline mr-2" %>
+          <%= render 'icons/dots', classes: "pointer-cursor stroke-current text-gray-400 p-2 py-1 ml-0.5 hover:bg-gray-800 hover:bg-opacity-5 hover:text-gray-800 w-8 h-6 inline rounded-lg" %>
+          <%= render "icons/chevron_right", classes: "stroke-current text-gray-400 h-2 w-2 inline mr-1" %>
         </div>
       <% end %>
       <li data-breadcrumbs-target="breadcrumb" class="breadcrumb <%= crumb.current? ? "current" : "" %> <%= hidden_crumbs.include?(index)  ? "hidden" : "" %>">
         <%= link_to crumb.name, crumb.url, (crumb.current? ? {"aria-current" => "page"} : {}) %>
         <% unless crumb.current? %>
           <span>
-            <%= render "icons/chevron_right", classes: "stroke-current text-gray-400 h-2 w-2 inline ml-2" %>
+            <%= render "icons/chevron_right", classes: "stroke-current text-gray-400 h-2 w-2 inline ml-1" %>
           </span>
         <% end %>
       </li>

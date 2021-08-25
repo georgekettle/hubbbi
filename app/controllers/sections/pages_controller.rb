@@ -1,5 +1,7 @@
 module Sections
   class PagesController < ApplicationController
+    include Groupable # for set_selected_group method
+
     before_action :set_section, only: [:new, :create]
 
     def new
@@ -13,7 +15,7 @@ module Sections
       page_reference = PageReference.new(page: @page)
       section_element = @section.section_elements.new(element: page_reference)
       if @section.save
-        redirect_to edit_sections_page_path(@page), notice: "New page successfully created"
+        redirect_to edit_sections_page_path(@page.parent_page), notice: "New page successfully created"
       else
         render :new, alert: "Oops... Something went wrong when creating page"
       end
@@ -27,6 +29,7 @@ module Sections
 
     def set_section
       @section = Section.find(params[:section_id])
+      set_selected_group(@section)
     end
   end
 end

@@ -13,7 +13,7 @@
             <p class="text-white leading-tight text-xs opacity-70"><%= page.subtitle %></p>
           <% end %>
         </div>
-        <div class="h-8 w-8 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 ml-1">
+        <div class="h-8 w-8 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 ml-1 transform transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
           <%= render 'icons/arrow_right' %>
         </div>
       </div>
@@ -22,7 +22,8 @@
   <% if editable %>
     <div class="absolute top-4 left-4">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn white", direction: "left" do %>
-        <%= link_to "Edit page", edit_sections_page_path(page), class: "dropdown-link" %>
+        <%= link_to "Edit content", edit_sections_page_path(page), class: "dropdown-link" %>
+        <%= link_to "Settings", settings_page_path(page), class: "dropdown-link" %>
         <%= link_to("Delete page", page_path(page), method: :delete, data: {confirm: "Are you sure you'd like to delete this page?"}, class: "dropdown-link-danger") %>
       <% end %>
     </div>

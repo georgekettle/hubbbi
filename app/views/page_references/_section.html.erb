@@ -23,28 +23,33 @@
       <% end %>
     </div>
   <% end %>
-
-  <div data-controller="filter">
+  <% shown_count = 6 %>
+  <div data-controller="filter" data-filter-show-count-value="<%= shown_count %>">
     <%= render('components/tags/tags', tags: section.tags_by_popularity) if section.tags_by_popularity.any? %>
 
     <div class="-mx-1 flex flex-wrap" data-filter-target="container">
-      <% page_references.each do |ref| %>
-        <div id="filter-item" data-filters="<%= ref.page.tags.map(&:id) %>" class="p-1 w-1/2">
+      <% page_references.each_with_index do |ref, index| %>
+        <% initially_hidden = (shown_count - index - 2).negative? && shown_count != page_references.count %>
+        <div id="filter-item" data-filters="<%= ref.page.tags.map(&:id) %>" class="p-1 w-1/2 <%= initially_hidden ? 'initially-hidden' : '' %>">
           <%= render "page_references/page_reference", page_reference: ref, editable: editable %>
         </div>
       <% end %>
-      <% if editable %>
-        <div class="show-when-only-child p-1 w-full">
-          <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-            <h4 class="tracking-tight text-center">Add a new page</h4>
-            <p class="text-xs text-gray-400 mb-2 text-center">By addng pages, you can break this page up into modules</p>
-            <%= link_to new_section_page_path(section), class: 'button' do %>
-              <%= render "icons/library", classes: "stroke-current text-white mr-2" %>
-              Add a page
-            <% end %>
-          </div>
-        </div>
+      <% if page_references.count > shown_count %>
+        <%= render 'page_references/show_more.html.erb' %>
       <% end %>
     </div>
   </div>
+
+  <% if editable %>
+    <div class="py-1 w-full">
+      <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+        <h4 class="tracking-tight text-center">Add a new page</h4>
+        <p class="text-xs text-gray-400 mb-2 text-center">By adding pages, you can break this page up into modules</p>
+        <%= link_to new_section_page_path(section), class: 'button' do %>
+          <%= render "icons/library", classes: "stroke-current text-white mr-2" %>
+          Add a page
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

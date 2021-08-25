@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { invitations: 'users/invitations' }
+  devise_for :users, controllers: {
+    invitations: 'users/invitations',
+    registrations: "registrations",
+    sessions: "sessions" }
 
   resources :groups do
     resources :group_members, only: [:index, :new, :create]
@@ -13,6 +16,7 @@ Rails.application.routes.draw do
     resources :sections, only: :create
     member do
       get :edit_sections
+      get :settings
     end
   end
 
@@ -53,5 +57,7 @@ Rails.application.routes.draw do
   # root directs to groups#index if logged in:
   root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   root to: 'home#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
 end
