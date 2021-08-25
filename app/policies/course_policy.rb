@@ -26,6 +26,6 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def group_admin_or_editor?
-    record.group.group_members.find_by(role: ["admin", "editor"], user: user)
+    record.group.group_members.find_by(role: ["admin", "editor"], user: user).present?
   end
 end
