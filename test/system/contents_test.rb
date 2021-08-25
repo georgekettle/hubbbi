@@ -17,23 +17,23 @@ class ContentsTest < ApplicationSystemTestCase
 
     visit edit_sections_page_path(course)
 
-    assert_difference 'course.page.sections.count' do
+    assert_difference 'course.page.sections.count', 1, 'New section should be created in DB' do
       source = page.find('.handle.item:first-child')
       target = page.find('.dropzone', visible: false)
       source.drag_to(target)
-      assert page.has_content? 'Pages'
-      assert page.has_content? 'By addng pages, you can break this page up into modules'
+      assert page.has_content?('Add a new page'), 'Add new page title exists'
+      assert page.has_content?('By adding pages, you can break this page up into modules'), 'Add new pagem section subtitle exists'
     end
 
     click_on 'Add a page'
 
     fill_in 'Title', with: 'Test Page'
     fill_in 'Subtitle', with: 'Test Page Subtitle'
-    assert_difference 'course.page.pages.count' do
+    assert_difference 'course.page.pages.count', 1, 'New page should be created in DB' do
       click_on 'Create Page'
     end
 
-    assert page.has_content? 'New page successfully created'
+    assert page.has_content?('New page successfully created'), 'flash appears indicating the creation was successful'
   end
 
 end

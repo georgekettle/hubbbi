@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
     @course.course_members.new(group_member: @group.group_members.find_by(user: current_user))
     authorize @course
     if @course.save
-      redirect_to @course, notice: "Course successfully created"
+      redirect_to course_path(@course), notice: "Course successfully created"
     else
       render :new, alert: "Oops... Something went wrong when creating course"
     end

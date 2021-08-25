@@ -27,11 +27,11 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    set_selected_group(@group)
     @group.group_members.new(user: current_user, role: :admin)
     authorize @group
+    set_selected_group(@group)
     if @group.save
-      redirect_to @group, notice: "Your group has successfully been created"
+      redirect_to group_path(@group), notice: "Your group has successfully been created"
     else
       render :new, alert: "Oops... Something went wrong when creating your group"
     end

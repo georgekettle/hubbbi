@@ -3,7 +3,7 @@
 <% end %>
 <%# render "pages/page_content", page: @page, edit_message: true %>
 
-<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
+<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
   <% unless @page.course %>
     <div>
       <%= render "shared/container", classes: "p-4" do %>
