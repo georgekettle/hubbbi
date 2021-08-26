@@ -43,7 +43,7 @@ class GroupsTest < ApplicationSystemTestCase
       assert page.has_content?('Remove from group'), 'Link to delete user from group appears'
       click_on 'Remove from group'
       page.driver.browser.switch_to.alert.accept
-      assert page.has_content?('You successfully removed George Kettle from the group'), 'Successful flash appears'
+      assert page.has_content?('You successfully removed George Kettle from the group', wait: 5), 'Successful flash appears'
     end
   end
 end
