@@ -30,4 +30,20 @@ class GroupsTest < ApplicationSystemTestCase
     assert current_path == new_user_session_path
     assert page.has_content?('You need to sign in or sign up before continuing.'), 'Error should appear in the page'
   end
+
+  test "Removes user from group" do
+    user = users(:user_2)
+    group = groups(:group_1)
+
+    login_as user, scope: :user
+
+    visit group_group_members_path(group)
+    assert_difference 'group.group_members.count', -1, 'Group member should be deleted' do
+      find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click
+      assert page.has_content?('Remove from group'), 'Link to delete user from group appears'
+      click_on 'Remove from group'
+      page.driver.browser.switch_to.alert.accept
+      assert page.has_content?('You successfully removed George Kettle from the group'), 'Successful flash appears'
+    end
+  end
 end

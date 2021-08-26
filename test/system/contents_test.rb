@@ -9,7 +9,7 @@ class ContentsTest < ApplicationSystemTestCase
     ActionController::Base.allow_forgery_protection = false
   end
 
-  test "user successfully creates a course within a group" do
+  test "user successfully edits the content of a course page" do
     user = users(:user_2)
     course = courses(:course_1)
 
@@ -17,13 +17,21 @@ class ContentsTest < ApplicationSystemTestCase
 
     visit edit_sections_page_path(course)
 
-    assert_difference 'course.page.sections.count', 1, 'New section should be created in DB' do
+    assert_difference 'course.page.sections.count', 1, 'New page section should be created in DB' do
       source = page.find('.handle.item:first-child')
-      target = page.find('.dropzone', visible: false)
+      target = page.find('.dropzone[data-position="1"]', visible: false)
       source.drag_to(target)
       assert page.has_content?('Add a new page'), 'Add new page title exists'
       assert page.has_content?('By adding pages, you can break this page up into modules'), 'Add new pagem section subtitle exists'
     end
+
+    assert_difference 'course.page.sections.count', 1, 'New text section should be created in DB' do
+      source = page.find('.handle.item:nth-child(2)')
+      target = page.find('.dropzone[data-position="1"]', visible: false)
+      source.drag_to(target)
+      assert page.has_content?('Text'), 'Text section title exists'
+    end
+
 
     click_on 'Add a page'
 
