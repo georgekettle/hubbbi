@@ -51,4 +51,21 @@ class CoursesTest < ApplicationSystemTestCase
     assert current_path == new_user_session_path
     assert page.has_content?('You need to sign in or sign up before continuing.'), 'Error should appear in the page'
   end
+
+  test "removes user from course" do
+    user = users(:user_2)
+    course = courses(:course_1)
+
+    login_as user, scope: :user
+
+    visit course_course_members_path(course)
+    assert_difference 'course.course_members.count', -1, 'Course member should be deleted' do
+      page.assert_selector(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button')
+      find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click
+      assert page.has_content?('Remove from course'), 'Link to delete user from course appears'
+      click_on 'Remove from course'
+      page.driver.browser.switch_to.alert.accept
+      assert page.has_content?('George Kettle was successfully removed from the course', wait: 5), 'Successful flash appears'
+    end
+  end
 end
