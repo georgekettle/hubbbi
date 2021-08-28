@@ -11,19 +11,19 @@
       <%= render 'sections/section', section: section %>
     <% end %>
 
-    <% if page.sections.empty? && policy(page).update? %>
-      <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-        <h4 class="tracking-tight text-center">Add content to this course</h4>
-        <p class="text-xs text-gray-400 mb-2 text-center">Looks like you don't have any content yet 👀</p>
-        <%= link_to edit_sections_page_path(page), class: 'button' do %>
-          <%= render "icons/plus", classes: "stroke-current text-white h-3 w-3 mr-2" %>
-          Add content
-        <% end %>
-      </div>
-    <% end %>
-
     <% if page.sections.empty? %>
-      <h4 class="text-sm text-black opacity-50 text-center">There is no content for this page...</h4>
+      <% if policy(page).update? %>
+        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+          <h4 class="tracking-tight text-center">Add content to this course</h4>
+          <p class="text-xs text-gray-400 mb-2 text-center">Looks like you don't have any content yet 👀</p>
+          <%= link_to edit_sections_page_path(page), class: 'button' do %>
+            <%= render "icons/plus", classes: "stroke-current text-white h-3 w-3 mr-2" %>
+            Add content
+          <% end %>
+        </div>
+      <% else %>
+        <h4 class="text-sm text-gray-400 text-center">There is no content for this page 👀</h4>
+      <% end %>
     <% end %>
   <% end %>
 </div>

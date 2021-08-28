@@ -5,11 +5,11 @@
 <div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
   <div class="pb-24">
     <%= render "shared/container", classes: "p-4" do %>
-      <div data-section-sortable-target="container">
+      <div data-section-sortable-target="container" class="dropzones">
         <% @page.sections.each do |section| %>
           <%= render 'sections/section', section: section, editable: true %>
         <% end %>
-        <div class="mb-4 py-2 relative show-when-only-child">
+        <div class="mb-4 py-2 relative last-dropzone">
           <%= render "sections/dropzone", position: @page.sections.count + 1 %>
         </div>
       </div>
