@@ -7,21 +7,23 @@
     <% end %>
   <% end %>
   <%= render "shared/container", classes: "p-4" do %>
-    <% if policy(page).update? && edit_message && !page.course %>
-      <div class="w-full rounded-lg bg-primary-100 p-4 sm:flex items-center justify-between mb-4">
-        <div class="mb-4 sm:mb-0">
-          <h4 class="tracking-tight">Would you like to edit the details?</h4>
-          <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
-        </div>
-        <%= link_to edit_page_path(page), class: 'button w-full sm:w-auto' do %>
-          <%= render "icons/edit", classes: "mr-2" %>
-          Edit details
-        <% end %>
-      </div>
-    <% end %>
-
     <% page.sections.each do |section| %>
       <%= render 'sections/section', section: section %>
+    <% end %>
+
+    <% if page.sections.empty? %>
+      <% if policy(page).update? %>
+        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+          <h4 class="tracking-tight text-center">Add content to this course</h4>
+          <p class="text-xs text-gray-400 mb-2 text-center">Looks like you don't have any content yet 👀</p>
+          <%= link_to edit_sections_page_path(page), class: 'button' do %>
+            <%= render "icons/plus", classes: "stroke-current text-white h-3 w-3 mr-2" %>
+            Add content
+          <% end %>
+        </div>
+      <% else %>
+        <h4 class="text-sm text-gray-400 text-center">There is no content for this page 👀</h4>
+      <% end %>
     <% end %>
   <% end %>
 </div>
