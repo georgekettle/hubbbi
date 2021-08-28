@@ -1,7 +1,7 @@
 <%= render "components/headers/header", header: "Select a group", hide_back_link: true do %>
   <div data-controller="dropdown" class="relative h-9">
-    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-      <%= render "components/avatar", user: current_user, size: 9 %>
+    <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
+      <%= render 'icons/options', classes: "h-5 w-5" %>
     </button>
 
     <div
@@ -12,11 +12,6 @@
       data-transition-leave-from="opacity-100 scale-100"
       data-transition-leave-to="opacity-0 scale-95"
     >
-      <% if @selected_group %>
-        <% selected_group_member = GroupMember.find_by(group: @selected_group, user: current_user) %>
-        <%= link_to("Profile", group_member_path(selected_group_member), class: "dropdown-link") if selected_group_member %>
-      <% end %>
-      <%= link_to "Update profile", edit_user_path(current_user), class: "dropdown-link" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-link-danger" %>
     </div>
   </div>
