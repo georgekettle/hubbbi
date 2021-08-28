@@ -7,7 +7,10 @@
         <div class="flex items-center">
           <!-- avatar -->
           <%= render "components/avatar", user: group_member.user %>
-          <h4 class="ml-2"><%= group_member.user.full_name_or_email %></h4>
+          <div class="ml-2">
+            <h4><%= group_member.user.full_name_or_email %></h4>
+            <p class="text-xs text-gray-400">Joined course <%= time_ago_in_words(course_member.created_at) %> ago</p>
+          </div>
         </div>
       </div>
     </div>
