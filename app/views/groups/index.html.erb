@@ -1,5 +1,5 @@
 <%= render "components/headers/header", header: "Select a group", hide_back_link: true do %>
-  <%= link_to new_group_path, class: 'icon-btn' do %>
+  <%= link_to new_group_path, class: 'icon-btn', id: "new-group-link" do %>
     <%= render 'icons/plus_circle', classes:"text-gray-900 stroke-current" %>
   <% end %>
 <% end %>
@@ -8,6 +8,12 @@
   <%= render "components/headers/section_header", title: "Your groups", icon:"members" %>
   <% if @groups.any? %>
     <%= render :partial => "group", :collection => @groups %>
+    <div class="p-1">
+      <%= link_to new_group_path, class: 'button-list-add' do %>
+        <%= render "icons/plus", classes: "stroke-current mr-2 h-3 w-3" %>
+        Create a group
+      <% end %>
+    </div>
   <% else %>
     <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
       <h4 class="tracking-tight text-center">Create a group to get started</h4>

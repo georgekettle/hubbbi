@@ -12,11 +12,16 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   include Warden::Test::Helpers
   Warden.test_mode!
+  ActionDispatch::SystemTestCase.include MagicTest::Support if ENV['MAGIC_TEST'] == '1'
 end
 
 # Register the new driver for Capybara
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1400,900])
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox disable-gpu window-size=1400,900])
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 Capybara.save_path = Rails.root.join('tmp/capybara')

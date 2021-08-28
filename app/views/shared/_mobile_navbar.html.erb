@@ -1,11 +1,9 @@
 <% if user_signed_in? %>
   <div class="md:hidden fixed w-screen bg-white border-t bottom-0 left-0 flex items-center justify-center p-2 pb-3" style="z-index: 999">
-    <% home_link = selected_group ? group_path(selected_group) : groups_path %>
-    <%= link_to home_link, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
-      <%= render "icons/home", classes: "h-7 w-7" %>
+    <%= link_to @selected_group, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+      <%= render "icons/library", classes: "h-7 w-7" %>
     <% end %>
-    <% profile_link = selected_group ? group_member_path(selected_group_member) : groups_path %>
-    <%= link_to profile_link, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+    <%= link_to GroupMember.find_by(user: current_user, group: @selected_group), class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
       <%= render "icons/profile", classes: "h-7 w-7" %>
     <% end %>
   </div>

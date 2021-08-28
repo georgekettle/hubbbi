@@ -21,8 +21,7 @@ class GroupsController < ApplicationController
     @group = Group.new
     set_selected_group(@group)
     authorize @group
-    hide_navbar
-    hide_desktop_navbar
+    hide_all_navbars
   end
 
   def create
@@ -31,8 +30,9 @@ class GroupsController < ApplicationController
     @group.group_members.new(user: current_user, role: :admin)
     authorize @group
     if @group.save
-      redirect_to @group, notice: "Your group has successfully been created"
+      redirect_to group_path(@group), notice: "Your group has successfully been created"
     else
+      hide_all_navbars
       render :new, alert: "Oops... Something went wrong when creating your group"
     end
   end

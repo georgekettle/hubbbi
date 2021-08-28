@@ -1,33 +1,15 @@
 <%= render "components/headers/header", header: "Edit content", subheader: @page.title, back_link: @page do %>
   <%= render "components/saving", ids:"edit-section-saving-badge" %>
 <% end %>
-<%# render "pages/page_content", page: @page, edit_message: true %>
 
 <div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_url(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
-  <% unless @page.course %>
-    <div>
-      <%= render "shared/container", classes: "p-4" do %>
-        <div class="w-full rounded-lg bg-primary-100 p-4 mb-4 sm:flex items-center justify-between mb-4">
-          <div class="mb-4 sm:mb-0">
-            <h4 class="tracking-tight">Would you like to edit the details?</h4>
-            <p class="text-xs opacity-50">Edit title, subtitle and cover image</p>
-          </div>
-          <%= link_to edit_page_path(@page), class: 'button w-full sm:w-auto' do %>
-            <%= render "icons/edit", classes: "mr-2" %>
-            Edit details
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
   <div class="pb-24">
     <%= render "shared/container", classes: "p-4" do %>
-      <div data-section-sortable-target="container">
+      <div data-section-sortable-target="container" class="dropzones">
         <% @page.sections.each do |section| %>
           <%= render 'sections/section', section: section, editable: true %>
         <% end %>
-        <div class="mb-4 py-2 relative">
+        <div class="mb-4 py-2 relative last-dropzone">
           <%= render "sections/dropzone", position: @page.sections.count + 1 %>
         </div>
       </div>

@@ -1,3 +1,9 @@
+<% content_for :header_left do %>
+  <%= link_to groups_path, class: "md:hidden h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
+    <%= render 'groups/avatar', group: @selected_group, size: 9 %>
+  <% end %>
+<% end %>
+
 <%= render "components/headers/header", header: @group.name, subheader: "Group", hide_back_link: true do %>
   <%= link_to group_group_members_path(@group), class: 'icon-btn' do %>
     <%= render 'icons/members', classes:"text-gray-900 stroke-current" %>
@@ -31,5 +37,16 @@
       <% end %>
     <% end %>
   <% end %>
-  <%= render :partial => "courses/course", :collection => @courses %>
+  <% if @courses.any? %>
+    <%= render :partial => "courses/course", :collection => @courses %>
+  <% else %>
+    <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+      <h4 class="tracking-tight text-center">Create your first course</h4>
+      <p class="text-xs text-gray-400 mb-2 text-center">Your people need you! It's time to start sharing your knowledge so others can improve their life.</p>
+      <%= link_to new_group_course_path(@group), class: 'button' do %>
+        <%= render "icons/library", classes: "stroke-current text-white mr-2" %>
+        Create a course
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

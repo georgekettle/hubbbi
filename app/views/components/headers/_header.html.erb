@@ -13,6 +13,8 @@
             <%= render 'icons/arrow_left' %>
           <% end %>
         <% end %>
+
+        <%= yield(:header_left) if content_for?(:header_left) %>
       </div>
 
       <div class="flex items-center">
