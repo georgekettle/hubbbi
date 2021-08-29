@@ -2,7 +2,7 @@ class GroupMembersController < ApplicationController
   include Groupable # for set_selected_group method
 
   before_action :set_group, only: [:new, :create, :index]
-  before_action :set_group_member, only: [:show, :update, :destroy]
+  before_action :set_group_member, only: [:show, :edit, :update, :destroy, :edit_avatar]
 
   def show
     @current_user_group_member = current_user.group_members.find_by(group: @group_member.group)
@@ -31,9 +31,12 @@ class GroupMembersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     if @group_member.update(group_member_params)
-      redirect_to group_group_members_path(@group_member.group), notice: "#{@group_member.user.full_name_or_email} was successfully updated"
+      redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "#{@group_member.user.full_name_or_email} was successfully updated"
     else
       redirect_back fallback_location: group_group_members_path(@group_member.group), alert: "Oops, there was an error updating user #{@group_member.user.full_name_or_email}"
     end
@@ -46,6 +49,9 @@ class GroupMembersController < ApplicationController
     else
       redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "You successfully removed #{@group_member.user.full_name_or_email} from the group"
     end
+  end
+
+  def edit_avatar
   end
 
   private
@@ -66,6 +72,6 @@ class GroupMembersController < ApplicationController
   end
 
   def group_member_params
-    params.require(:group_member).permit(:role, :email)
+    params.require(:group_member).permit(:role, :email, user_attributes: [ :id, :full_name, :display_name, :avatar ])
   end
 end

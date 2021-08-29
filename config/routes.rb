@@ -33,14 +33,11 @@ Rails.application.routes.draw do
   resources :images, only: [:destroy, :edit, :update]
   resources :videos, only: [:edit, :update]
 
-  resources :users, only: [:edit, :update] do
+  resources :group_members, only: [:show, :edit, :update, :destroy] do
+    resources :links, only: [:new, :create], module: "group_members"
     member do
       get :edit_avatar
     end
-  end
-
-  resources :group_members, only: [:show, :update, :destroy] do
-    resources :links, only: [:new, :create], module: "group_members"
   end
 
   resources :links, only: [:edit, :update, :destroy]
