@@ -1,4 +1,11 @@
-<%= render "components/headers/header", header: "Edit content", subheader: @page.title, back_link: @page do %>
+<% content_for :header_left do %>
+  <%= link_to @page, class: 'button' do %>
+    <%= render 'icons/check', classes: "mr-2 h-3.5 w-3.5" %>
+    Save
+  <% end %>
+<% end %>
+
+<%= render "components/headers/header", header: "Edit content", subheader: @page.title, hide_back_link: true do %>
   <%= render "components/saving", ids:"edit-section-saving-badge" %>
 <% end %>
 
