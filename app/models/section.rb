@@ -10,6 +10,8 @@ class Section < ApplicationRecord
   has_many :links, :through => :section_elements, :source => :element, :source_type => 'Link'
 
   enum section_type: [:page_reference, :text, :image, :video, :link]
+  
+  delegate :group, to: :page, allow_nil: true
 
   acts_as_list scope: :page
 
@@ -27,9 +29,5 @@ class Section < ApplicationRecord
 
   def elements
     page_references + texts + images + videos + links
-  end
-
-  def group
-    page.group
   end
 end
