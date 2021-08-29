@@ -1,5 +1,5 @@
 <% if policy(@group_member).update? %>
-  <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile" do %>
+  <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile", hide_back_link: @group_member.user == current_user do %>
     <div data-controller="dropdown" class="relative">
       <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
         <%= render 'icons/options', classes: "h-5 w-5" %>
@@ -14,7 +14,7 @@
         data-transition-leave-to="opacity-0 scale-95"
       >
         <% if @current_user_group_member == @group_member %>
-          <%= link_to "Update profile", edit_user_path(current_user), class: "dropdown-link" %>
+          <%= link_to "Update profile", edit_group_member_path(@group_member), class: "dropdown-link" %>
           <%= link_to "Leave group", group_member_path(@group_member), method: :delete, data: {confirm: "Are you sure you'd like to leave the group"}, class: "dropdown-link-danger" %>
         <% else %>
           <%= link_to("Remove all permissions", group_member_path(@group_member, group_member: { :role => "member" }), method: :patch, class: "dropdown-link") unless @group_member.role == "member" %>

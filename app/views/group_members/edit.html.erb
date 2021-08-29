@@ -1,0 +1,22 @@
+<%= render "components/headers/header", header: "Edit your profile", back_link: @group_member %>
+
+<%= render "shared/container", classes: "p-4" do %>
+  <%= simple_form_for @group_member do |f| %>
+    <div class="form-group flex items-center">
+      <%= render 'components/avatar', user: @group_member.user, classes: "mr-2", size: 16 %>
+      <%= link_to edit_avatar_group_member_path(@group_member), class: 'button' do %>
+        <%= render 'icons/image', classes:"mr-2" %> Change avatar
+      <% end %>
+    </div>
+    <%= f.fields_for :user do |user_form| %>
+      <%= user_form.input :full_name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "name" }%>
+      <%= user_form.input :display_name %>
+    <% end %>
+    <div class="form-actions">
+      <%= f.button :submit, "Update", class: 'w-full' %>
+    </div>
+  <% end %>
+<% end %>

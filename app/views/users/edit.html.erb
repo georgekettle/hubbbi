@@ -1,21 +1,4 @@
-<%= render "components/headers/header", header: "Edit your profile", back_link: back_link do %>
-  <div data-controller="dropdown" class="relative h-9">
-    <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
-      <%= render 'icons/options', classes: "h-5 w-5" %>
-    </button>
-
-    <div
-      data-dropdown-target="menu"
-      class="transition transform origin-top-right absolute right-0 mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
-      data-transition-enter-from="opacity-0 scale-95"
-      data-transition-enter-to="opacity-100 scale-100"
-      data-transition-leave-from="opacity-100 scale-100"
-      data-transition-leave-to="opacity-0 scale-95"
-    >
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-link-danger" %>
-    </div>
-  </div>
-<% end %>
+<%= render "components/headers/header", header: "Edit your profile" %>
 
 <%= render "shared/container", classes: "p-4" do %>
   <%= simple_form_for @user do |f| %>
