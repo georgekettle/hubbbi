@@ -8,8 +8,9 @@ class Section < ApplicationRecord
   has_many :images, :through => :section_elements, :source => :element, :source_type => 'Image'
   has_many :videos, :through => :section_elements, :source => :element, :source_type => 'Video'
   has_many :links, :through => :section_elements, :source => :element, :source_type => 'Link'
+  has_many :pdfs, :through => :section_elements, :source => :element, :source_type => 'Pdf'
 
-  enum section_type: [:page_reference, :text, :image, :video, :link]
+  enum section_type: [:page_reference, :text, :image, :video, :link, :pdf]
 
   acts_as_list scope: :page
 

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :images, only: [:new, :create], controller: 'sections/images'
     resources :videos, only: [:new, :create], controller: 'sections/videos'
     resources :links, only: [:new, :create], controller: 'sections/links'
+    resources :pdfs, only: [:new, :create], controller: 'sections/pdfs'
     resources :section_elements, only: :index
   end
 
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
   resources :texts, only: :update
   resources :images, only: [:destroy, :edit, :update]
   resources :videos, only: [:edit, :update]
+  resources :links, only: [:edit, :update, :destroy]
+  resources :pdfs, only: [:destroy, :edit, :update]
 
   resources :group_members, only: [:show, :edit, :update, :destroy] do
     resources :links, only: [:new, :create], module: "group_members"
@@ -39,8 +42,6 @@ Rails.application.routes.draw do
       get :edit_avatar
     end
   end
-
-  resources :links, only: [:edit, :update, :destroy]
 
   resources :courses, only: [:show, :edit, :update, :destroy] do
     resources :course_members, only: [:index, :new, :create]
