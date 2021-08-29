@@ -13,6 +13,8 @@ class GroupMember < ApplicationRecord
   validates :user, uniqueness: { scope: :group, message: 'Is already a group member' }
   before_validation :set_user_id, if: :email?
 
+  accepts_nested_attributes_for :user
+
   def set_user_id
     self.user = User.invite!(email: email)
   end

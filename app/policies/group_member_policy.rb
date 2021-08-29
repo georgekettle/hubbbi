@@ -15,6 +15,10 @@ class GroupMemberPolicy < ApplicationPolicy
     admin? || belongs_to_user?
   end
 
+  def edit_avatar?
+    admin? || belongs_to_user?
+  end
+
   def links?
     belongs_to_user? || admin?
   end
