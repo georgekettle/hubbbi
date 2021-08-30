@@ -2,7 +2,7 @@
 
 <div class="w-full">
   <div class="video-card">
-    <% if video.url %>
+    <% if video.url.present? %>
       <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
         <!-- YouTube Video --->
         <a
@@ -17,6 +17,27 @@
                 height="100"
                 class="object-cover w-full h-full"
                 src="<%= video.info.thumbnail_maxres || video.info.thumbnail_large_2x || video.info.thumbnail_large %>"
+            />
+            <div class="darken-image">
+              <div class="play-button">
+                <%= render 'icons/play' %>
+              </div>
+            </div>
+        </a>
+      </div>
+    <% elsif video.file.url.present? %>
+        <a
+            data-iframe="true"
+            data-src="<%= video.file.url %>"
+            data-poster="<%= video.file.url %>"
+            data-lightbox-target='item'
+            class="gallery-item w-full overflow-hidden"
+        >
+            <img
+                width="300"
+                height="100"
+                class="object-cover w-full h-full"
+                src="<%= video.file.url.split(".")[0..-2].push("jpg").join(".")%>"
             />
             <div class="darken-image">
               <div class="play-button">

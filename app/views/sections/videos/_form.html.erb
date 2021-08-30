@@ -1,6 +1,6 @@
 <%= simple_form_for [section, video] do |f| %>
-  <%# f.label :file, label: 'Video' %>
-  <%# f.file_field :file,
+  <%= f.label :file, label: 'Video' %>
+  <%= f.file_field :file,
           direct_upload: true,
           required: true,
           accept:"video/quicktime, video/mp4",
