@@ -5,7 +5,10 @@
     <div class="w-full rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
       <div>
         <h4 class="leading-tight"><%= pdf.title %></h4>
-        <h6 class="text-xs text-gray-400">sub details</h6>
+        <div class="flex items-center">
+          <%= render 'icons/pdf', classes: "h-3 w-3 mr-1 stroke-current text-gray-400" %>
+          <h6 class="text-xs text-gray-400">PDF</h6>
+        </div>
       </div>
     </div>
 
