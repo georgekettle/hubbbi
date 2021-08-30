@@ -36,10 +36,10 @@
         <% end %>
       </div>
     <% else %>
-      <% pdfs.each_with_index do |link, index| %>
+      <% pdfs.each_with_index do |pdf, index| %>
         <% z_index = 500 - index %>
         <div class="pb-2 relative" style="z-index: <%= z_index %>">
-          pdf todo
+          <%= render 'pdfs/pdf', pdf: pdf, editable: editable %>
         </div>
       <% end %>
     <% end %>
