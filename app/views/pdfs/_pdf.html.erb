@@ -12,8 +12,8 @@
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
         <%= link_to "View", "#", class: "dropdown-link" %>
-        <%= link_to "Update pdf", edit_pdf_path(pdf), class: "dropdown-link" %>
-        <%= link_to 'Delete pdf', pdf, method: :delete, class: "dropdown-link-danger" %>
+        <%= link_to "Update", edit_pdf_path(pdf), class: "dropdown-link" %>
+        <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
       <% end %>
     </div>
   </div>
