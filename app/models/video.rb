@@ -12,4 +12,10 @@ class Video < ApplicationRecord
     return nil unless url.present?
     video = VideoInfo.new(url)
   end
+
+  def image_preview_url
+    return if file.blank?
+
+    file.url.split(".")[0..-2].push("jpg")&.join(".")
+  end
 end
