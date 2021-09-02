@@ -1,10 +1,29 @@
 <%= simple_form_for @group do |f| %>
   <%= f.label :cover, label: 'Cover image' %>
-  <%= f.file_field :cover,
-          direct_upload: true,
-          required: true,
-          accept:"image/png, image/jpeg, image/gif",
-          data: { controller: 'uploader' } %>
+  <% if @group.cover.present? %>
+
+    <div class="p-4 z-0 bg-gray-100 rounded-md mb-4 flex justify-center items-center" style="height: 288px;">
+      <div style="background: url('<%= @group.cover.url %>');" class="bg-cover bg-center w-full h-full rounded-md">
+        <div class="h-1/4 w-full rounded-t-md bg-gradient-to-b from-black relative">
+          <%= link_to attachment_path(@group.cover.signed_id, redirect_path: request.path),
+                      method: :delete,
+                      class: "absolute right-2 top-2 cursor-pointer flex items-center font-bold",
+                      data: { confirm: 'Are you sure?' } do %>
+            <p class="text-white text-xs mr-2">Delete</p>
+            <div class="rounded-full h-8 w-8 p-1 text-white bg-red-600 ">
+              <%= render 'icons/trash_can' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <%= f.file_field :cover,
+            direct_upload: true,
+            required: true,
+            accept:"image/png, image/jpeg, image/gif",
+            data: { controller: 'uploader' } %>
+  <% end %>
   <%= f.input :name, required: true, autofocus: true %>
   <div class="form-actions">
     <%= f.submit class: 'w-full' %>
