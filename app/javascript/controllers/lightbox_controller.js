@@ -46,7 +46,7 @@ export default class extends Controller {
   initDownloadButton() {
     const controller = this
     this.galleryTarget.addEventListener("lgBeforeOpen", (e) => {
-      const lgDownloadIcon = document.querySelector(".lg-download");
+      const lgDownloadIcon = document.querySelector(`#lg-download-${controller.lg.lgId}`);
       if (lgDownloadIcon) {lgDownloadIcon.innerHTML = controller.downloadHTML()}
     });
   }
@@ -54,7 +54,7 @@ export default class extends Controller {
   initCloseButton() {
     const controller = this
     this.galleryTarget.addEventListener("lgBeforeOpen", (e) => {
-      const lgCloseIcon = document.querySelector(".lg-close");
+      const lgCloseIcon = document.querySelector(`#lg-close-${controller.lg.lgId}`);
       if (lgCloseIcon) {lgCloseIcon.innerHTML = controller.closeHTML()}
     });
   }
