@@ -10,7 +10,7 @@
 
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
-        <%= link_to "View", pdf.file.service_url, data:{ src: pdf.file.service_url, download_url: download_path, lightbox_target: 'item', iframe: true }, class: "dropdown-link gallery-item" %>
+        <%= link_to "View", pdf.file.service_url, data:{ src: pdf.file.service_url, download_url: download_path, lightbox_target: 'item', iframe: true }, class: "#{pdf.file.attached? ? 'dropdown-link' : 'dropdown-link-disabled'} gallery-item" %>
         <%= link_to "Update", edit_pdf_path(pdf), class: "dropdown-link" %>
         <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
       <% end %>
@@ -19,8 +19,10 @@
 <% else %>
   <div class="w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
     <%= render 'pdfs/pdf_info', pdf: pdf %>
-    <%= link_to pdf.file.service_url, data:{ src: pdf.file.service_url, download_url: download_path, lightbox_target: 'item', iframe: true }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
-      <%= render 'icons/eye', classes: "stroke-current text-white" %>
+    <% if pdf.file.attached? %>
+      <%= link_to pdf.file.service_url, data:{ src: pdf.file.service_url, download_url: download_path, lightbox_target: 'item', iframe: true }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
+        <%= render 'icons/eye', classes: "stroke-current text-white" %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
