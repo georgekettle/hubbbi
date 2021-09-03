@@ -1,0 +1,14 @@
+<div>
+  <h4 class="leading-tight mb-1"><%= pdf.title %></h4>
+  <div class="flex items-center">
+    <%= render 'icons/pdf', classes: "h-3 w-3 mr-1 stroke-current text-gray-400" %>
+    <h6 class="text-xs text-gray-400">
+      PDF <%= render 'components/middle_dot' %>
+      <% if pdf.file.attached? %>
+        <%= link_to 'Download', cl_image_path(pdf.file.key, flags: :attachment), class: "hover:text-gray-800 hover:underline" %>
+      <% else %>
+        <span class="text-red-500">No file attached</span>
+      <% end %>
+    </h6>
+  </div>
+</div>

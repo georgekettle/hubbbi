@@ -1,4 +1,4 @@
-<%= render "components/headers/header", header: "Reorder pages", back_link: edit_sections_page_path(@section.page) %>
+<%= render "components/headers/header", header: "Reorder items", back_link: edit_sections_page_path(@section.page) %>
 <%= render "shared/container", classes: "p-4" do %>
   <div data-controller="sortable" data-sortable-target="container" data-sortable-handle-value="sortable-handle">
     <% @section.elements.each do |element| %>
@@ -11,6 +11,8 @@
             <%= render 'images/reorder_item', image: element %>
           <% when "link" %>
             <%= render 'links/reorder_item', link: element %>
+          <% when "pdf" %>
+            <%= render 'pdfs/reorder_item', pdf: element %>
           <% end %>
         <% end %>
       </div>
