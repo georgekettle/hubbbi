@@ -11,10 +11,10 @@ module Sections
     def create
       @pdf = Pdf.new(pdf_params)
       section_element = @section.section_elements.new(element: @pdf)
-      if @section.save
+      if @pdf.valid? && @section.save
         redirect_to edit_sections_page_path(@section.page), notice: "New pdf successfully created"
       else
-        render :new, alert: "Oops... Something went wrong when creating pdf"
+        render :new
       end
     end
 
