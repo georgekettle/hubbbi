@@ -1,8 +1,9 @@
 class AttachmentsController < ApplicationController
   def destroy
-    @blob = ActiveStorage::Blob.find_signed(params[:id])
-    @blob.attachments.each(&:purge)
-    authorize @blob
+    @attachment = ActiveStorage::Attachment.find(params[:id])
+    authorize @attachment.record, :update?
+
+    @attachment.purge
     redirect_to params[:redirect_path]
   end
 end

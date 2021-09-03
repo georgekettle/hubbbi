@@ -1,11 +1,10 @@
 <%= simple_form_for @group do |f| %>
   <%= f.label :cover, label: 'Cover image' %>
   <% if @group.cover.present? %>
-
     <div class="p-4 z-0 bg-gray-100 rounded-md mb-4 flex justify-center items-center" style="height: 288px;">
       <div style="background: url('<%= @group.cover.url %>');" class="bg-cover bg-center w-full h-full rounded-md">
-        <div class="h-1/4 w-full rounded-t-md bg-gradient-to-b from-black relative">
-          <%= link_to attachment_path(@group.cover.signed_id, redirect_path: request.path),
+        <div class="h-1/4 w-full rounded-t-md bg-gradient-to-b from-gray-800 relative">
+          <%= link_to attachment_path(@group.cover.id, redirect_path: request.path),
                       method: :delete,
                       class: "absolute right-2 top-2 cursor-pointer flex items-center font-bold",
                       data: { confirm: 'Are you sure?' } do %>
