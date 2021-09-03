@@ -26,7 +26,8 @@
 <% else %>
   <div class="w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
     <%= yield(:pdf_info) if content_for?(:pdf_info) %>
-    <%= link_to pdf.file.service_url, data:{ src: pdf.file.service_url, lightbox_target: 'item' }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
+    <% pdf_image = transform_extension(pdf.file.service_url, '.jpg')  %>
+    <%= link_to pdf_image, data:{ src: pdf_image, download_url: cl_image_path(pdf.file.key, flags: :attachment), lightbox_target: 'item' }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
       <%= render 'icons/eye', classes: "stroke-current text-white" %>
     <% end %>
   </div>
