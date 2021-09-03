@@ -40,7 +40,7 @@ class GroupsTest < ApplicationSystemTestCase
     visit group_group_members_path(group)
     assert_difference 'group.group_members.count', -1, 'Group member should be deleted' do
       find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click
-      assert page.has_content?('Remove from group'), 'Link to delete user from group appears'
+      assert page.has_content?('Remove from group', wait: 5), 'Link to delete user from group appears'
       click_on 'Remove from group'
       page.driver.browser.switch_to.alert.accept
       assert page.has_content?('You successfully removed George Kettle from the group', wait: 5), 'Successful flash appears'

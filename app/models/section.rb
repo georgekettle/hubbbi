@@ -11,6 +11,8 @@ class Section < ApplicationRecord
   has_many :pdfs, :through => :section_elements, :source => :element, :source_type => 'Pdf'
 
   enum section_type: [:page_reference, :text, :image, :video, :link, :pdf]
+  
+  delegate :group, to: :page, allow_nil: true
 
   acts_as_list scope: :page
 
@@ -28,9 +30,5 @@ class Section < ApplicationRecord
 
   def elements
     page_references + texts + images + videos + links + pdfs
-  end
-
-  def group
-    page.group
   end
 end

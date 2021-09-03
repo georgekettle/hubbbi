@@ -62,7 +62,7 @@ class CoursesTest < ApplicationSystemTestCase
     assert_difference 'course.course_members.count', -1, 'Course member should be deleted' do
       page.assert_selector(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button')
       find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click
-      assert page.has_content?('Remove from course'), 'Link to delete user from course appears'
+      assert page.has_content?('Remove from course', wait: 5), 'Link to delete user from course appears'
       click_on 'Remove from course'
       page.driver.browser.switch_to.alert.accept
       assert page.has_content?('George Kettle was successfully removed from the course', wait: 5), 'Successful flash appears'
