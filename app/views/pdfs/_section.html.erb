@@ -1,0 +1,47 @@
+<% editable ||= false %>
+
+<div class="section">
+  <% if editable %>
+    <!-- z-index to  -->
+    <div class="w-full relative" style="z-index: 501">
+      <%= render "components/headers/section_header", title: "Pdfs", icon:"pdf" do %>
+        <div class="flex items-center">
+          <% if policy(section.page).update? %>
+            <div class="mr-2">
+              <%= render "components/saving" %>
+            </div>
+            <%= render "components/dropdowns/options_dropdown" do %>
+              <%= link_to "Add pdf", new_section_pdf_path(section), class: 'dropdown-link' %>
+              <%= link_to "Reorder pdfs", section_section_elements_path(section), class: 'dropdown-link' %>
+              <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+            <% end %>
+            <div class="handle icon-btn faded relative overflow-hidden">
+              <%= render "icons/handle", classes: "handle h-4 w-4" %>
+              <div class="handle absolute h-full w-full top-0 left-0"></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="relative">
+    <% if pdfs.empty? && editable %>
+      <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+        <h4 class="tracking-tight text-center">Add a new pdf</h4>
+        <p class="text-xs text-gray-400 mb-2 text-center">Add pdf worksheets and documents.</p>
+        <%= link_to new_section_pdf_path(section), class: 'button' do %>
+          <%= render "icons/pdf", classes: "stroke-current text-white mr-2" %>
+          Add pdf
+        <% end %>
+      </div>
+    <% else %>
+      <% pdfs.each_with_index do |pdf, index| %>
+        <% z_index = 500 - index %>
+        <div class="pb-2 relative" data-controller="lightbox" data-lightbox-target="gallery" style="z-index: <%= z_index %>">
+          <%= render 'pdfs/pdf', pdf: pdf, editable: editable %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

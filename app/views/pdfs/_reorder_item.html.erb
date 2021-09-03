@@ -1,0 +1,12 @@
+<div class="flex items-center">
+  <% if pdf.file.attached? %>
+    <div class="rounded h-12 w-12 overflow-hidden" style="background-size: cover; background-image: url(<%= cl_image_path(pdf.file.key, :format => :jpg) %>)"></div>
+  <% else %>
+    <div class="rounded h-12 w-12 overflow-hidden bg-black bg-opacity-10"></div>
+  <% end %>
+  <div class="ml-2">
+    <% if pdf.title %>
+      <h4><%= pdf.title.truncate(25) %></h4>
+    <% end %>
+  </div>
+</div>

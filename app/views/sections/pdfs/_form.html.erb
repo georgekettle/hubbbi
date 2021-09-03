@@ -1,0 +1,12 @@
+<%= simple_form_for [section, pdf] do |f| %>
+  <%= f.label :file, label: 'Pdf' %>
+  <%= f.file_field :file,
+          direct_upload: true,
+          required: true,
+          accept:"application/pdf",
+          data: { controller: 'uploader' } %>
+  <%= f.input :title %>
+  <div class="form-actions">
+    <%= f.submit class: "w-full" %>
+  </div>
+<% end %>
