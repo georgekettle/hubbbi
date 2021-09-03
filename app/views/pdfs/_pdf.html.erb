@@ -1,25 +1,16 @@
 <% editable ||= false %>
-<% pdf_image = transform_extension(pdf.file.service_url, '.jpg') %>
-<% download_path = cl_image_path(pdf.file.key, flags: :attachment) %>
-<% content_for :pdf_info do %>
-  <div>
-    <h4 class="leading-tight mb-1"><%= pdf.title %></h4>
-    <div class="flex items-center">
-      <%= render 'icons/pdf', classes: "h-3 w-3 mr-1 stroke-current text-gray-400" %>
-      <h6 class="text-xs text-gray-400">PDF <%= render 'components/middle_dot' %> <%= link_to 'Download', download_path, class: "hover:text-gray-800 hover:underline" %></h6>
-    </div>
-  </div>
-<% end %>
+<% pdf_image = pdf.file.attached? ? cl_image_path(pdf.file.key, :format => :jpg) : image_path('no_file_attached.jpg') %>
+<% download_path = pdf.file.attached? ? cl_image_path(pdf.file.key, flags: :attachment) : "#" %>
 
 <% if editable %>
   <div class="w-full relative">
     <div class="w-full rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
-      <%= yield(:pdf_info) if content_for?(:pdf_info) %>
+      <%= render 'pdfs/pdf_info', pdf: pdf %>
     </div>
 
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
-        <%= link_to "View", pdf_image, data:{ src: pdf_image, download_url: download_path, lightbox_target: 'item' }, class: "dropdown-link gallery-item" %>
+        <%= link_to "View", pdf.file.service_url, data:{ src: pdf.file.service_url, download_url: download_path, lightbox_target: 'item', iframe: true }, class: "dropdown-link gallery-item" %>
         <%= link_to "Update", edit_pdf_path(pdf), class: "dropdown-link" %>
         <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
       <% end %>
@@ -27,8 +18,8 @@
   </div>
 <% else %>
   <div class="w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
-    <%= yield(:pdf_info) if content_for?(:pdf_info) %>
-    <%= link_to pdf_image, data:{ src: pdf_image, download_url: download_path, lightbox_target: 'item' }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
+    <%= render 'pdfs/pdf_info', pdf: pdf %>
+    <%= link_to pdf.file.service_url, data:{ src: pdf.file.service_url, download_url: download_path, lightbox_target: 'item', iframe: true }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
       <%= render 'icons/eye', classes: "stroke-current text-white" %>
     <% end %>
   </div>

@@ -6,7 +6,7 @@ import lgVideo from 'lightgallery/plugins/video'
 export default class extends Controller {
   static targets = ["gallery", "item"]
 
-  initialize() {
+  connect() {
     this.initCloseButton()
     this.initDownloadButton()
     this.initLightGallery()

@@ -21,7 +21,7 @@ module Sections
     private
 
     def pdf_params
-      params.require(:pdf).permit(:url, :title, :subtitle)
+      params.require(:pdf).permit(:url, :title, :subtitle, :file)
     end
 
     def set_section
