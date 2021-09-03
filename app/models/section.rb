@@ -27,7 +27,7 @@ class Section < ApplicationRecord
   end
 
   def elements
-    page_references + texts + images + videos + links
+    page_references + texts + images + videos + links + pdfs
   end
 
   def group

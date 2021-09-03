@@ -7,7 +7,7 @@
       <% if pdf.file.attached? %>
         <%= link_to 'Download', cl_image_path(pdf.file.key, flags: :attachment), class: "hover:text-gray-800 hover:underline" %>
       <% else %>
-        No file attached
+        <span class="text-red-500">No file attached</span>
       <% end %>
     </h6>
   </div>
