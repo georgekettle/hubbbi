@@ -1,10 +1,12 @@
 <% editable ||= false %>
+<% pdf_image = transform_extension(pdf.file.service_url, '.jpg') %>
+<% download_path = cl_image_path(pdf.file.key, flags: :attachment) %>
 <% content_for :pdf_info do %>
   <div>
-    <h4 class="leading-tight"><%= pdf.title %></h4>
+    <h4 class="leading-tight mb-1"><%= pdf.title %></h4>
     <div class="flex items-center">
       <%= render 'icons/pdf', classes: "h-3 w-3 mr-1 stroke-current text-gray-400" %>
-      <h6 class="text-xs text-gray-400">PDF</h6>
+      <h6 class="text-xs text-gray-400">PDF <%= render 'components/middle_dot' %> <%= link_to 'Download', download_path, class: "hover:text-gray-800 hover:underline" %></h6>
     </div>
   </div>
 <% end %>
@@ -17,7 +19,7 @@
 
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
-        <%= link_to "View", pdf.file.service_url, data:{ src: pdf.file.service_url, lightbox_target: 'item' }, class: "dropdown-link gallery-item" %>
+        <%= link_to "View", pdf_image, data:{ src: pdf_image, download_url: download_path, lightbox_target: 'item' }, class: "dropdown-link gallery-item" %>
         <%= link_to "Update", edit_pdf_path(pdf), class: "dropdown-link" %>
         <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
       <% end %>
@@ -26,8 +28,7 @@
 <% else %>
   <div class="w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
     <%= yield(:pdf_info) if content_for?(:pdf_info) %>
-    <% pdf_image = transform_extension(pdf.file.service_url, '.jpg')  %>
-    <%= link_to pdf_image, data:{ src: pdf_image, download_url: cl_image_path(pdf.file.key, flags: :attachment), lightbox_target: 'item' }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
+    <%= link_to pdf_image, data:{ src: pdf_image, download_url: download_path, lightbox_target: 'item' }, class: "gallery-item h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 ml-2" do %>
       <%= render 'icons/eye', classes: "stroke-current text-white" %>
     <% end %>
   </div>
