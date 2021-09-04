@@ -1,16 +1,6 @@
 <%= simple_form_for [section, video], data: { controller: 'segmented-control' } do |f| %>
   <div class="mb-4 max-w-lg">
-    <div class="ios-segmented-control" data-segmented-control-target="container">
-      <span class="selection" data-segmented-control-target="selection"></span>
-      <div class="option">
-        <input type="radio" id="video-upload" name="video[is_upload]" value="true" checked>
-        <label for="video-upload"><span>File upload</span></label>
-      </div>
-      <div class="option">
-        <input type="radio" id="url" name="video[is_upload]" value="false">
-        <label for="url"><span>Url upload</span></label>
-      </div>
-    </div>
+    <%= render 'videos/segmented_control', video: video %>
   </div>
 
   <div id="video-upload-toggle-content" class="segmented-option-content">

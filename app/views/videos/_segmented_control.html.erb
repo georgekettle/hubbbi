@@ -1,0 +1,14 @@
+<% options = [
+      {title: "File upload", id: 'video-upload', checked: video.url.present? || video.new_record?},
+      {title: "Url upload", id: 'url', checked: video.url.present?},
+  ] %>
+
+<div class="ios-segmented-control" data-segmented-control-target="container">
+  <span class="selection" data-segmented-control-target="selection"></span>
+  <% options.each do |option| %>
+    <div class="option">
+      <input type="radio" id="<%= option[:id] %>" name="video[is_upload]" value="true" <%= 'checked' if option[:checked] %>>
+      <label for="<%= option[:id] %>"><span><%= option[:title] %></span></label>
+    </div>
+  <% end %>
+</div>
