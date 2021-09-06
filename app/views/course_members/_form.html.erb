@@ -1,4 +1,4 @@
-<%= simple_form_for [course, course.course_members.new] do |f| %>
+<%= simple_form_for [course, course.course_members.new], class: 'pb-24' do |f| %>
   <%= f.input :id, :as => :check_boxes, label: "" do %>
     <%= render('components/filters/search_filter', placeholder:'Search group members') do %>
       <%= f.collection_check_boxes :id, (course.group.group_members - course.group_members), :id, :name do |builder| %>

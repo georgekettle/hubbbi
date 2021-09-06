@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :links, only: [:new, :create], module: "group_members"
     member do
       get :edit_avatar
+      get :add_to_courses
     end
   end
 

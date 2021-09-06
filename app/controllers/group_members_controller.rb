@@ -1,8 +1,8 @@
 class GroupMembersController < ApplicationController
   include Groupable # for set_selected_group method
 
-  before_action :set_group, only: [:new, :create, :index]
-  before_action :set_group_member, only: [:show, :edit, :update, :destroy, :edit_avatar]
+  before_action :set_group, only: [:new, :create, :index, :add_to_courses]
+  before_action :set_group_member, only: [:show, :edit, :update, :destroy, :edit_avatar, :add_to_courses]
 
   def show
     @current_user_group_member = current_user.group_members.find_by(group: @group_member.group)
@@ -20,12 +20,12 @@ class GroupMembersController < ApplicationController
   def create
     # invite user to be used as user in group member
     @group_member = @group.group_members.new(group_member_params)
-    @group_member.group = @group
-
     authorize @group_member
 
     if @group_member.save
-      redirect_to new_group_group_member_path(@group), notice: "Invitation sent to #{@group_member.email}"
+      # redirect_to add user to new courses
+      redirect_to add_to_courses_group_member_path(@group_member), notice: "Invitation sent to #{@group_member.email}"
+      # redirect_to new_group_group_member_path(@group), notice: "Invitation sent to #{@group_member.email}"
     else
       redirect_to new_group_group_member_path(@group), alert:  @group_member.errors.messages.values.flatten.join("\n")
     end
@@ -52,6 +52,9 @@ class GroupMembersController < ApplicationController
   end
 
   def edit_avatar
+  end
+
+  def add_to_courses
   end
 
   private
