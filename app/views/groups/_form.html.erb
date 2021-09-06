@@ -1,11 +1,13 @@
 <%= simple_form_for @group do |f| %>
   <%= f.label :cover, label: 'Cover image' %>
-  <%= f.file_field :cover,
-          direct_upload: true,
-          required: true,
-          accept:"image/png, image/jpeg, image/gif",
-          data: { controller: 'uploader' } %>
-  <%= f.input :name, required: true, autofocus: true %>
+  <%= render 'components/forms/image_upload', attachment: @group.cover do %>
+    <%= f.file_field :cover,
+            direct_upload: true,
+            required: true,
+            accept:"image/png, image/jpeg, image/gif",
+            data: { controller: 'uploader' } %>
+  <% end %>
+  <%= f.input :name, required: true %>
   <div class="form-actions">
     <%= f.submit class: 'w-full' %>
   </div>

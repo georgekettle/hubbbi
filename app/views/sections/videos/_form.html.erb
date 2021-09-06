@@ -1,11 +1,20 @@
-<%= simple_form_for [section, video] do |f| %>
-  <%# f.label :file, label: 'Video' %>
-  <%# f.file_field :file,
-          direct_upload: true,
-          required: true,
-          accept:"video/quicktime, video/mp4",
-          data: { controller: 'uploader', uploader_filetypes_value: ['video/quicktime', 'video/mp4'] } %>
-  <%= f.input :url, label: "Link", placeholder: "https://www.youtube.com/watch?v=iaWiYtqL-4Y", hint: "Place youtube or vimeo links here" %>
+<%= simple_form_for [section, video], data: { controller: 'segmented-control' } do |f| %>
+  <div class="mb-4 max-w-lg">
+    <%= render 'videos/segmented_control', video: video %>
+  </div>
+
+  <div id="video-upload-toggle-content" class="segmented-option-content">
+    <%= f.file_field :file,
+            direct_upload: true,
+            required: true,
+            accept:"video/quicktime, video/mp4",
+            data: { controller: 'uploader', uploader_filetypes_value: ['video/quicktime', 'video/mp4'] } %>
+  </div>
+
+  <div id="url-toggle-content" class="segmented-option-content">
+    <%= f.input :url, label: false, placeholder: "https://www.youtube.com/watch?v=iaWiYtqL-4Y", hint: "Place youtube or vimeo links here" %>
+  </div>
+
   <%= f.input :title %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>

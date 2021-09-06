@@ -2,7 +2,7 @@
 
 <div class="w-full">
   <div class="video-card">
-    <% if video.url %>
+    <% if video.url.present? %>
       <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
         <!-- YouTube Video --->
         <a
@@ -25,6 +25,22 @@
             </div>
         </a>
       </div>
+    <% elsif video.file.url.present? %>
+    <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
+      <%= link_to video.file.service_url,
+                  data:{ src: video.file.service_url, download_url: false, lightbox_target: 'item', iframe: true },
+                  class: "gallery-item w-full overflow-hidden" do %>
+          <img width="300"
+               height="100"
+               class="object-cover w-full h-full"
+               src="<%= video.image_preview_url%>"/>
+          <div class="darken-image">
+            <div class="play-button">
+              <%= render 'icons/play' %>
+            </div>
+          </div>
+      <% end %>
+    </div>
     <% else %>
       <div class="w-full rounded-xl bg-gray-400 h-24"></div>
     <% end %>
