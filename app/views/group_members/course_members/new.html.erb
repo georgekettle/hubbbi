@@ -1,5 +1,12 @@
-<%= render "components/headers/header", header: "Update courses", subheader:"for #{@group_member.user.full_name_or_email}", hide_back_link: true %>
+<%= render "components/headers/header", header: "Add to courses", subheader:"#{@group_member.user.full_name_or_email}", back_link: @group_member %>
 <%= render "shared/container", classes: "p-4" do %>
+  <div class="flex flex-col items-center pb-4">
+    <div class="mb-2">
+      <%= render "components/avatar", user: @group_member.user, size: "24" %>
+    </div>
+    <h2 class="text-xl tracking-tight font-medium text-center"><%= @group_member.user.full_name_or_email %></h2>
+    <p class="text-xs text-gray-400 text-center">Update the courses which <%= @group_member.user.full_name_or_email %> has access to</p>
+  </div>
   <%= simple_form_for [@group_member, @course_member], class: 'pb-24' do |f| %>
     <%= f.input :id, :as => :check_boxes, label: "", include_hidden: false do %>
       <%= render('components/filters/search_filter', placeholder:'Search courses') do %>
@@ -13,7 +20,7 @@
     <% end %>
     <div class="form-actions fixed bottom-0 w-full left-0 bg-white border-t border-gray-200">
       <%= render "shared/container", classes: "p-4" do %>
-        <%= f.button :submit, "Update courses", class: 'w-full' %>
+        <%= f.button :submit, "Add to courses", class: 'w-full' %>
       <% end %>
     </div>
   <% end %>

@@ -8,6 +8,7 @@ module GroupMembers
       @group = @group_member.group
       @course_member = CourseMember.new
       set_selected_group(@group)
+      hide_navbar
     end
 
     def create
