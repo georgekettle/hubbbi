@@ -1,7 +1,7 @@
 <% course_member ||= nil %>
 <% group_member = course_member.group_member if course_member %>
 
-<div class="w-full relative mb-2 hover:bg-black hover:bg-opacity-5 rounded-lg">
+<div class="group w-full relative mb-2 hover:bg-black hover:bg-opacity-5 rounded-lg">
   <%= link_to course do %>
     <div class="w-full flex items-center justify-between p-1">
       <div class="w-full flex items-center justify-between">
@@ -17,7 +17,7 @@
     </div>
   <% end %>
   <% if course_member && (policy(group_member).admin_or_editor? || policy(group_member).belongs_to_user?) %>
-    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+    <div class="group-hover:opacity-100 opacity-100 md:opacity-0 absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <div data-controller="dropdown" class="relative">
         <button type="button" class="icon-btn faded" data-action="dropdown#toggle click@window->dropdown#hide">
           <%= render 'icons/options' %>
