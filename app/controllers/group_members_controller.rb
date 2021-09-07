@@ -23,9 +23,7 @@ class GroupMembersController < ApplicationController
     authorize @group_member
 
     if @group_member.save
-      # redirect_to add user to new courses
-      redirect_to new_group_member_course_member_path(@group_member), notice: "Invitation sent to #{@group_member.email}"
-      # redirect_to new_group_group_member_path(@group), notice: "Invitation sent to #{@group_member.email}"
+      redirect_to @group_member, notice: "Invitation sent to #{@group_member.email}"
     else
       redirect_to new_group_group_member_path(@group), alert:  @group_member.errors.messages.values.flatten.join("\n")
     end
