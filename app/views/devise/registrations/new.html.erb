@@ -11,6 +11,9 @@
     <div class="w-screen sm:w-96">
       <div class="px-4 py-5">
           <%= f.error_notification %>
+          <% if @token != nil %>
+              <%= hidden_field_tag :invite_token, @token %>
+          <% end %>
           <%= f.input :email,
                 required: true,
                 autofocus: true,

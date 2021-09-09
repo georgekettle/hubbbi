@@ -9,4 +9,9 @@ class Group < ApplicationRecord
   has_one_attached :cover
 
   validates :name, presence: true
+
+  # used for invitable
+  def add_user(user)
+    GroupMember.create(user: user, group: self)
+  end
 end
