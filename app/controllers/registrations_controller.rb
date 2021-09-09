@@ -16,8 +16,12 @@ class RegistrationsController < Devise::RegistrationsController
     @token = params[:invite_token]
     if @token != nil
       # create invitable member
-      invitable = Invite.find_by_token(@token).invitable
-      invitable.add_user(resource)
+      invite = Invite.find_by_token(@token)
+      invitable = invite.invitable
+      invitable_resource = invitable.add_user(resource)
+      invite.sub_invites.each do |sub_invite|
+        sub_invite.invitable.add_user(invitable_resource)
+      end
     end
 
     # do normal registration things

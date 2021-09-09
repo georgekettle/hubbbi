@@ -11,6 +11,8 @@ class Invite < ApplicationRecord
   before_create :generate_token
   before_save :check_user_existence
 
+  accepts_nested_attributes_for :sub_invites
+
   def generate_token
      self.token = Digest::SHA1.hexdigest([self.invitable_id, Time.now, rand].join)
   end

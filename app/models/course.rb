@@ -9,4 +9,8 @@ class Course < ApplicationRecord
   has_one_attached :cover
 
   validates :title, presence: true
+
+  def add_user(group_member)
+    CourseMember.create(group_member: group_member, course: self)
+  end
 end
