@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  include SubInvitable
+
   belongs_to :group
   belongs_to :page, dependent: :destroy
   has_many :course_members, dependent: :destroy
