@@ -21,7 +21,7 @@ class ContentsTest < ApplicationSystemTestCase
       source = page.find('.handle.item:first-child')
       target = page.find('.dropzone[data-position="1"]', visible: false)
       source.drag_to(target)
-      assert page.has_content?('Add a new page', wait: 10), 'Add new page title exists'
+      assert page.has_content?('Add a new page', wait: 15), 'Add new page title exists'
       assert page.has_content?('By adding pages, you can break this page up into modules'), 'Add new pagem section subtitle exists'
     end
 
@@ -39,7 +39,7 @@ class ContentsTest < ApplicationSystemTestCase
       source = page.find('.handle.item:nth-child(2)')
       target = page.find('.dropzone[data-position="1"]', visible: false)
       source.drag_to(target)
-      assert page.has_content?('Text', wait: 5), 'Text section title exists'
+      assert page.has_content?('Text', wait: 15), 'Text section title exists'
     end
   end
 

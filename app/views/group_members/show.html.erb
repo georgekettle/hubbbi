@@ -38,19 +38,46 @@
   <p class="text-xs text-gray-400 text-center">Joined group <%= time_ago_in_words(@group_member.created_at) %> ago</p>
 
   <div class="mt-6 w-full">
-    <%= render "components/headers/section_header", title: "Quick links", icon:"zap" do %>
-      <% if policy(@group_member).links? %>
-        <%= link_to new_group_member_link_path(@group_member), class: "icon-btn faded" do %>
-          <%= render 'icons/plus_circle' %>
+    <div class="pb-4">
+      <%= render "components/headers/section_header", title: "Courses", icon:"library" do %>
+        <% if policy(@group_member).create? %>
+          <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn faded" do %>
+            <%= render 'icons/plus_circle' %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
-    <% @group_member.links.each_with_index do |link, index| %>
-      <% z_index = 500 - index %>
-      <div class="pb-2 w-full relative" style="z-index: <%= z_index %>">
-        <% editable = (link.linkable.class == GroupMember && policy(link.linkable).links?) %>
-        <%= render "links/link", link: link, editable: editable %>
-      </div>
-    <% end %>
+      <% @group_member.course_members.each_with_index do |member, index| %>
+        <% z_index = 500 - index %>
+        <div class="relative" style="z-index: <%= z_index %>">
+          <%= render 'courses/list_item', course: member.course, course_member: member %>
+        </div>
+      <% end %>
+      <% if @group_member.course_members.empty? && policy(@group_member).create? %>
+        <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+          <h4 class="tracking-tight text-center">Add to courses</h4>
+          <p class="text-xs text-gray-400 mb-2 text-center">Give <%= @group_member.user.full_name_or_email %> access to courses</p>
+          <%= link_to new_group_member_course_member_path(@group_member), class: 'button' do %>
+            <%= render "icons/library", classes: "stroke-current text-white mr-2" %>
+            Add to courses
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <%= render "components/headers/section_header", title: "Quick links", icon:"zap" do %>
+        <% if policy(@group_member).links? %>
+          <%= link_to new_group_member_link_path(@group_member), class: "icon-btn faded" do %>
+            <%= render 'icons/plus_circle' %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @group_member.links.each_with_index do |link, index| %>
+        <% z_index = 500 - index %>
+        <div class="pb-2 w-full relative" style="z-index: <%= z_index %>">
+          <% editable = (link.linkable.class == GroupMember && policy(link.linkable).links?) %>
+          <%= render "links/link", link: link, editable: editable %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
