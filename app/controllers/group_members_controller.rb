@@ -12,25 +12,6 @@ class GroupMembersController < ApplicationController
     @group_members = @group.group_members
   end
 
-  def new
-    @group_member = GroupMember.new(group: @group)
-    authorize @group_member
-  end
-
-  def create
-    @group_member = @group.group_members.new(group_member_params)
-    @group_member.group = @group
-    @group_member.user = User.invite!(email: @group_member.email)
-
-    authorize @group_member
-
-    if @group_member.save
-      redirect_to new_group_group_member_path(@group), notice: "Invitation sent to #{@group_member.email}"
-    else
-      redirect_to new_group_group_member_path(@group), alert:  @group_member.errors.messages.values.flatten.join("\n")
-    end
-  end
-
   def edit
   end
 

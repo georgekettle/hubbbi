@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     sessions: "sessions" }
 
   resources :groups do
-    resources :group_members, only: [:index, :new, :create]
+    resources :group_members, only: [:index]
     resources :courses, only: [:new, :create]
+    resources :invites, only: [:new, :create], module: "groups"
     member do
       get :settings
     end
