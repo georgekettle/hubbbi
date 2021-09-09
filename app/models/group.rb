@@ -12,6 +12,6 @@ class Group < ApplicationRecord
 
   # used for invitable
   def add_user(user)
-    GroupMember.create(user: user, group: self)
+    GroupMember.create(user: user, group: self) unless GroupMember.find_by(user: user, group: self)
   end
 end

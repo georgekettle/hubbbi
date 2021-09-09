@@ -11,6 +11,6 @@ class Course < ApplicationRecord
   validates :title, presence: true
 
   def add_user(group_member)
-    CourseMember.create(group_member: group_member, course: self)
+    CourseMember.create(group_member: group_member, course: self) unless CourseMember.find_by(group_member: group_member, course: self)
   end
 end

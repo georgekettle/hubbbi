@@ -10,9 +10,9 @@ module Groups
     end
 
     def create
-      @invite = Invite.new(invite_params) # Make a new Invite
+      @invite = Invite.new(invite_params)
       @invite.invitable = @group
-      @invite.sender = current_user # set the sender to the current user
+      @invite.sender = current_user
       add_courses
       invitable_name = @group.name
       if @invite.save
@@ -28,7 +28,6 @@ module Groups
         redirect_to group_group_members_path(@group), notice: "Invite sent"
       else
         render :new
-        # oh no, creating an new invitation failed
       end
     end
 
