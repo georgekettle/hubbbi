@@ -11,9 +11,6 @@
         <%= f.input :role, collection: GroupMember.roles.keys, input_html: {class: "rounded-l-none border-l-0"}, label: false, include_blank: false, include_hidden: false %>
       </div>
     </div>
-
-
-
     <div class="form-actions">
       <%= f.button :submit, "Send invite", class: "w-full" %>
     </div>

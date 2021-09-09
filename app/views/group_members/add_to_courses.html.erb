@@ -1,0 +1,20 @@
+<%= render "components/headers/header", header: "Add to courses", subheader: @group_member.user.full_name_or_email, hide_back_link: true %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= simple_form_for [@group_member, course.course_members.new], class: 'pb-24' do |f| %>
+    <%= f.input :id, :as => :check_boxes, label: "" do %>
+      <%= render('components/filters/search_filter', placeholder:'Search group members') do %>
+        <%= f.collection_check_boxes :id, (course.group.group_members - course.group_members), :id, :name do |builder| %>
+          <%= content_tag(:div, :class => "filter-item", data: {filter_text: "#{builder.object.user.full_name} #{builder.object.user.display_name} #{builder.object.user.email}"}) do %>
+            <%= builder.check_box(class:"group-member-checkbox") %>
+            <%= builder.label {|label| render("group_members/checkbox_item", group_member: builder.object ) } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <div class="form-actions fixed bottom-0 w-full left-0 bg-white border-t border-gray-200">
+      <%= render "shared/container", classes: "p-4" do %>
+        <%= f.button :submit, "Add participants", class: 'w-full' %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

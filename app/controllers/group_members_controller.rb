@@ -20,12 +20,10 @@ class GroupMembersController < ApplicationController
   def create
     # invite user to be used as user in group member
     @group_member = @group.group_members.new(group_member_params)
-    @group_member.group = @group
-
     authorize @group_member
 
     if @group_member.save
-      redirect_to new_group_group_member_path(@group), notice: "Invitation sent to #{@group_member.email}"
+      redirect_to @group_member, notice: "Invitation sent to #{@group_member.email}"
     else
       redirect_to new_group_group_member_path(@group), alert:  @group_member.errors.messages.values.flatten.join("\n")
     end
