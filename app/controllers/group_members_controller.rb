@@ -18,9 +18,9 @@ class GroupMembersController < ApplicationController
   end
 
   def create
-    # invite user to be used as user in group member
     @group_member = @group.group_members.new(group_member_params)
     @group_member.group = @group
+    @group_member.user = User.invite!(email: @group_member.email)
 
     authorize @group_member
 
