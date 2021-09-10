@@ -1,6 +1,4 @@
 class ImagesController < ApplicationController
-  include Groupable # for set_selected_group method
-
   before_action :set_image, only: [:edit, :update, :destroy]
 
   def edit
@@ -23,7 +21,6 @@ class ImagesController < ApplicationController
 
   def set_image
     @image = Image.find(params[:id])
-    set_selected_group(@image.page)
     authorize @image.section
   end
 

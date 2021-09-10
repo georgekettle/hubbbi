@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Authenticatable
   include Authorizable
+  include Groupable
   include NavbarHideable
 
   def default_url_options

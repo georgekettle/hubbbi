@@ -1,7 +1,5 @@
 module Groups
   class InvitesController < ApplicationController
-    include Groupable
-
     before_action :set_group, only: [:new, :create]
 
     def new
@@ -39,7 +37,6 @@ module Groups
 
     def set_group
       @group = Group.find(params[:group_id])
-      set_selected_group(@group)
       authorize current_user_group_member, :create?
     end
 

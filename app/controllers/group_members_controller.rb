@@ -1,6 +1,4 @@
 class GroupMembersController < ApplicationController
-  include Groupable # for set_selected_group method
-
   before_action :set_group, only: [:new, :create, :index]
   before_action :set_group_member, only: [:show, :edit, :update, :destroy, :edit_avatar]
 
@@ -43,12 +41,10 @@ class GroupMembersController < ApplicationController
 
   def set_group
     @group = Group.find(params[:group_id])
-    set_selected_group(@group)
   end
 
   def set_group_member
     @group_member = GroupMember.find(params[:id])
-    set_selected_group(@group_member)
     authorize @group_member
   end
 

@@ -1,6 +1,4 @@
 class VideosController < ApplicationController
-  include Groupable # for set_selected_group method
-
   before_action :set_video, only: [:edit, :update]
 
   def edit
@@ -18,7 +16,6 @@ class VideosController < ApplicationController
 
   def set_video
     @video = Video.find(params[:id])
-    set_selected_group(@video.section)
     authorize @video.section
   end
 

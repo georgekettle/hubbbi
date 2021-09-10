@@ -1,14 +1,11 @@
 module GroupMembers
   class CourseMembersController < ApplicationController
-    include Groupable
-
     before_action :set_group_member, only: [:new, :create]
 
     def new
       @group = @group_member.group
       @courses = @group.courses - @group_member.courses
       @course_member = CourseMember.new
-      set_selected_group(@group)
       hide_navbar
     end
 

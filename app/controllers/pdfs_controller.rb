@@ -1,6 +1,4 @@
 class PdfsController < ApplicationController
-  include Groupable # for set_selected_group method
-
   before_action :set_pdf, only: [:edit, :update, :destroy]
 
   def edit
@@ -23,7 +21,6 @@ class PdfsController < ApplicationController
 
   def set_pdf
     @pdf = Pdf.find(params[:id])
-    set_selected_group(@pdf.page)
     authorize @pdf.section
   end
 

@@ -1,6 +1,4 @@
 class CoursesController < ApplicationController
-  include Groupable # for set_selected_group method
-
   before_action :set_course, only: [:show, :edit, :update, :destroy, :settings]
   before_action :set_group, only: [:new, :create]
 
@@ -11,13 +9,11 @@ class CoursesController < ApplicationController
 
   def new
     @course = @group.courses.new
-    set_selected_group(@course)
     authorize @course
   end
 
   def create
     @course = @group.courses.new(course_params)
-    set_selected_group(@course)
     @course.page = Page.new(title: @course.title)
     @course.course_members.new(group_member: @group.group_members.find_by(user: current_user))
     authorize @course
@@ -63,7 +59,6 @@ class CoursesController < ApplicationController
 
   def set_course
     @course = Course.find(params[:id])
-    set_selected_group(@course)
     authorize @course
   end
 

@@ -1,7 +1,5 @@
 module Sections
   class VideosController < ApplicationController
-    include Groupable # for set_selected_group method
-
     before_action :set_section, only: [:new, :create]
 
     def new
@@ -31,7 +29,6 @@ module Sections
 
     def set_section
       @section = Section.find(params[:section_id])
-      set_selected_group(@section)
       authorize @section.page
     end
   end
