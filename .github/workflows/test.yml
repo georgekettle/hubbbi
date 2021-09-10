@@ -57,8 +57,6 @@ jobs:
         run: |
           cp config/database.github.yml config/database.yml
           bundle exec rails db:create db:migrate
-      - name: Precompile Assets
-        run: bundle exec rake assets:precompile
       - name: Run model tests
         run: bundle exec rails test
       - name: Run system tests
