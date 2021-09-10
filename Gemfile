@@ -36,7 +36,8 @@ gem 'simple_form'
 gem 'rollbar' # for error tracking
 gem 'newrelic_rpm' # for measuring performance
 
-group :development, :test do  gem 'pry-byebug'
+group :development, :test do
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'launchy'
