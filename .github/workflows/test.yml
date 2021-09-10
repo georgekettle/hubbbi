@@ -14,10 +14,6 @@ jobs:
     env:
       RAILS_ENV: test
       NODE_ENV: test
-      POSTMARK_API_TOKEN: de4ac9d2-6c2b-4a39-b7cd-9c85ccbd6782
-      CLOUDINARY_URL: cloudinary://949485729499548:NK8_P_ipOhcuu-l4yctxWM5HqFQ@georgekettle
-      YOUTUBE_API_TOKEN: AIzaSyC8NQ-Iod3Y_OYw18fPtDaxri6616OphRM
-      VIMEO_API_TOKEN: c09dea209f7e0d26f1aec5546b6e8769
     runs-on: ubuntu-latest # runner
     services:
       # Label used to access the service container
