@@ -36,7 +36,8 @@ gem 'simple_form'
 gem 'rollbar' # for error tracking
 gem 'newrelic_rpm' # for measuring performance
 
-group :development, :test do  gem 'pry-byebug'
+group :development, :test do
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
   gem 'launchy'
@@ -81,7 +82,8 @@ gem 'postmark-rails'
 gem 'pundit'
 # image hostng
 gem 'cloudinary', '~> 1.16.0'
-# for positioning sections in order
+# for positioning sections in orde
+gem 'devise_invitable', '~> 2.0.0'
 gem 'acts_as_list'
 # for video uploads from youtube/vimeo
 gem 'video_info'
