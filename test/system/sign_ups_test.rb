@@ -5,7 +5,7 @@ class SignUpsTest < ApplicationSystemTestCase
     visit root_url
 
     find(:link, 'Signup', wait: 10).click
-    fill_in 'Email *', with: 'mferrer@hey.com'
+    fill_in 'Email *', with: 'mferrer@hey.com', wait: 15
     fill_in 'Full name *', with: 'Miguel Ferrer'
     fill_in 'Password *', with: 'secret'
     fill_in 'Password confirmation *', with: 'secret'
@@ -18,7 +18,7 @@ class SignUpsTest < ApplicationSystemTestCase
   test "user can not sign up if all required fields are not completed" do
     visit root_url
     click_on 'Signup'
-    fill_in 'Email *', with: ''
+    fill_in 'Email *', with: '', wait: 15
     fill_in 'Full name *', with: 'Miguel Ferrer'
     fill_in 'Password *', with: 'secret'
     fill_in 'Password confirmation *', with: 'secret'
