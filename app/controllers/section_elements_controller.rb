@@ -1,15 +1,11 @@
 class SectionElementsController < ApplicationController
-  include Groupable # for set_selected_group method
-
   def index
     @section = Section.find(params[:section_id])
-    set_selected_group(@section)
     authorize @section, :update?
   end
 
   def update
     @element = SectionElement.find(params[:id])
-    set_selected_group(@element.section)
     authorize @element.section
     respond_to do |format|
 

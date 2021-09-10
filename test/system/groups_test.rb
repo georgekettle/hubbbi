@@ -37,6 +37,7 @@ class GroupsTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
+    visit group_path(group)
     visit group_group_members_path(group)
     assert_difference 'group.group_members.count', -1, 'Group member should be deleted' do
       find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click

@@ -7,6 +7,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
+    visit group_path(group)
     visit new_group_course_path(group)
     fill_in 'Title *', with: 'Test Course'
 
@@ -23,6 +24,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
+    visit group_path(group)
     visit new_group_course_path(group)
 
     assert_no_difference 'group.courses.count', 'No new course should be created in DB' do
@@ -38,8 +40,9 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit new_group_course_path(group)
+    visit group_path(group)
     assert page.has_content?('You are not authorized to perform this action.'), 'Error should appear in the page'
+    visit new_group_course_path(group)
     assert current_path == authenticated_root_path
   end
 
@@ -58,6 +61,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
+    visit group_path(course.group)
     visit course_course_members_path(course)
     assert_difference 'course.course_members.count', -1, 'Course member should be deleted' do
       page.assert_selector(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button')

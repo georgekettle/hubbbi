@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  include Groupable # for set_selected_group method
-
   before_action :set_page, only: [:edit, :update, :show, :destroy, :edit_sections, :settings]
 
   def show
@@ -44,7 +42,6 @@ class PagesController < ApplicationController
 
   def set_page
     @page = Page.find(params[:id])
-    set_selected_group(@page)
     authorize @page
   end
 

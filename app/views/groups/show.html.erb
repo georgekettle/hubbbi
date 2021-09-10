@@ -1,6 +1,6 @@
 <% content_for :header_left do %>
   <%= link_to groups_path, class: "md:hidden h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
-    <%= render 'groups/avatar', group: @selected_group, size: 9 %>
+    <%= render 'groups/avatar', group: Current.group, size: 9 %>
   <% end %>
 <% end %>
 
