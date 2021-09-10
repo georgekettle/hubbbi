@@ -3,35 +3,59 @@ course_member_1:
   id: 1
   course_id: 1
   group_member_id: 1
-  created_at: 2021-08-18 02:20:54.567040000 Z
-  updated_at: 2021-08-18 02:20:54.567040000 Z
+  created_at: 2021-09-10 01:59:01.567870000 Z
+  updated_at: 2021-09-10 01:59:01.567870000 Z
 course_member_2:
   id: 2
   course_id: 1
   group_member_id: 2
-  created_at: 2021-08-18 02:20:54.575236000 Z
-  updated_at: 2021-08-18 02:20:54.575236000 Z
+  created_at: 2021-09-10 01:59:01.576235000 Z
+  updated_at: 2021-09-10 01:59:01.576235000 Z
 course_member_3:
   id: 3
   course_id: 1
   group_member_id: 3
-  created_at: 2021-08-18 02:20:54.580604000 Z
-  updated_at: 2021-08-18 02:20:54.580604000 Z
+  created_at: 2021-09-10 01:59:01.582068000 Z
+  updated_at: 2021-09-10 01:59:01.582068000 Z
 course_member_4:
   id: 4
-  course_id: 2
-  group_member_id: 42
-  created_at: 2021-08-18 02:20:54.586861000 Z
-  updated_at: 2021-08-18 02:20:54.586861000 Z
+  course_id: 1
+  group_member_id: 4
+  created_at: 2021-09-10 01:59:01.587372000 Z
+  updated_at: 2021-09-10 01:59:01.587372000 Z
 course_member_5:
   id: 5
-  course_id: 2
-  group_member_id: 43
-  created_at: 2021-08-18 02:20:54.591347000 Z
-  updated_at: 2021-08-18 02:20:54.591347000 Z
+  course_id: 1
+  group_member_id: 5
+  created_at: 2021-09-10 01:59:01.592539000 Z
+  updated_at: 2021-09-10 01:59:01.592539000 Z
 course_member_6:
   id: 6
-  course_id: 2
-  group_member_id: 44
-  created_at: 2021-08-18 02:20:54.595815000 Z
-  updated_at: 2021-08-18 02:20:54.595815000 Z
+  course_id: 1
+  group_member_id: 6
+  created_at: 2021-09-10 01:59:01.597266000 Z
+  updated_at: 2021-09-10 01:59:01.597266000 Z
+course_member_7:
+  id: 7
+  course_id: 1
+  group_member_id: 7
+  created_at: 2021-09-10 01:59:01.602532000 Z
+  updated_at: 2021-09-10 01:59:01.602532000 Z
+course_member_8:
+  id: 8
+  course_id: 1
+  group_member_id: 8
+  created_at: 2021-09-10 01:59:01.607984000 Z
+  updated_at: 2021-09-10 01:59:01.607984000 Z
+course_member_9:
+  id: 9
+  course_id: 1
+  group_member_id: 9
+  created_at: 2021-09-10 01:59:01.612857000 Z
+  updated_at: 2021-09-10 01:59:01.612857000 Z
+course_member_10:
+  id: 10
+  course_id: 1
+  group_member_id: 10
+  created_at: 2021-09-10 01:59:01.618403000 Z
+  updated_at: 2021-09-10 01:59:01.618403000 Z

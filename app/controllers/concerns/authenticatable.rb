@@ -12,6 +12,5 @@ module Authenticatable
     keys = [:full_name]
     devise_parameter_sanitizer.permit(:sign_up, keys: keys)
     devise_parameter_sanitizer.permit(:account_update, keys: keys)
-    devise_parameter_sanitizer.permit(:accept_invitation, keys: keys)
   end
 end

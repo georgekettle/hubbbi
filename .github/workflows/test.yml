@@ -56,7 +56,7 @@ jobs:
       - name: Prepare DB
         run: |
           cp config/database.github.yml config/database.yml
-          bundle exec rails db:create db:migrate
+          bundle exec rails db:create db:schema:load
       - name: Run model tests
         run: bundle exec rails test
       - name: Run system tests

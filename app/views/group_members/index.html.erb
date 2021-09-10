@@ -1,6 +1,6 @@
 <%= render "components/headers/header", header: "All members", subheader: @group.name, back_link: group_path(@group) do %>
   <% if policy(@group).update? %>
-    <%= link_to new_group_group_member_path(@group), class: 'icon-btn' do %>
+    <%= link_to new_group_invite_path(@group), class: 'icon-btn' do %>
       <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
     <% end %>
   <% end %>

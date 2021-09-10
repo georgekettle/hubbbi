@@ -1,0 +1,18 @@
+<h1>You've been invited to join <%= @invitable_name %> 🙌🏻</h1>
+<p><%= @invite.sender.full_name_or_email %> just invited you to join <%= @invitable_name %>. How exciting, this could be the start of something big!</p>
+<p>Click the link below to signup and join <%= @invite.invitable.class.to_s.downcase %>.</p>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+  <tbody>
+    <tr>
+      <td align="left">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td><%= link_to "Join #{@invitable_name.truncate(30)}", @registration_url, target: '_blank' %></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

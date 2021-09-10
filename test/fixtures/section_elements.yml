@@ -4,30 +4,22 @@ section_element_1:
   section_id: 1
   element_type: PageReference
   element_id: 1
-  created_at: 2021-08-18 02:20:54.697523000 Z
-  updated_at: 2021-08-18 02:20:54.697523000 Z
+  created_at: 2021-09-10 01:59:08.065034000 Z
+  updated_at: 2021-09-10 01:59:08.065034000 Z
   position: 1
 section_element_2:
   id: 2
   section_id: 1
   element_type: PageReference
   element_id: 2
-  created_at: 2021-08-18 02:20:54.706876000 Z
-  updated_at: 2021-08-18 02:20:54.706876000 Z
+  created_at: 2021-09-10 01:59:08.072508000 Z
+  updated_at: 2021-09-10 01:59:08.072508000 Z
   position: 2
 section_element_3:
   id: 3
   section_id: 1
   element_type: PageReference
   element_id: 3
-  created_at: 2021-08-18 02:20:54.721209000 Z
-  updated_at: 2021-08-18 02:20:54.721209000 Z
+  created_at: 2021-09-10 01:59:08.078817000 Z
+  updated_at: 2021-09-10 01:59:08.078817000 Z
   position: 3
-section_element_6:
-  id: 6
-  section_id: 5
-  element_type: Text
-  element_id: 3
-  created_at: 2021-08-20 11:50:14.831181000 Z
-  updated_at: 2021-08-20 11:50:14.831181000 Z
-  position: 1

@@ -39,7 +39,7 @@
   <% end %>
   <% if @courses.any? %>
     <%= render :partial => "courses/course", :collection => @courses %>
-  <% else %>
+  <% elsif policy(@group.courses.new).create? %>
     <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
       <h4 class="tracking-tight text-center">Create your first course</h4>
       <p class="text-xs text-gray-400 mb-2 text-center">Your people need you! It's time to start sharing your knowledge so others can improve their life.</p>
@@ -48,5 +48,7 @@
         Create a course
       <% end %>
     </div>
+  <% else %>
+    <h4 class="text-sm text-gray-400 text-center">You don't have access to any courses yet 👀</h4>
   <% end %>
 <% end %>

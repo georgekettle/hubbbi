@@ -25,7 +25,7 @@ class ContentsTest < ApplicationSystemTestCase
       assert page.has_content?('By adding pages, you can break this page up into modules'), 'Add new pagem section subtitle exists'
     end
 
-    click_on 'Add a page'
+    find(:link, 'Add a page', match: :first).click
 
     fill_in 'Title', with: 'Test Page'
     fill_in 'Subtitle', with: 'Test Page Subtitle'
