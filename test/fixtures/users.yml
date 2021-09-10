@@ -3,479 +3,287 @@ user_1:
   id: 1
   email: george@gmail.com
   encrypted_password: "$2a$12$5ww48xfpS1hzjMMFMPjjF.x47VnuwnDhs5Wr4IgQYD9Td4Sg1YfnC"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:02.894475000 Z
   updated_at: 2021-09-10 01:58:08.775680000 Z
   full_name: George Kettle
   display_name: George
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_3:
   id: 3
   email: filia@gmail.com
   encrypted_password: "$2a$12$l3VLpX8I9tMKeEdp218Q3eSc59ZcBlhrxhzLF8EnZy6adia0J/3RO"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:03.322184000 Z
   updated_at: 2021-09-10 01:58:13.478821000 Z
   full_name: Filia Birkners
   display_name: Filia
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_4:
   id: 4
   email: ante@gmail.com
   encrypted_password: "$2a$12$jjFkgm7SGXJbBrkr4eavG.rMLwZ6FOW04TKL.BcbVZFVRkR/jBgie"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:03.533940000 Z
   updated_at: 2021-09-10 01:58:14.902504000 Z
   full_name: Ante Strika
   display_name: Ante
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_5:
   id: 5
   email: stephani.gerlach@jacobson.net
   encrypted_password: "$2a$12$3vuKA6cCEaI3LVi07sEOjeRwRqc54BvLpbNc6zU0ZU8er/VBlYX6C"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:04.047145000 Z
   updated_at: 2021-09-10 01:58:16.956806000 Z
   full_name: Pres. Dario Kilback
   display_name: Pres.
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_6:
   id: 6
   email: bo.walsh@daugherty.net
   encrypted_password: "$2a$12$Lv0xtCurLDq1UAntH8qi3.3LOROpK364Sfg4528PDuDIR20CaimBK"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:04.259592000 Z
   updated_at: 2021-09-10 01:58:18.722545000 Z
   full_name: Ms. Brittney Beer
   display_name: Ms.
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_7:
   id: 7
   email: maya_harvey@klocko.com
   encrypted_password: "$2a$12$dUtHo7IH8ohbPbHdSCg5hOi8E/H4E7aAB4SKNzugX4AjCP927moOS"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:04.471126000 Z
   updated_at: 2021-09-10 01:58:21.036084000 Z
   full_name: Eveline Crooks
   display_name: Eveline
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_8:
   id: 8
   email: ilse@raynor.biz
   encrypted_password: "$2a$12$Gtnn7iwyXinwSpkmfz08heCoarFJG038s3eEqmDUx7TrM7.C5UP3S"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:04.679495000 Z
   updated_at: 2021-09-10 01:58:22.626268000 Z
   full_name: Gustavo Feest
   display_name: Gustavo
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_9:
   id: 9
   email: coretta@stehr-senger.co
   encrypted_password: "$2a$12$HCYdEACNgYHNlKAv4EUaPOte7li1O7COTTIC2qWIzv3.IsYu.Lj7m"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:04.892181000 Z
   updated_at: 2021-09-10 01:58:24.300296000 Z
   full_name: Galina Bosco
   display_name: Galina
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_10:
   id: 10
   email: bud@herzog-baumbach.co
   encrypted_password: "$2a$12$cukO2bETo0C8npICRfL0Xe0.mh/3Pj4.aUgoLfJcI/qKdYwCN035."
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:05.106897000 Z
   updated_at: 2021-09-10 01:58:25.827983000 Z
   full_name: Everett Koch
   display_name: Everett
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_11:
   id: 11
   email: arcelia.collier@feeney-little.name
   encrypted_password: "$2a$12$EcvXlQZx3WVA65v5LLKuqugX3KRalteqiITJNfnTg7UW67NSBL/Zm"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:05.322186000 Z
   updated_at: 2021-09-10 01:58:29.786116000 Z
   full_name: Amb. Monte Collins
   display_name: Amb.
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_12:
   id: 12
   email: marcel.wyman@hilpert.info
   encrypted_password: "$2a$12$gr7u5kSSXqLyE/FCSPh9xOo.J9VDbd4U3n1MajR1m2tSr41obTmkG"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:05.529665000 Z
   updated_at: 2021-09-10 01:58:31.318567000 Z
   full_name: Amb. Mary Conn
   display_name: Amb.
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_13:
   id: 13
   email: williemae@schinner-kilback.info
   encrypted_password: "$2a$12$LrBEuR4v/hWUx1LZOWll..aCmiMeIdlzj3/Ujs9./2TUQIgyLKTEi"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:05.737266000 Z
   updated_at: 2021-09-10 01:58:32.843750000 Z
   full_name: Daria Beer
   display_name: Daria
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_14:
   id: 14
   email: dann@weimann-boyle.name
   encrypted_password: "$2a$12$soZEKTNfZifysoxcmPWmfuPB.G2tHA8TlJgVw2/Uh1KzRInOYa6Ha"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:05.943905000 Z
   updated_at: 2021-09-10 01:58:37.106262000 Z
   full_name: Gov. Dannette Gusikowski
   display_name: Gov.
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_15:
   id: 15
   email: al@daniel-schumm.co
   encrypted_password: "$2a$12$sTP/jmOxKdT8c7SmuMYoAuxmWihboCQfjgajG6SookAI3JQyCQF.i"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:06.151856000 Z
   updated_at: 2021-09-10 01:58:38.578309000 Z
   full_name: Jenice Mayer
   display_name: Jenice
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_16:
   id: 16
   email: tijuana_bailey@bailey-rosenbaum.biz
   encrypted_password: "$2a$12$oCvxCeWf32dUYlaclgesduFRVUJFeudgQowzJ45DOoHqhn1V6PKD6"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:06.360786000 Z
   updated_at: 2021-09-10 01:58:41.008041000 Z
   full_name: Annemarie Miller
   display_name: Annemarie
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_17:
   id: 17
   email: antione@hammes.org
   encrypted_password: "$2a$12$CiB7d7TOX6rttpsfGh1fJu3RqTXaXrQv5Wtss0VlJ2evzy4K42/vG"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:06.567704000 Z
   updated_at: 2021-09-10 01:58:43.195183000 Z
   full_name: Lindsay Mosciski
   display_name: Lindsay
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_18:
   id: 18
   email: loralee_bergstrom@altenwerth.name
   encrypted_password: "$2a$12$13DCen6aytm0w4gSZVydCuYe5Sp9eQtM/yYQeBsmftea1TSfYWngO"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:06.784441000 Z
   updated_at: 2021-09-10 01:58:44.781627000 Z
   full_name: Agustin Ruecker
   display_name: Agustin
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_19:
   id: 19
   email: maximo@dare-gutkowski.io
   encrypted_password: "$2a$12$KNK7HfFaCu.nYWq/9aLts.hs.OUjbwIVIrmTIPO8gyg9FQL7AZIQm"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:06.996761000 Z
   updated_at: 2021-09-10 01:58:46.717271000 Z
   full_name: Gidget Herzog III
   display_name: Gidget
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_20:
   id: 20
   email: verena_farrell@homenick-gulgowski.co
   encrypted_password: "$2a$12$WtnDWSinxGS4qSjuHoJUwOKxlGJ14VCeIrYqwdtPh/BtP0rinClwS"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:07.211671000 Z
   updated_at: 2021-09-10 01:58:48.975258000 Z
   full_name: Tera Kirlin
   display_name: Tera
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_21:
   id: 21
   email: neal@ward-yundt.org
   encrypted_password: "$2a$12$C2tCUqieJHwTKYYawiCm5OeK3slCiqkqQ6s5YWXv0EsZhmRbE19qS"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:07.426234000 Z
   updated_at: 2021-09-10 01:58:51.118574000 Z
   full_name: Salvador Langosh
   display_name: Salvador
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_22:
   id: 22
   email: charita_crooks@schroeder.name
   encrypted_password: "$2a$12$Nr7jlnX7ZbnvqvkAOwyNue.DdEUnT7M4pg/Exh/.VV92WtysFmXhS"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:07.640751000 Z
   updated_at: 2021-09-10 01:58:52.674568000 Z
   full_name: Duncan Schowalter
   display_name: Duncan
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_23:
   id: 23
   email: andres@bode.info
   encrypted_password: "$2a$12$uDesQBFl7GGEhno4RjGRwewvPzlxZHVDopOuijF2FUsCq7HRTQ6Y."
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:07.884675000 Z
   updated_at: 2021-09-10 01:58:54.316216000 Z
   full_name: Mr. Isreal Schuppe
   display_name: Mr.
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_24:
   id: 24
   email: larry.zemlak@grimes.com
   encrypted_password: "$2a$12$KVpOQcwBAX/GLyBo2eqzaOC.3lVF9hfDcDD9oTpdUS/QNn9Qg7OXa"
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:08.096752000 Z
   updated_at: 2021-09-10 01:58:56.009979000 Z
   full_name: Regenia Deckow Ret.
   display_name: Regenia
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
-  selected_group_member_id: 
+  selected_group_member_id:
 user_2:
   id: 2
   email: jason@gmail.com
   encrypted_password: "$2a$12$ThRzUaVPVOwHrEGf6FHlc.OmTtkgxRk.CMoi8SLs37Sf9G12UdPo."
-  reset_password_token: 
-  reset_password_sent_at: 
-  remember_created_at: 
+  reset_password_token:
+  reset_password_sent_at:
+  remember_created_at:
   created_at: 2021-09-10 01:58:03.100913000 Z
   updated_at: 2021-09-10 02:00:40.767212000 Z
   full_name: Jason Irving
   display_name: Jason
-  invitation_token: 
-  invitation_created_at: 
-  invitation_sent_at: 
-  invitation_accepted_at: 
-  invitation_limit: 
-  invited_by_type: 
-  invited_by_id: 
-  invitations_count: 0
   selected_group_member_id: 2
