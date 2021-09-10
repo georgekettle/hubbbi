@@ -4,7 +4,7 @@ class SignUpsTest < ApplicationSystemTestCase
   test "user signs up correctly" do
     visit root_url
 
-    click_on 'Signup'
+    find(:link, 'Signup', wait: 10).click
     fill_in 'Email *', with: 'mferrer@hey.com'
     fill_in 'Full name *', with: 'Miguel Ferrer'
     fill_in 'Password *', with: 'secret'
@@ -33,16 +33,18 @@ class SignUpsTest < ApplicationSystemTestCase
 
   test "user can sign up if invited by another user" do
     ActionMailer::Base.deliveries.clear
-
     user = users(:user_2)
     group = groups(:group_1)
     new_user_email = 'miguelistheking@gmail.com'
 
     login_as user, scope: :user
-    visit new_group_group_member_path(group)
+    visit new_group_invite_path(group)
 
-    assert_difference 'User.count', 1, 'New user should be created in DB' do
-      fill_in 'Email', with: new_user_email
+    assert_difference 'Invite.count', 1, 'New invite should be created in DB' do
+      find('div.choices').click
+      assert page.has_css?('.choices__list', wait: 15)
+      find('div.choices__item.choices__item--choice.choices__item--selectable.is-highlighted', text: 'Foundations').click
+      fill_in 'Email *', with: new_user_email
       assert_difference 'ActionMailer::Base.deliveries.size', 1, 'New email should be enqueued' do
         click_on 'Send invite'
       end
@@ -51,21 +53,25 @@ class SignUpsTest < ApplicationSystemTestCase
     logout
 
     invitation_token = retrieve_invitation_token(ActionMailer::Base.deliveries.last)
-    visit accept_user_invitation_path(invitation_token: invitation_token)
+    visit new_user_registration_path(invite_token: invitation_token)
 
-    fill_in 'Full name', with: 'Invited Miguel'
-    fill_in 'Password', with: 'secret'
-    fill_in 'Password confirmation', with: 'secret'
-    click_on 'Set my password'
-    assert page.has_content? 'Your password was set successfully. You are now signed in.'
+    fill_in 'Email *', with: 'miguelfixthis@gmail.com'
+    fill_in 'Full name *', with: 'Miguel Ferrer'
+    fill_in 'Password *', with: 'secret'
+    fill_in 'Password confirmation *', with: 'secret'
+    assert_difference 'User.count', 1, 'New user should be created in DB' do
+      click_on 'Sign up'
+    end
+
+    assert page.has_content? 'Welcome! You have signed up successfully.'
   end
 
   private
 
   def retrieve_invitation_token(mail)
     body = mail.body.encoded.gsub("\r","").gsub("\n","")
-    body.match(/http:[^ ]+localhost:3000\/users\/invitation\/accept\?invitation_token\=[^ ]+/)[0]
-        .split("invitation_token=")
-        .last
+    body.match(/http:[^ ]+localhost:#{Regexp.quote(Capybara.current_session.server.port.to_s)}\/users\/sign_up\?invite_token\=[^ ]+/)[0]
+        .split("invite_token=")
+        .last[0..-7]
   end
 end
