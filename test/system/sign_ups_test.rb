@@ -38,6 +38,7 @@ class SignUpsTest < ApplicationSystemTestCase
     new_user_email = 'miguelistheking@gmail.com'
 
     login_as user, scope: :user
+    visit group_path(group)
     visit new_group_invite_path(group)
 
     assert_difference 'Invite.count', 1, 'New invite should be created in DB' do

@@ -15,6 +15,7 @@ class ContentsTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
+    visit group_path(course.group)
     visit edit_sections_page_path(course)
 
     assert_difference 'course.page.sections.count', 1, 'New page section should be created in DB' do
