@@ -1,3 +1,13 @@
+<% content_for :group_member_search_list do %>
+  <%= render('components/filters/search_filter', container_id:'course_members', placeholder:'Search users') do %>
+    <% @group_members.each_with_index do |member, index| %>
+      <div class="filter-item" data-filter-text="<%= "#{member.user.full_name} #{member.user.display_name} #{member.user.email}" %>" style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
+        <%= render "list_item", group_member: member %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
 <%= render "components/headers/header", header: "All members", subheader: @group.name, back_link: group_path(@group) do %>
   <% if policy(@group).update? %>
     <%= link_to new_group_invite_path(@group), class: 'icon-btn' do %>
@@ -7,11 +17,28 @@
 <% end %>
 
 <%= render "shared/container", classes: "p-4" do %>
-  <%= render('components/filters/search_filter', container_id:'course_members', placeholder:'Search users') do %>
-    <% @group_members.each_with_index do |member, index| %>
-      <div class="filter-item" data-filter-text="<%= "#{member.user.full_name} #{member.user.display_name} #{member.user.email}" %>" style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
-        <%= render "list_item", group_member: member %>
+  <% if policy(@group).update? %>
+    <div data-controller="segmented-control">
+      <div class="mb-4">
+        <%= render 'videos/segmented_control',
+                    options: [
+                          { title: "Members", id: 'members', checked: true },
+                          { title: "Invites", id: 'invites', checked: false },
+                      ] %>
       </div>
-    <% end %>
+
+      <div id="members-toggle-content" class="segmented-option-content">
+        <%= yield(:group_member_search_list) if content_for?(:group_member_search_list) %>
+      </div>
+
+      <div id="invites-toggle-content" class="segmented-option-content">
+        <p>invites content</p>
+      </div>
+    </div>
+  <% else %>
+    <div id="members-toggle-content" class="segmented-option-content">
+      <%= yield(:group_member_search_list) if content_for?(:group_member_search_list) %>
+    </div>
   <% end %>
+
 <% end %>
