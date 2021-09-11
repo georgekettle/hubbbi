@@ -267,5 +267,5 @@
 }
 
 .choices__input.choices__input--cloned {
-  @apply inline shadow-none bg-transparent border-none;
+  @apply inline shadow-none bg-transparent border-none focus:ring-0;
 }
