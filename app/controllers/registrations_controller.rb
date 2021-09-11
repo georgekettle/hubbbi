@@ -23,6 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
         invite.sub_invites.each do |sub_invite|
           sub_invite.invitable.add_user(invitable_resource)
         end
+        invite.update(status: 'accepted')
       end
     end
 

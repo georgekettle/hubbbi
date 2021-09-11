@@ -6,7 +6,10 @@
         <%= render "components/avatar" %>
         <div class="ml-2">
           <h4><%= invite.email %></h4>
-          <p class="text-xs text-gray-400">Sent <%= time_ago_in_words(invite.created_at) %> ago <%= render 'components/middle_dot' %> Pending</p>
+          <% status_classes = 'text-yellow-500' if invite.status == 'pending' %>
+          <% status_classes = 'text-green-500' if invite.status == 'accepted' %>
+          <% status_classes = 'text-red-500' if invite.status == 'declined' %>
+          <p class="text-xs text-gray-400">Sent <%= time_ago_in_words(invite.created_at) %> ago <%= render 'components/middle_dot' %> <span class="<%= status_classes %>"><%= invite.status.capitalize %></span></p>
         </div>
       </div>
     </div>
@@ -25,11 +28,14 @@
         data-transition-leave-from="opacity-100 scale-100"
         data-transition-leave-to="opacity-0 scale-95"
       >
+        <%= link_to("See profile",
+                      group_member_path(@group.group_members.find_by(user: invite.recipient)),
+                      class: "dropdown-link") if invite.recipient %>
         <%= link_to("Delete invitation",
                       invite_path(invite),
                       method: :delete,
                       data: {confirm: "Are you sure you'd like to delete invitation to #{invite.email}. This invite will no longer be valid."},
-                      class: "dropdown-link-danger") %>
+                      class: "dropdown-link-danger") if invite.status == 'pending' %>
       </div>
     </div>
   </div>
