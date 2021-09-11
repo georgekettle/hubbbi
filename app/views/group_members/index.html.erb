@@ -22,8 +22,8 @@
       <div class="mb-4">
         <%= render 'videos/segmented_control',
                     options: [
-                          { title: "Members", id: 'members', checked: true },
-                          { title: "Invites", id: 'invites', checked: false },
+                          { title: "Members", id: 'members', checked: ['members', nil].include?(params[:section]) },
+                          { title: "Invites", id: 'invites', checked: params[:section] == 'invites' },
                       ] %>
       </div>
 
@@ -32,7 +32,11 @@
       </div>
 
       <div id="invites-toggle-content" class="segmented-option-content">
-        <p>invites content</p>
+        <% @group.invites.each_with_index do |invite, index| %>
+          <div style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
+            <%= render 'groups/invites/list_item', invite: invite %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% else %>

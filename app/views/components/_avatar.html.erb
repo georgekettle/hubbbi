@@ -1,9 +1,10 @@
+<% user ||= nil %>
 <% size ||= 12 %>
 <% classes ||= "" %>
 
 <div class="w-<%= size %> h-<%= size %> relative inline-block overflow-hidden <%= classes %>">
   <div class="w-full h-full rounded-full border border-white overflow-hidden text-center bg-contrast-light flex justify-center items-center">
-    <% if user.avatar.attached? %>
+    <% if user && user.avatar.attached? %>
       <%= cl_image_tag(user.avatar.key, :width => 200, :height => 200, :crop => :fill) %>
     <% else %>
       <%= image_tag "avatar.svg", :width => 200, :height => 200 %>
