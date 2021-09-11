@@ -5,7 +5,11 @@
         <!-- avatar -->
         <%= render "components/avatar", user: invite.recipient %>
         <div class="ml-2">
-          <h4><%= invite.email %></h4>
+          <% if invite.recipient %>
+            <h4><%= invite.recipient.full_name_or_email %></h4>
+          <% else %>
+            <h4><%= invite.email %></h4>
+          <% end %>
           <% status_classes = 'text-yellow-500' if invite.status == 'pending' %>
           <% status_classes = 'text-green-500' if invite.status == 'accepted' %>
           <% status_classes = 'text-red-500' if invite.status == 'declined' %>
