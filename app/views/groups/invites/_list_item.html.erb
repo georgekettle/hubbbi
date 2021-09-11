@@ -3,7 +3,7 @@
     <div class="w-full flex items-center justify-between">
       <div class="flex items-center">
         <!-- avatar -->
-        <%= render "components/avatar" %>
+        <%= render "components/avatar", user: invite.recipient %>
         <div class="ml-2">
           <h4><%= invite.email %></h4>
           <% status_classes = 'text-yellow-500' if invite.status == 'pending' %>
