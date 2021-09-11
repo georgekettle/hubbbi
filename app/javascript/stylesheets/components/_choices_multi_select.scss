@@ -1,7 +1,5 @@
 .choices {
-  position: relative;
-  margin-bottom: 24px;
-  font-size: 16px
+  @apply mb-0 relative text-base;
 }
 
 .choices:focus {
