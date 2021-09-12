@@ -1,10 +1,22 @@
+.section-drag-component {
+  @apply hidden;
+}
+
 .gu-mirror {
   position: fixed !important;
   margin: 0 !important;
   z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
+  opacity: 1;
+  // -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  // filter: alpha(opacity=80);
+
+  .section-content {
+    @apply hidden;
+  }
+
+  .section-drag-component {
+    @apply block;
+  }
 }
 .gu-hide {
   display: none !important;
