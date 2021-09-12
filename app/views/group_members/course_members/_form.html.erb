@@ -1,0 +1,25 @@
+<% course_member = CourseMember.new %>
+<% courses = group_member.group.courses - group_member.courses %>
+
+<%= simple_form_for [group_member, course_member] do |f| %>
+  <div class="pb-24">
+    <%= f.input :id, :as => :check_boxes, label: "", include_hidden: false do %>
+      <%= render('components/filters/search_filter', placeholder:'Search courses') do %>
+        <%= f.collection_check_boxes :id, (courses), :id, :title do |builder| %>
+          <%= content_tag(:div, :class => "filter-item", data: {filter_text: builder.object.title}) do %>
+            <%= builder.check_box(class:"group-member-checkbox") %>
+            <%= builder.label {|label| render("courses/checkbox_item", course: builder.object ) } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if courses.empty? %>
+      <p class="text-xs text-gray-400 text-center">There are no new courses available for <%= group_member.user.full_name_or_email %>...</p>
+    <% end %>
+  </div>
+  <div class="form-actions absolute bottom-0 w-full left-0 bg-white border-t border-gray-200">
+    <%= render "shared/container", classes: "p-4 px-4 sm:px-8" do %>
+      <%= f.button :submit, "Add to courses", class: 'w-full' %>
+    <% end %>
+  </div>
+<% end %>
