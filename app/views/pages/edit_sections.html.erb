@@ -9,8 +9,8 @@
   <%= render "components/saving", ids:"edit-section-saving-badge" %>
 <% end %>
 
-<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
-  <div class="pb-24">
+<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll">
+  <div class="pb-24 overflow-x-hidden">
     <%= render "shared/container", classes: "p-4" do %>
       <div data-section-sortable-target="container" class="dropzones">
         <% @page.sections.each do |section| %>
