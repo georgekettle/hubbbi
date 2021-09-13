@@ -8,9 +8,11 @@
 <% end %>
   <div class="section">
     <!-- shows when dragging -->
-    <div class="section-drag-component">
-      <%= render 'components/section_drag_component' %>
-    </div>
+    <% if editable %>
+      <div class="section-drag-component">
+        <%= render 'components/section_drag_component' %>
+      </div>
+    <% end %>
     <!-- hidden when dragging -->
     <div class="section-content">
       <% case section.section_type %>

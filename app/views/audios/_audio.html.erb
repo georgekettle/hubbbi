@@ -1,1 +1,30 @@
-<div class="bg-gray-400 p-8 rounded-lg">audio</div>
+<% editable ||= false %>
+
+<% if editable %>
+  <div class="w-full relative">
+    <div class="w-full rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
+      <div>
+        <h4 class="leading-tight"><%= audio.title %></h4>
+      </div>
+    </div>
+
+    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
+        <%= link_to "Update audio", edit_audio_path(audio), class: "dropdown-audio" %>
+        <%= link_to 'Delete audio', audio, method: :delete, class: "dropdown-audio-danger" %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div data-controller="audio" data-audio-src-value="<%= cl_video_path(audio.file.key) %>" data-action="click->audio#togglePlay" class="group w-full rounded-lg p-4 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block">
+    <div class="group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2">
+      <%= link_to "#", data: { audio_target: 'play' } do %>
+        <%= render 'icons/play', classes: "stroke-current text-white" %>
+      <% end %>
+      <%= link_to "#", class: 'hidden', data: { audio_target: 'pause' } do %>
+        <%= render 'icons/pause', classes: "stroke-current text-white" %>
+      <% end %>
+    </div>
+    <h4 class="leading-tight"><%= audio.title %></h4>
+  </div>
+<% end %>
