@@ -6,7 +6,6 @@ class Uploader {
     this.url = url
     this.progress = progress
     this.onLoad = onLoad
-    debugger
     // initilize direct upload
     this.upload = new DirectUpload(this.file, this.url, this)
   }
@@ -15,8 +14,7 @@ class Uploader {
     // start upload
     this.upload.create((error, blob) => {
       if (error) {
-        debugger
-        console.log("error")
+        console.log(error)
       } else {
         this.onLoad(blob.signed_id)
       }

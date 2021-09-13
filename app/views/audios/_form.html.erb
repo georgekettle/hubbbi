@@ -2,8 +2,8 @@
   <%= f.file_field :file,
           direct_upload: true,
           required: true,
-          accept:"audio/quicktime, audio/mp4",
-          data: { controller: 'uploader', uploader_filetypes_value: ['audio/quicktime', 'audio/mp4'] } %>
+          accept:"audio/*",
+          data: { controller: 'uploader', uploader_filetypes_value: ['audio/*'], file_metadata_resource_type:"video" } %>
 
   <%= f.input :title %>
   <div class="form-actions">
