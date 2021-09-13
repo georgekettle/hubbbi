@@ -22,6 +22,8 @@
         <%= render :partial => "images/section", :locals => {images: section.images, section: section, editable: editable} %>
       <% when "video" %>
         <%= render :partial => "videos/section", :locals => {videos: section.videos, section: section, editable: editable} %>
+      <% when "audio" %>
+        <%= render :partial => "audios/section", :locals => {audios: section.audios, section: section, editable: editable} %>
       <% when "link" %>
         <%= render :partial => "links/section", :locals => {links: section.links, section: section, editable: editable} %>
       <% when "pdf" %>

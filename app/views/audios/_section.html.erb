@@ -1,0 +1,43 @@
+<% editable ||= false %>
+
+<div class="section">
+  <% if editable %>
+    <div class="w-full relative z-10">
+      <%= render "components/headers/section_header", title: "Audio", icon:"audio" do %>
+        <div class="flex items-center">
+          <% if policy(section.page).update? %>
+            <div class="mr-2">
+              <%= render "components/saving" %>
+            </div>
+            <%= render "components/dropdowns/options_dropdown" do %>
+              <%= link_to("Add audio", new_section_audio_path(section), class: 'dropdown-link') if audios.empty? %>
+              <%= link_to("Update audio", edit_audio_path(audios.first), class: 'dropdown-link') unless audios.empty? %>
+              <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
+            <% end %>
+            <div class="handle icon-btn faded relative overflow-hidden">
+              <%= render "icons/handle", classes: "handle h-4 w-4" %>
+              <div class="handle absolute h-full w-full top-0 left-0"></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="relative">
+    <% if audios.present? %>
+      <div class="w-full">
+        <%= render "audios/audio", audio: audios.first, editable: editable %>
+      </div>
+    <% elsif editable %>
+      <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
+        <h4 class="tracking-tight text-center">Add a new audio</h4>
+        <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
+        <%= link_to new_section_audio_path(section), class: 'button' do %>
+          <%= render "icons/audio", classes: "stroke-current text-white mr-2" %>
+          Add audio
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
