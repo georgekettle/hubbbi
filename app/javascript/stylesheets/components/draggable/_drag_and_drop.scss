@@ -1,0 +1,36 @@
+.drag-and-drop-options {
+  .os-scrollbar-horizontal {
+    bottom: -20px;
+  }
+
+  .os-theme-round-dark > .os-scrollbar-horizontal > .os-scrollbar-track:before {
+    height: 0px;
+  }
+
+  .os-theme-round-dark > .os-scrollbar-horizontal {
+    height: 50px
+  }
+
+  .os-theme-round-dark > .os-scrollbar-horizontal > .os-scrollbar-track > .os-scrollbar-handle {
+    min-width: 50px;
+    max-width: 50px;
+    // @apply bg-gray-800 rounded-full;
+  }
+
+  .os-theme-round-dark > .os-scrollbar-horizontal > .os-scrollbar-track > .os-scrollbar-handle:after {
+    content: url('~assets/right_to_left.svg');
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    padding-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .os-theme-round-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle:hover:after,
+  .os-theme-round-dark > .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active:after {
+      transform: translate(-50%, -50%) scale(1.1);
+      padding-bottom: 15px;
+  }
+}
