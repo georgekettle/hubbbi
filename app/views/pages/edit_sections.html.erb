@@ -22,18 +22,20 @@
       </div>
     <% end %>
 
-    <div class="fixed w-screen bg-contrast-100 bottom-0 left-0 pb-3 px-0 z-50" style="z-index: 1000!important;">
+    <div class="drag-and-drop-options fixed w-screen bg-contrast-100 bottom-0 left-0 px-0 z-50" style="z-index: 1000!important;">
       <div class="inline-flex items-center justify-center p-1 px-3 bg-contrast-200 w-full mb-1">
         <%= render "icons/drag", classes: "stroke-current text-contrast-800 h-3.5 w-3.5 mr-2" %>
         <h4 class="text-contrast-800 text-sm">Drag & drop elements below:</h4>
       </div>
-      <div data-drag-drop-editor-target="dropzone" class="w-full flex items-center justify-center overflow-scroll">
-        <%= render 'sections/drag_element', section_type: :page_reference, title: "Pages", icon: 'library' %>
-        <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
-        <%= render 'sections/drag_element', section_type: :image, title: "Image(s)", icon: 'image' %>
-        <%= render 'sections/drag_element', section_type: :video, title: "Video", icon: 'video' %>
-        <%= render 'sections/drag_element', section_type: :pdf, title: "Pdf", icon: 'pdf' %>
-        <%= render 'sections/drag_element', section_type: :link, title: "Links", icon: 'zap' %>
+      <div data-controller="scroll-handle" class="pb-3">
+        <div  data-drag-drop-editor-target="dropzone" class="w-full flex items-center sm:justify-center">
+          <%= render 'sections/drag_element', section_type: :page_reference, title: "Pages", icon: 'library' %>
+          <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
+          <%= render 'sections/drag_element', section_type: :image, title: "Image(s)", icon: 'image' %>
+          <%= render 'sections/drag_element', section_type: :video, title: "Video", icon: 'video' %>
+          <%= render 'sections/drag_element', section_type: :pdf, title: "Pdf", icon: 'pdf' %>
+          <%= render 'sections/drag_element', section_type: :link, title: "Links", icon: 'zap' %>
+        </div>
       </div>
     </div>
   </div>
