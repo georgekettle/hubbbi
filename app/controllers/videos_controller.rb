@@ -21,10 +21,11 @@ class VideosController < ApplicationController
 
   def video_params
     strong_params = params.require(:video).permit(:title, :url, :file)
-    if params[:video][:is_upload] == "true"
-      strong_params.except(:url)
-    else
+
+    if params[:video][:remote_video] == "true"
       strong_params.except(:file)
+    else
+      strong_params.except(:url)
     end
   end
 end
