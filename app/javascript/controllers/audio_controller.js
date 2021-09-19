@@ -1,26 +1,36 @@
 import { Controller } from "stimulus"
-import {Howl, Howler} from 'howler';
+
+let player // to enable sync of all audio's on the page (ie. pause playing if I play anothe mp3)
+
+const secondsToTime = (s) => {return(s-(s%=60))/60+(9<s?':':':0')+s}
 
 export default class extends Controller {
-  static targets = ["play", "pause"]
+  static targets = ["audio", "play", "pause", "progress", "progressContainer", "duration", "currentTime"]
   static values = { src: String }
 
   connect() {
-    this.sound = new Howl({
-      src: [this.srcValue],
-      html5: true,
-      format: ['mp3', 'aac']
+    const _this = this
+    this.sound = this.audioTarget
+    this.audioTarget.addEventListener('timeupdate', (e) => {
+      this.updateProgress(e, _this)
     });
-    this.duration = this.sound._duration
+    this.sound.addEventListener('durationchange', (e) => {
+      _this.setDuration()
+    });
+
   }
 
-  togglePlay(e) {
-    e.preventDefault()
-    this.sound.playing() ? this.pause() : this.play();
+  disconnect() {
+    this.pause()
   }
 
-  play() {
-    this.sound.play()
+  play(e) {
+    e && e.preventDefault()
+    if (player) {
+      player.pause()
+    }
+    player = this
+    player.sound.play()
     this.playTargets.forEach((play) => {
       play.classList.add('hidden')
     })
@@ -29,7 +39,11 @@ export default class extends Controller {
     })
   }
 
-  pause() {
+  pause(e) {
+    e && e.preventDefault()
+    if (player == this) {
+      player = null
+    }
     this.sound.pause()
     this.playTargets.forEach((play) => {
       play.classList.remove('hidden')
@@ -37,5 +51,46 @@ export default class extends Controller {
     this.pauseTargets.forEach((pause) => {
       pause.classList.add('hidden')
     })
+  }
+
+  setDuration() {
+    this.durationTarget.innerHTML = this.secondsToTime(this.sound.duration)
+  }
+
+  secondsToTime(e){
+    var h = Math.floor(e / 3600).toString().padStart(2,'0'),
+        m = Math.floor(e % 3600 / 60).toString().padStart(2,'0'),
+        s = Math.floor(e % 60).toString().padStart(2,'0');
+
+    if (parseInt(h) > 0) {
+      return h + ':' + m + ':' + s;
+    } else {
+      return m + ':' + s;
+    }
+    //return `${h}:${m}:${s}`;
+  }
+
+  // Update progress bar
+  updateProgress(e, _this) {
+    // set progress bar
+    const { duration, currentTime } = e.srcElement;
+    const progressPercent = (currentTime / duration) * 100;
+    _this.progressTarget.style.width = `${progressPercent}%`;
+    // set currentTime
+    _this.currentTimeTarget.innerText = _this.secondsToTime(currentTime)
+  }
+
+  // Set progress bar
+  setProgress(e) {
+    const width = e.currentTarget.clientWidth;
+    const clickX = e.offsetX;
+    const duration = this.sound.duration;
+
+    this.sound.currentTime = (clickX / width) * duration;
+    if (this.sound.paused) {
+      this.pause()
+    } else {
+      this.play()
+    }
   }
 }

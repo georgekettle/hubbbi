@@ -10,21 +10,26 @@
 
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
-        <%= link_to "Update audio", edit_audio_path(audio), class: "dropdown-audio" %>
-        <%= link_to 'Delete audio', audio, method: :delete, class: "dropdown-audio-danger" %>
+        <%= link_to "Update audio", edit_audio_path(audio), class: "dropdown-link" %>
+        <%= link_to 'Delete audio', audio, method: :delete, class: "dropdown-link-danger" %>
       <% end %>
     </div>
   </div>
 <% else %>
-  <div data-controller="audio" data-audio-src-value="<%= cl_video_path(audio.file.key) %>" data-action="click->audio#togglePlay" class="group w-full rounded-lg p-4 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block">
-    <div class="group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2">
-      <%= link_to "#", data: { audio_target: 'play' } do %>
-        <%= render 'icons/play', classes: "stroke-current text-white" %>
-      <% end %>
-      <%= link_to "#", class: 'hidden', data: { audio_target: 'pause' } do %>
-        <%= render 'icons/pause', classes: "stroke-current text-white" %>
-      <% end %>
+  <div data-controller="audio" class="group w-full rounded-lg p-4 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block">
+    <audio src="<%= cl_video_path(audio.file.key) %>" data-audio-target="audio" class="hidden"></audio>
+    <%= link_to "#", data: { audio_target: 'play', action:'click->audio#play' }, class:"group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2" do %>
+      <%= render 'icons/play', classes: "stroke-current text-white" %>
+    <% end %>
+    <%= link_to "#", data: { audio_target: 'pause', action:'click->audio#pause' }, class:"hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2" do %>
+      <%= render 'icons/pause', classes: "stroke-current text-white" %>
+    <% end %>
+    <div class="flex-grow">
+      <h4 class="leading-tight"><%= audio.title %></h4>
+      <h5 class="text-xs text-gray-400"><span data-audio-target='currentTime'>0:00</span>/<span data-audio-target='duration'>0:00</span></h5>
+      <div class="mt-2">
+        <%= render 'audios/progress' %>
+      </div>
     </div>
-    <h4 class="leading-tight"><%= audio.title %></h4>
   </div>
 <% end %>
