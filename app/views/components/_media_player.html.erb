@@ -1,5 +1,5 @@
 <div class="p-1 w-full max-w-lg">
-  <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative">
+  <%= link_to "#", class: "bg-white rounded-lg border border-gray-200 overflow-hidden relative block", data: { action: "click->modal#open" } do %>
     <div class="p-1 flex items-center">
       <div class="w-12 h-12 rounded bg-gray-200 flex-shrink-0 mr-2"></div>
       <div class="flex-grow">
@@ -11,12 +11,12 @@
     </div>
     <div class="group flex-shrink-0 absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full mr-2">
       <audio src="" data-audio-target="audio" class="hidden"></audio>
-      <%= link_to "#", data: { audio_target: 'play', action:'click->audio#play' }, class:"group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      <div data-audio-target='play' data-action='click->audio#play' class="group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0">
         <%= render 'icons/play_fill', classes: "fill-current text-gray-800" %>
-      <% end %>
-      <%= link_to "#", data: { audio_target: 'pause', action:'click->audio#pause' }, class:"hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      </div>
+      <div data-audio-target='pause' data-action='click->audio#pause' class="hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0">
         <%= render 'icons/pause_fill', classes: "fill-current text-gray-800" %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
