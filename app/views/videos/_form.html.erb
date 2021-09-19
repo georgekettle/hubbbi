@@ -1,6 +1,10 @@
 <%= simple_form_for video, data: { controller: 'segmented-control' } do |f| %>
   <div class="mb-4 max-w-lg">
-    <%= render 'videos/segmented_control', video: video %>
+    <%= render 'videos/segmented_control',
+                  options: [
+                        {title: "Youtube or Vimeo", id: 'url', checked: video.url.present? || video.new_record?},
+                        {title: "Upload your own", id: 'video-upload', checked: video.url.present?},
+                    ] %>
   </div>
 
   <div id="video-upload-toggle-content" class="segmented-option-content">
