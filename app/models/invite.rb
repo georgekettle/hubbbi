@@ -4,7 +4,7 @@ class Invite < ApplicationRecord
   belongs_to :recipient, class_name: "User", optional: true
   has_many :sub_invites, dependent: :destroy
 
-  enum status: [:pending, :accepted , :declined]
+  enum status: { pending: 0, accepted: 1, declined: 2 }
 
   validates :email, presence: true
   validates :invitable, presence: true
