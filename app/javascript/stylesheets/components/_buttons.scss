@@ -7,6 +7,15 @@
   }
 }
 
+.button-sm {
+  @apply py-1 px-2;
+
+  svg {
+    @apply h-2.5 w-2.5 stroke-current text-white;
+    stroke-width: 1.5;
+  }
+}
+
 .button.button-destroy {
   @apply border border-gray-200 hover:border-red-300 bg-white hover:bg-red-100 text-red-500 hover:scale-100;
 

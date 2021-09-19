@@ -1,7 +1,7 @@
 <% content_for :header_left do %>
-  <%= link_to @page, class: 'button' do %>
+  <%= link_to @page, class: 'button button-sm' do %>
     <%= render 'icons/check', classes: "mr-2 h-3.5 w-3.5" %>
-    Save
+    Done
   <% end %>
 <% end %>
 
@@ -9,8 +9,8 @@
   <%= render "components/saving", ids:"edit-section-saving-badge" %>
 <% end %>
 
-<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll overflow-x-hidden">
-  <div class="pb-24">
+<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll">
+  <div class="pb-24 overflow-x-hidden">
     <%= render "shared/container", classes: "p-4" do %>
       <div data-section-sortable-target="container" class="dropzones">
         <% @page.sections.each do |section| %>
@@ -22,18 +22,20 @@
       </div>
     <% end %>
 
-    <div class="fixed w-screen bg-contrast-100 bottom-0 left-0 pb-3 px-0 z-50" style="z-index: 1000!important;">
+    <div class="drag-and-drop-options fixed w-screen bg-contrast-100 bottom-0 left-0 px-0 z-50" style="z-index: 1000!important;">
       <div class="inline-flex items-center justify-center p-1 px-3 bg-contrast-200 w-full mb-1">
         <%= render "icons/drag", classes: "stroke-current text-contrast-800 h-3.5 w-3.5 mr-2" %>
         <h4 class="text-contrast-800 text-sm">Drag & drop elements below:</h4>
       </div>
-      <div data-drag-drop-editor-target="dropzone" class="w-full flex items-center justify-center overflow-scroll">
-        <%= render 'sections/drag_element', section_type: :page_reference, title: "Pages", icon: 'library' %>
-        <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
-        <%= render 'sections/drag_element', section_type: :image, title: "Image(s)", icon: 'image' %>
-        <%= render 'sections/drag_element', section_type: :video, title: "Video", icon: 'video' %>
-        <%= render 'sections/drag_element', section_type: :pdf, title: "Pdf", icon: 'pdf' %>
-        <%= render 'sections/drag_element', section_type: :link, title: "Links", icon: 'zap' %>
+      <div data-controller="scroll-handle" class="pb-3">
+        <div  data-drag-drop-editor-target="dropzone" class="w-full flex items-center sm:justify-center">
+          <%= render 'sections/drag_element', section_type: :page_reference, title: "Pages", icon: 'library' %>
+          <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
+          <%= render 'sections/drag_element', section_type: :image, title: "Image(s)", icon: 'image' %>
+          <%= render 'sections/drag_element', section_type: :video, title: "Video", icon: 'video' %>
+          <%= render 'sections/drag_element', section_type: :pdf, title: "Pdf", icon: 'pdf' %>
+          <%= render 'sections/drag_element', section_type: :link, title: "Links", icon: 'zap' %>
+        </div>
       </div>
     </div>
   </div>

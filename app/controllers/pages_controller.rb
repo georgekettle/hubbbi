@@ -24,7 +24,7 @@ class PagesController < ApplicationController
   end
 
   def edit_sections
-    hide_navbar
+    hide_all_navbars
   end
 
   def settings

@@ -4,7 +4,11 @@
   <span class="selection" data-segmented-control-target="selection"></span>
   <% options.each do |option| %>
     <div class="option">
-      <input type="radio" id="<%= option[:id] %>" name="video[is_upload]" value="true" <%= 'checked' if option[:checked] %>>
+      <input type="radio"
+             id="<%= option[:id] %>"
+             name="video[remote_video]"
+             value=<%= option[:remote_video] %>
+             <%= 'checked' if option[:checked] %>>
       <label for="<%= option[:id] %>"><span><%= option[:title] %></span></label>
     </div>
   <% end %>

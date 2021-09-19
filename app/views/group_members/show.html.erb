@@ -1,5 +1,5 @@
 <% if policy(@group_member).update? %>
-  <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile", hide_back_link: @group_member.user == current_user do %>
+  <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile", hide_back_link: @group_member.user == current_user, back_link: @back_link do %>
     <div data-controller="dropdown" class="relative">
       <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
         <%= render 'icons/options', classes: "h-5 w-5" %>
