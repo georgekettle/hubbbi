@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :invites, only: [:destroy]
+
   resources :pages, only: [:edit, :update, :show, :destroy] do
     resources :sections, only: :create
     member do

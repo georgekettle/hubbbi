@@ -3,6 +3,7 @@ class GroupMembersController < ApplicationController
   before_action :set_group_member, only: [:show, :edit, :update, :destroy, :edit_avatar]
 
   def show
+    @back_link = group_group_members_path(@group_member.group)
     @current_user_group_member = current_user.group_members.find_by(group: @group_member.group)
   end
 

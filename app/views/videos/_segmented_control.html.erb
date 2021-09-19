@@ -1,7 +1,4 @@
-<% options = [
-      { title: "Youtube or Vimeo", id: 'url', checked: video.url.present? || video.new_record?, remote_video: true },
-      { title: "Upload your own", id: 'video-upload', checked: video.file.present?, remote_video: false },
-  ] %>
+<% options ||= [] %>
 
 <div class="ios-segmented-control" data-segmented-control-target="container">
   <span class="selection" data-segmented-control-target="selection"></span>

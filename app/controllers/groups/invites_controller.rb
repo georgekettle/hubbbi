@@ -23,7 +23,7 @@ module Groups
         else
           InviteMailer.new_user_invite(@invite, invitable_name, new_user_registration_url(:invite_token => @invite.token)).deliver #send the invite data to our mailer to deliver the email
         end
-        redirect_to group_group_members_path(@group), notice: "Invite sent"
+        redirect_to group_group_members_path(@group, section: 'invites'), notice: "Invite sent"
       else
         render :new
       end

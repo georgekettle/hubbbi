@@ -1,5 +1,5 @@
 <% if policy(@group_member).update? %>
-  <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile", hide_back_link: @group_member.user == current_user do %>
+  <%= render "components/headers/header", header: @group_member.user.full_name_or_email, subheader: "Profile", hide_back_link: @group_member.user == current_user, back_link: @back_link do %>
     <div data-controller="dropdown" class="relative">
       <button type="button" class="icon-btn" data-action="dropdown#toggle click@window->dropdown#hide">
         <%= render 'icons/options', classes: "h-5 w-5" %>
@@ -41,9 +41,17 @@
     <div class="pb-4">
       <%= render "components/headers/section_header", title: "Courses", icon:"library" do %>
         <% if policy(@group_member).create? %>
-          <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn faded" do %>
-            <%= render 'icons/plus_circle' %>
-          <% end %>
+          <div data-controller="modal">
+            <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn faded", data: { action: "click->modal#open" } do %>
+              <%= render 'icons/plus_circle' %>
+            <% end %>
+
+            <%= render 'components/modal_container', header: "Add to courses", subheader: @group_member.user.full_name_or_email do %>
+              <div class="h-96">
+                <%= render 'group_members/course_members/form', group_member: @group_member %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
       <% @group_member.course_members.each_with_index do |member, index| %>

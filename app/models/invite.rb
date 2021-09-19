@@ -4,6 +4,8 @@ class Invite < ApplicationRecord
   belongs_to :recipient, class_name: "User", optional: true
   has_many :sub_invites, dependent: :destroy
 
+  enum status: { pending: 0, accepted: 1, declined: 2 }
+
   validates :email, presence: true
   validates :invitable, presence: true
   validates :sender, presence: true
@@ -14,7 +16,7 @@ class Invite < ApplicationRecord
   accepts_nested_attributes_for :sub_invites
 
   def generate_token
-     self.token = Digest::SHA1.hexdigest([self.invitable_id, Time.now, rand].join)
+    self.token = Digest::SHA1.hexdigest([self.invitable_id, Time.now, rand].join)
   end
 
 
@@ -22,6 +24,7 @@ class Invite < ApplicationRecord
     recipient = User.find_by_email(email)
     if recipient
       self.recipient = recipient
+      self.status = 'accepted'
     end
   end
 end

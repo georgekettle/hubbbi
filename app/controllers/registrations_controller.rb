@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :hide_all_navbars
 
   def new
-    @token = params[:invite_token]
+    check_invite
     super
   end
 
@@ -17,10 +17,13 @@ class RegistrationsController < Devise::RegistrationsController
     if @token != nil
       # create invitable member
       invite = Invite.find_by_token(@token)
-      invitable = invite.invitable
-      invitable_resource = invitable.add_user(resource)
-      invite.sub_invites.each do |sub_invite|
-        sub_invite.invitable.add_user(invitable_resource)
+      if invite
+        invitable = invite.invitable
+        invitable_resource = invitable.add_user(resource)
+        invite.sub_invites.each do |sub_invite|
+          sub_invite.invitable.add_user(invitable_resource)
+        end
+        invite.update(status: 'accepted')
       end
     end
 
@@ -39,6 +42,16 @@ class RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       set_minimum_password_length
       respond_with resource
+    end
+  end
+
+  private
+
+  def check_invite
+    @token = params[:invite_token]
+    if @token
+      invite = Invite.find_by_token(@token)
+      flash[:alert] = "This invite is invalid! But you can still sign up ☺️" unless invite
     end
   end
 end
