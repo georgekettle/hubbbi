@@ -15,7 +15,6 @@ export default class extends Controller {
     this.sound.addEventListener('durationchange', (e) => {
       _this.setDuration()
     });
-
   }
 
   disconnect() {
