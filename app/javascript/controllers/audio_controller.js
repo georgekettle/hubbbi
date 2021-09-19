@@ -2,8 +2,6 @@ import { Controller } from "stimulus"
 
 let player // to enable sync of all audio's on the page (ie. pause playing if I play anothe mp3)
 
-const secondsToTime = (s) => {return(s-(s%=60))/60+(9<s?':':':0')+s}
-
 export default class extends Controller {
   static targets = ["audio", "play", "pause", "progress", "progressContainer", "duration", "currentTime"]
   static values = { src: String }
