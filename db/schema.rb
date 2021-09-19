@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_040442) do
+ActiveRecord::Schema.define(version: 2021_09_19_104547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,19 @@ ActiveRecord::Schema.define(version: 2021_09_13_040442) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable"
+  end
+
+  create_table "media_plays", force: :cascade do |t|
+    t.integer "position"
+    t.decimal "progress", precision: 10, scale: 2, default: "0.0"
+    t.bigint "group_member_id", null: false
+    t.boolean "complete", default: false
+    t.string "mediable_type", null: false
+    t.bigint "mediable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_member_id"], name: "index_media_plays_on_group_member_id"
+    t.index ["mediable_type", "mediable_id"], name: "index_media_plays_on_mediable"
   end
 
   create_table "page_references", force: :cascade do |t|
@@ -238,6 +251,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_040442) do
   add_foreign_key "courses", "pages"
   add_foreign_key "group_members", "groups"
   add_foreign_key "group_members", "users"
+  add_foreign_key "media_plays", "group_members"
   add_foreign_key "page_references", "pages"
   add_foreign_key "section_elements", "sections"
   add_foreign_key "sections", "pages"
