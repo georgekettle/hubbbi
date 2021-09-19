@@ -1,4 +1,4 @@
-<% if attachment.present? %>
+<% if attachment.present? && attachment.id %>
   <div class="p-4 h-56 sm:h-72 z-0 bg-white border border-gray-200 rounded-md mb-4 flex justify-center items-center">
     <div style="background: url('<%= attachment.url %>');" class="bg-contain bg-no-repeat bg-center w-full h-full rounded-md overflow-hidden bg-gray-900">
       <div class="h-1/4 w-full relative">
