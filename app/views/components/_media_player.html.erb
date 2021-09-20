@@ -11,7 +11,7 @@
         <div class="flex-grow">
           <h4 class="tracking-tight"></h4>
           <div class="mt-2 w-2/3">
-            <%= render 'audios/progress' %>
+            <%= render 'audios/progress', no_touch:true %>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
         <div class="flex-grow">
           <h4 class="tracking-tight"><%= media_play.mediable.title %></h4>
           <div class="mt-2 w-2/3">
-            <%= render 'audios/progress' %>
+            <%= render 'audios/progress', no_touch:true %>
           </div>
         </div>
       <% end %>
