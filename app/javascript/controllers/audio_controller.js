@@ -10,38 +10,46 @@ export default class extends Controller {
   connect() {
     const _this = this
     this.sound = this.audioTarget
-    this.audioTarget.addEventListener('timeupdate', (e) => {
+    this.sound.addEventListener('timeupdate', (e) => {
       this.updateProgress(e, _this)
     });
     this.sound.addEventListener('durationchange', (e) => {
       _this.setDuration()
     });
     this.playingValue && this.play()
+    this.initEventListeners()
   }
 
-  disconnect() {
-    this.pause()
+  initEventListeners() {
+    const _this = this
+    this.sound.addEventListener('play', (e) => {
+      _this.playingValue = true
+      _this.updateControls()
+    })
+    this.sound.addEventListener('pause', (e) => {
+      _this.playingValue = false
+      _this.updateControls()
+    })
   }
 
   play(e) {
     e && e.preventDefault()
     this.sound.play()
-    this.playTargets.forEach((play) => {
-      play.classList.add('hidden')
-    })
-    this.pauseTargets.forEach((pause) => {
-      pause.classList.remove('hidden')
-    })
   }
 
   pause(e) {
     e && e.preventDefault()
     this.sound.pause()
+  }
+
+  updateControls() {
     this.playTargets.forEach((play) => {
-      play.classList.remove('hidden')
+      this.sound.paused && play.classList.remove('hidden')
+      !this.sound.paused && play.classList.add('hidden')
     })
     this.pauseTargets.forEach((pause) => {
-      pause.classList.add('hidden')
+      this.sound.paused && pause.classList.add('hidden')
+      !this.sound.paused && pause.classList.remove('hidden')
     })
   }
 
