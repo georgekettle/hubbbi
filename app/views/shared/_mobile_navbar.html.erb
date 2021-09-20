@@ -1,5 +1,8 @@
 <% if user_signed_in? %>
-  <div data-controller="modal">
+  <% playing ||= false %>
+  <% group_member = current_user.group_members.find_by(group: Current.group) %>
+
+  <div data-controller="modal audio" data-audio-playing-value="<%= playing %>" id="<%= dom_id_for_records(group_member, prefix:"mobile_navbar") %>">
     <div class="fixed w-screen bottom-0 left-0" style="z-index: 999">
       <!-- media player -->
       <div class="flex justify-center md:mb-4">
@@ -15,7 +18,9 @@
         <% end %>
       </div>
     </div>
-    <%= render 'components/media_modal' %>
+    <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeInUp fixed inset-0 overflow-y-auto flex items-center justify-center pt-8 h-screen" style="z-index: 9999;">
+      <%= render 'components/media_modal' %>
+    </div>
   </div>
 <% end %>
 

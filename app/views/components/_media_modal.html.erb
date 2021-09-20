@@ -1,6 +1,11 @@
-<div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeInUp fixed inset-0 overflow-y-auto flex items-center justify-center pt-8 h-screen" style="z-index: 9999;">
+<% group_member = current_user.group_members.find_by(group: Current.group) %>
+<% media_plays = group_member.media_plays.where(complete: false) %>
+<% media_play = media_plays.first %>
+<% no_media_plays = media_plays.empty? %>
+
+<% if no_media_plays %>
   <!-- Modal Inner Container -->
-  <div class="h-full w-full max-w-xl relative">
+  <div id="<%= dom_id_for_records(group_member, prefix:"media_modal") %>" class="h-full w-full max-w-xl relative">
     <!-- Modal Card -->
     <div class="bg-white rounded-t-lg shadow overflow-scroll h-full relative">
       <%= link_to "#", class: "icon-btn faded top-4 right-4 absolute z-10", data: { action: "click->modal#close" } do %>
@@ -24,7 +29,6 @@
           </div>
         </div>
         <div class="flex items-center justify-around">
-          <audio src="" class="hidden"></audio>
           <%= link_to '#', data: {audio_target: 'rev15', action: 'click->audio#rev15'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
             <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>
           <% end %>
@@ -41,4 +45,46 @@
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <!-- Modal Inner Container -->
+  <div id="<%= dom_id_for_records(group_member, prefix:"media_modal") %>" class="h-full w-full max-w-xl relative">
+    <!-- Modal Card -->
+    <div class="bg-white rounded-t-lg shadow overflow-scroll h-full relative">
+      <%= link_to "#", class: "icon-btn faded top-4 right-4 absolute z-10", data: { action: "click->modal#close" } do %>
+        <%= render 'icons/chevron_down', classes: 'h-4 w-4' %>
+      <% end %>
+      <div class="p-8 relative">
+        <div class="aspect-w-1 aspect-h-1">
+          <div class="w-full h-full flex items-center justify-center">
+            <div class="w-56 h-56 bg-gray-400 rounded-lg shadow-lg"></div>
+          </div>
+        </div>
+        <div class="text-center mb-4">
+          <h2 class="text-2xl font-semibold line-clamp-2"><%= media_play.mediable.title %></h2>
+          <p class="text-sm text-gray-400 line-clamp-1">Subheader</p>
+        </div>
+        <div class="mb-4">
+          <%= render 'audios/progress' %>
+          <div class="flex justify-between mt-1">
+            <h6 data-audio-target='currentTime' class="text-xs text-gray-400 tracking-wider">0:00</h6>
+            <h6 data-audio-target='timeLeft' class="text-xs text-gray-400 tracking-wider">-0:00</h6>
+          </div>
+        </div>
+        <div class="flex items-center justify-around">
+          <%= link_to '#', data: {audio_target: 'rev15', action: 'click->audio#rev15'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
+            <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>
+          <% end %>
+          <%= link_to '#', data: {audio_target: 'play', action: 'click->audio#play'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+            <%= render 'icons/play_fill', classes: "fill-current text-gray-800 h-10 w-10" %>
+          <% end %>
+          <%= link_to '#', data: {audio_target: 'pause', action: 'click->audio#pause'}, class:"hidden hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+            <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-9 w-9" %>
+          <% end %>
+          <%= link_to '#', data: {audio_target: 'ffwd15', action: 'click->audio#ffwd15'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
+            <%= render 'icons/ffwd_15', classes: "stroke-current h-8 w-8" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

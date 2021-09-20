@@ -15,6 +15,7 @@ module Groupable
     else
       redirect_to new_user_session
     end
+
   end
 
   private

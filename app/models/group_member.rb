@@ -8,6 +8,7 @@ class GroupMember < ApplicationRecord
   has_many :course_members, dependent: :destroy
   has_many :courses, through: :course_members
   has_one :selected_user, class_name: 'User', :foreign_key => 'selected_group_member_id', dependent: :nullify
+  has_many :media_plays, -> { order(:position) }, dependent: :destroy
 
   validates :user, uniqueness: { scope: :group, message: 'is already a group member' }
   validates :role, presence: true

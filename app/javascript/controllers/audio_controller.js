@@ -1,10 +1,11 @@
 import { Controller } from "stimulus"
 
-let player // to enable sync of all audio's on the page (ie. pause playing if I play anothe mp3)
-
 export default class extends Controller {
-  static targets = ["audio", "play", "pause", "progress", "progressContainer", "duration", "currentTime"]
-  static values = { src: String }
+  static targets = ["audio", "play", "pause", "progress", "progressContainer", "duration", "currentTime", "timeLeft"]
+  static values = {
+    src: String,
+    playing: Boolean
+  }
 
   connect() {
     const _this = this
@@ -15,6 +16,7 @@ export default class extends Controller {
     this.sound.addEventListener('durationchange', (e) => {
       _this.setDuration()
     });
+    this.playingValue && this.play()
   }
 
   disconnect() {
@@ -23,11 +25,7 @@ export default class extends Controller {
 
   play(e) {
     e && e.preventDefault()
-    if (player) {
-      player.pause()
-    }
-    player = this
-    player.sound.play()
+    this.sound.play()
     this.playTargets.forEach((play) => {
       play.classList.add('hidden')
     })
@@ -38,9 +36,6 @@ export default class extends Controller {
 
   pause(e) {
     e && e.preventDefault()
-    if (player == this) {
-      player = null
-    }
     this.sound.pause()
     this.playTargets.forEach((play) => {
       play.classList.remove('hidden')
@@ -51,7 +46,12 @@ export default class extends Controller {
   }
 
   setDuration() {
-    this.durationTarget.innerHTML = this.secondsToTime(this.sound.duration)
+    this.durationTargets.forEach((duration) => {
+      duration.innerHTML = this.secondsToTime(this.sound.duration)
+    })
+    this.timeLeftTargets.forEach((timeLeft) => {
+      timeLeft.innerHTML = '-' + this.secondsToTime(this.sound.duration)
+    })
   }
 
   secondsToTime(e){
@@ -70,11 +70,20 @@ export default class extends Controller {
   // Update progress bar
   updateProgress(e, _this) {
     // set progress bar
-    const { duration, currentTime } = e.srcElement;
-    const progressPercent = (currentTime / duration) * 100;
-    _this.progressTarget.style.width = `${progressPercent}%`;
+    const { duration, currentTime } = e.srcElement
+    const progressPercent = (currentTime / duration) * 100
+    const timeLeft = duration - currentTime
+    _this.progressTargets.forEach((progress) => {
+      progress.style.width = `${progressPercent}%`
+    })
     // set currentTime
-    _this.currentTimeTarget.innerText = _this.secondsToTime(currentTime)
+    _this.currentTimeTargets.forEach((currentTimeTarget) => {
+      currentTimeTarget.innerText = _this.secondsToTime(currentTime)
+    })
+    // set timeLeft
+    _this.timeLeftTargets.forEach((timeLeftTarget) => {
+      timeLeftTarget.innerText = '-' + _this.secondsToTime(timeLeft)
+    })
   }
 
   // Set progress bar

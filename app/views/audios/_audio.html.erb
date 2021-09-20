@@ -18,10 +18,10 @@
 <% else %>
   <div data-controller="audio" class="group w-full rounded-lg p-4 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block">
     <audio src="<%= cl_video_path(audio.file.key) %>" data-audio-target="audio" class="hidden"></audio>
-    <%= link_to "#", data: { audio_target: 'play', action:'click->audio#play' }, class:"group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2" do %>
+    <%= button_to audio_media_plays_path(audio, media_play: {position: 1}), method: :post, class:"group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2" do %>
       <%= render 'icons/play', classes: "stroke-current text-white" %>
     <% end %>
-    <%= link_to "#", data: { audio_target: 'pause', action:'click->audio#pause' }, class:"hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2" do %>
+    <%= button_to "#", data: { audio_target: 'pause', action:'click->audio#pause' }, class:"hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full bg-black flex items-center justify-center flex-shrink-0 mr-2" do %>
       <%= render 'icons/pause', classes: "stroke-current text-white" %>
     <% end %>
     <div class="flex-grow">

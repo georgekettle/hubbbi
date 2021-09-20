@@ -16,7 +16,9 @@
     <div class="body-content pb-24 md:pb-0">
       <%= yield %>
     </div>
-    <%= render 'shared/mobile_navbar' unless @hide_navbar %>
+    <div data-turbo-permanent id="mobile-navbar">
+      <%= render 'shared/mobile_navbar' unless @hide_navbar %>
+    </div>
     <%= render 'shared/load_screen' %> <!-- will disappear once tailwind is loaded -->
   </body>
 </html>

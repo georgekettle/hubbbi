@@ -38,7 +38,9 @@ Rails.application.routes.draw do
   resources :videos, only: [:edit, :update]
   resources :links, only: [:edit, :update, :destroy]
   resources :pdfs, only: [:destroy, :edit, :update]
-  resources :audios, only: [:destroy, :edit, :update]
+  resources :audios, only: [:destroy, :edit, :update] do
+    resources :media_plays, only: [:create], controller: 'audios/media_plays'
+  end
 
   resources :group_members, only: [:show, :edit, :update, :destroy] do
     resources :links, only: [:new, :create], module: "group_members"
