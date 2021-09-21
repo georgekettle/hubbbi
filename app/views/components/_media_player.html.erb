@@ -1,36 +1,14 @@
 <% group_member = current_user.group_members.find_by(group: Current.group) %>
 <% media_plays = group_member.media_plays.where(complete: false) %>
 <% media_play = media_plays.first %>
-<% no_media_plays = media_plays.empty? %>
 
-<% if no_media_plays %>
-  <div class="hidden p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
-    <%= link_to "#", class: "bg-white rounded-lg border border-gray-200 overflow-hidden relative block", data: { action: "click->modal#open" } do %>
-      <div class="p-1 flex items-center">
-        <div class="w-12 h-12 rounded bg-gray-200 flex-shrink-0 mr-2"></div>
-        <div class="flex-grow">
-          <h4 class="tracking-tight"></h4>
-          <div class="mt-2 w-2/3">
-            <%= render 'audios/progress', no_touch:true %>
-          </div>
-        </div>
-      </div>
-      <div class="group flex-shrink-0 absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full mr-2">
-        <audio src="" data-audio-target="audio" class="hidden"></audio>
-        <div data-audio-target='play' data-action='click->audio#play' class="group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0">
-          <%= render 'icons/play_fill', classes: "fill-current text-gray-800" %>
-        </div>
-        <div data-audio-target='pause' data-action='click->audio#pause' class="hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0">
-          <%= render 'icons/pause_fill', classes: "fill-current text-gray-800" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
+<% if media_plays.present? %>
   <div class="animated fadeIn p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
     <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative block">
       <%= link_to "#", class: "p-1 flex items-center", data: { action: "click->modal#open" } do %>
-        <div class="w-12 h-12 rounded bg-gray-200 flex-shrink-0 mr-2"></div>
+        <div class="mr-3">
+          <%= render 'audios/small_cover', audio: media_play.mediable %>
+        </div>
         <div class="flex-grow">
           <h4 class="tracking-tight"><%= media_play.mediable.title %></h4>
           <div class="mt-2 w-2/3">

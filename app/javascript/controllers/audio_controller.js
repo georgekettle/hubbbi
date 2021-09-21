@@ -8,16 +8,18 @@ export default class extends Controller {
   }
 
   connect() {
-    const _this = this
-    this.sound = this.audioTarget
-    this.sound.addEventListener('timeupdate', (e) => {
-      this.updateProgress(e, _this)
-    });
-    this.sound.addEventListener('durationchange', (e) => {
-      _this.setDuration()
-    });
-    this.playingValue && this.play()
-    this.initEventListeners()
+    if (this.hasAudioTarget) {
+      const _this = this
+      this.sound = this.audioTarget
+      this.sound.addEventListener('timeupdate', (e) => {
+        this.updateProgress(e, _this)
+      });
+      this.sound.addEventListener('durationchange', (e) => {
+        _this.setDuration()
+      });
+      this.playingValue && this.play()
+      this.initEventListeners()
+    }
   }
 
   initEventListeners() {
