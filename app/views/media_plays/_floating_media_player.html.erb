@@ -2,29 +2,30 @@
 <% media_plays = group_member.media_plays.where(complete: false) %>
 <% media_play = media_plays.first %>
 
-<% if media_plays.present? %>
-  <div data-audio-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
-    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative block">
-      <%= link_to "#", class: "p-1 flex items-center", data: { action: "click->modal#open" } do %>
-        <div class="mr-3">
-          <%= render 'audios/small_cover', audio: media_play.mediable %>
-        </div>
-        <div class="flex-grow">
-          <h4 class="tracking-tight"><%= media_play.mediable.title %></h4>
-          <div class="mt-2 w-2/3">
-            <%= render 'audios/progress', no_touch:true %>
+<%= turbo_frame_tag dom_id_for_records(group_member, prefix:"floating_media_player"), class:'w-full flex justify-center' do %>
+  <% if media_plays.present? %>
+    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
+      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative block">
+        <%= link_to "#", class: "p-1 flex items-center", data: { action: "click->modal#open" } do %>
+          <div class="mr-3">
+            <%= render 'audios/small_cover', audio: media_play.mediable %>
           </div>
-        </div>
-      <% end %>
-      <div class="group flex-shrink-0 absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full mr-2">
-        <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-audio-target="audio" class="hidden"></audio>
-        <div data-audio-target='play' data-action='click->audio#play' class="group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer">
-          <%= render 'icons/play_fill', classes: "fill-current text-gray-800" %>
-        </div>
-        <div data-audio-target='pause' data-action='click->audio#pause' class="hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer">
-          <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-3.5 w-3.5" %>
+          <div class="flex-grow">
+            <h4 class="tracking-tight"><%= media_play.mediable.title %></h4>
+            <div class="mt-2 w-2/3">
+              <%= render 'audios/progress', no_touch:true %>
+            </div>
+          </div>
+        <% end %>
+        <div class="group flex-shrink-0 absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full mr-2">
+          <div data-media-target='play' class="group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer">
+            <%= render 'icons/play_fill', classes: "fill-current text-gray-800" %>
+          </div>
+          <div data-media-target='pause' class="hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer">
+            <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-3.5 w-3.5" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

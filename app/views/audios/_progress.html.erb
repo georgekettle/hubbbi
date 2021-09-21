@@ -1,4 +1,4 @@
 <% no_touch ||= false %>
-<div class="progress-container <%= 'pointer-events-none' if no_touch %>" data-audio-target="progressContainer" data-action="click->audio#setProgress">
-  <div class="progress" data-audio-target="progress"></div>
+<div class="progress-container <%= 'pointer-events-none' if no_touch %>" data-media-target="progressContainer">
+  <div class="progress" data-media-target="progress"></div>
 </div>

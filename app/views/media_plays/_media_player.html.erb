@@ -1,34 +1,25 @@
-<% playing ||= false %>
 <% group_member = current_user.group_members.find_by(group: Current.group) %>
 <% media_plays = group_member.media_plays.where(complete: false) %>
 <% media_play = media_plays.first %>
 
-<%= turbo_frame_tag dom_id_for_records(group_member, prefix:"mobile_navbar") do %>
-  <div data-controller="modal audio" data-audio-playing-value="<%= playing %>" id="<%= dom_id_for_records(group_member, prefix:"mobile_navbar") %>">
-    <div class="fixed w-screen bottom-16 left-0 -mb-0.5" style="z-index: 999">
-      <!-- media player -->
-      <div class="flex justify-center">
-        <%= render 'media_plays/floating_media_player' %>
+<div data-controller="modal">
+  <div class="fixed w-screen bottom-16 md:bottom-4 left-0 -mb-0.5" style="z-index: 999">
+    <!-- media player -->
+    <%= render 'media_plays/floating_media_player' %>
+  </div>
+  <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeInUp fixed inset-0 overflow-y-auto flex items-center justify-center pt-8 h-screen" style="z-index: 9999;">
+    <!-- Modal Inner Container -->
+    <div id="<%= dom_id_for_records(group_member, prefix:"media_modal") %>" class="h-full w-full max-w-xl relative">
+      <!-- Modal Card -->
+      <div class="bg-white rounded-t-lg shadow overflow-scroll h-full relative">
+        <%= link_to "#", class: "icon-btn faded top-4 right-4 absolute z-10", data: { action: "click->modal#close" } do %>
+          <%= render 'icons/chevron_down', classes: 'h-4 w-4' %>
+        <% end %>
+        <!-- currently playing -->
+        <%= render 'media_plays/modal_media_player', media_play: media_play %>
+        <!-- media queue -->
+        <%= render 'media_plays/up_next' %>
       </div>
     </div>
-    <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeInUp fixed inset-0 overflow-y-auto flex items-center justify-center pt-8 h-screen" style="z-index: 9999;">
-      <% if media_plays.present? %>
-        <!-- Modal Inner Container -->
-        <div id="<%= dom_id_for_records(group_member, prefix:"media_modal") %>" class="h-full w-full max-w-xl relative">
-          <!-- Modal Card -->
-          <div class="bg-white rounded-t-lg shadow overflow-scroll h-full relative">
-            <%= link_to "#", class: "icon-btn faded top-4 right-4 absolute z-10", data: { action: "click->modal#close" } do %>
-              <%= render 'icons/chevron_down', classes: 'h-4 w-4' %>
-            <% end %>
-            <!-- currently playing -->
-            <% if media_play.present? %>
-              <%= render 'media_plays/modal_media_player', media_play: media_play %>
-            <% end %>
-            <!-- media queue -->
-            <%= render 'media_plays/up_next', media_plays: media_plays %>
-          </div>
-        </div>
-      <% end %>
-    </div>
   </div>
-<% end %>
+</div>
