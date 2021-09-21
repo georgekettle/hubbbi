@@ -109,4 +109,12 @@ export default class extends Controller {
       this.play()
     }
   }
+
+  ffwd15() {
+    this.sound.currentTime = this.sound.currentTime + 15
+  }
+
+  rev15() {
+    this.sound.currentTime = this.sound.currentTime - 15
+  }
 }
