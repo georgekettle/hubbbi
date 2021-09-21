@@ -41,6 +41,12 @@ Rails.application.routes.draw do
   resources :audios, only: [:destroy, :edit, :update] do
     resources :media_plays, only: [:create], controller: 'audios/media_plays'
   end
+  resources :media_plays, only: [:update] do
+    member do
+      patch :skip_queue
+      put :skip_queue
+    end
+  end
 
   resources :group_members, only: [:show, :edit, :update, :destroy] do
     resources :links, only: [:new, :create], module: "group_members"

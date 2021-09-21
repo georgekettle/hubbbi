@@ -10,7 +10,8 @@
       <%= link_to "#", class: "icon-btn faded top-4 right-4 absolute z-10", data: { action: "click->modal#close" } do %>
         <%= render 'icons/chevron_down', classes: 'h-4 w-4' %>
       <% end %>
-      <div class="p-8 relative">
+      <!-- currently playing -->
+      <div class="p-8 relative border-b border-gray-200">
         <div class="aspect-w-1 aspect-h-1">
           <div class="w-full h-full flex items-center justify-center">
             <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
@@ -41,6 +42,23 @@
           <% end %>
           <%= link_to '#', data: {audio_target: 'ffwd15', action: 'click->audio#ffwd15'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
             <%= render 'icons/ffwd_15', classes: "stroke-current h-8 w-8" %>
+          <% end %>
+        </div>
+      </div>
+      <!-- media queue -->
+      <div class="bg-contrast-50 p-4">
+        <div class="mb-4 flex items-center">
+          <%= render 'icons/list', classes: "stroke-current text-gray-800 h-3.5 w-3.5 mr-2" %>
+          <h4>Up next</h4>
+        </div>
+        <div>
+          <% media_plays.drop(1).each do |mp| %>
+            <div class="mb-1">
+              <%= render 'media_plays/list_item', media_play: mp %>
+            </div>
+          <% end %>
+          <% if media_plays.drop(1).empty? %>
+            <p class="text-gray-400 text-xs text-center mb-8">There are no items up next 👀</p>
           <% end %>
         </div>
       </div>
