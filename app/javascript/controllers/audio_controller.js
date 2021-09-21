@@ -66,11 +66,13 @@ export default class extends Controller {
 
   secondsToTime(e){
     var h = Math.floor(e / 3600).toString().padStart(2,'0'),
-        m = Math.floor(e % 3600 / 60).toString().padStart(2,'0'),
+        m = Math.floor(e % 3600 / 60).toString(),
         s = Math.floor(e % 60).toString().padStart(2,'0');
 
     if (parseInt(h) > 0) {
       return h + ':' + m + ':' + s;
+    } else if (parseInt(m) > 9) {
+      return m.padStart(2,'0') + ':' + s;
     } else {
       return m + ':' + s;
     }
