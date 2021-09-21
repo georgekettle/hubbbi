@@ -11,8 +11,8 @@ class MediaPlaysController < ApplicationController
   end
 
   def skip_queue
-    @media_plays = @media_play.group_member.media_plays
-    @media_plays.first.destroy
+    @media_plays = @media_play.group_member.current_media_plays
+    @media_plays.first&.complete!
     @media_play.move_to_top
 
     respond_to do |format|

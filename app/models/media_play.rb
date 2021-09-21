@@ -4,4 +4,8 @@ class MediaPlay < ApplicationRecord
   belongs_to :mediable, polymorphic: true
 
   acts_as_list scope: :group_member
+
+  def complete!
+    self.update(complete: true)
+  end
 end

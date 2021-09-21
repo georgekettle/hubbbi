@@ -3,8 +3,10 @@ module Audios
     before_action :set_audio, only: [:create]
 
     def create
+      current_group_member = current_user.group_members.find_by(group: Current.group)
+      current_group_member.current_media_plays.first&.complete!
       @media_play = MediaPlay.new(media_play_params)
-      @media_play.group_member = current_user.group_members.find_by(group: Current.group)
+      @media_play.group_member = current_group_member
       @media_play.mediable = @audio
       authorize @media_play
       @media_play.save!

@@ -18,4 +18,8 @@ class GroupMember < ApplicationRecord
   def name
     user.full_name_or_email
   end
+
+  def current_media_plays
+    self.media_plays.where(complete: false)
+  end
 end
