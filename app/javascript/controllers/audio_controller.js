@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "play", "pause", "progress", "progressContainer", "duration", "currentTime", "timeLeft"]
+  static targets = ["audio", "play", "pause", "progress", "progressContainer", "duration", "currentTime", "timeLeft", "floatingMediaPlayer"]
   static values = {
     src: String,
     playing: Boolean
@@ -76,7 +76,6 @@ export default class extends Controller {
     } else {
       return m + ':' + s;
     }
-    //return `${h}:${m}:${s}`;
   }
 
   // Update progress bar
@@ -112,11 +111,13 @@ export default class extends Controller {
     }
   }
 
-  ffwd15() {
+  ffwd15(e) {
+    e.preventDefault()
     this.sound.currentTime = this.sound.currentTime + 15
   }
 
-  rev15() {
+  rev15(e) {
+    e.preventDefault()
     this.sound.currentTime = this.sound.currentTime - 15
   }
 }

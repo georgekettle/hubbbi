@@ -12,11 +12,6 @@ import 'controllers'
 Rails.start()
 ActiveStorage.start()
 
-// ----------------------------------------------------
-// Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
-// WRITE YOUR OWN JS STARTING FROM HERE 👇
-// ----------------------------------------------------
-
 // External imports
 import "bootstrap";
 
@@ -26,6 +21,7 @@ import "bootstrap";
 document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
   // initLightbox()
+  console.log('turbo')
 });
 
 import "stylesheets/application"

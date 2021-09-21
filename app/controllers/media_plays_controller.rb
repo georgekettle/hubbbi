@@ -5,7 +5,7 @@ class MediaPlaysController < ApplicationController
     @media_play.update!(media_play_params)
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream {}
       format.html { redirect_back fallback_location: Current.group }
     end
   end
@@ -16,7 +16,7 @@ class MediaPlaysController < ApplicationController
     @media_play.move_to_top
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream {}
       format.html { redirect_back fallback_location: Current.group }
     end
   end

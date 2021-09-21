@@ -3,7 +3,7 @@
 <% media_play = media_plays.first %>
 
 <% if media_plays.present? %>
-  <div class="animated fadeIn p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
+  <div data-audio-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
     <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative block">
       <%= link_to "#", class: "p-1 flex items-center", data: { action: "click->modal#open" } do %>
         <div class="mr-3">

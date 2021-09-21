@@ -16,11 +16,12 @@
     </div>
   </div>
 <% else %>
-  <%= link_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+  <% group_member = current_user.group_members.find_by(group: Current.group) %>
+  <%= button_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
     <div class="mr-4">
       <%= render 'audios/small_cover', audio: audio %>
     </div>
-    <div class="flex-grow">
+    <div class="flex-grow text-left">
       <h4 class="leading-tight"><%= audio.title %></h4>
       <h6 class="text-xs text-gray-400">
         Audio

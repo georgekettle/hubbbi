@@ -1,0 +1,34 @@
+<div class="p-8 relative border-b border-gray-200">
+  <div class="aspect-w-1 aspect-h-1">
+    <div class="w-full h-full flex items-center justify-center">
+      <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
+        <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-24 w-24" %>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mb-4">
+    <h2 class="text-2xl font-semibold line-clamp-2"><%= media_play.mediable.title %></h2>
+    <p class="text-sm text-gray-400 line-clamp-1">Subheader</p>
+  </div>
+  <div class="mb-4">
+    <%= render 'audios/progress' %>
+    <div class="flex justify-between mt-1">
+      <h6 data-audio-target='currentTime' class="text-xs text-gray-400 tracking-wider">0:00</h6>
+      <h6 data-audio-target='timeLeft' class="text-xs text-gray-400 tracking-wider">-0:00</h6>
+    </div>
+  </div>
+  <div class="flex items-center justify-around">
+    <%= link_to '#', data: {audio_target: 'rev15', action: 'click->audio#rev15'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
+      <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>
+    <% end %>
+    <%= link_to '#', data: {audio_target: 'play', action: 'click->audio#play'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      <%= render 'icons/play_fill', classes: "fill-current text-gray-800 h-10 w-10" %>
+    <% end %>
+    <%= link_to '#', data: {audio_target: 'pause', action: 'click->audio#pause'}, class:"hidden hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-9 w-9" %>
+    <% end %>
+    <%= link_to '#', data: {audio_target: 'ffwd15', action: 'click->audio#ffwd15'}, class:"hover:scale-105 scale-100 h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
+      <%= render 'icons/ffwd_15', classes: "stroke-current h-8 w-8" %>
+    <% end %>
+  </div>
+</div>
