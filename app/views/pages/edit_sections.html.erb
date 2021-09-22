@@ -13,8 +13,10 @@
   <div class="pb-24 overflow-x-hidden">
     <%= render "shared/container", classes: "p-4" do %>
       <div data-section-sortable-target="container" class="dropzones">
-        <% @page.sections.each do |section| %>
-          <%= render 'sections/section', section: section, editable: true %>
+        <% @page.sections.each_with_index do |section, index| %>
+          <%= render 'components/z_index', list: @page.sections, index: index do %>
+            <%= render 'sections/section', section: section, editable: true %>
+          <% end %>
         <% end %>
         <div class="mb-4 py-2 relative last-dropzone">
           <%= render "sections/dropzone", position: @page.sections.count + 1 %>

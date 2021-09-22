@@ -7,8 +7,10 @@
     <% end %>
   <% end %>
   <%= render "shared/container", classes: "p-4" do %>
-    <% page.sections.each do |section| %>
-      <%= render 'sections/section', section: section %>
+    <% page.sections.each_with_index do |section, index| %>
+      <%= render 'components/z_index', list: page.sections, index: index do %>
+        <%= render 'sections/section', section: section %>
+      <% end %>
     <% end %>
 
     <% if page.sections.empty? %>

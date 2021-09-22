@@ -55,10 +55,9 @@
         <% end %>
       <% end %>
       <% @group_member.course_members.each_with_index do |member, index| %>
-        <% z_index = 500 - index %>
-        <div class="relative" style="z-index: <%= z_index %>">
+        <%= render 'components/z_index', list: @group_member.course_members, index: index do %>
           <%= render 'courses/list_item', course: member.course, course_member: member %>
-        </div>
+        <% end %>
       <% end %>
       <% if @group_member.course_members.empty? && policy(@group_member).create? %>
         <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">

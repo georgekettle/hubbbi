@@ -37,10 +37,9 @@
       </div>
     <% else %>
       <% links.each_with_index do |link, index| %>
-        <% z_index = 500 - index %>
-        <div class="pb-2 relative" style="z-index: <%= z_index %>">
+        <%= render 'components/z_index', list: links, index: index, classes: "pb-2" do %>
           <%= render "links/link", link: link, editable: editable %>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

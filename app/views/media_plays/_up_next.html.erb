@@ -9,9 +9,9 @@
     </div>
     <div>
       <% media_plays.drop(1).each_with_index do |mp, index| %>
-        <div class="mb-1" style="z-index: <%= media_plays.length - index %>">
+        <%= render 'components/z_index', list: media_plays.drop(1), index: index, classes: "mb-1" do %>
           <%= render 'media_plays/list_item', media_play: mp %>
-        </div>
+        <% end %>
       <% end %>
       <% if media_plays.drop(1).empty? %>
         <p class="text-gray-400 text-xs text-center mb-8">There are no items up next 👀</p>
