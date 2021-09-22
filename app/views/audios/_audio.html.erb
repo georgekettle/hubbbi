@@ -43,7 +43,7 @@
           data-transition-leave-from="opacity-100 scale-100"
           data-transition-leave-to="opacity-0 scale-95"
         >
-          <%= link_to(audio_media_plays_path(audio, add_to_queue: true), method: :post, class: "dropdown-link") do %>
+          <%= link_to(add_to_queue_audio_media_plays_path(audio, media_play: {}), method: :post, class: "dropdown-link") do %>
             <%= render 'icons/list_add', classes: 'h-4 w-4' %>
             Add to queue
           <% end %>

@@ -39,7 +39,11 @@ Rails.application.routes.draw do
   resources :links, only: [:edit, :update, :destroy]
   resources :pdfs, only: [:destroy, :edit, :update]
   resources :audios, only: [:destroy, :edit, :update] do
-    resources :media_plays, only: [:create], controller: 'audios/media_plays'
+    resources :media_plays, only: [:create], controller: 'audios/media_plays' do
+      collection do
+        post :add_to_queue
+      end
+    end
   end
   resources :media_plays, only: [:update] do
     member do

@@ -1,13 +1,15 @@
-<%= link_to skip_queue_media_play_path(media_play), method: :patch, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
-  <div class="mr-4">
-    <% if media_play.mediable_type = "Audio" %>
-      <%= render 'audios/small_cover', audio: media_play.mediable %>
-    <% end %>
-  </div>
-  <div class="flex-grow">
-    <h4 class="leading-tight"><%= media_play.mediable.title %></h4>
-    <h6 class="text-xs text-gray-400">
-      <%= media_play.mediable_type %>
-    </h6>
-  </div>
+<%= turbo_frame_tag dom_id_for_records(media_play, prefix: 'list_item') do %>
+  <%= link_to skip_queue_media_play_path(media_play), method: :patch, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+    <div class="mr-4">
+      <% if media_play.mediable_type = "Audio" %>
+        <%= render 'audios/small_cover', audio: media_play.mediable %>
+      <% end %>
+    </div>
+    <div class="flex-grow">
+      <h4 class="leading-tight"><%= media_play.mediable.title %></h4>
+      <h6 class="text-xs text-gray-400">
+        <%= media_play.mediable_type %>
+      </h6>
+    </div>
+  <% end %>
 <% end %>
