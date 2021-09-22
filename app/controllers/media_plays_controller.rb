@@ -1,5 +1,6 @@
 class MediaPlaysController < ApplicationController
   before_action :set_media_play, only: [:update, :skip_queue]
+  skip_after_action :verify_authorized, only: :fetch_media_player
 
   def update
     @media_play.update!(media_play_params)
@@ -8,6 +9,9 @@ class MediaPlaysController < ApplicationController
       format.turbo_stream {}
       format.html { redirect_back fallback_location: Current.group }
     end
+  end
+
+  def fetch_media_player
   end
 
   def skip_queue

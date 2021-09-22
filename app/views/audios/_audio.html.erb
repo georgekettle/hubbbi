@@ -17,15 +17,38 @@
   </div>
 <% else %>
   <% group_member = current_user.group_members.find_by(group: Current.group) %>
-  <%= button_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
-    <div class="mr-4">
-      <%= render 'audios/small_cover', audio: audio %>
+  <div class="relative">
+    <%= button_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white block relative" do %>
+      <div class="mr-4">
+        <%= render 'audios/small_cover', audio: audio %>
+      </div>
+      <div class="flex-grow text-left">
+        <h4 class="leading-tight"><%= audio.title %></h4>
+        <h6 class="text-xs text-gray-400">
+          Audio
+        </h6>
+      </div>
+    <% end %>
+    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <div data-controller="dropdown" class="relative">
+        <button type="button" class="icon-btn faded" data-action="dropdown#toggle click@window->dropdown#hide">
+          <%= render 'icons/options' %>
+        </button>
+
+        <div
+          data-dropdown-target="menu"
+          class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+          data-transition-enter-from="opacity-0 scale-95"
+          data-transition-enter-to="opacity-100 scale-100"
+          data-transition-leave-from="opacity-100 scale-100"
+          data-transition-leave-to="opacity-0 scale-95"
+        >
+          <%= link_to(audio_media_plays_path(audio, add_to_queue: true), method: :post, class: "dropdown-link") do %>
+            <%= render 'icons/list_add', classes: 'h-4 w-4' %>
+            Add to queue
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="flex-grow text-left">
-      <h4 class="leading-tight"><%= audio.title %></h4>
-      <h6 class="text-xs text-gray-400">
-        Audio
-      </h6>
-    </div>
-  <% end %>
+  </div>
 <% end %>

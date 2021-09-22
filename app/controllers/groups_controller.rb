@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   skip_before_action :set_current_group, except: %i[edit update destroy settings]
   before_action :set_group, only: %i[show edit update destroy settings]
+  before_action :hide_media_player, only: [:index, :new]
 
   def index
     @groups = current_user.groups
@@ -30,6 +31,7 @@ class GroupsController < ApplicationController
       redirect_to group_path(@group), notice: "Your group has successfully been created"
     else
       hide_all_navbars
+      hide_media_player
       render :new, alert: "Oops... Something went wrong when creating your group"
     end
   end

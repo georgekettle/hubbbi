@@ -1,3 +1,3 @@
-<%= turbo_stream.replace(dom_id_for_records(@media_play.group_member, prefix:"floating_media_player"), partial: "media_plays/floating_media_player") %>
-<%= turbo_stream.replace(dom_id_for_records(@media_play.group_member, prefix:"modal_media_player"), partial: "media_plays/modal_media_player", locals: { media_play: @media_play, playing: true }) %>
-<%= turbo_stream.replace(dom_id_for_records(@media_play.group_member, prefix:"up_next"), partial: "media_plays/up_next") %>
+<%= turbo_stream.replace("floating_media_player", partial: "media_plays/floating_media_player") %>
+<%= turbo_stream.replace("modal_media_player", partial: "media_plays/modal_media_player", locals: { playing: true }) %>
+<%= turbo_stream.replace("up_next", partial: "media_plays/up_next") %>

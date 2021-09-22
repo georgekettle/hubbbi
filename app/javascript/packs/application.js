@@ -21,7 +21,6 @@ import "bootstrap";
 document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
   // initLightbox()
-  console.log('turbo')
 });
 
 import "stylesheets/application"

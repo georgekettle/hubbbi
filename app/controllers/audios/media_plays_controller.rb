@@ -4,7 +4,7 @@ module Audios
 
     def create
       current_group_member = current_user.group_members.find_by(group: Current.group)
-      current_group_member.current_media_plays.first&.complete!
+      current_group_member.current_media_plays.first&.complete! unless params[:add_to_queue] == 'true'
       @media_play = MediaPlay.new(media_play_params)
       @media_play.group_member = current_group_member
       @media_play.mediable = @audio

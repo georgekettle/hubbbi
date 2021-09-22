@@ -1,17 +1,17 @@
-<% group_member = current_user.group_members.find_by(group: Current.group) %>
-<% media_plays = group_member.media_plays.where(complete: false) %>
-<% media_play = media_plays.first %>
+<% media_play = currently_playing || MediaPlay.new %>
+<% frame_id = Current.group_member.present? ? dom_id_for_records(Current.group_member, prefix:"floating_media_player") : "floating_media_player" %>
+<% media_plays = Current.group_member.present? ? Current.group_member.media_plays : nil %>
 
-<%= turbo_frame_tag dom_id_for_records(group_member, prefix:"floating_media_player"), class:'w-full flex justify-center' do %>
+<%= turbo_frame_tag "floating_media_player", class:'w-full flex justify-center' do %>
   <% if media_plays.present? %>
-    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg" id="<%= dom_id_for_records(group_member, prefix:"floating_media") %>">
+    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg">
       <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative block">
         <%= link_to "#", class: "p-1 flex items-center", data: { action: "click->modal#open" } do %>
           <div class="mr-3">
             <%= render 'audios/small_cover', audio: media_play.mediable %>
           </div>
           <div class="flex-grow">
-            <h4 class="tracking-tight"><%= media_play.mediable.title %></h4>
+            <h4 class="tracking-tight"><%= media_play.mediable.title if media_play.mediable %></h4>
             <div class="mt-2 w-2/3">
               <%= render 'audios/progress', no_touch:true %>
             </div>

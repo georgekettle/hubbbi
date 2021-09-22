@@ -13,13 +13,22 @@
   <body class="bg-contrast-50">
     <%= render 'shared/flashes' %>
     <%= render 'shared/desktop_navbar' unless @hide_desktop_navbar %>
+
     <div class="body-content pb-24 md:pb-0">
       <%= yield %>
     </div>
+
     <%= render 'shared/mobile_navbar' unless @hide_navbar %>
-    <div data-turbo-permanent id="mobile-navbar">
-      <%= render 'media_plays/media_player' %>
-    </div>
+    <% if Current.group %>
+      <div data-turbo-permanent id="media-player-permanent">
+        <%= turbo_frame_tag "media-player", src: fetch_media_player_media_plays_path do %>
+        <%# turbo_frame_tag "media-player" do %>
+          <% if currently_playing %>
+            <%= render 'media_plays/loading_media_player' %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
     <%= render 'shared/load_screen' %> <!-- will disappear once tailwind is loaded -->
   </body>
 </html>

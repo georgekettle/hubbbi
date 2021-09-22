@@ -46,6 +46,9 @@ Rails.application.routes.draw do
       patch :skip_queue
       put :skip_queue
     end
+    collection do
+      get :fetch_media_player
+    end
   end
 
   resources :group_members, only: [:show, :edit, :update, :destroy] do

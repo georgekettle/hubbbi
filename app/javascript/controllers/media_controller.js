@@ -6,16 +6,10 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('media connecting')
-    console.log('playingValue', this.playingValue)
     this.initTargets() // necessary due to html complications and seperated element with modal and floating element
     this.sound = this.element
     this.initEventListeners()
     this.playingValue && this.sound.play()
-  }
-
-  disconnect() {
-    this.sound.pause()
   }
 
   initTargets() {
