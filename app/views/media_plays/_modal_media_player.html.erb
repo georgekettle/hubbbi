@@ -16,14 +16,14 @@
         <p class="text-sm text-gray-400 line-clamp-1">Subheader</p>
       </div>
       <div class="mb-4">
-        <%= render 'audios/progress' %>
+        <%= render 'audios/progress', progress: media_play.progress %>
         <div class="flex justify-between mt-1">
           <h6 data-media-target='currentTime' class="text-xs text-gray-400 tracking-wider">0:00</h6>
           <h6 data-media-target='timeLeft' class="text-xs text-gray-400 tracking-wider">-0:00</h6>
         </div>
       </div>
       <% if media_play.mediable %>
-        <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-controller="media" data-media-playing-value="<%= playing %>" class="hidden"></audio>
+        <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-controller="media" data-media-playing-value="<%= playing %>" data-media-url-value="<%= media_play_url(media_play) %>" data-media-starting-progress-value="<%= media_play.progress %>" class="hidden"></audio>
       <% else %>
         <audio src="" data-controller="media" data-media-playing-value="<%= playing %>" class="hidden"></audio>
       <% end %>

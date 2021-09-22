@@ -1,13 +1,19 @@
 import { Controller } from "stimulus"
 
+const updateInterval = 30 // 30s between updates
+
 export default class extends Controller {
   static values = {
-    playing: Boolean
+    playing: Boolean,
+    url: String,
+    startingProgress: Number
   }
 
   connect() {
     this.initTargets() // necessary due to html complications and seperated element with modal and floating element
     this.sound = this.element
+    this.setStartingProgress()
+    this.progress = this.sound.currentTime
     this.initEventListeners()
     this.playingValue && this.sound.play()
   }
@@ -17,6 +23,16 @@ export default class extends Controller {
     targets.forEach((targetName) => {
       this[`${targetName}Targets`] = document.querySelectorAll(`[data-media-target="${targetName}"]`)
     })
+  }
+
+  setStartingProgress() {
+    if (this.startingProgressValue) {
+      const starting = this.startingProgressValue
+      this.sound.addEventListener('durationchange', (e) => {
+        const sound = e.currentTarget
+        sound.currentTime = sound.duration * (starting / 100)
+      }, {'once': true});
+    }
   }
 
   initEventListeners() {
@@ -106,6 +122,14 @@ export default class extends Controller {
     this.timeLeftTargets.forEach((timeLeftTarget) => {
       timeLeftTarget.innerText = '-' + this.secondsToTime(timeLeft)
     })
+    // update media play if complete or more than 30s diff
+    if (currentTime === duration) {
+      const body = { "media_play": { "complete": true, "progress": 100 } }
+      this.updateProgressRequest(body)
+    } else if (Math.abs(currentTime - this.progress) > updateInterval) {
+      const body = { "media_play": { "progress": progressPercent } }
+      this.updateProgressRequest(body)
+    }
   }
 
   // Set progress bar
@@ -114,7 +138,9 @@ export default class extends Controller {
     const width = e.currentTarget.clientWidth
     const clickX = e.offsetX
     // set currentTime
-    this.sound.currentTime = (clickX / width) * this.sound.duration
+    if (width > 0) {
+      this.sound.currentTime = (clickX / width) * this.sound.duration
+    }
     if (this.sound.paused) {
       this.pause()
     } else {
@@ -123,13 +149,13 @@ export default class extends Controller {
   }
 
   play(e) {
-    e.preventDefault()
+    e && e.preventDefault()
     this.sound.play()
     this.updateControls()
   }
 
   pause(e) {
-    e.preventDefault()
+    e && e.preventDefault()
     this.sound.pause()
     this.updateControls()
   }
@@ -142,5 +168,20 @@ export default class extends Controller {
   rev15(e) {
     e.preventDefault()
     this.sound.currentTime = this.sound.currentTime - 15
+  }
+
+  updateProgressRequest(body) {
+    this.progress = this.sound.currentTime
+    let CSRFToken = document.querySelector('meta[name="csrf-token"]').content
+
+    fetch(this.urlValue, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRFToken,
+        'Accept': "text/vnd.turbo-stream.html"
+      },
+      body: JSON.stringify(body),
+    })
   }
 }

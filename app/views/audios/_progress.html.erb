@@ -1,4 +1,5 @@
 <% no_touch ||= false %>
+<% progress ||= 0 %>
 <div class="progress-container <%= 'pointer-events-none' if no_touch %>" data-media-target="progressContainer">
-  <div class="progress" data-media-target="progress"></div>
+  <div class="progress" data-media-target="progress" style="width: <%= progress %>%"></div>
 </div>
