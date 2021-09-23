@@ -45,10 +45,12 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :media_plays, only: [:update] do
+  resources :media_plays, only: [:update, :destroy] do
     member do
       patch :skip_queue
       put :skip_queue
+      patch :reorder
+      put :reorder
     end
     collection do
       get :fetch_media_player

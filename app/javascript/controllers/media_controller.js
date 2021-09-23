@@ -10,7 +10,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('connect')
     this.initTargets() // necessary due to html complications and seperated element with modal and floating element
     this.sound = this.element
     this.setStartingProgress()

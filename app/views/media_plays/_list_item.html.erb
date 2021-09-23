@@ -1,15 +1,26 @@
-<%= turbo_frame_tag dom_id_for_records(media_play, prefix: 'list_item') do %>
-  <%= link_to skip_queue_media_play_path(media_play), method: :patch, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
-    <div class="mr-4">
-      <% if media_play.mediable_type = "Audio" %>
-        <%= render 'audios/small_cover', audio: media_play.mediable %>
+<div id="<%= dom_id_for_records(media_play, prefix: 'list_item') %>" class="mb-1" data-sortable-target="item" data-url="<%= reorder_media_play_url(media_play) %>" data-element-name="media_play">
+  <div class="relative flex items-center">
+    <%= link_to(media_play_path(media_play), method: :delete, class: "icon-btn faded group hover:bg-red-100 flex-shrink-0 mr-2") do %>
+      <%= render 'icons/bin', classes: 'h-4 w-4 group-hover:text-red-700' %>
+    <% end %>
+    <%= link_to skip_queue_media_play_path(media_play), method: :patch, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+      <div class="mr-4">
+        <% if media_play.mediable_type = "Audio" %>
+          <%= render 'audios/small_cover', audio: media_play.mediable %>
+        <% end %>
+      </div>
+      <div class="flex-grow">
+        <h4 class="leading-tight"><%= media_play.mediable.title %></h4>
+        <h6 class="text-xs text-gray-400">
+          <%= media_play.mediable_type %>
+        </h6>
+      </div>
+    <% end %>
+    <div class="handle absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <%= link_to '#', class: "handle icon-btn faded overflow-hidden relative" do %>
+        <%= render 'icons/menu', classes: 'handle h-4 w-4 group-hover:text-red-700' %>
+        <div class="handle w-full h-full absolute top-0 left-0"></div>
       <% end %>
     </div>
-    <div class="flex-grow">
-      <h4 class="leading-tight"><%= media_play.mediable.title %></h4>
-      <h6 class="text-xs text-gray-400">
-        <%= media_play.mediable_type %>
-      </h6>
-    </div>
-  <% end %>
-<% end %>
+  </div>
+</div>

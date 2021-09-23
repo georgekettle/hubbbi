@@ -2,17 +2,19 @@
 <% media_plays = group_member.current_media_plays %>
 
 <%= turbo_frame_tag "up_next" do %>
-  <div class="bg-contrast-50 p-4 min-h-full">
+  <div class="bg-contrast-50 p-4 min-h-full" data-controller="sortable" data-sortable-target="scrollContainer" data-sortable-handle-value="handle" data-sortable-turbo-stream-value="true" data-sortable-add-to-position-value="1">
     <div class="mb-4 flex items-center">
       <%= render 'icons/list', classes: "stroke-current text-gray-800 h-3.5 w-3.5 mr-2" %>
       <h4>Up next</h4>
     </div>
     <div>
-      <% media_plays.drop(1).each_with_index do |mp, index| %>
-        <%= render 'components/z_index', list: media_plays.drop(1), index: index, classes: "mb-1" do %>
-          <%= render 'media_plays/list_item', media_play: mp %>
+      <div data-sortable-target="container">
+        <% media_plays.drop(1).each_with_index do |mp, index| %>
+          <%# render 'components/z_index', list: media_plays.drop(1), index: index, classes: "mb-1" do %>
+            <%= render 'media_plays/list_item', media_play: mp %>
+          <%# end %>
         <% end %>
-      <% end %>
+      </div>
       <% if media_plays.drop(1).empty? %>
         <p class="text-gray-400 text-xs text-center mb-8">There are no items up next 👀</p>
       <% end %>
