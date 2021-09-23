@@ -1,8 +1,8 @@
 <% group_member = current_user.group_members.find_by(group: Current.group) %>
-<% media_plays = group_member.media_plays.where(complete: false) %>
+<% media_plays = group_member.current_media_plays %>
 
 <%= turbo_frame_tag "up_next" do %>
-  <div class="bg-contrast-50 p-4">
+  <div class="bg-contrast-50 p-4 min-h-full">
     <div class="mb-4 flex items-center">
       <%= render 'icons/list', classes: "stroke-current text-gray-800 h-3.5 w-3.5 mr-2" %>
       <h4>Up next</h4>

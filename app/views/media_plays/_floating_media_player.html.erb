@@ -1,6 +1,6 @@
 <% media_play = currently_playing || MediaPlay.new %>
 <% frame_id = Current.group_member.present? ? dom_id_for_records(Current.group_member, prefix:"floating_media_player") : "floating_media_player" %>
-<% media_plays = Current.group_member.present? ? Current.group_member.media_plays : nil %>
+<% media_plays = Current.group_member.present? ? Current.group_member.current_media_plays : nil %>
 
 <%= turbo_frame_tag "floating_media_player", class:'w-full flex justify-center' do %>
   <% if media_plays.present? %>

@@ -1,1 +1,5 @@
+<% if currently_playing == @media_play %>
+  <%= turbo_stream.replace("floating_media_player", partial: "media_plays/floating_media_player") %>
+  <%= turbo_stream.replace("modal_media_player", partial: "media_plays/modal_media_player") %>
+<% end %>
 <%= turbo_stream.replace("up_next", partial: "media_plays/up_next") %>

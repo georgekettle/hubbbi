@@ -20,6 +20,6 @@ class GroupMember < ApplicationRecord
   end
 
   def current_media_plays
-    self.media_plays.where(complete: false)
+    media_plays.where(complete: false)
   end
 end

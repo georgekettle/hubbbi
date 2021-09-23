@@ -10,6 +10,7 @@ export default class extends Controller {
   }
 
   connect() {
+    console.log('connect')
     this.initTargets() // necessary due to html complications and seperated element with modal and floating element
     this.sound = this.element
     this.setStartingProgress()
@@ -19,7 +20,7 @@ export default class extends Controller {
   }
 
   initTargets() {
-    const targets = ["play", "pause", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15"]
+    const targets = ["play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15"]
     targets.forEach((targetName) => {
       this[`${targetName}Targets`] = document.querySelectorAll(`[data-media-target="${targetName}"]`)
     })
@@ -124,8 +125,7 @@ export default class extends Controller {
     })
     // update media play if complete or more than 30s diff
     if (currentTime === duration) {
-      const body = { "media_play": { "complete": true, "progress": 100 } }
-      this.updateProgressRequest(body)
+      this.playNextSong()
     } else if (Math.abs(currentTime - this.progress) > updateInterval) {
       const body = { "media_play": { "progress": progressPercent } }
       this.updateProgressRequest(body)
@@ -183,5 +183,9 @@ export default class extends Controller {
       },
       body: JSON.stringify(body),
     })
+  }
+
+  playNextSong() {
+    this.nextTargets[0].click()
   }
 }

@@ -18,9 +18,8 @@ module Audios
     end
 
     def add_to_queue
-      current_group_member = current_user.group_members.find_by(group: Current.group)
       @media_play = MediaPlay.new
-      @media_play.group_member = current_group_member
+      @media_play.group_member = Current.group_member
       @media_play.mediable = @audio
       authorize @media_play, :create?
       @media_play.save!
