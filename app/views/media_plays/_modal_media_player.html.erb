@@ -4,14 +4,12 @@
 <%= turbo_frame_tag "modal_media_player" do %>
   <div class="p-8 relative border-b border-gray-200">
     <% if media_play.present? %>
-      <div class="aspect-w-1 aspect-h-1">
-        <div class="w-full h-full flex items-center justify-center">
-          <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
-            <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-24 w-24" %>
-          </div>
+      <div class="w-full h-full flex items-center justify-center mb-8">
+        <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
+          <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-24 w-24" %>
         </div>
       </div>
-      <div class="text-center mb-4">
+      <div class="text-center mb-8">
         <h2 class="text-2xl font-semibold line-clamp-2"><%= media_play.mediable.title if media_play.mediable %></h2>
         <p class="text-sm text-gray-400 line-clamp-1"><%= media_play.mediable_type %></p>
       </div>
@@ -23,7 +21,7 @@
         </div>
       </div>
       <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-controller="media" data-media-playing-value="<%= playing %>" data-media-url-value="<%= media_play_url(media_play) %>" data-media-starting-progress-value="<%= media_play.progress %>" class="hidden"></audio>
-      <div class="flex items-center justify-around">
+      <div class="flex items-center justify-around mb-4">
         <%= link_to '#', data: {media_target: 'rev15'}, class:"h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
           <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>
         <% end %>

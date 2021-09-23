@@ -178,7 +178,6 @@ export default class extends Controller {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': CSRFToken,
-        'Accept': "text/vnd.turbo-stream.html"
       },
       body: JSON.stringify(body),
     })
