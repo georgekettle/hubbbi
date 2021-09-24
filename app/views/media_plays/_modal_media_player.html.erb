@@ -14,27 +14,7 @@
         <p class="text-sm text-gray-400 line-clamp-1"><%= media_play.mediable_type %></p>
       </div>
       <div class="mb-4">
-        <%= render 'audios/progress', progress: media_play.progress %>
-        <div class="flex justify-between mt-1">
-          <h6 data-media-target='currentTime' class="text-xs text-gray-400 tracking-wider">0:00</h6>
-          <h6 data-media-target='timeLeft' class="text-xs text-gray-400 tracking-wider">-0:00</h6>
-        </div>
-      </div>
-      <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-controller="media" data-media-playing-value="<%= playing %>" data-media-url-value="<%= media_play_url(media_play) %>" data-media-starting-progress-value="<%= media_play.progress %>" class="hidden"></audio>
-      <div class="flex items-center justify-around mb-4">
-        <%= link_to '#', data: {media_target: 'rev15'}, class:"h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
-          <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>
-        <% end %>
-        <%= link_to '#', data: {media_target: 'play'}, class:"hover:scale-110 scale-100 transform duration-300 transition-all h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
-          <%= render 'icons/play_fill', classes: "fill-current text-gray-800 h-10 w-10" %>
-        <% end %>
-        <%= link_to '#', data: {media_target: 'pause'}, class:"hidden hover:scale-110 scale-100 transform duration-300 transition-all h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
-          <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-9 w-9" %>
-        <% end %>
-        <%= link_to '#', data: {media_target: 'ffwd15'}, class:"h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
-          <%= render 'icons/ffwd_15', classes: "stroke-current h-8 w-8" %>
-        <% end %>
-        <%= link_to 'next', media_play_path(media_play, media_play: { complete: true, progress: 100 }), method: :put, data: {media_target: 'next', turbo: true}, class: 'hidden' %>
+        <%= render 'media_plays/media_player_controls', media_play: media_play, playing: playing %>
       </div>
     <% else %>
       <div class="aspect-w-1 aspect-h-1">
