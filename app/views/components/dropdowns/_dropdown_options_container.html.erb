@@ -1,0 +1,10 @@
+<% direction ||= "right" %>
+
+<div
+    data-dropdown-target="menu"
+    class="transition transform origin-top-<%= direction %> absolute <%= direction %>-0 pt-2"
+  >
+  <div class="w-56 rounded-md shadow-lg bg-white border border-gray-200 focus:outline-none overflow-hidden">
+    <%= yield %>
+  </div>
+</div>
