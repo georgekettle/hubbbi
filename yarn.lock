@@ -890,6 +890,11 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
   integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
+"@hotwired/stimulus@^3.0.0-rc.1":
+  version "3.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.0.0-rc.1.tgz#0642e95d3b6a289132fafa2bc5f2106d65b7bb2b"
+  integrity sha512-PIoNcZaGYn6ECTIPOf0nnvH7iSyD9QHY99pWvrYhqOymx+z3vmSPsZAeh3DXqxGe0FOgdtDrRfN339F4E7DL9g==
+
 "@hotwired/turbo-rails@^7.0.0-rc.4":
   version "7.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-7.0.0-rc.4.tgz#647e7f976b1bb645a2902c131c235d7440c28e29"
@@ -3631,16 +3636,6 @@ homedir-polyfill@^1.0.1:
   integrity sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==
   dependencies:
     parse-passwd "^1.0.0"
-
-hotkeys-js@>=3:
-  version "3.8.7"
-  resolved "https://registry.yarnpkg.com/hotkeys-js/-/hotkeys-js-3.8.7.tgz#c16cab978b53d7242f860ca3932e976b92399981"
-  integrity sha512-ckAx3EkUr5XjDwjEHDorHxRO2Kb7z6Z2Sxul4MbBkN8Nho7XDslQsgMJT+CiJ5Z4TgRxxvKHEpuLE3imzqy4Lg==
-
-howler@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/howler/-/howler-2.2.3.tgz#a2eff9b08b586798e7a2ee17a602a90df28715da"
-  integrity sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -6850,20 +6845,6 @@ static-extend@^0.1.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
-
-stimulus-dropdown@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/stimulus-dropdown/-/stimulus-dropdown-1.0.0.tgz#82140436aac1b54ef5e3bdf3badecd13e5516534"
-  integrity sha512-srYoYCXFm7TsSxAys8eIxsWQ2a0kbzsD3PcnjUrIrFRXzMyMBEWIBOSoESIrfdtsVL531k9KsAZlQZbMw9Ggnw==
-  dependencies:
-    stimulus-use "^0.25.3"
-
-stimulus-use@^0.25.3:
-  version "0.25.4"
-  resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.25.4.tgz#5b909b546e0bff24e9cd5811391c513b8c5a10af"
-  integrity sha512-Rr4m4PpcOni7y4KiwUMdCuUJ5IPE2LEELwoz8e+VB3jbfPb9DNjrurCTKCWT5BiPBrn9OEfhnWJIRPcbxUpQvQ==
-  dependencies:
-    hotkeys-js ">=3"
 
 stimulus@^2.0.0:
   version "2.0.0"

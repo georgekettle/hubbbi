@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 var dragula = require("dragula")
 var autoScroll = require('dom-autoscroller')
 
@@ -44,7 +44,6 @@ export default class extends Controller {
     this.dragula.on('drop', (el, target, source, sibling) => {
       controller.setAsSaving(el)
       const position = controller.hasAddToPositionValue ? controller.getElementPosition(el) + controller.addToPositionValue : controller.getElementPosition(el)
-      debugger
       if (controller.turboStreamValue) {
         controller.turboStreamUpdateItem(el, position, controller.handleSuccess, controller.handleError)
       } else {

@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import OverlayScrollbars from 'overlayscrollbars'
 
 export default class extends Controller {

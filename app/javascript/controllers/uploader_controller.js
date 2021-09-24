@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import { Uploader } from "../components/uploader"
 import * as FilePond from 'filepond';
 // Import the plugin code

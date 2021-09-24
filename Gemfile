@@ -15,6 +15,8 @@ gem 'sass-rails'
 gem 'webpacker', '~> 5.0'
 # Turbo for navigation, frames and streams
 gem 'turbo-rails'
+# Hotwire stimulus
+gem 'stimulus-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
