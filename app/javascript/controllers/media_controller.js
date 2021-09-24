@@ -19,7 +19,7 @@ export default class extends Controller {
   }
 
   initTargets() {
-    const targets = ["play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15"]
+    const targets = ["play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "mediaControlsContainer", "mediaControlsContainerLoading"]
     targets.forEach((targetName) => {
       this[`${targetName}Targets`] = document.querySelectorAll(`[data-media-target="${targetName}"]`)
     })
@@ -78,6 +78,20 @@ export default class extends Controller {
         _this.rev15(e)
       })
     })
+    // remove loading screen when can play through
+    this.sound.addEventListener('canplaythrough', (e) => {
+      _this.updateProgress(e)
+      _this.dismissLoadingControls()
+    })
+  }
+
+  dismissLoadingControls() {
+    this.mediaControlsContainerLoadingTargets.forEach((loadingTarget) => {
+      loadingTarget.classList.add('hidden')
+    })
+    this.mediaControlsContainerTargets.forEach((mediaContainerTarget) => {
+      mediaContainerTarget.classList.remove('hidden')
+    })
   }
 
   updateControls() {
@@ -108,6 +122,7 @@ export default class extends Controller {
   // Update progress bar
   updateProgress(e) {
     // set progress bar
+    const _this = this
     const { duration, currentTime } = e.srcElement
     const progressPercent = (currentTime / duration) * 100
     const timeLeft = duration - currentTime
@@ -120,7 +135,7 @@ export default class extends Controller {
     })
     // set timeLeft
     this.timeLeftTargets.forEach((timeLeftTarget) => {
-      timeLeftTarget.innerText = '-' + this.secondsToTime(timeLeft)
+      timeLeftTarget.innerText = '-' + _this.secondsToTime(timeLeft)
     })
     // update media play if complete or more than 30s diff
     if (currentTime === duration) {
@@ -150,12 +165,14 @@ export default class extends Controller {
   play(e) {
     e && e.preventDefault()
     this.sound.play()
+    this.playingValue = true
     this.updateControls()
   }
 
   pause(e) {
     e && e.preventDefault()
     this.sound.pause()
+    this.playingValue = false
     this.updateControls()
   }
 
