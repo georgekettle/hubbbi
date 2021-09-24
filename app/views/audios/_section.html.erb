@@ -9,7 +9,7 @@
             <div class="mr-2">
               <%= render "components/saving" %>
             </div>
-            <%= render "components/dropdowns/options_dropdown" do %>
+            <%= render "components/dropdowns/options_dropdown", button_classes: 'icon-btn faded' do %>
               <%= link_to("Add audio", new_section_audio_path(section), class: 'dropdown-link') if audios.empty? %>
               <%= link_to("Update audio", edit_audio_path(audios.first), class: 'dropdown-link') unless audios.empty? %>
               <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>

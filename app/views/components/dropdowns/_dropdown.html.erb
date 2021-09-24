@@ -1,3 +1,6 @@
-<div data-controller="dropdown" class="relative">
+<% classes ||= "" %>
+<% tippy_placement ||= 'bottom-end' %>
+
+<div data-controller="dropdown" data-dropdown-placement-value="<%= tippy_placement %>" class="relative <%= classes %>"">
   <%= yield %>
 </div>
