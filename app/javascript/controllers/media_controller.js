@@ -11,7 +11,7 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log('connected')
+    // console.log('connected')
     // this.initTargets() // necessary due to html complications and seperated element with modal and floating element
     // this.sound = this.audioTarget
     // this.initEventListeners()
@@ -19,19 +19,19 @@ export default class extends Controller {
   }
 
   disconnect() {
-    console.log('disconnected')
+    // console.log('disconnected')
   }
 
   itemTargetConnected(element) {
-    console.log(element)
+    // console.log(element)
   }
 
   itemTargetDisconnected(element) {
-    console.log(element)
+    // console.log(element)
   }
 
   removeAudio(e) {
-    console.log('removing audio')
+    // console.log('removing audio')
     this.testTarget.remove()
   }
 

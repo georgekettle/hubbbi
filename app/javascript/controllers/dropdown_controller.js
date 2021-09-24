@@ -1,66 +1,98 @@
-// import Dropdown from "stimulus-dropdown"
-
-// export default class extends Dropdown {
-//   connect() {
-//     super.connect();
-//   }
-
-//   toggle (event) {
-//     this.toggleTransition()
-//   }
-
-//   open(event) {
-//     // use if toggle not working
-//     this.enter();
-//     let button = event.currentTarget
-//     let newActions = button.dataset.action.split(" ").map((action) => {
-//       return action === "dropdown#open" ? "dropdown#close" : action
-//     })
-//     button.dataset.action = newActions.join(' ')
-//   }
-
-//   close(event) {
-//     // only used if toggle not working
-//     this.leave();
-//     let button = event.currentTarget
-//     let newActions = button.dataset.action.split(" ").map((action) => {
-//       return action === "dropdown#close" ? "dropdown#open" : action
-//     })
-//     button.dataset.action = newActions.join(' ')
-//   }
-
-//   hide (event) {
-//     if (!this.element.contains(event.target) && !this.menuTarget.classList.contains('hidden')) {
-//       this.leave()
-//     }
-//   }
-// }
-
-// import { Controller } from 'stimulus'
-// import { useTransition } from 'stimulus-use/dist/use-transition'
+// import { Controller } from "@hotwired/stimulus"
 
 // export default class extends Controller {
-//   menuTarget: HTMLElement
-//   toggleTransition: (event?: Event) => void
-//   leave: (event?: Event) => void
-//   transitioned: false
+//   static targets = ["menu"]
+//   static values = {
+//     hiddenClasses: Array,
+//     open: Boolean
+//   }
 
-//   static targets = ['menu']
+//   connect () {
+//     if (!this.hasHiddenClassesValue) {
+//       this.hiddenClassesValue = ["scale-0", "opacity-0"]
+//     }
+//     this.menuTarget.style.display = 'none'
+//     !this.openValue && this.close()
+//     this.menuTarget.style.display = null
+//   }
 
-//   connect (): void {
-//     useTransition(this, {
-//       element: this.menuTarget
+//   containsHiddenClasses() {
+//     let containsClass = false
+//     this.hiddenClassesValue.forEach((hiddenClass) => {
+//       containsClass = this.menuTarget.classList.contains(hiddenClass)
 //     })
+//     return containsClass
 //   }
 
-//   toggle (): void {
-//     this.toggleTransition()
+//   toggle (e) {
+//     e.preventDefault()
+//     this.containsHiddenClasses() ? this.open() : this.close()
 //   }
 
-//   hide (event: Event): void {
-//     // @ts-ignore
+//   open (e) {
+//     e && e.preventDefault()
+//     this.openValue = true
+//     this.menuTarget.classList.remove(...this.hiddenClassesValue)
+//   }
+
+//   close (e) {
+//     e && e.preventDefault()
+//     this.openValue = false
+//     this.menuTarget.classList.add(...this.hiddenClassesValue)
+//   }
+
+//   hide (e) {
+//     const clickOnDropdown = this.element.contains(event.target)
+
 //     if (!this.element.contains(event.target) && !this.menuTarget.classList.contains('hidden')) {
-//       this.leave()
+
 //     }
 //   }
 // }
+
+import { Controller } from "@hotwired/stimulus"
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css'; // optional for styling
+import 'tippy.js/animations/scale.css';
+
+export default class extends Controller {
+  static targets = ["menu"]
+  static values = {
+    hiddenClasses: Array,
+    open: Boolean
+  }
+
+  connect () {
+    if (!this.hasHiddenClassesValue) {
+      this.hiddenClassesValue = ["scale-0", "opacity-0"]
+    }
+    this.menuTarget.style.display = 'none'
+    !this.openValue && this.close()
+    this.menuTarget.style.display = null
+  }
+
+  containsHiddenClasses() {
+    let containsClass = false
+    this.hiddenClassesValue.forEach((hiddenClass) => {
+      containsClass = this.menuTarget.classList.contains(hiddenClass)
+    })
+    return containsClass
+  }
+
+  toggle (e) {
+    e.preventDefault()
+    this.containsHiddenClasses() ? this.open() : this.close()
+  }
+
+  open (e) {
+    e && e.preventDefault()
+    this.openValue = true
+    this.menuTarget.classList.remove(...this.hiddenClassesValue)
+  }
+
+  close (e) {
+  }
+
+  hide (e) {
+  }
+}

@@ -16,11 +16,11 @@ ActiveStorage.start()
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initLightbox } from '../components/init_lightbox';
+import { initTippy } from '../components/tippy';
 
 document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
-  // initLightbox()
+  initTippy()
 });
 
 import "stylesheets/application"

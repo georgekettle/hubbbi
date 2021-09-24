@@ -9,8 +9,8 @@ application.register("breadcrumbs", BreadcrumbsController)
 import DragDropEditorController from "./drag_drop_editor_controller"
 application.register("drag-drop-editor", DragDropEditorController)
 
-// import DropdownController from "./dropdown_controller"
-// application.register("dropdown", DropdownController)
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
 
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
