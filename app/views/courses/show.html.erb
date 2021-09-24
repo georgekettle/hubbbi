@@ -3,17 +3,19 @@
     <%= render 'icons/members', classes:"text-gray-900 stroke-current" %>
   <% end %>
   <div data-controller="dropdown" class="relative">
-    <button type="button" class="icon-btn" data-action="dropdown#toggle">
+    <button type="button" class="icon-btn" data-dropdown-target="toggle">
       <%= render 'icons/options', classes: "h-5 w-5" %>
     </button>
 
     <div
       data-dropdown-target="menu"
-      class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
+      class="transition transform origin-top-right absolute right-0 pt-2"
     >
-      <%= link_to("Edit content", edit_sections_page_path(@course.page), class: "dropdown-link") if policy(@course.page).update? %>
-      <%= link_to("Settings", settings_course_path(@course), class: "dropdown-link") if policy(@course).update? %>
-      <%= link_to("Leave this course", course_member_path(@current_user_course_member), method: :delete, data: {confirm: "Are you sure you'd like to remove yourself from this course"}, class: "dropdown-link-danger") if @current_user_course_member %>
+      <div class="w-56 rounded-md shadow-lg bg-white border border-gray-200 focus:outline-none overflow-hidden">
+        <%= link_to("Edit content", edit_sections_page_path(@course.page), class: "dropdown-link") if policy(@course.page).update? %>
+        <%= link_to("Settings", settings_course_path(@course), class: "dropdown-link") if policy(@course).update? %>
+        <%= link_to("Leave this course", course_member_path(@current_user_course_member), method: :delete, data: {confirm: "Are you sure you'd like to remove yourself from this course"}, class: "dropdown-link-danger") if @current_user_course_member %>
+      </div>
     </div>
   </div>
 <% end %>
