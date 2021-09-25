@@ -32,7 +32,6 @@
     "popper.js": "^1.16.1",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "tailwindcss-stimulus-components": "^2.2.2",
     "tippy.js": "^6.3.1",
     "trix": "^1.2.0",
     "webpack": "^4.46.0",
