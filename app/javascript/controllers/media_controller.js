@@ -35,6 +35,12 @@ export default class extends Controller {
     this.progressValue = this.audioTarget.dataset.mediaProgressValue
   }
 
+  playingValueChanged(value, previousValue) {
+    if (this.hasAudioTarget) {
+      this.audioTarget.dataset.mediaPlayingValue = value
+    }
+  }
+
   initEventListeners() {
     const _this = this
     // listen to play
