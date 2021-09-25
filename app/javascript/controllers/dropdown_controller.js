@@ -7,12 +7,12 @@ export default class extends Controller {
     placement: String,
   }
 
-  connect () {
+  initialize () {
     this.placementValue ||= 'bottom-end'
-  }
+    this.menu = this.menuTarget
 
-  menuTargetConnected() {
     if (this.hasMenuTarget && this.toggleTarget) {
+      console.log('initalizing tippy')
       this.tippy = tippy(this.toggleTarget, {
         content: this.menuTarget,
         arrow: false,
@@ -23,9 +23,16 @@ export default class extends Controller {
         trigger: 'mouseenter click',
         hideOnClick: true,
         triggerTarget: this.toggleTargets,
-        appendTo: document.body,
+        appendTo: this.element,
         interactiveDebounce: 30,
       });
+    }
+  }
+
+  disconnect () {
+    if (this.tippy) {
+      this.element.append(this.menu)
+      this.tippy.destroy()
     }
   }
 }
