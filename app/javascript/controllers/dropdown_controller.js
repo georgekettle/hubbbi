@@ -21,8 +21,10 @@ export default class extends Controller {
         offset: [0, 0],
         placement: this.placementValue,
         trigger: 'mouseenter click',
+        hideOnClick: true,
         triggerTarget: this.toggleTargets,
-        appendTo: document.body
+        appendTo: document.body,
+        interactiveDebounce: 30,
       });
     }
   }

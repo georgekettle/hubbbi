@@ -15,6 +15,7 @@ export default class extends Controller {
     this.initValues()
     this.initEventListeners()
     this.playingValue && this.sound.play()
+    this.incomplete = true
   }
 
   initValues() {
@@ -61,6 +62,9 @@ export default class extends Controller {
     })
     this.sound.addEventListener('durationchange', (e) => {
       _this.setStartingProgress()
+    })
+    this.sound.addEventListener('ended', (e) => {
+      _this.playNextSong()
     })
   }
 
@@ -126,9 +130,7 @@ export default class extends Controller {
       timeLeftTarget.innerText = '-' + _this.secondsToTime(timeLeft)
     })
     // update media play if complete or more than 30s diff
-    if (currentTime === duration) {
-      this.playNextSong()
-    } else if (Math.abs(currentTime - this.lastSavedTime) > updateInterval) {
+    if (currentTime != 100 && (Math.abs(currentTime - this.lastSavedTime)) > updateInterval) {
       this.lastSavedTime = currentTime
       const body = { "media_play": { "progress": progressPercent } }
       this.updateProgressRequest(body)
@@ -167,12 +169,19 @@ export default class extends Controller {
 
   ffwd15(e) {
     e.preventDefault()
-    this.sound.currentTime = this.sound.currentTime + 15
+    this.sound.currentTime += 15
+    if (this.sound.currentTime === this.sound.duration && this.incomplete) {
+      this.updateProgress()
+      this.playNextSong()
+    }
   }
 
   rev15(e) {
     e.preventDefault()
-    this.sound.currentTime = this.sound.currentTime - 15
+    const startOfSong = this.sound.currentTime === 0
+    if (!startOfSong) {
+      this.sound.currentTime = this.sound.currentTime -= 15
+    }
   }
 
   updateProgressRequest(body) {
@@ -189,6 +198,9 @@ export default class extends Controller {
   }
 
   playNextSong() {
+    const body = { "media_play": { "progress": 100, "complete": true } }
+    this.updateProgressRequest(body)
+    this.incomplete = false
     this.nextTargets[0].click()
   }
 }
