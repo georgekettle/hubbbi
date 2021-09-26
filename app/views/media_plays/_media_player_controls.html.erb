@@ -36,7 +36,7 @@
   </div>
   <div class="flex items-center justify-between mx-auto w-56">
     <%= link_to '', '#', class:"h-8 w-8 rounded-full flex-shrink-0 bg-gray-200 animate-pulse" %>
-    <%= link_to '#', data:{action: 'click->media#removeAudio'}, class:"pointer-events-auto h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+    <%= link_to '#', class:"pointer-events-none h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
       <%= render 'icons/play_fill', classes: "fill-current text-gray-200 h-10 w-10 animate-pulse" %>
     <% end %>
     <%= link_to '', '#', class:"h-8 w-8 rounded-full flex-shrink-0 bg-gray-200 animate-pulse" %>

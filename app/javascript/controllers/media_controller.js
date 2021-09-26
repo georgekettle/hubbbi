@@ -12,6 +12,7 @@ export default class extends Controller {
 
   audioTargetConnected(element) {
     this.sound = this.audioTarget
+    this.sound.readyState >= 2 && this.prepareControls()
     this.initValues()
     this.initEventListeners()
     this.playingValue && this.sound.play()
@@ -42,6 +43,11 @@ export default class extends Controller {
     }
   }
 
+  prepareControls() {
+    this.updateProgress()
+    this.dismissLoadingControls()
+  }
+
   initEventListeners() {
     const _this = this
     // listen to play
@@ -53,14 +59,15 @@ export default class extends Controller {
     })
     // update progress as song plays
     this.sound.addEventListener('timeupdate', (e) => {
+      // console.log('timeupdate')
       _this.updateProgress()
     });
     // remove loading screen when can play through
     this.sound.addEventListener('canplaythrough', (e) => {
-      _this.updateProgress()
-      _this.dismissLoadingControls()
+      _this.prepareControls()
     })
     this.sound.addEventListener('durationchange', (e) => {
+      // console.log('durationchange')
       _this.setStartingProgress()
     })
     this.sound.addEventListener('ended', (e) => {
