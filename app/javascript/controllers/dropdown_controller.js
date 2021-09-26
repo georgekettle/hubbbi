@@ -12,7 +12,6 @@ export default class extends Controller {
     this.menu = this.menuTarget
 
     if (this.hasMenuTarget && this.toggleTarget) {
-      console.log('initalizing tippy')
       this.tippy = tippy(this.toggleTarget, {
         content: this.menuTarget,
         arrow: false,
