@@ -1,8 +1,14 @@
 <%= render "components/headers/header", header: "All participants", subheader: @course.title, back_link: course_path(@course) do %>
   <% if policy(@course).update? %>
-    <%= link_to new_course_course_member_path(@course), class: 'icon-btn' do %>
-      <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
-    <% end %>
+    <div data-controller="modal">
+      <%= link_to new_course_course_member_path(@course), class: 'icon-btn', data: { action: "click->modal#open" } do %>
+        <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
+      <% end %>
+
+      <%= render 'components/modal_container', header: "Add participants", subheader: "To #{@course.title}", no_padding: true do %>
+        <%= render 'form', course: @course %>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
 

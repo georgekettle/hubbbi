@@ -1,38 +1,3 @@
-// import { Controller } from "@hotwired/stimulus"
-// import MicroModal from 'micromodal';
-// import { v4 as uuidv4 } from 'uuid';
-// MicroModal.init();
-
-// export default class extends Controller {
-//   static targets = ["title", "content", "trigger", "close"]
-//   connect() {
-//     this.uuid = uuidv4()
-//     this.element.id = this.uuid
-//     if (this.hasContentTarget) {
-//       this.titleTarget.id = `${this.uuid}-title`
-//     }
-//     if (this.hasContentTarget) {
-//       this.contentTarget.id = `${this.uuid}-content`
-//     }
-//     this.closeTargets.forEach((closeTarget) => {
-//       closeTarget.dataset.micromodalClose = ''
-//     })
-//     // this.triggerTargets.forEach((triggerTarget) => {
-//     //   triggerTarget.dataset.micromodalTrigger = this.uuid
-//     // })
-//   }
-
-//   open (e) {
-//     e.preventDefault()
-//     MicroModal.show(this.uuid)
-//   }
-
-//   close (e) {
-//     e.preventDefault()
-//     MicroModal.close(this.uuid)
-//   }
-// }
-
 // Visit The Stimulus Handbook for more details
 // https://stimulusjs.org/handbook/introduction
 //
