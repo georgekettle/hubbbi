@@ -3,3 +3,4 @@
   <%= turbo_stream.replace("modal_media_player", partial: "media_plays/modal_media_player") %>
 <% end %>
 <%= turbo_stream.replace("up_next", partial: "media_plays/up_next") %>
+<%= turbo_stream.append("flashes", partial: "shared/flashes/notice", locals: { notice: "Added to queue" }) %>

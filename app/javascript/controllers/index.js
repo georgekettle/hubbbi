@@ -3,6 +3,9 @@
 
 import { application } from "./application"
 
+import AlertController from "./alert_controller"
+application.register("alert", AlertController)
+
 import BreadcrumbsController from "./breadcrumbs_controller"
 application.register("breadcrumbs", BreadcrumbsController)
 
@@ -14,9 +17,6 @@ application.register("dropdown", DropdownController)
 
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
-
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
 
 import LightboxController from "./lightbox_controller"
 application.register("lightbox", LightboxController)
