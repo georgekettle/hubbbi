@@ -2,11 +2,13 @@
 
 <%= simple_form_for(path) do |f| %>
   <%= f.label :cover, label: 'Cover image', required: true %>
-  <%= f.file_field :cover,
+  <%= render 'components/forms/image_upload', attachment: @course.cover do %>
+    <%= f.file_field :cover,
           direct_upload: true,
           required: true,
           accept:"image/png, image/jpeg, image/gif",
           data: { controller: 'uploader' } %>
+  <% end %>
   <%= f.input :title %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>
