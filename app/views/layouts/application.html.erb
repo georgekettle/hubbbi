@@ -18,15 +18,7 @@
     </div>
 
     <%= render 'shared/mobile_navbar' unless @hide_navbar %>
-    <% if Current.group %>
-      <div data-turbo-permanent id="media-player-permanent">
-        <%= turbo_frame_tag "media-player", src: fetch_media_player_media_plays_path do %>
-          <% if currently_playing %>
-            <%= render 'media_plays/loading_media_player' %>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render 'media_plays/media_player_container' %>
     <%= render 'shared/flashes/flashes' %>
     <%= render 'shared/load_screen' %> <!-- will disappear once tailwind is loaded -->
   </body>
