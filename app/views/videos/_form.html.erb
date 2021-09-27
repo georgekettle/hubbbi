@@ -2,8 +2,8 @@
   <div class="mb-4 max-w-lg">
     <%= render 'videos/segmented_control',
                   options: [
-                        {title: "Youtube or Vimeo", id: 'url', checked: video.url.present? || video.new_record?},
-                        {title: "Upload your own", id: 'video-upload', checked: video.url.present?},
+                        {title: "Youtube or Vimeo", name:'video[remote_video]', value:'true', id: 'url', checked: video.url.present? || video.new_record?},
+                        {title: "Upload your own", name:'video[remote_video]', value:'false', id: 'video-upload', checked: video.url.present?},
                     ] %>
   </div>
 

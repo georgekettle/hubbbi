@@ -5,17 +5,39 @@ export default class extends Controller {
 
   connect() {
     this.inputTargets = this.containerTarget.querySelectorAll('input')
+    this.setSelected()
     this.setup()
   }
 
+  setSelected() {
+    this.inputTargets.forEach((inputTarget) => {
+      if (inputTarget.checked) {
+        this.selected = inputTarget
+      }
+    })
+  }
+
   setup() {
+    const _this = this
     this.updatePillPosition(this)
-    this.containerTarget.addEventListener("change", () => {this.updatePillPosition(this)});
-    window.addEventListener("resize", () => {this.updatePillPosition(this)});
+    this.containerTarget.addEventListener("change", (e) => {
+      this.selected = e.target
+      this.uncheckNotSelected()
+      this.updatePillPosition(this)
+    });
+    window.addEventListener("resize", () => { this.updatePillPosition(this) });
+  }
+
+  uncheckNotSelected() {
+    this.inputTargets.forEach((inputTarget) => {
+      if (inputTarget !== this.selected) {
+        inputTarget.checked = false
+      }
+    })
   }
 
   updatePillPosition(controller) {
-    Array.from(controller.inputTargets).forEach((elem, index) => {
+    controller.inputTargets.forEach((elem, index) => {
       const content = document.querySelector(`#${elem.id}-toggle-content`)
       if (elem.checked) {
         controller.moveBackgroundPillToElement(elem, index)

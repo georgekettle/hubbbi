@@ -27,8 +27,8 @@
       </div>
     <% elsif video.file.url.present? %>
     <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
-      <%= link_to video.file.service_url,
-                  data:{ src: video.file.service_url, download_url: false, lightbox_target: 'item', iframe: true },
+      <%= link_to video.file.url,
+                  data:{ src: video.file.url, download_url: false, lightbox_target: 'item', iframe: true },
                   class: "gallery-item w-full overflow-hidden" do %>
           <img width="300"
                height="100"

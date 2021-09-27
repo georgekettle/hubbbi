@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = ["handle"]
 
   connect() {
-    console.log('scroll-handle')
     this.initOverlayScrollbars()
   }
 

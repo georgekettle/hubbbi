@@ -2,15 +2,14 @@
   <div class="mb-4 max-w-lg">
     <%= render 'videos/segmented_control',
                   options: [
-                        {title: "Youtube or Vimeo", id: 'url', checked: video.url.present? || video.new_record?},
-                        {title: "Upload your own", id: 'video-upload', checked: video.url.present?},
+                        {title: "Youtube or Vimeo", name:'video[remote_video]', value:'true', id: 'url', checked: video.url.present? || video.new_record?},
+                        {title: "Upload your own", name:'video[remote_video]', value:'false', id: 'video-upload', checked: video.url.present?},
                     ] %>
   </div>
 
   <div id="video-upload-toggle-content" class="segmented-option-content">
     <%= f.file_field :file,
             direct_upload: true,
-            required: true,
             accept:"video/quicktime, video/mp4",
             data: { controller: 'uploader', uploader_filetypes_value: ['video/quicktime', 'video/mp4'] } %>
   </div>
