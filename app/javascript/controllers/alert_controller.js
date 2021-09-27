@@ -69,10 +69,12 @@ export default class extends Controller {
     this.element.style.setProperty('transform', 'translate(0,0)', 'important')
     this.element.style.setProperty('height', 'unset', 'important')
     this.element.style.setProperty('opacity', '1', 'important')
+    this.element.style.removeProperty('margin')
   }
 
   hide() {
     this.element.style.setProperty('height', '0', 'important')
     this.element.style.setProperty('opacity', '0', 'important')
+    this.element.style.setProperty('margin', '0', 'important')
   }
 }
