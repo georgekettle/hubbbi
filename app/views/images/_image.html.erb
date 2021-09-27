@@ -2,7 +2,7 @@
 
 <div class="w-full">
   <div class="overflow-hidden rounded-2xl relative">
-    <%= link_to image.picture.service_url, data:{ src: image.picture.service_url, lightbox_target: 'item' }, class:"gallery-item" do %>
+    <%= link_to image.picture.url, data:{ src: image.picture.url, lightbox_target: 'item' }, class:"gallery-item" do %>
       <%= cl_image_tag image.picture.key %>
     <% end %>
 
