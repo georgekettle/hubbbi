@@ -3,12 +3,19 @@
 <div class="ios-segmented-control" data-segmented-control-target="container">
   <span class="selection" data-segmented-control-target="selection"></span>
   <% options.each do |option| %>
+
     <div class="option">
       <input type="radio"
-             id="<%= option[:id] %>"
-             name="video[remote_video]"
-             value=<%= option[:remote_video] %>
-             <%= 'checked' if option[:checked] %>>
+            id="<%= option[:id] %>"
+            <% if option[:name] %>
+              name="<%= option[:name] %>"
+            <% else %>
+              name="<%= option[:id] %>"
+            <% end %>
+            <% if option[:value] %>
+              value="<%= option[:value] %>"
+            <% end %>
+            <%= 'checked' if option[:checked] %>>
       <label for="<%= option[:id] %>"><span><%= option[:title] %></span></label>
     </div>
   <% end %>
