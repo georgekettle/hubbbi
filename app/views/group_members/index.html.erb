@@ -17,32 +17,33 @@
 <% end %>
 
 <%= render "shared/container", classes: "p-4" do %>
-  <% if policy(@group).update? %>
-    <div data-controller="segmented-control">
-      <div class="mb-4">
-        <%= render 'videos/segmented_control',
-                    options: [
-                          { title: "Members", id: 'members', checked: ['members', nil].include?(params[:section]) },
-                          { title: "Invites", id: 'invites', checked: params[:section] == 'invites' },
-                      ] %>
-      </div>
+  <%= render 'components/spacing_bottom' do %>
+    <% if policy(@group).update? %>
+      <div data-controller="segmented-control">
+        <div class="mb-4">
+          <%= render 'videos/segmented_control',
+                      options: [
+                            { title: "Members", id: 'members', checked: ['members', nil].include?(params[:section]) },
+                            { title: "Invites", id: 'invites', checked: params[:section] == 'invites' },
+                        ] %>
+        </div>
 
+        <div id="members-toggle-content" class="segmented-option-content">
+          <%= yield(:group_member_search_list) if content_for?(:group_member_search_list) %>
+        </div>
+
+        <div id="invites-toggle-content" class="segmented-option-content">
+          <% @group.invites.each_with_index do |invite, index| %>
+            <%= render 'components/z_index', list: @group.invites, index: index do %>
+              <%= render 'groups/invites/list_item', invite: invite %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
       <div id="members-toggle-content" class="segmented-option-content">
         <%= yield(:group_member_search_list) if content_for?(:group_member_search_list) %>
       </div>
-
-      <div id="invites-toggle-content" class="segmented-option-content">
-        <% @group.invites.each_with_index do |invite, index| %>
-          <div style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
-            <%= render 'groups/invites/list_item', invite: invite %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% else %>
-    <div id="members-toggle-content" class="segmented-option-content">
-      <%= yield(:group_member_search_list) if content_for?(:group_member_search_list) %>
-    </div>
+    <% end %>
   <% end %>
-
 <% end %>

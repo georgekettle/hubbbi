@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   end
 
   resources :courses, only: [:show, :edit, :update, :destroy] do
-    resources :course_members, only: [:index, :new, :create]
+    resources :course_members, only: [:index, :create]
     member do
       get :settings
     end
