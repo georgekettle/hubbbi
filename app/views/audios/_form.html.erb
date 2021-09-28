@@ -5,7 +5,7 @@
           required: true,
           accept:"audio/*",
           data: { controller: 'uploader', uploader_filetypes_value: ['audio/*'], file_metadata_resource_type:"video" } %>
-  <%= f.label :cover %>
+  <%= f.label :cover, label: 'Display image' %>
   <%= render 'components/forms/image_upload', attachment: audio.cover do %>
     <%= f.file_field :cover,
           direct_upload: true,
