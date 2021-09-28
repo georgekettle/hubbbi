@@ -15,6 +15,8 @@ FilePond.registerPlugin(
   FilePondPluginFileValidateType
 );
 
+let fileUploadingCount = 0
+
 export default class extends Controller {
   static targets = ["container"]
   static values = { filetypes: Array }
@@ -40,16 +42,20 @@ export default class extends Controller {
     const isLoading = this.pond.getFiles().filter(x=>x.status !== 5).length !== 0
     const submitButtons = this.form.querySelectorAll('[type="submit"]')
     if(isLoading) {
+      fileUploadingCount += 1
       submitButtons.forEach((submit) => {
         submit.disabled = true
         submit.dataset.originalValue = submit.value
         submit.value = 'Uploading file...'
       })
     } else {
-      submitButtons.forEach((submit) => {
-        submit.disabled = false
-        submit.value = submit.dataset.originalValue
-      })
+      fileUploadingCount -= 1
+      if (fileUploadingCount === 0) {
+        submitButtons.forEach((submit) => {
+          submit.disabled = false
+          submit.value = submit.dataset.originalValue
+        })
+      }
     }
   }
 
@@ -58,6 +64,3 @@ export default class extends Controller {
     uploader.uploadFile();
   };
 }
-
-
-
