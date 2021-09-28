@@ -10,8 +10,6 @@ class User < ApplicationRecord
   belongs_to :selected_group_member, class_name: 'GroupMember', :foreign_key => 'selected_group_member_id', optional: true
   has_one :selected_group, through: :selected_group_member, :source => :group
 
-  has_one_attached :avatar
-
   has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
   has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
 

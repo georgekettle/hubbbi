@@ -4,7 +4,7 @@
       <div class="w-full flex items-center justify-between">
         <div class="flex items-center">
           <!-- avatar -->
-          <%= render "components/avatar", user: group_member.user %>
+          <%= render "components/avatar", group_member: group_member %>
           <div class="ml-2">
             <h4><%= group_member.user.full_name_or_email %></h4>
             <p class="text-xs text-gray-400">Joined group <%= time_ago_in_words(group_member.created_at) %> ago</p>

@@ -1,9 +1,11 @@
+<% group_member = invite.recipient.group_members.find_by(group: invite.invitable) %>
+
 <div class="w-full relative mb-2 hover:bg-black hover:bg-opacity-5 rounded-lg">
   <div class="w-full flex items-center justify-between p-1">
     <div class="w-full flex items-center justify-between">
       <div class="flex items-center">
         <!-- avatar -->
-        <%= render "components/avatar", user: invite.recipient %>
+        <%= render "components/avatar", group_member: group_member %>
         <div class="ml-2">
           <% if invite.recipient %>
             <h4><%= invite.recipient.full_name_or_email %></h4>

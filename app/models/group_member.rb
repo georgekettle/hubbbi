@@ -9,6 +9,8 @@ class GroupMember < ApplicationRecord
   has_many :courses, through: :course_members
   has_one :selected_user, class_name: 'User', :foreign_key => 'selected_group_member_id', dependent: :nullify
 
+  has_one_attached :avatar
+
   validates :user, uniqueness: { scope: :group, message: 'is already a group member' }
   validates :role, presence: true
 
