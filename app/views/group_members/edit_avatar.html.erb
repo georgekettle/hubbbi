@@ -6,15 +6,13 @@
 
     <div class="form-inputs">
       <div class="form-group">
-        <%= f.fields_for :user do |user_form| %>
-          <%= user_form.label :avatar %>
-          <%= render 'components/forms/image_upload', attachment: @group_member.user.avatar do %>
-            <%= user_form.file_field :avatar,
-                  direct_upload: true,
-                  required: true,
-                  accept:"image/png, image/jpeg, image/gif",
-                  data: { controller: 'uploader' } %>
-          <% end %>
+        <%= f.label :avatar %>
+        <%= render 'components/forms/image_upload', attachment: @group_member.user.avatar do %>
+          <%= f.file_field :avatar,
+                direct_upload: true,
+                required: true,
+                accept:"image/png, image/jpeg, image/gif",
+                data: { controller: 'uploader' } %>
         <% end %>
       </div>
     </div>
