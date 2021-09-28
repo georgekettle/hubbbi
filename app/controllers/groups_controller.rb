@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
     else
       hide_all_navbars
       hide_media_player
-      render :new, alert: "Oops... Something went wrong when creating your group"
+      render :new, status: :unprocessable_entity, alert: "Oops... Something went wrong when creating your group"
     end
   end
 
@@ -43,7 +43,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to @group, notice: "Your group has successfully been updated"
     else
-      render :edit, alert: "Oops... Something went wrong when updating your group"
+      render :edit, status: :unprocessable_entity, alert: "Oops... Something went wrong when updating your group"
     end
   end
 
@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
     if @group.destroy
       redirect_to groups_path, notice: "Your group has successfully been destroyed"
     else
-      render :settings, alert: "Oops... Something went wrong when deleting your group"
+      render :settings, status: :unprocessable_entity, alert: "Oops... Something went wrong when deleting your group"
     end
   end
 

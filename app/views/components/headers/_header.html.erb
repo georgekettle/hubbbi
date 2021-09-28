@@ -3,11 +3,11 @@
 <% subheader ||= nil %>
 <% header_link ||= nil %>
 
-<div class="shadow-sm bg-white top-0 w-full flex-shrink-0 h-14 top-0" style="z-index: 998">
+<div id="header" class="shadow-sm bg-white top-0 w-full flex-shrink-0 h-14 top-0" style="z-index: 998">
   <%= render 'shared/container', classes: 'flex items-center px-2' do %>
     <div class="w-full flex items-center justify-between relative py-3 px-2 lg:px-0">
 
-      <div>
+      <div id='header-left'>
         <% unless hide_back_link %>
           <%= link_to back_link, class: 'icon-btn' do %>
             <%= render 'icons/arrow_left' %>
@@ -17,7 +17,7 @@
         <%= yield(:header_left) if content_for?(:header_left) %>
       </div>
 
-      <div class="flex items-center">
+      <div id="header-right" class="flex items-center">
         <%= yield %>
       </div>
     </div>
