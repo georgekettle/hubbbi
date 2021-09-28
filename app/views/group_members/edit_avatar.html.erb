@@ -7,7 +7,7 @@
     <div class="form-inputs">
       <div class="form-group">
         <%= f.label :avatar %>
-        <%= render 'components/forms/image_upload', attachment: @group_member.user.avatar do %>
+        <%= render 'components/forms/image_upload', attachment: @group_member.avatar do %>
           <%= f.file_field :avatar,
                 direct_upload: true,
                 required: true,
