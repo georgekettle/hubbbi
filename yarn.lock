@@ -3143,11 +3143,6 @@ filepond-plugin-file-encode@^2.1.10:
   resolved "https://registry.yarnpkg.com/filepond-plugin-file-encode/-/filepond-plugin-file-encode-2.1.10.tgz#661f5e73f9361b37b2d260b59b4621fcfcfec76e"
   integrity sha512-SCz6Pvu/30WV2knw+zMuJ4bB+vBE7niMg2Vte3NXY9K5qfBpX0Ido35PKUrxLatSMeWiwVakhwindt2n591jJw==
 
-filepond-plugin-file-metadata@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/filepond-plugin-file-metadata/-/filepond-plugin-file-metadata-1.0.8.tgz#52ebc23618f89c916272280906f4d389c98a85f2"
-  integrity sha512-VjYbe8AwcBYQs1HO7J/vUPWUv5DQPSlq7Swu/x+3huGpfrNi5u5eRaV6BZE9wV8NvdAviqlTGfqqCeFCND/7NQ==
-
 filepond-plugin-file-validate-type@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/filepond-plugin-file-validate-type/-/filepond-plugin-file-validate-type-1.2.6.tgz#5a03e04fb8f70f0df37ff9a285d3d2343cdc55f2"
