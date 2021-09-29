@@ -16,7 +16,15 @@ class GroupMember < ApplicationRecord
 
   accepts_nested_attributes_for :user
 
+  after_destroy :destroy_invitations
+
   def name
     user.full_name_or_email
+  end
+
+  private
+
+  def destroy_invitations
+    user.invitations.where(invitable: group).destroy_all
   end
 end

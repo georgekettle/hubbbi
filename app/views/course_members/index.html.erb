@@ -1,7 +1,13 @@
-<%= render "components/headers/header", header: "Course participants", subheader: @course.title, back_link: course_path(@course) %>
+<%= render "components/headers/header", header: "Course participants", subheader: @course.title, back_link: course_path(@course) do %>
+  <% if policy(@course).update? %>
+    <%= link_to new_course_course_member_path(@course), class: 'icon-btn' do %>
+      <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
+    <% end %>
+  <% end %>
+<% end %>
 
 <%= render "shared/container", classes: "p-4" do %>
-  <% if policy(@course).update? %>
+  <% if policy(@course).update? && @course.course_members.count < 10 %>
     <div class="bg-primary-50 p-4 rounded-md sm:flex sm:items-center sm:justify-between mb-4">
       <div class="mb-4 sm:mb-0">
         <h4 class="font-medium">Add participants to course</h4>
