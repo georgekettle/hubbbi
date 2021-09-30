@@ -10,7 +10,7 @@ class GroupsTest < ApplicationSystemTestCase
     assert_difference 'Group.count', 1, 'New group should be created in DB' do
       click_on 'Create Group'
     end
-    assert page.has_content?('Your group has successfully been created'), 'Successful flash appears'
+    assert page.has_content?('Your group has successfully been created', wait: 15), 'Successful flash appears'
   end
 
   test "user can not create a group if name is not provided" do
@@ -28,7 +28,7 @@ class GroupsTest < ApplicationSystemTestCase
   test "Can not create a group without login in" do
     visit new_group_path
     assert current_path == new_user_session_path
-    assert page.has_content?('You need to sign in or sign up before continuing.'), 'Error should appear in the page'
+    assert page.has_content?('You need to sign in or sign up before continuing.', wait: 15), 'Error should appear in the page'
   end
 
   test "Removes user from group" do

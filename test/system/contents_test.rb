@@ -34,7 +34,7 @@ class ContentsTest < ApplicationSystemTestCase
       click_on 'Create Page'
     end
 
-    assert page.has_content?('New page successfully created'), 'flash appears indicating the creation was successful'
+    assert page.has_content?('New page successfully created', wait: 15), 'flash appears indicating the creation was successful'
 
     assert_difference 'course.page.sections.count', 1, 'New text section should be created in DB' do
       source = page.find('.handle.item:nth-child(2)')
