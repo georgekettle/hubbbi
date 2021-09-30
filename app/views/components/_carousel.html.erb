@@ -3,9 +3,18 @@
 <div data-controller="slider">
   <div class="px-2 flex items-center justify-between">
     <h4 class="text-sm"></h4>
-    <div data-slider-target="buttons" class="flex items-center"></div>
+    <div data-slider-target="buttons" class="flex items-center opacity-0"></div>
   </div>
-  <div data-slider-target="container" class="outline-none" data-controller="lightbox" data-lightbox-target="gallery">
+  <div class="opacity-0 outline-none" data-slider-target="container" data-controller="lightbox" data-lightbox-target="gallery">
     <%= yield %>
+  </div>
+  <!-- Loading screen -->
+  <div data-slider-target="loader" class="p-2 absolute left-0 top-0 w-full h-full">
+    <div class="w-full rounded-md flex flex-col items-center justify-center py-12">
+      <div class="mb-2">
+        <%= render 'components/loaders/thinking' %>
+      </div>
+      <p class="text-black opacity-20 text-center text-xs">Loading images</p>
+    </div>
   </div>
 </div>

@@ -1,0 +1,10 @@
+<% text ||= ['Add load text', 'By adding an array of text', 'Add load text', 'By adding an array of text'] %>
+<% classes ||= '' %>
+
+<div class="content__container">
+  <ul class="content__container__list">
+    <% text.each do |text| %>
+      <li class="content__container__list__item <%= classes %>"><%= text %></li>
+    <% end %>
+  </ul>
+</div>
