@@ -6,9 +6,7 @@
         <%= render 'icons/switch', classes:"stroke-current text-white h-4 w-4 transform scale-0 group-hover:scale-100 transition-transform duration-300" %>
       </div>
     </div>
-    <div class="ml-3">
-      <h4 class="tracking-tight text-white font-semibold hidden sm:block"><%= Current.group.name %></h4>
-    </div>
+    <h4 class="ml-3 tracking-tight text-white font-semibold hidden sm:block"><%= Current.group.name %></h4>
   <% end %>
   <div class="flex items-center" style="z-index: 1000">
     <% if user_signed_in? %>
@@ -18,7 +16,7 @@
       <% end %>
       <div data-controller="dropdown" class="relative h-10">
         <button type="button" data-dropdown-target="toggle">
-          <%= render "components/avatar", user: current_user, size: 10 %>
+          <%= render "components/avatar", group_member: Current.group_member, size: 10 %>
         </button>
 
         <%= render 'components/dropdowns/dropdown_options_container' do %>
