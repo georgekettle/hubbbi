@@ -1,16 +1,19 @@
 <% editable ||= false %>
+<% index ||= 0 %>
 
 <% if editable %>
-  <div class="mb-6 relative" data-section-sortable-target="item" data-section-id="<%= section.id %>" data-update-url="<%= section_path(section) %>">
+  <div class="mb-6 relative" data-section-sortable-target="item" data-section-id="<%= section.id %>" data-update-url="<%= section_path(section) %>" style="z-index: <%= index %>">
     <%= render "sections/dropzone", position: section.position %>
 <% else %>
   <div class="mb-6">
 <% end %>
   <div class="section">
     <!-- shows when dragging -->
-    <div class="section-drag-component">
-      <%= render 'components/section_drag_component' %>
-    </div>
+    <% if editable %>
+      <div class="section-drag-component">
+        <%= render 'components/section_drag_component' %>
+      </div>
+    <% end %>
     <!-- hidden when dragging -->
     <div class="section-content">
       <% case section.section_type %>
@@ -22,6 +25,8 @@
         <%= render :partial => "images/section", :locals => {images: section.images, section: section, editable: editable} %>
       <% when "video" %>
         <%= render :partial => "videos/section", :locals => {videos: section.videos, section: section, editable: editable} %>
+      <% when "audio" %>
+        <%= render :partial => "audios/section", :locals => {audios: section.audios, section: section, editable: editable} %>
       <% when "link" %>
         <%= render :partial => "links/section", :locals => {links: section.links, section: section, editable: editable} %>
       <% when "pdf" %>

@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 var dragula = require("dragula")
 var autoScroll = require('dom-autoscroller')
 

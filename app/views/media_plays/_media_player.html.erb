@@ -1,0 +1,21 @@
+<div data-controller="modal media">
+  <div class="fixed w-screen bottom-16 md:bottom-4 left-0 -mb-0.5" style="z-index: 999">
+    <!-- media player -->
+    <%= render 'media_plays/floating_media_player' %>
+  </div>
+  <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeInUp fixed pt-8 h-screen w-screen inset-0" style="z-index: 9999;">
+    <!-- Modal Inner Container -->
+    <div class="h-full w-full max-w-xl relative overflow-scroll no-scrollbar bg-white rounded-t-lg mx-auto">
+      <div class="w-full p-4 z-10 sticky top-0 flex justify-end pointer-events-none">
+        <%= link_to "#", class: "icon-btn faded pointer-events-auto", data: { action: "click->modal#close" } do %>
+          <%= render 'icons/chevron_down', classes: 'h-4 w-4' %>
+        <% end %>
+      </div>
+      <!-- Modal content -->
+      <!-- currently playing -->
+      <%= render 'media_plays/modal_media_player' %>
+      <!-- media queue -->
+      <%= render 'media_plays/up_next' %>
+    </div>
+  </div>
+</div>

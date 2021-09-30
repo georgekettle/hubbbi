@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :videos, only: [:new, :create], controller: 'sections/videos'
     resources :links, only: [:new, :create], controller: 'sections/links'
     resources :pdfs, only: [:new, :create], controller: 'sections/pdfs'
+    resources :audios, only: [:new, :create], controller: 'sections/audios'
     resources :section_elements, only: :index
   end
 
@@ -37,6 +38,24 @@ Rails.application.routes.draw do
   resources :videos, only: [:edit, :update]
   resources :links, only: [:edit, :update, :destroy]
   resources :pdfs, only: [:destroy, :edit, :update]
+  resources :audios, only: [:destroy, :edit, :update] do
+    resources :media_plays, only: [:create], controller: 'audios/media_plays' do
+      collection do
+        post :add_to_queue
+      end
+    end
+  end
+  resources :media_plays, only: [:update, :destroy] do
+    member do
+      patch :skip_queue
+      put :skip_queue
+      patch :reorder
+      put :reorder
+    end
+    collection do
+      get :fetch_media_player
+    end
+  end
 
   resources :group_members, only: [:show, :edit, :update, :destroy] do
     resources :links, only: [:new, :create], module: "group_members"

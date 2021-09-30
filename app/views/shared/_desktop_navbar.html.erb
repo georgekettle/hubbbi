@@ -6,10 +6,7 @@
         <%= render 'icons/switch', classes:"stroke-current text-white h-4 w-4 transform scale-0 group-hover:scale-100 transition-transform duration-300" %>
       </div>
     </div>
-    <div class="ml-3">
-      <h4 class="tracking-tight text-white font-semibold hidden sm:block"><%= Current.group.name %></h4>
-    </div>
-
+    <h4 class="ml-3 tracking-tight text-white font-semibold hidden sm:block"><%= Current.group.name %></h4>
   <% end %>
   <div class="flex items-center" style="z-index: 1000">
     <% if user_signed_in? %>
@@ -18,25 +15,18 @@
         Courses
       <% end %>
       <div data-controller="dropdown" class="relative h-10">
-        <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
+        <button type="button" data-dropdown-target="toggle">
           <%= render "components/avatar", group_member: Current.group_member, size: 10 %>
         </button>
 
-        <div
-          data-dropdown-target="menu"
-          class="transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
-          data-transition-enter-from="opacity-0 scale-95"
-          data-transition-enter-to="opacity-100 scale-100"
-          data-transition-leave-from="opacity-100 scale-100"
-          data-transition-leave-to="opacity-0 scale-95"
-        >
+        <%= render 'components/dropdowns/dropdown_options_container' do %>
           <% if Current.group %>
             <% selected_group_member = GroupMember.find_by(group: Current.group, user: current_user) %>
             <%= link_to("Profile", group_member_path(selected_group_member), class: "dropdown-link") if selected_group_member %>
             <%= link_to("Update profile", edit_group_member_path(selected_group_member), class: "dropdown-link" )if selected_group_member %>
           <% end %>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-link-danger" %>
-        </div>
+        <% end %>
       </div>
     <% else %>
       <%= link_to "Login", new_user_session_path, class: "text-white text-sm bg-black bg-opacity-20 hover:bg-opacity-30 p-2 rounded-md px-4 font-medium" %>

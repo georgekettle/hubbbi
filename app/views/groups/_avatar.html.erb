@@ -1,4 +1,4 @@
 <% size ||= 12 %>
 
-<% image_path = group.cover.attached? ? cl_image_path(group.cover.key) : asset_path('default_cover.svg') %>
+<% image_path = group.cover && group.cover.key ? cl_image_path(group.cover.key) : asset_path('default_cover.svg') %>
 <div class="rounded-md h-<%= size %> w-<%= size %> overflow-hidden border border-white" style="background-size: cover; background-image: url(<%= image_path %>)"></div>

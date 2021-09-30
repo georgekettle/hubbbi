@@ -9,9 +9,10 @@ class Section < ApplicationRecord
   has_many :videos, :through => :section_elements, :source => :element, :source_type => 'Video'
   has_many :links, :through => :section_elements, :source => :element, :source_type => 'Link'
   has_many :pdfs, :through => :section_elements, :source => :element, :source_type => 'Pdf'
+  has_many :audios, :through => :section_elements, :source => :element, :source_type => 'Audio'
 
-  enum section_type: [:page_reference, :text, :image, :video, :link, :pdf]
-  
+  enum section_type: [:page_reference, :text, :image, :video, :link, :pdf, :audio]
+
   delegate :group, to: :page, allow_nil: true
 
   acts_as_list scope: :page
@@ -29,6 +30,6 @@ class Section < ApplicationRecord
   end
 
   def elements
-    page_references + texts + images + videos + links + pdfs
+    page_references + texts + images + videos + links + pdfs + audios
   end
 end

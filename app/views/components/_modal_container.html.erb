@@ -1,4 +1,5 @@
 <% subheader ||= nil %>
+<% no_padding ||= false %>
 
 <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
   <!-- Modal Inner Container -->
@@ -16,7 +17,11 @@
           <%= render 'icons/close', classes: 'h-3.5 w-3.5' %>
         <% end %>
       </div>
-      <div class="p-4 sm:p-8 relative">
+      <% if no_padding %>
+        <div class="relative">
+      <% else %>
+        <div class="p-4 sm:p-8 relative">
+      <% end %>
         <%= yield %>
       </div>
     </div>

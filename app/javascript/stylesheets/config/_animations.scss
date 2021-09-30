@@ -38,6 +38,23 @@
   animation-name: fadeOut;
 }
 
+@keyframes fadeInUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0vh);
+    opacity: 1;
+  }
+}
+
+.fadeInUp {
+  animation-timing-function: ease-out;
+  animation-name: fadeInUp;
+}
+
 @keyframes fadeOutShrink {
   from {
     max-height: 150px;

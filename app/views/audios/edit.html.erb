@@ -1,0 +1,4 @@
+<%= render "components/headers/header", header: "Update audio", back_link: edit_sections_page_path(@audio.page) %>
+<%= render "shared/container", classes: "p-4" do %>
+  <%= render "form", audio: @audio %>
+<% end %>

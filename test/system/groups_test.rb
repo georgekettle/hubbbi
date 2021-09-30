@@ -10,7 +10,7 @@ class GroupsTest < ApplicationSystemTestCase
     assert_difference 'Group.count', 1, 'New group should be created in DB' do
       click_on 'Create Group'
     end
-    assert page.has_content?('Your group has successfully been created'), 'Successful flash appears'
+    assert page.has_content?('Your group has successfully been created', wait: 15), 'Successful flash appears'
   end
 
   test "user can not create a group if name is not provided" do
@@ -28,7 +28,7 @@ class GroupsTest < ApplicationSystemTestCase
   test "Can not create a group without login in" do
     visit new_group_path
     assert current_path == new_user_session_path
-    assert page.has_content?('You need to sign in or sign up before continuing.'), 'Error should appear in the page'
+    assert page.has_content?('You need to sign in or sign up before continuing.', wait: 15), 'Error should appear in the page'
   end
 
   test "Removes user from group" do
@@ -58,14 +58,15 @@ class GroupsTest < ApplicationSystemTestCase
     visit group_group_members_path(group)
     find(:xpath, '//*[@id="course_members"]/div[1]/div/a').click
     assert page.has_content?('George Kettle', wait: 15), 'Show page loads correctly'
-    find(:xpath, '/html/body/div[3]/div[1]/div/div[1]/div[2]/div/button').click
+
+    find(:css, '#header-right [data-controller="dropdown"]').click
     assert page.has_content?('Make admin', wait: 15), 'Link to make user admin appears'
     click_on 'Make admin'
     page.driver.browser.switch_to.alert.accept
     assert page.has_content?('George Kettle was successfully updated', wait: 15), 'Successful flash appears'
     assert group.group_members.find_by_user_id(1).admin?, 'George Kettle is an admin in this group'
 
-    find(:xpath, '/html/body/div[4]/div[1]/div/div[1]/div[1]/a').click
+    find(:css, '#header-left a').click
     assert current_path == group_group_members_path(group), 'It redirects to back correctly'
   end
 end

@@ -1,11 +1,13 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 var dragula = require("dragula")
 var autoScroll = require('dom-autoscroller')
 
 export default class extends Controller {
   static targets = ["item", "container", "scrollContainer"]
   static values = {
-    handle: String
+    handle: String,
+    turboStream: Boolean,
+    addToPosition: Number
   }
 
   connect() {
@@ -41,8 +43,12 @@ export default class extends Controller {
     const controller = this
     this.dragula.on('drop', (el, target, source, sibling) => {
       controller.setAsSaving(el)
-      const position = controller.getElementPosition(el)
-      controller.updateItem(el, position, controller.handleSuccess, controller.handleError)
+      const position = controller.hasAddToPositionValue ? controller.getElementPosition(el) + controller.addToPositionValue : controller.getElementPosition(el)
+      if (controller.turboStreamValue) {
+        controller.turboStreamUpdateItem(el, position, controller.handleSuccess, controller.handleError)
+      } else {
+        controller.updateItem(el, position, controller.handleSuccess, controller.handleError)
+      }
     })
   }
 
@@ -92,5 +98,23 @@ export default class extends Controller {
     // .then(data => console.log(data))
     .then(data => successCallback(data, item, controller))
     .catch(err => errorCallback(err));
+  }
+
+  turboStreamUpdateItem(item, position, successCallback, errorCallback) {
+    const body = JSON.parse(`{ "${item.dataset.elementName}": { "position": ${position} } }`)
+    const url = item.dataset.url
+    let CSRFToken = document.querySelector('meta[name="csrf-token"]').content
+
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Accept': "text/vnd.turbo-stream.html",
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRFToken
+      },
+      body: JSON.stringify(body)
+    })
+      .then(r => r.text())
+      .then(html => Turbo.renderStreamMessage(html))
   }
 }

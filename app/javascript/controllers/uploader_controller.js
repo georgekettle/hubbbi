@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import { Uploader } from "../components/uploader"
 import * as FilePond from 'filepond';
 // Import the plugin code
@@ -19,7 +19,9 @@ let fileUploadingCount = 0
 
 export default class extends Controller {
   static targets = ["container"]
-  static values = { filetypes: Array }
+  static values = {
+    filetypes: Array
+  }
 
   initialize() {
     this.form = this.element.form;

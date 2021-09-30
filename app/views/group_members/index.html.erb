@@ -33,10 +33,14 @@
 
       <div id="invites-toggle-content" class="segmented-option-content">
         <% @group.invites.each_with_index do |invite, index| %>
-          <div style="position: relative; z-index: <%= 500 - index %>"> <!-- in order to show dropdown above items below -->
+          <%= render 'components/z_index', list: @group.invites, index: index do %>
             <%= render 'groups/invites/list_item', invite: invite %>
-          </div>
+          <% end %>
         <% end %>
+        <% if @group.invites.empty? %>
+          <p class="text-gray-400 text-xs text-center mt-8">There are no invites yet 👀</p>
+        <% end %>
+        <p class="show-when-only-child text-xs text-gray-400 text-center my-8">There are no invites 👀</p>
       </div>
     </div>
   <% else %>
@@ -44,5 +48,4 @@
       <%= yield(:group_member_search_list) if content_for?(:group_member_search_list) %>
     </div>
   <% end %>
-
 <% end %>
