@@ -4,29 +4,23 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'controllers'
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
-
-// ----------------------------------------------------
-// Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
-// WRITE YOUR OWN JS STARTING FROM HERE 👇
-// ----------------------------------------------------
 
 // External imports
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initLightbox } from '../components/init_lightbox';
+import { initTippy } from '../components/tippy';
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
-  // initLightbox()
+  initTippy()
 });
 
 import "stylesheets/application"

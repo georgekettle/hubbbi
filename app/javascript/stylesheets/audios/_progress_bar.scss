@@ -1,0 +1,8 @@
+.progress-container {
+  @apply bg-gray-200 rounded-full cursor-pointer h-0.5 w-full;
+}
+
+.progress {
+  @apply bg-gray-800 rounded-full h-full w-0;
+  transition: width 0.1s linear;
+}

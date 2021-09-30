@@ -13,8 +13,8 @@
   <div class="pb-24 overflow-x-hidden">
     <%= render "shared/container", classes: "p-4" do %>
       <div data-section-sortable-target="container" class="dropzones">
-        <% @page.sections.each do |section| %>
-          <%= render 'sections/section', section: section, editable: true %>
+        <% @page.sections.each_with_index do |section, index| %>
+          <%= render 'sections/section', section: section, editable: true, index: @page.sections.length - index %>
         <% end %>
         <div class="mb-4 py-2 relative last-dropzone">
           <%= render "sections/dropzone", position: @page.sections.count + 1 %>
@@ -33,6 +33,7 @@
           <%= render 'sections/drag_element', section_type: :text, title: "Text", icon: 'paragraph' %>
           <%= render 'sections/drag_element', section_type: :image, title: "Image(s)", icon: 'image' %>
           <%= render 'sections/drag_element', section_type: :video, title: "Video", icon: 'video' %>
+          <%= render 'sections/drag_element', section_type: :audio, title: "Audio", icon: 'audio' %>
           <%= render 'sections/drag_element', section_type: :pdf, title: "Pdf", icon: 'pdf' %>
           <%= render 'sections/drag_element', section_type: :link, title: "Links", icon: 'zap' %>
         </div>

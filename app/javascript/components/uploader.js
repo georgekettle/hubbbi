@@ -14,7 +14,7 @@ class Uploader {
     // start upload
     this.upload.create((error, blob) => {
       if (error) {
-        console.log("error")
+        console.log(error)
       } else {
         this.onLoad(blob.signed_id)
       }

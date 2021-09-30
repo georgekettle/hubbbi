@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   skip_before_action :set_current_group, except: %i[edit update destroy settings]
   before_action :set_group, only: %i[show edit update destroy settings]
+  before_action :hide_media_player, only: [:index, :new]
 
   def index
     @groups = current_user.groups
@@ -30,7 +31,8 @@ class GroupsController < ApplicationController
       redirect_to group_path(@group), notice: "Your group has successfully been created"
     else
       hide_all_navbars
-      render :new, alert: "Oops... Something went wrong when creating your group"
+      hide_media_player
+      render :new, status: :unprocessable_entity, alert: "Oops... Something went wrong when creating your group"
     end
   end
 
@@ -41,7 +43,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to @group, notice: "Your group has successfully been updated"
     else
-      render :edit, alert: "Oops... Something went wrong when updating your group"
+      render :edit, status: :unprocessable_entity, alert: "Oops... Something went wrong when updating your group"
     end
   end
 
@@ -52,7 +54,7 @@ class GroupsController < ApplicationController
     if @group.destroy
       redirect_to groups_path, notice: "Your group has successfully been destroyed"
     else
-      render :settings, alert: "Oops... Something went wrong when deleting your group"
+      render :settings, status: :unprocessable_entity, alert: "Oops... Something went wrong when deleting your group"
     end
   end
 

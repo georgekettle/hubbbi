@@ -1,0 +1,9 @@
+<% if Current.group %>
+  <div data-turbo-permanent id="media-player-permanent">
+    <%= turbo_frame_tag "media-player", src: fetch_media_player_media_plays_path do %>
+      <% if currently_playing %>
+        <%= render 'media_plays/loading_media_player' %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,19 +1,13 @@
-<% button_classes ||= "icon-btn faded" %>
+<% button_classes ||= "icon-btn" %>
 <% direction ||= "right" %>
+<% tippy_placement = direction == "left" ? "bottom-start" : "bottom-end" %>
 
-<div data-controller="dropdown" class="relative">
-  <button type="button" class="<%= button_classes %>" data-action="dropdown#open click@window->dropdown#hide">
+<%= render 'components/dropdowns/dropdown', tippy_placement: tippy_placement do %>
+  <button type="button" class="<%= button_classes %>" data-dropdown-target="toggle">
     <%= render 'icons/options', classes: "h-5 w-5" %>
   </button>
 
-  <div
-    data-dropdown-target="menu"
-    class="transition transform origin-top-<%= direction %> absolute <%= direction %>-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden"
-    data-transition-enter-from="opacity-0 scale-95"
-    data-transition-enter-to="opacity-100 scale-100"
-    data-transition-leave-from="opacity-100 scale-100"
-    data-transition-leave-to="opacity-0 scale-95"
-  >
+  <%= render 'components/dropdowns/dropdown_options_container', direction: direction do %>
     <%= yield %>
-  </div>
-</div>
+  <% end %>
+<% end %>

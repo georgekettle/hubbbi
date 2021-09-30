@@ -1,0 +1,31 @@
+<% playing ||= false %>
+<% media_play = currently_playing %>
+
+<%= turbo_frame_tag "modal_media_player" do %>
+  <div class="p-8 relative border-b border-gray-200">
+    <% if media_play.present? %>
+      <div class="w-full h-full flex items-center justify-center mb-8">
+        <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
+          <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-24 w-24" %>
+        </div>
+      </div>
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-semibold line-clamp-2"><%= media_play.mediable.title if media_play.mediable %></h2>
+        <p class="text-sm text-gray-400 line-clamp-1"><%= media_play.mediable_type %></p>
+      </div>
+      <div class="mb-4">
+        <%= render 'media_plays/media_player_controls', media_play: media_play, playing: playing %>
+      </div>
+    <% else %>
+      <div class="w-full h-full flex items-center justify-center mb-8">
+        <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
+          <%= render 'icons/list', classes: "stroke-current text-gray-200 h-24 w-24" %>
+        </div>
+      </div>
+      <div class="text-center mb-4">
+        <h2 class="text-2xl font-semibold line-clamp-2">What's up next?</h2>
+        <p class="text-sm text-gray-400 line-clamp-1">Add items to your playlist</p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

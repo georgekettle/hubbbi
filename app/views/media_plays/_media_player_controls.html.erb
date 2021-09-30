@@ -1,0 +1,44 @@
+<!-- LOADED: media controls -->
+<div data-media-target='mediaControlsContainer' class="hidden">
+  <div class="mb-4">
+    <%= render 'audios/progress', progress: media_play.progress %>
+    <div class="flex justify-between mt-1">
+      <h6 data-media-target='currentTime' class="text-xs text-gray-400 tracking-wider">0:00</h6>
+      <h6 data-media-target='timeLeft' class="text-xs text-gray-400 tracking-wider">0:00</h6>
+    </div>
+  </div>
+  <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-media-target="audio" data-media-playing-value="<%= playing %>" data-media-url-value="<%= media_play_url(media_play) %>" data-media-progress-value="<%= media_play.progress %>" class="hidden"></audio>
+  <div class="flex items-center justify-between mx-auto w-64">
+    <%= link_to '#', data: {media_target: 'rev15', action: 'media#rev15'}, class:"h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
+      <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>
+    <% end %>
+    <%= link_to '#', data: {media_target: 'play', action: 'media#play'}, class:"hover:scale-110 scale-100 transform duration-300 transition-all h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      <%= render 'icons/play_fill', classes: "fill-current text-gray-800 h-10 w-10" %>
+    <% end %>
+    <%= link_to '#', data: {media_target: 'pause', action: 'media#pause'}, class:"hidden hover:scale-110 scale-100 transform duration-300 transition-all h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-9 w-9" %>
+    <% end %>
+    <%= link_to '#', data: {media_target: 'ffwd15', action: 'media#ffwd15'}, class:"h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
+      <%= render 'icons/ffwd_15', classes: "stroke-current h-8 w-8" %>
+    <% end %>
+    <%= link_to 'next', media_play_path(media_play, media_play: { complete: true, progress: 100 }), method: :put, data: {media_target: 'next', turbo: true}, class: 'hidden' %>
+  </div>
+</div>
+
+<!-- LOADING: media controls -->
+<div data-media-target='mediaControlsContainerLoading' class="pointer-events-none">
+  <div class="mb-4">
+    <div class="w-full h-1 rounded-full bg-gray-200 animate-pulse"></div>
+    <div class="flex justify-between mt-1">
+      <div class="w-6 h-3 bg-gray-200 animate-pulse rounded"></div>
+      <div class="w-6 h-3 bg-gray-200 animate-pulse rounded"></div>
+    </div>
+  </div>
+  <div class="flex items-center justify-between mx-auto w-56">
+    <%= link_to '', '#', class:"h-8 w-8 rounded-full flex-shrink-0 bg-gray-200 animate-pulse" %>
+    <%= link_to '#', class:"pointer-events-none h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0" do %>
+      <%= render 'icons/play_fill', classes: "fill-current text-gray-200 h-10 w-10 animate-pulse" %>
+    <% end %>
+    <%= link_to '', '#', class:"h-8 w-8 rounded-full flex-shrink-0 bg-gray-200 animate-pulse" %>
+  </div>
+</div>

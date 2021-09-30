@@ -1,0 +1,41 @@
+<% editable ||= false %>
+
+<% if editable %>
+  <div class="w-full relative">
+    <div class="w-full rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
+      <div>
+        <h4 class="leading-tight"><%= audio.title %></h4>
+      </div>
+    </div>
+
+    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
+        <%= link_to "Update audio", edit_audio_path(audio), class: "dropdown-link" %>
+        <%= link_to 'Delete audio', audio, method: :delete, class: "dropdown-link-danger" %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <% group_member = current_user.group_members.find_by(group: Current.group) %>
+  <div class="relative">
+    <%= button_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white block relative" do %>
+      <div class="mr-4">
+        <%= render 'audios/small_cover', audio: audio %>
+      </div>
+      <div class="flex-grow text-left">
+        <h4 class="leading-tight"><%= audio.title %></h4>
+        <h6 class="text-xs text-gray-400">
+          Audio
+        </h6>
+      </div>
+    <% end %>
+    <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
+      <%= render 'components/dropdowns/options_dropdown', button_classes: 'icon-btn faded' do %>
+        <%= link_to(add_to_queue_audio_media_plays_path(audio, media_play: {}), method: :post, class: "dropdown-link") do %>
+          <%= render 'icons/list_add', classes: 'h-4 w-4' %>
+          Add to queue
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

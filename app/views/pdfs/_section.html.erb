@@ -10,7 +10,7 @@
             <div class="mr-2">
               <%= render "components/saving" %>
             </div>
-            <%= render "components/dropdowns/options_dropdown" do %>
+            <%= render "components/dropdowns/options_dropdown", button_classes: 'icon-btn faded' do %>
               <%= link_to "Add pdf", new_section_pdf_path(section), class: 'dropdown-link' %>
               <%= link_to "Reorder pdfs", section_section_elements_path(section), class: 'dropdown-link' %>
               <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
@@ -37,10 +37,9 @@
       </div>
     <% else %>
       <% pdfs.each_with_index do |pdf, index| %>
-        <% z_index = 500 - index %>
-        <div class="pb-2 relative" style="z-index: <%= z_index %>">
+        <%= render 'components/z_index', list: pdfs, index: index do %>
           <%= render 'pdfs/pdf', pdf: pdf, editable: editable %>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

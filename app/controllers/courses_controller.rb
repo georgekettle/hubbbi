@@ -20,7 +20,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to course_path(@course), notice: "Course successfully created"
     else
-      render :new, alert: "Oops... Something went wrong when creating course"
+      render :new, status: :unprocessable_entity, alert: "Oops... Something went wrong when creating course"
     end
   end
 
@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       redirect_to @course, notice: "Your course has successfully been updated"
     else
-      render :edit, alert: "Oops... Something went wrong when updating your course"
+      render :edit, status: :unprocessable_entity, alert: "Oops... Something went wrong when updating your course"
     end
   end
 
@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
     if @course.destroy
       redirect_to @course.group, notice: "Course has successfully been destroyed"
     else
-      render :settings, alert: "Oops... Something went wrong when deleting your group"
+      redirect_to settings_course_path(@course), alert: "Oops... Something went wrong when deleting your group"
     end
   end
 

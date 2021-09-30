@@ -1,0 +1,13 @@
+<%= simple_form_for audio do |f| %>
+  <%= f.label :cover, label: 'Audio' %>
+  <%= f.file_field :file,
+          direct_upload: true,
+          required: true,
+          accept:"audio/*",
+          data: { controller: 'uploader', uploader_filetypes_value: ['audio/*'], file_metadata_resource_type:"video" } %>
+
+  <%= f.input :title %>
+  <div class="form-actions">
+    <%= f.submit class: "w-full" %>
+  </div>
+<% end %>

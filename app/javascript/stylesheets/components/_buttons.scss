@@ -91,3 +91,19 @@
     }
   }
 }
+
+.icon-btn.darken {
+  @apply bg-black bg-opacity-20;
+
+  svg {
+    @apply text-white;
+  }
+
+  &:hover {
+    @apply bg-black bg-opacity-50;
+
+    svg {
+      @apply text-white;
+    }
+  }
+}

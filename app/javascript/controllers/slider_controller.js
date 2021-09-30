@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 var Flickity = require('flickity');
 require('flickity-imagesloaded');
 

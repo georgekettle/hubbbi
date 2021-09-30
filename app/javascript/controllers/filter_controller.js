@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import Isotope from "isotope-layout"
 
 export default class extends Controller {

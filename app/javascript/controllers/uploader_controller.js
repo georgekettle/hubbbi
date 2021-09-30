@@ -1,10 +1,11 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import { Uploader } from "../components/uploader"
 import * as FilePond from 'filepond';
 // Import the plugin code
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
 // Import the plugin styles
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
@@ -12,7 +13,8 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 FilePond.registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileEncode,
-  FilePondPluginFileValidateType
+  FilePondPluginFileValidateType,
+  FilePondPluginFileMetadata
 );
 
 let fileUploadingCount = 0
