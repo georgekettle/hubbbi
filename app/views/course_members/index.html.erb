@@ -27,4 +27,7 @@
       </div>
     <% end %>
   <% end %>
+  <% if @course_members.empty? %>
+    <p class="text-xs text-gray-400 text-center my-8">There are no invites 👀</p>
+  <% end %>
 <% end %>

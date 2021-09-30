@@ -25,6 +25,7 @@ class GroupMember < ApplicationRecord
   private
 
   def destroy_invitations
-    user.invitations.where(invitable: group).destroy_all
+    user.invitations.where(invitable: group).update_all(recipient_id: nil)
+    user.sent_invites.where(invitable: group).update_all(sender_id: nil)
   end
 end

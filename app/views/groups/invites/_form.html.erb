@@ -1,7 +1,11 @@
 <%= simple_form_for [group, invite] do |f| %>
   <%= f.input :email, autofocus: true, required: true, placeholder: example_email %>
   <%= f.simple_fields_for :sub_invites_attributes do |p| %>
-    <%= f.input :invitable, label: 'Add to courses', include_hidden: false, required: false, collection: group.courses, input_html: { multiple: true, data: { controller: "multi-select" } } %>
+    <% if @course %>
+      <%= f.input :invitable, label: 'Add to courses', selected: @course.id, include_hidden: false, required: false, collection: group.courses, input_html: { multiple: true, data: { controller: "multi-select" } } %>
+    <% else %>
+      <%= f.input :invitable, label: 'Add to courses', include_hidden: false, required: false, collection: group.courses, input_html: { multiple: true, data: { controller: "multi-select" } } %>
+    <% end %>
   <% end %>
 
   <div class="form-actions mb-4">
