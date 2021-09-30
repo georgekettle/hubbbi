@@ -1,0 +1,9 @@
+<% if media_play.mediable.cover.attached? %>
+  <div class="w-56 h-56 bg-white rounded-lg overflow-hidden shadow-sm flex items-center justify-center border border-gray-200">
+    <%= cl_image_tag(media_play.mediable.cover.key, :width => 500, :height => 500, :crop => :fill) %>
+  </div>
+<% else %>
+  <div class="w-56 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center border border-gray-200">
+    <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-24 w-24" %>
+  </div>
+<% end %>
