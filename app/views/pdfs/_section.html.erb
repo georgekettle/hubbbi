@@ -38,9 +38,7 @@
     <% else %>
       <% pdfs.each_with_index do |pdf, index| %>
         <%= render 'components/z_index', list: pdfs, index: index do %>
-          <div class="pb-2 relative" data-controller="lightbox" data-lightbox-target="gallery">
-            <%= render 'pdfs/pdf', pdf: pdf, editable: editable %>
-          </div>
+          <%= render 'pdfs/pdf', pdf: pdf, editable: editable %>
         <% end %>
       <% end %>
     <% end %>
