@@ -19,7 +19,6 @@ class Invite < ApplicationRecord
     self.token = Digest::SHA1.hexdigest([self.invitable_id, Time.now, rand].join)
   end
 
-
   def check_user_existence
     recipient = User.find_by_email(email)
     if recipient

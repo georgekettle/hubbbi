@@ -4,15 +4,15 @@
 <% subtitle ||= nil %>
 <% icon ||= 'arrow_right' %>
 
-<div class="w-full rounded-2xl h-40 flex items-end bg-center bg-cover" style="<%= background_style %>">
-  <div class="flex items-center justify-between w-full p-4">
-    <div>
+<div class="group w-full rounded-2xl h-40 flex items-end bg-center bg-cover" style="<%= background_style %>">
+  <div class="flex items-end justify-between w-full p-4">
+    <div class="pr-4">
       <h4 class="text-white leading-tight"><%= title %></h4>
       <% if subtitle %>
-        <p class="line-clamp-2 text-white leading-tight text-sm opacity-70"><%= subtitle %></p>
+        <p class="line-clamp-2 text-white leading-tight text-xs opacity-70"><%= subtitle %></p>
       <% end %>
     </div>
-    <div class="h-8 w-8 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 ml-1 transform transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
+    <div class="h-8 w-8 rounded-full bg-white shadow flex items-center justify-center flex-shrink-0 ml-1 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 cursor-pointer">
       <%= render "icons/#{icon}" %>
     </div>
   </div>

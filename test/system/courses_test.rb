@@ -16,7 +16,7 @@ class CoursesTest < ApplicationSystemTestCase
       click_on 'Create Course'
     end
 
-    assert page.has_content?('Course successfully created', wait: 5), 'Successful flash appears'
+    assert page.has_content?('Course successfully created', wait: 15), 'Successful flash appears'
   end
 
   test "user can not create a course within a group if name is not provided" do
@@ -32,7 +32,7 @@ class CoursesTest < ApplicationSystemTestCase
       click_on 'Create Course'
     end
 
-    assert page.has_content?('Title can\'t be blank', wait: 10), 'Error should appear in the page'
+    assert page.has_content?('Title can\'t be blank', wait: 15), 'Error should appear in the page'
   end
 
   test "user can not create a course within a group in which is not member" do
@@ -42,7 +42,7 @@ class CoursesTest < ApplicationSystemTestCase
     login_as user, scope: :user
 
     visit group_path(group)
-    assert page.has_content?('You are not authorized to perform this action.', wait: 5), 'Error should appear in the page'
+    assert page.has_content?('You are not authorized to perform this action.', wait: 15), 'Error should appear in the page'
     visit new_group_course_path(group)
     assert current_path == authenticated_root_path
   end
@@ -53,7 +53,7 @@ class CoursesTest < ApplicationSystemTestCase
     visit new_group_course_path(group)
 
     assert current_path == new_user_session_path
-    assert page.has_content?('You need to sign in or sign up before continuing.', wait: 5), 'Error should appear in the page'
+    assert page.has_content?('You need to sign in or sign up before continuing.', wait: 15), 'Error should appear in the page'
   end
 
   test "removes user from course" do

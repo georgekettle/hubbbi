@@ -8,6 +8,8 @@ class CourseMembersController < ApplicationController
   end
 
   def new
+    @invite = Invite.new
+    @invite.sub_invites.build
   end
 
   def create
