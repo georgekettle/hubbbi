@@ -1,23 +1,23 @@
 <% editable ||= false %>
 
-<div class="w-full">
+<div class="w-full relative">
   <div class="overflow-hidden rounded-2xl relative">
     <%= link_to image.picture.url, data:{ src: image.picture.url, lightbox_target: 'item' }, class:"gallery-item" do %>
       <%= cl_image_tag image.picture.key, class: 'w-full' %>
     <% end %>
-
-    <% if editable %>
-      <div class="absolute top-4 left-4 flex items-center">
-        <%= link_to edit_image_path(image), class: "icon-btn darken mr-2" do %>
-          <%= render 'icons/edit', classes: "h-4 w-4" %>
-        <% end %>
-        <%= link_to image_path(image), method: :delete, data: {confirm: "Are you sure you'd like to delete this image?"}, class: "icon-btn darken" do %>
-          <%= render 'icons/bin', classes: "h-4 w-4" %>
-        <% end %>
-      </div>
-    <% end %>
   </div>
   <% if image.title.present? %>
     <h4 class="text-xs text-gray-400 mt-2 pl-1"><%= image.title %></h4>
+  <% end %>
+
+  <% if editable %>
+    <div class="absolute top-4 left-4 flex items-center">
+      <%= link_to edit_image_path(image), class: "icon-btn darken mr-2" do %>
+        <%= render 'icons/edit', classes: "h-4 w-4" %>
+      <% end %>
+      <%= link_to image_path(image), method: :delete, data: {confirm: "Are you sure you'd like to delete this image?"}, class: "icon-btn darken" do %>
+        <%= render 'icons/bin', classes: "h-4 w-4" %>
+      <% end %>
+    </div>
   <% end %>
 </div>
