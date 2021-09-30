@@ -5,7 +5,6 @@ import * as FilePond from 'filepond';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
 // Import the plugin styles
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
@@ -13,15 +12,16 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 FilePond.registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileEncode,
-  FilePondPluginFileValidateType,
-  FilePondPluginFileMetadata
+  FilePondPluginFileValidateType
 );
 
 let fileUploadingCount = 0
 
 export default class extends Controller {
   static targets = ["container"]
-  static values = { filetypes: Array }
+  static values = {
+    filetypes: Array
+  }
 
   initialize() {
     this.form = this.element.form;
