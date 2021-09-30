@@ -14,8 +14,7 @@
         <%= render "icons/library", classes: 'w-5 h-5 stroke-current text-white mr-2' %>
         Courses
       <% end %>
-
-      <%= render 'components/dropdowns/dropdown', classes: 'h-10' do %>
+      <div data-controller="dropdown" class="relative h-10">
         <button type="button" data-dropdown-target="toggle">
           <%= render "components/avatar", group_member: Current.group_member, size: 10 %>
         </button>
