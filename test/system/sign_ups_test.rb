@@ -3,8 +3,7 @@ require "application_system_test_case"
 class SignUpsTest < ApplicationSystemTestCase
   test "user signs up correctly" do
     visit root_url
-
-    find(:link, 'Signup', wait: 10).click
+    find(:link, 'Signup', wait: 15).click
     fill_in 'Email *', with: 'mferrer@hey.com'
     fill_in 'Full name *', with: 'Miguel Ferrer'
     fill_in 'Password *', with: 'secret'
@@ -12,7 +11,7 @@ class SignUpsTest < ApplicationSystemTestCase
     assert_difference 'User.count', 1, 'New user should be created in DB' do
       click_on 'Sign up'
     end
-    assert page.has_content?('Welcome! You have signed up successfully.'), 'Successful flash appears'
+    assert page.has_content?('Welcome! You have signed up successfully.', wait: 15), 'Successful flash appears'
   end
 
   test "user can not sign up if all required fields are not completed" do
@@ -42,9 +41,9 @@ class SignUpsTest < ApplicationSystemTestCase
     visit new_group_invite_path(group)
 
     assert_difference 'Invite.count', 1, 'New invite should be created in DB' do
-      find('div.choices').click
+      find('div.choices', wait: 15).click
       assert page.has_css?('.choices__list', wait: 15)
-      find('div.choices__item.choices__item--choice.choices__item--selectable.is-highlighted', text: 'Foundations').click
+      find('div.choices__item.choices__item--choice.choices__item--selectable.is-highlighted', text: 'Foundations', wait: 15).click
       fill_in 'Email *', with: new_user_email
       assert_difference 'ActionMailer::Base.deliveries.size', 1, 'New email should be enqueued' do
         click_on 'Send invite'
@@ -64,7 +63,7 @@ class SignUpsTest < ApplicationSystemTestCase
       click_on 'Sign up'
     end
 
-    assert page.has_content? 'Welcome! You have signed up successfully.'
+    assert page.has_content?('Welcome! You have signed up successfully.', wait: 15)
   end
 
   private
