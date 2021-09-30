@@ -1,0 +1,55 @@
+// ================== THINKING ==================
+
+$size: 0.75rem;
+$duration: 0.75s;
+$border-radius: $size;
+
+
+.loader{
+  display: inline-flex;
+  justify-content: center;
+}
+
+@-webkit-keyframes rotate{
+  0%{
+    -webkit-transform: translateY(0%);
+  }
+  30%{
+    -webkit-transform: translateY(-$size/2);
+  }
+  50%{
+    -webkit-transform: translateY(0%);
+  }
+  70%{
+    -webkit-transform: translateY($size/6);
+  }
+
+}
+
+.loader{
+  .inner1, .inner2, .inner3{
+    display: inline-block;
+
+    margin: $size*0.18;
+    width: $size/2;
+    height:$size/2;
+
+    border-radius: $border-radius;
+
+    -webkit-transform-origin: 50%;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+    // -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: cubic-bezier(.74,0,.01,1);
+  }
+
+  .inner2{
+    -webkit-animation-delay: $duration*0.25;
+  }
+
+  .inner3{
+    -webkit-animation-delay: $duration*0.5;
+  }
+
+}
