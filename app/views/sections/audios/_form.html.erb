@@ -5,7 +5,14 @@
           required: true,
           accept:"audio/*",
           data: { controller: 'uploader', uploader_filetypes_value: ['audio/*'] } %>
-
+  <%= f.label :cover, label: 'Display image' %>
+  <%= render 'components/forms/image_upload', attachment: audio.cover do %>
+    <%= f.file_field :cover,
+          direct_upload: true,
+          required: true,
+          accept:"image/png, image/jpeg, image/gif",
+          data: { controller: 'uploader' } %>
+  <% end %>
   <%= f.input :title %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>
