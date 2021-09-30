@@ -24,10 +24,15 @@ class GroupMembersController < ApplicationController
 
   def destroy
     @group_member.destroy
+
     if @group_member.user == current_user
       redirect_to groups_path, notice: "You successfully removed yourself from #{@group_member.group.name.capitalize}"
     else
-      redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "You successfully removed #{@group_member.user.full_name_or_email} from the group"
+      if request.referrer == group_member_url(@group_member)
+        redirect_to group_group_members_path(@group_member.group), notice: "You successfully removed #{@group_member.user.full_name_or_email} from the group"
+      else
+        redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "You successfully removed #{@group_member.user.full_name_or_email} from the group"
+      end
     end
   end
 
