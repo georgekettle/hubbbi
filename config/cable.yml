@@ -8,4 +8,4 @@ test:
 production:
   adapter: redis
   url: <%= ENV.fetch("REDISCLOUD_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: akademy_project_production
+  channel_prefix: hubbbi_production
