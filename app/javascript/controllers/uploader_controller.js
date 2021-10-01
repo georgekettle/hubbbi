@@ -47,7 +47,9 @@ export default class extends Controller {
       fileUploadingCount += 1
       submitButtons.forEach((submit) => {
         submit.disabled = true
-        submit.dataset.originalValue = submit.value
+        if (fileUploadingCount === 1) {
+          this.submitText = submit.value
+        }
         submit.value = 'Uploading file...'
       })
     } else {
@@ -55,7 +57,7 @@ export default class extends Controller {
       if (fileUploadingCount === 0) {
         submitButtons.forEach((submit) => {
           submit.disabled = false
-          submit.value = submit.dataset.originalValue
+          submit.value = this.submitText
         })
       }
     }
