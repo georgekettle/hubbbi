@@ -4,7 +4,9 @@ var autoScroll = require('dom-autoscroller')
 
 export default class extends Controller {
   static targets = ["dropzone", "scrollContainer"]
-  static values = { url: String }
+  static values = {
+    url: String,
+    loader: String }
 
   connect() {
     this.initDragula()
@@ -67,12 +69,20 @@ export default class extends Controller {
     })
   }
 
+  displayLoader(target) {
+    if (this.hasLoaderValue) {
+      target.parentElement.insertAdjacentHTML('afterbegin', this.loaderValue)
+      this.loaderTarget = target.parentElement.firstElementChild
+    }
+  }
+
   setupDropzoneDrop() {
     this.dragula.on('drop', (el, target, source, sibling) => {
       el.remove()
       this.dropzoneTargets.forEach((dropzone) => {
         dropzone.classList.remove('active');
       })
+      this.displayLoader(target)
       let newSectionData = JSON.parse(el.dataset.createSection)
       newSectionData.section.position = parseInt(target.dataset.position)
       this.makeRequest(newSectionData, target, this.handleSuccess, this.handleError)
@@ -100,6 +110,7 @@ export default class extends Controller {
     controller.dragula.containers.push(newDropzone)
     // update the data-position of each drop dropzone to sit inline with UI
     controller.updateDropzonePositions()
+    controller.loaderTarget.remove()
   }
 
   handleError(err) {
