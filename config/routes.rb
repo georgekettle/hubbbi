@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations",
-    sessions: "sessions" }
+    sessions: "sessions",
+    passwords: "passwords" }
 
   resources :groups do
     resources :group_members, only: [:index]
