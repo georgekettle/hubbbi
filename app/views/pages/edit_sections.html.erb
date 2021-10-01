@@ -8,8 +8,14 @@
 <%= render "components/headers/header", header: "Edit content", subheader: @page.title, hide_back_link: true do %>
   <%= render "components/saving", ids:"edit-section-saving-badge" %>
 <% end %>
-
-<div data-controller="section-sortable drag-drop-editor" data-section-sortable-target="scrollContainer" data-drag-drop-editor-target="scrollContainer" data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>" style="height: calc(100vh - 3.5rem)" class="overflow-y-scroll">
+<% html_loader = ActionController::Base.new.render_to_string(partial: 'components/loaders/drag_drop_loader') %>
+<div  data-controller="section-sortable drag-drop-editor"
+      data-section-sortable-target="scrollContainer"
+      data-drag-drop-editor-target="scrollContainer"
+      data-drag-drop-editor-url-value="<%= page_sections_path(@page) %>"
+      data-drag-drop-editor-loader-value='<%= html_loader %>'
+      style="height: calc(100vh - 3.5rem)"
+      class="overflow-y-scroll">
   <div class="pb-24 overflow-x-hidden">
     <%= render "shared/container", classes: "p-4" do %>
       <div data-section-sortable-target="container" class="dropzones">
