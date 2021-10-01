@@ -37,7 +37,7 @@
       </div>
     <% else %>
       <% pdfs.each_with_index do |pdf, index| %>
-        <%= render 'components/z_index', list: pdfs, index: index do %>
+        <%= render 'components/z_index', list: pdfs, index: index, classes:"mb-2" do %>
           <%= render 'pdfs/pdf', pdf: pdf, editable: editable %>
         <% end %>
       <% end %>
