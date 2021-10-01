@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Turbo::Redirection
   include Authenticatable
   include Authorizable
   include NavbarHideable
