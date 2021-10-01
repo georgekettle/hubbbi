@@ -1,5 +1,5 @@
 {
-  "name": "akademy-project",
+  "name": "hubbbi",
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.0.0-rc.1",
