@@ -18,10 +18,6 @@
           <%= link_to "Update", edit_pdf_path(pdf), class: "dropdown-link" %>
           <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
         <% end %>
-      <% else %>
-        <%= link_to cl_image_path(pdf.file.key, flags: :attachment), data: { controller: "download", action: 'click->download#download', download_name_value: pdf.title }, download: true, class: "icon-btn faded" do %>
-          <%= render 'icons/download_circle' %>
-        <% end %>
       <% end %>
     </div>
   <% end %>

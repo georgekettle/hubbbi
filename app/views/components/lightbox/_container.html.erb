@@ -1,10 +1,13 @@
+<% title ||= nil %>
 <% subtitle ||= nil %>
 
 <div class="hidden" data-lightbox-target="content">
   <div class="w-screen h-screen flex items-center flex-col">
     <div class="flex-shrink-0 p-4 w-full border-b border-gray-700 flex items-center justify-between">
       <div class="text-white">
-        <h4 class="leading-none mb-1"><%= title %></h4>
+        <% if title %>
+          <h4 class="leading-none mb-1"><%= title %></h4>
+        <% end %>
         <% if subtitle %>
           <h6 class="text-xs opacity-50"><%= subtitle %></h6>
         <% end %>
