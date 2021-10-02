@@ -10,7 +10,8 @@
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <% if editable %>
         <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
-          <%= link_to 'Download', cl_image_path(pdf.file.key, flags: :attachment), data: { controller: "download", action: 'download#download', download_name_value: pdf.title }, download: true, class: "dropdown-link" %>
+          <%= link_to 'Download with attachment', cl_image_path(pdf.file.key, flags: :attachment), download: true, class: "dropdown-link" %>
+          <%= link_to 'Download without attachment', cl_image_path(pdf.file.key), download: true, class: "dropdown-link" %>
           <%= link_to "Update", edit_pdf_path(pdf), class: "dropdown-link" %>
           <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
         <% end %>
