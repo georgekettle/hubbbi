@@ -17,6 +17,7 @@
     "choices.js": "^9.0.1",
     "dom-autoscroller": "^2.3.4",
     "dragula": "^3.7.3",
+    "file-saver": "^2.0.5",
     "filepond": "^4.28.2",
     "filepond-plugin-file-encode": "^2.1.10",
     "filepond-plugin-file-validate-type": "^1.2.6",

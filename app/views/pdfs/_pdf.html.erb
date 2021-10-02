@@ -15,7 +15,7 @@
           <%= link_to 'Delete', pdf, method: :delete, class: "dropdown-link-danger" %>
         <% end %>
       <% else %>
-        <%= link_to cl_image_path(pdf.file.key, flags: :attachment), data: { controller: "download" }, class: "icon-btn faded" do %>
+        <%= link_to cl_image_path(pdf.file.key), data: { controller: "download", action: 'download#download', download_name_value: pdf.title }, class: "icon-btn faded" do %>
           <%= render 'icons/download_circle' %>
         <% end %>
       <% end %>
