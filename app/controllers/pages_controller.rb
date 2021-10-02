@@ -25,6 +25,7 @@ class PagesController < ApplicationController
 
   def edit_sections
     hide_all_navbars
+    @no_body_padding = true
   end
 
   def settings

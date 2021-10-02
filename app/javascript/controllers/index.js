@@ -21,8 +21,11 @@ application.register("dropdown", DropdownController)
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
 
-import LightgalleryController from "./lightgallery_controller"
-application.register("lightgallery", LightgalleryController)
+import LightboxController from "./lightbox_controller"
+application.register("lightbox", LightboxController)
+
+// import LightgalleryController from "./lightgallery_controller"
+// application.register("lightgallery", LightgalleryController)
 
 import MediaController from "./media_controller"
 application.register("media", MediaController)

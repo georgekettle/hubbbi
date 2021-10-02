@@ -13,7 +13,7 @@
   <body class="bg-contrast-50">
     <%= render 'shared/desktop_navbar' unless @hide_desktop_navbar %>
 
-    <div class="body-content pb-48">
+    <div class="body-content <%= 'pb-48' unless @no_body_padding %>">
       <%= yield %>
     </div>
 
