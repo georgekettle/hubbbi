@@ -3,13 +3,13 @@
 <div class="w-full">
   <div class="video-card">
     <% if video.url.present? %>
-      <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
+      <div id="gallery-videos-demo" data-controller="lightgallery" data-lightgallery-target="gallery">
         <!-- YouTube Video --->
         <a
             data-lg-size="1280-720"
             data-src="<%= video.url %>"
             data-poster="<%= video.info.thumbnail_large %>"
-            data-lightbox-target='item'
+            data-lightgallery-target='item'
             class="gallery-item w-full overflow-hidden"
         >
             <img
@@ -26,9 +26,9 @@
         </a>
       </div>
     <% elsif video.file.url.present? %>
-    <div id="gallery-videos-demo" data-controller="lightbox" data-lightbox-target="gallery">
+    <div id="gallery-videos-demo" data-controller="lightgallery" data-lightgallery-target="gallery">
       <%= link_to video.file.url,
-                  data:{ src: video.file.url, download_url: false, lightbox_target: 'item', iframe: true },
+                  data:{ src: video.file.url, download_url: false, lightgallery_target: 'item', iframe: true },
                   class: "gallery-item w-full overflow-hidden" do %>
           <img width="300"
                height="100"

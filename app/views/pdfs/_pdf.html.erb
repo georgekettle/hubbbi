@@ -1,11 +1,15 @@
 <% editable ||= false %>
 
-<div class="w-full relative">
-  <div data-controller="lightbox" data-lightbox-target="gallery">
-    <%= link_to pdf.file.url, data:{ src: pdf.file.url, download_url: false, lightbox_target: 'item', iframe: true }, class: "#{pdf.file.attached? ? 'dropdown-link' : 'dropdown-link-disabled'} gallery-item p-2 w-full rounded-lg flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+<div class="w-full relative" data-controller="modal" data-modal-disable-backdrop="false">
+  <div>
+    <%= link_to cl_image_path(pdf.file.key), data:{ action: "modal#open" }, class: "#{pdf.file.attached? ? 'dropdown-link' : 'dropdown-link-disabled'} p-2 w-full rounded-lg flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
       <%= render 'pdfs/pdf_info', pdf: pdf %>
     <% end %>
+    <%= render 'components/modals/modal_container', header: pdf.title, subheader: "PDF file", no_padding: true do %>
+      <p>PDF goes here</p>
+    <% end %>
   </div>
+
   <% if pdf.file.attached? %>
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
       <% if editable %>

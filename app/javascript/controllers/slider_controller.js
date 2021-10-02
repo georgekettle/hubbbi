@@ -46,7 +46,7 @@ export default class extends Controller {
 
   initOnDragEnd() {
     this.flkty.on( 'dragEnd', function( event, pointer ) {
-      // this is just in case the lightbox does not set it as false
+      // this is just in case the lightgallery does not set it as false
       setTimeout(() => {
         document.body.dataset.dragging = false
       }, 50);
