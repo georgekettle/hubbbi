@@ -48,7 +48,7 @@ export default class extends Controller {
 
   open(e) {
     e.preventDefault()
-    if (document.body.dataset.dragging === 'false') {
+    if (document.body.dataset.dragging !== 'true') {
       this.lightboxTarget.classList.add('active')
     }
   }
