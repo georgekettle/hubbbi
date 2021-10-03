@@ -24,9 +24,6 @@ application.register("filter", FilterController)
 import LightboxController from "./lightbox_controller"
 application.register("lightbox", LightboxController)
 
-// import LightgalleryController from "./lightgallery_controller"
-// application.register("lightgallery", LightgalleryController)
-
 import MediaController from "./media_controller"
 application.register("media", MediaController)
 
@@ -56,6 +53,9 @@ application.register("text-trix", TextTrixController)
 
 import UploaderController from "./uploader_controller"
 application.register("uploader", UploaderController)
+
+import VideoController from "./video_controller"
+application.register("video", VideoController)
 
 import VideoLightboxController from "./video_lightbox_controller"
 application.register("video-lightbox", VideoLightboxController)
