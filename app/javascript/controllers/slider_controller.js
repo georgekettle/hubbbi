@@ -10,6 +10,7 @@ export default class extends Controller {
     this.moveNavButtons()
     this.initOnDragStart()
     this.initOnDragEnd()
+    document.body.dataset.dragging = false
   }
 
   initSlider() {
@@ -40,13 +41,13 @@ export default class extends Controller {
 
   initOnDragStart() {
     this.flkty.on( 'dragStart', function( event, pointer ) {
+      // to avoid images opening in lightbox when drag is finished
       document.body.dataset.dragging = true
     });
   }
 
   initOnDragEnd() {
     this.flkty.on( 'dragEnd', function( event, pointer ) {
-      // this is just in case the lightgallery does not set it as false
       setTimeout(() => {
         document.body.dataset.dragging = false
       }, 50);

@@ -56,6 +56,3 @@ application.register("uploader", UploaderController)
 
 import VideoController from "./video_controller"
 application.register("video", VideoController)
-
-import VideoLightboxController from "./video_lightbox_controller"
-application.register("video-lightbox", VideoLightboxController)

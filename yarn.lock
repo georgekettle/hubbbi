@@ -4329,11 +4329,6 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
-lightgallery@^2.1.8:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-2.2.1.tgz#a1e40d8db0c1a1be17596db440cee466670bedd9"
-  integrity sha512-6eDdqyQsQhxHYccMxWRNsHGkY1tITFHheR89ivlyQsDPYVt2yH/fIoJpipT1pMc8bCti/Pv7X0vU0QLMdnHehg==
-
 lilconfig@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.3.tgz#68f3005e921dafbd2a2afb48379986aa6d2579fd"
