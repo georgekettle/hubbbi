@@ -54,5 +54,5 @@ application.register("text-trix", TextTrixController)
 import UploaderController from "./uploader_controller"
 application.register("uploader", UploaderController)
 
-import VideoLightboxController from "./video_lightbox_controller"
-application.register("video-lightbox", VideoLightboxController)
+import VideoController from "./video_controller"
+application.register("video", VideoController)

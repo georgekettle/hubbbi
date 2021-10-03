@@ -50,9 +50,12 @@
       <% end %>
     <% else %>
       <%= render 'components/carousel' do %>
-        <% images.each do |image| %>
-          <div class="p-2 w-2/3 sm:w-1/2">
+        <% images.each_with_index do |image, index| %>
+          <div data-controller="lightbox" class="p-2 w-2/3 sm:w-1/2">
             <%= render "images/image", image: image, editable: editable %>
+            <%= render 'components/lightbox/container', title: image.title, subtitle: "#{index + 1} / #{images.count}" do %>
+              <%= cl_image_tag image.picture.key, class: 'w-full h-full object-contain' %>
+            <% end %>
           </div>
         <% end %>
         <% if editable %>

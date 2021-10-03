@@ -5,7 +5,7 @@
         <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
       <% end %>
 
-      <%= render 'components/modal_container', header: "Add participants", subheader: "To #{@course.title}", no_padding: true do %>
+      <%= render 'components/modals/modal_container', header: "Add participants", subheader: "To #{@course.title}", no_padding: true do %>
         <%= render 'form', course: @course %>
       <% end %>
     </div>

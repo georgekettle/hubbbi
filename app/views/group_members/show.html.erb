@@ -32,7 +32,7 @@
               <%= render 'icons/plus_circle' %>
             <% end %>
 
-            <%= render 'components/modal_container', header: "Add to courses", subheader: @group_member.user.full_name_or_email do %>
+            <%= render 'components/modals/modal_container', header: "Add to courses", subheader: @group_member.user.full_name_or_email do %>
               <div class="h-96">
                 <%= render 'group_members/course_members/form', group_member: @group_member %>
               </div>
