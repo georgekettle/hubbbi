@@ -10,9 +10,18 @@ export default class extends Controller {
 
   initialize() {
     this.idValue = id++
-    this.createLightbox()
     this.setupCloseButtons()
+  }
+
+  connect() {
+    this.createLightbox()
     this.populateLightbox()
+  }
+
+  disconnect() {
+    Array.from(this.lightboxTarget.children).forEach((elem) => {
+      this.contentTarget.append(elem)
+    })
   }
 
   createLightbox() {
@@ -32,9 +41,9 @@ export default class extends Controller {
   }
 
   populateLightbox() {
-    const content = this.contentTarget
-    this.lightboxTarget.insertAdjacentElement('beforeend', content)
-    content.classList.remove('hidden')
+    Array.from(this.contentTarget.children).forEach((elem) => {
+      this.lightboxTarget.append(elem)
+    })
   }
 
   open(e) {
