@@ -7,13 +7,3 @@
   ></iframe>
 </div>
 
-<%= render 'components/lightbox/container', title: video.title, subtitle: video.created_at.strftime("%A %B %d, %Y") do %>
-  <div class="plyr__video-embed" data-controller="video" class="w-full h-full">
-    <iframe
-      src="<%= video.info.embed_url %>"
-      allowfullscreen
-      allowtransparency
-    ></iframe>
-  </div>
-<% end %>
-

@@ -1,17 +1,4 @@
-<%= link_to video.file.url,
-          data:{ action:"lightbox#open" },
-          class: "gallery-item w-full overflow-hidden" do %>
-  <img width="300"
-       height="100"
-       class="object-cover w-full h-full"
-       src="<%= video.image_preview_url%>"/>
-  <div class="darken-image">
-    <div class="play-button">
-      <%= render 'icons/play_fill', classes:"fill-current text-gray-800 h-4 w-4" %>
-    </div>
-  </div>
-<% end %>
-
-<%= render 'components/lightbox/container', title: video.title, subtitle: video.created_at.strftime("%A %B %d, %Y") do %>
-  <iframe src="<%= video.file.url %>" width="100%" height="100%"></iframe>
-<% end %>
+<%= cl_video_tag video.file.key,
+        controls: true,
+        fallback_content: "Your browser does not support HTML5 video tags.",
+        data: {controller: 'video'} %>
