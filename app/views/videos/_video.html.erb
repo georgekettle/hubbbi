@@ -1,5 +1,5 @@
-<div class="w-full">
-  <div class="overflow-hidden rounded-md relative cursor-pointer">
+<div class="video-player w-full">
+  <div class="relative cursor-pointer">
     <% if video.url.present? %>
       <%= render 'videos/video_url', video: video %>
     <% elsif video.file.url.present? %>

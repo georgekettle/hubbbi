@@ -1,1 +1,20 @@
+.video-player {
+  --plyr-color-main: #8349A6;
+  --plyr-control-spacing: 12px;
+  --plyr-control-radius: 20px;
+  --plyr-font-family: 'Shape';
 
+  .plyr__menu__container .plyr__control[role=menuitemradio]:after {
+    height: 8px;
+    width: 8px;
+    left: 13px;
+  }
+
+  .plyr--video {
+    @apply rounded-md;
+  }
+
+  input[type=range] {
+    @apply ring-0;
+  }
+}
