@@ -62,8 +62,8 @@ export default class extends Controller {
       // console.log('timeupdate')
       _this.updateProgress()
     });
-    // remove loading screen when can play through
-    this.sound.addEventListener('canplaythrough', (e) => {
+    // remove loading screen when can play
+    this.sound.addEventListener('canplay', (e) => {
       _this.prepareControls()
     })
     this.sound.addEventListener('durationchange', (e) => {
