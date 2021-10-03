@@ -14,6 +14,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     assert_difference 'group.courses.count', 1, 'New course should be created in DB' do
       click_on 'Create Course'
+      assert page.has_content?('Course successfully created', wait: 15), 'Alert should appear in the page'
     end
 
     assert page.has_content?('Course successfully created', wait: 15), 'Successful flash appears'
