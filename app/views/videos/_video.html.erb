@@ -1,46 +1,9 @@
-<% editable ||= false %>
-
-<div class="w-full">
+<div class="w-full" data-controller="lightbox">
   <div class="video-card">
     <% if video.url.present? %>
-      <div id="gallery-videos-demo" data-controller="lightgallery" data-lightgallery-target="gallery">
-        <!-- YouTube Video --->
-        <a
-            data-lg-size="1280-720"
-            data-src="<%= video.url %>"
-            data-poster="<%= video.info.thumbnail_large %>"
-            data-lightgallery-target='item'
-            class="gallery-item w-full overflow-hidden"
-        >
-            <img
-                width="300"
-                height="100"
-                class="object-cover w-full h-full"
-                src="<%= video.info.thumbnail_maxres || video.info.thumbnail_large_2x || video.info.thumbnail_large %>"
-            />
-            <div class="darken-image">
-              <div class="play-button">
-                <%= render 'icons/play' %>
-              </div>
-            </div>
-        </a>
-      </div>
+      <%= render 'videos/video_url', video: video %>
     <% elsif video.file.url.present? %>
-    <div id="gallery-videos-demo" data-controller="lightgallery" data-lightgallery-target="gallery">
-      <%= link_to video.file.url,
-                  data:{ src: video.file.url, download_url: false, lightgallery_target: 'item', iframe: true },
-                  class: "gallery-item w-full overflow-hidden" do %>
-          <img width="300"
-               height="100"
-               class="object-cover w-full h-full"
-               src="<%= video.image_preview_url%>"/>
-          <div class="darken-image">
-            <div class="play-button">
-              <%= render 'icons/play' %>
-            </div>
-          </div>
-      <% end %>
-    </div>
+      <%= render 'videos/video_file', video: video %>
     <% else %>
       <div class="w-full rounded-xl bg-gray-400 h-24"></div>
     <% end %>
