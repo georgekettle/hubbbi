@@ -47,7 +47,7 @@ class SignUpsTest < ApplicationSystemTestCase
       fill_in 'Email *', with: new_user_email
       assert_difference 'ActionMailer::Base.deliveries.size', 1, 'New email should be enqueued' do
         click_on 'Send invite'
-        assert page.has_content?('Invite sent', wait: 15)
+        assert page.has_content?('Invite sent', wait: 15), 'Successful flash appears'
       end
     end
 
@@ -62,7 +62,7 @@ class SignUpsTest < ApplicationSystemTestCase
     fill_in 'Password confirmation *', with: 'secret'
     assert_difference 'User.count', 1, 'New user should be created in DB' do
       click_on 'Sign up'
-      assert page.has_content?('Welcome! You have signed up successfully.', wait: 15)
+      assert page.has_content?('Welcome! You have signed up successfully.', wait: 15), 'Successful flash appears'
     end
   end
 
