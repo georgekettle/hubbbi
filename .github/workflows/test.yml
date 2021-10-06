@@ -60,4 +60,4 @@ jobs:
       - name: Run model tests
         run: bundle exec rails test
       - name: Run system tests
-        run: bundle exec rails test:system
+        run: PARALLEL_WORKERS=1 bundle exec rails test:system
