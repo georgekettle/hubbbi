@@ -23,15 +23,16 @@ class ContentsTest < ApplicationSystemTestCase
       target = page.find('.dropzone[data-position="1"]', visible: false)
       source.drag_to(target)
       assert page.has_content?('Add a new page', wait: 15), 'Add new page title exists'
-      assert page.has_content?('By adding pages, you can break this page up into modules'), 'Add new pagem section subtitle exists'
+      assert page.has_content?('By adding pages, you can break this page up into modules'), 'Add new page section subtitle exists'
     end
 
     find(:link, 'Add a page', match: :first).click
 
-    fill_in 'Title', with: 'Test Page'
+    fill_in 'Title', with: 'Test Page', wait: 15
     fill_in 'Subtitle', with: 'Test Page Subtitle'
     assert_difference 'course.page.pages.count', 1, 'New page should be created in DB' do
       click_on 'Create Page'
+      assert page.has_content?('New page successfully created', wait: 15), 'Successful flash appears'
     end
 
     assert page.has_content?('New page successfully created', wait: 15), 'flash appears indicating the creation was successful'

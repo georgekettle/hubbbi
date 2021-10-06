@@ -10,8 +10,8 @@ class SignUpsTest < ApplicationSystemTestCase
     fill_in 'Password confirmation *', with: 'secret'
     assert_difference 'User.count', 1, 'New user should be created in DB' do
       click_on 'Sign up'
+      assert page.has_content?('Welcome! You have signed up successfully.' , wait: 15), 'Successful flash appears'
     end
-    assert page.has_content?('Welcome! You have signed up successfully.', wait: 15), 'Successful flash appears'
   end
 
   test "user can not sign up if all required fields are not completed" do
@@ -24,9 +24,9 @@ class SignUpsTest < ApplicationSystemTestCase
 
     assert_no_difference 'User.count', 'No new user should be created in DB' do
       click_on 'Sign up'
+      assert page.has_content?('Please review the problems below:', wait: 15), 'Error should appear in the page'
+      assert page.has_content?('Email can\'t be blank', wait: 15), 'Error should appear in the page'
     end
-    assert page.has_content?('Please review the problems below:'), 'Error should appear in the page'
-    assert page.has_content?('Email can\'t be blank'), 'Error should appear in the page'
   end
 
 
@@ -47,6 +47,7 @@ class SignUpsTest < ApplicationSystemTestCase
       fill_in 'Email *', with: new_user_email
       assert_difference 'ActionMailer::Base.deliveries.size', 1, 'New email should be enqueued' do
         click_on 'Send invite'
+        assert page.has_content?('Invite sent', wait: 15), 'Successful flash appears'
       end
     end
 
@@ -61,9 +62,8 @@ class SignUpsTest < ApplicationSystemTestCase
     fill_in 'Password confirmation *', with: 'secret'
     assert_difference 'User.count', 1, 'New user should be created in DB' do
       click_on 'Sign up'
+      assert page.has_content?('Welcome! You have signed up successfully.', wait: 15), 'Successful flash appears'
     end
-
-    assert page.has_content?('Welcome! You have signed up successfully.', wait: 15)
   end
 
   private

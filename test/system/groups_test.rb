@@ -9,6 +9,7 @@ class GroupsTest < ApplicationSystemTestCase
     fill_in 'Name *', with: 'Test Group'
     assert_difference 'Group.count', 1, 'New group should be created in DB' do
       click_on 'Create Group'
+      assert page.has_content?('Your group has successfully been created', wait: 15)
     end
     assert page.has_content?('Your group has successfully been created', wait: 15), 'Successful flash appears'
   end
@@ -20,9 +21,9 @@ class GroupsTest < ApplicationSystemTestCase
     visit new_group_path
     assert_no_difference 'Group.count', 'No new group should be created in DB' do
       click_on 'Create Group'
+      assert page.has_content?('Name can\'t be blank', wait: 15), 'Error should appear in the page'
     end
 
-    assert page.has_content?('Name can\'t be blank'), 'Error should appear in the page'
   end
 
   test "Can not create a group without login in" do
