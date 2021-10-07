@@ -1,3 +1,7 @@
+<% content_for :preheader do %>
+  <%= @invite.sender.full_name_or_email %> just invited you to join <%= @invitable_name %>. How exciting, this could be the start of something big!
+<% end %>
+
 <h1>You've been invited to join <%= @invitable_name %> 🙌🏻</h1>
 <p><%= @invite.sender.full_name_or_email %> just invited you to join <%= @invitable_name %>. How exciting, this could be the start of something big!</p>
 <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
