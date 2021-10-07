@@ -30,7 +30,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['container'];
+  static targets = ['container', 'close']
+
+  initialize() {
+    this.setupCloseButtons()
+  }
 
   connect() {
     // The class we should toggle on the container
@@ -56,6 +60,17 @@ export default class extends Controller {
     this.close();
   }
 
+  setupCloseButtons() {
+    const _this = this
+    this.closeTargets.forEach((close) => {
+      close.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) {
+          _this.close(e)
+        }
+      })
+    })
+  }
+
   open(e) {
     if (this.preventDefaultActionOpening) {
       e.preventDefault();
@@ -76,6 +91,14 @@ export default class extends Controller {
       document.body.insertAdjacentHTML('beforeend', this.backgroundHtml);
       this.background = document.querySelector(`#${this.backgroundId}`);
     }
+
+    this.populateModal()
+  }
+
+  populateModal() {
+    Array.from(this.containerTarget.children).forEach((elem) => {
+      this.background.append(elem)
+    })
   }
 
   close(e) {
@@ -88,6 +111,13 @@ export default class extends Controller {
 
     // Hide the modal
     this.containerTarget.classList.add(this.toggleClass);
+
+    // move contents back to modal container
+    if (this.background) {
+      Array.from(this.background.children).forEach((elem) => {
+        this.containerTarget.append(elem)
+      })
+    }
 
     // Remove the background
     if (this.background) { this.background.remove() }

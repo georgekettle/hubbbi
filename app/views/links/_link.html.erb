@@ -20,7 +20,8 @@
     </div>
   </div>
 <% else %>
-  <%= link_to "#{link.url}", target: :_blank, class: "w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+<div data-controller="modal" class="w-full">
+  <%= link_to "#{link.url}", target: :_blank, data: { action: "click->modal#open" }, class: "w-full rounded-lg p-4 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
     <div>
       <h4 class="leading-tight"><%= link.title %></h4>
       <% if link.subtitle.present? %>
@@ -31,5 +32,6 @@
       <%= render 'icons/arrow_right', classes: "stroke-current text-white" %>
     </div>
   <% end %>
+  <%= render "components/modals/modal_container", header: link.title, subheader: link.url %>
+</div>
 <% end %>
-

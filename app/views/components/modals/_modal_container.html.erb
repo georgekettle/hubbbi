@@ -1,28 +1,30 @@
 <% subheader ||= nil %>
 <% no_padding ||= false %>
 
-<div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
-  <!-- Modal Inner Container -->
-  <div class="max-h-screen w-full max-w-xl relative">
-    <!-- Modal Card -->
-    <div class="m-1 bg-contrast-50 rounded-lg shadow overflow-hidden">
-      <div class="w-full bg-white px-4 sm:px-8 py-4 flex items-center justify-between border-b border-gray-200">
-        <div>
-          <h4 class="text-lg"><%= header %></h4>
-          <% if subheader %>
-            <p class="text-xs text-gray-400"><%= subheader %></p>
+<div data-modal-target="container" class="hidden">
+  <div data-modal-target="close" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+    <!-- Modal Inner Container -->
+    <div class="max-h-screen w-full max-w-xl relative">
+      <!-- Modal Card -->
+      <div class="m-1 bg-contrast-50 rounded-lg shadow overflow-hidden">
+        <div class="w-full bg-white px-4 sm:px-8 py-4 flex items-center justify-between border-b border-gray-200">
+          <div>
+            <h4 class="text-lg"><%= header %></h4>
+            <% if subheader %>
+              <p class="text-xs text-gray-400"><%= subheader %></p>
+            <% end %>
+          </div>
+          <%= link_to "#", class: "icon-btn faded", data: { modal_target: 'close' } do %>
+            <%= render 'icons/close', classes: 'h-3.5 w-3.5' %>
           <% end %>
         </div>
-        <%= link_to "#", class: "icon-btn faded", data: { action: "click->modal#close" } do %>
-          <%= render 'icons/close', classes: 'h-3.5 w-3.5' %>
+        <% if no_padding %>
+          <div class="relative">
+        <% else %>
+          <div class="p-4 sm:p-8 relative">
         <% end %>
-      </div>
-      <% if no_padding %>
-        <div class="relative">
-      <% else %>
-        <div class="p-4 sm:p-8 relative">
-      <% end %>
-        <%= yield %>
+          <%= yield %>
+        </div>
       </div>
     </div>
   </div>
