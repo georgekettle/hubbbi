@@ -20,7 +20,7 @@ module.exports = {
       // generate these below at www.tailwindshades.com
       contrast: {
         DEFAULT: '#FFA80A',
-        '50': '#FFFDFC',
+        '50': '#fbf9f7',
         '100': '#FFF1D6',
         '200': '#FFDFA3',
         '300': '#FFCD70',

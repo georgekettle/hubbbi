@@ -1,0 +1,13 @@
+.faded-link {
+  @apply text-gray-700 bg-black bg-opacity-0 hover:bg-opacity-5 hover:text-gray-900 rounded block px-4 py-4 text-sm flex items-center;
+
+  svg {
+    @apply stroke-current text-gray-700 h-5 w-5 mr-2;
+  }
+
+  &:hover {
+    svg {
+      @apply text-gray-900;
+    }
+  }
+}
