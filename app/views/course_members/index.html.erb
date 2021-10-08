@@ -1,11 +1,11 @@
 <%= render "components/headers/header", header: "Course participants", subheader: @course.title, back_link: course_path(@course) do %>
   <% if policy(@course).update? %>
-    <div data-controller="modal">
-      <%= link_to '#', class: 'icon-btn', data: { action: "click->modal#open" } do %>
+    <div data-controller="lightbox">
+      <%= link_to '#', class: 'icon-btn', data: { action: "click->lightbox#open" } do %>
         <%= render 'icons/add_user', classes:"text-gray-900 stroke-current" %>
       <% end %>
 
-      <%= render 'components/modals/modal_container', header: "Add participants", subheader: "To #{@course.title}", no_padding: true do %>
+      <%= render 'components/lightbox/modal_container', title: "Add participants", subtitle: "To #{@course.title}", no_padding: true do %>
         <%= render 'form', course: @course %>
       <% end %>
     </div>
