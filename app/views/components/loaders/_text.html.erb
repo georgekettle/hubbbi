@@ -1,7 +1,7 @@
 <% text ||= ['Add load text', 'By adding an array of text', 'Add load text', 'By adding an array of text'] %>
 <% classes ||= '' %>
 
-<div class="content__container">
+<div class="content__container opacity-100" style="opacity: 0">
   <ul class="content__container__list" style="padding-inline-start: 0px;">
     <% text.each do |text| %>
       <li class="content__container__list__item <%= classes %>"><%= text %></li>
