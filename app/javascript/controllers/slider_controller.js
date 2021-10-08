@@ -10,6 +10,7 @@ export default class extends Controller {
     this.moveNavButtons()
     this.initOnDragStart()
     this.initOnDragEnd()
+    this.initResizeListener()
     document.body.dataset.dragging = false
   }
 
@@ -30,6 +31,14 @@ export default class extends Controller {
         }
       },
     });
+  }
+
+  initResizeListener() {
+    // Listen for when a tab changes and resize carousel
+    window.addEventListener('tsc:tab-change', e => this.flkty.resize())
+
+    // resize on document load
+    document.addEventListener('turbo:load', e => this.flkty.resize());
   }
 
   moveNavButtons() {
