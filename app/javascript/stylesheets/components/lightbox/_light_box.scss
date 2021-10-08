@@ -1,5 +1,5 @@
 .lightbox {
-  @apply fixed top-0 left-0 h-screen w-screen bg-gray-800 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center;
+  @apply fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-90 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center;
   z-index: 1000;
 }
 

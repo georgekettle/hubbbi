@@ -1,5 +1,5 @@
 .dropdown-link {
-  @apply text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm flex items-center;
+  @apply text-gray-700 bg-black bg-opacity-0 hover:bg-opacity-5 hover:text-gray-900 block px-4 py-2 text-sm flex items-center;
 
   svg {
     @apply stroke-current text-gray-700 h-5 w-5 mr-2;

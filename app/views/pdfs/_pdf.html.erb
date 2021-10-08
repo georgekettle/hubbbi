@@ -2,7 +2,7 @@
 
 <div class="w-full relative">
   <div data-controller="lightbox">
-    <%= link_to cl_image_path(pdf.file.key), data:{ action: "lightbox#open" }, class: "#{pdf.file.attached? ? 'dropdown-link' : 'dropdown-link-disabled'} p-2 w-full rounded-lg flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
+    <%= link_to cl_image_path(pdf.file.key), data:{ action: "lightbox#open" }, class: "#{pdf.file.attached? ? 'dropdown-link' : 'dropdown-link-disabled'} shadow-sm p-2 w-full rounded-lg flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block" do %>
       <%= render 'pdfs/pdf_info', pdf: pdf %>
     <% end %>
     <%= render 'components/lightbox/container', title: pdf.title, subtitle: pdf.created_at.strftime("%A %B %d, %Y") do %>

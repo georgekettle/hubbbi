@@ -19,7 +19,7 @@
         <h4 class="font-medium">Add participants to course</h4>
         <p class="text-xs text-gray-400">Send an invitation for more participants to join <%= @course.title %></p>
       </div>
-      <%= link_to new_course_course_member_path(@course), class: 'button sm:w-auto w-full' do %>
+      <%= link_to new_course_course_member_path(@course), class: 'button sm:w-auto w-full flex-shrink-0' do %>
         <%= render 'icons/email', classes:"mr-2" %>
         Invite participants
       <% end %>

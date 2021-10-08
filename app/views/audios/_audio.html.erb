@@ -1,7 +1,7 @@
 <% editable ||= false %>
 
 <div class="relative">
-  <%= button_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white block relative" do %>
+  <%= button_to audio_media_plays_path(audio, media_play: { position: 1 }), method: :post, class:"group w-full rounded-lg shadow-sm p-2 flex items-center border border-gray-200 hover:border-gray-300 bg-white block relative" do %>
     <div class="mr-4">
       <%= render 'audios/small_cover', audio: audio %>
     </div>
