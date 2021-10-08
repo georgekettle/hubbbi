@@ -29,7 +29,11 @@
       <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
     </div>
     <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
-      <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+      <div class="w-full relative transform translate-x-1/2">
+        <div class="w-screen transform -translate-x-1/2 md:max-w-4xl">
+          <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+        </div>
+      </div>
     </div>
     <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
       <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
