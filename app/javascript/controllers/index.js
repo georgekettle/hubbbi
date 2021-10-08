@@ -51,6 +51,9 @@ application.register("slider", SliderController)
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
 
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
+
 import TextTrixController from "./text_trix_controller"
 application.register("text-trix", TextTrixController)
 
