@@ -14,14 +14,14 @@
   <% end %>
   <% if editable %>
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
-      <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
+      <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn", direction: "right" do %>
         <%= link_to "Update audio", edit_audio_path(audio), class: "dropdown-link" %>
         <%= link_to 'Delete audio', audio, method: :delete, class: "dropdown-link-danger" %>
       <% end %>
     </div>
   <% else %>
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
-      <%= render 'components/dropdowns/options_dropdown', button_classes: 'icon-btn faded' do %>
+      <%= render 'components/dropdowns/options_dropdown', button_classes: 'icon-btn' do %>
         <%= link_to(add_to_queue_audio_media_plays_path(audio, media_play: {}), method: :post, class: "dropdown-link") do %>
           <%= render 'icons/list_add', classes: 'h-4 w-4' %>
           Add to queue
