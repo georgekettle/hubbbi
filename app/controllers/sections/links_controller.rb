@@ -19,7 +19,7 @@ module Sections
     private
 
     def link_params
-      params.require(:link).permit(:url, :title, :subtitle)
+      params.require(:link).permit(:url, :title, :subtitle, :cover)
     end
 
     def set_section
