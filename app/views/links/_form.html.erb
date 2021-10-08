@@ -1,6 +1,14 @@
 <% path = link.new_record? ? [link.linkable, link] : link %>
 
 <%= simple_form_for(path) do |f| %>
+  <%= f.label :cover, label: 'Image' %>
+  <%= render 'components/forms/image_upload', attachment: link.cover do %>
+    <%= f.file_field :cover,
+          direct_upload: true,
+          required: true,
+          accept:"image/png, image/jpeg, image/gif",
+          data: { controller: 'uploader' } %>
+  <% end %>
   <%= f.input :url, input_html: { type: 'url' }, placeholder: "https://www.twitter.com", hint: "Must include 'https://' or 'http://'" %>
   <%= f.input :title, placeholder: "Explain your link" %>
   <%= f.input :subtitle, placeholder: "Explain your link in more detail" %>
