@@ -1,7 +1,7 @@
 <% editable ||= false %>
 
 <div class="w-full relative">
-  <div class="overflow-hidden rounded-2xl relative">
+  <div class="overflow-hidden rounded-md relative">
     <%= link_to image.picture.url, data:{ src: image.picture.url, action:"lightbox#open" } do %>
       <%= cl_image_tag image.picture.key, class: 'w-full' %>
     <% end %>

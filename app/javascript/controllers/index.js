@@ -9,6 +9,9 @@ application.register("alert", AlertController)
 import BreadcrumbsController from "./breadcrumbs_controller"
 application.register("breadcrumbs", BreadcrumbsController)
 
+import CarouselController from "./carousel_controller"
+application.register("carousel", CarouselController)
+
 import ClipboardController from "./clipboard_controller"
 application.register("clipboard", ClipboardController)
 

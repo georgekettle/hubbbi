@@ -1,0 +1,29 @@
+<% editable ||= false %>
+
+<div class="w-full overflow-hidden rounded-md">
+  <% if images.empty? && editable %>
+    <%= render 'components/carousels/carousel' do %>
+      <div class="p-2 w-full">
+        <div class="p-4 rounded-md bg-white w-full border-dashed border flex flex-col items-center">
+          <h4 class="tracking-tight text-center">Add a new image</h4>
+          <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
+          <%= link_to new_section_image_path(section), class: 'button' do %>
+            <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
+            Add image
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%= render 'components/carousels/carousel' do %>
+      <% images.each_with_index do |image, index| %>
+        <div data-controller="lightbox" class="p-2 w-full">
+          <%= render "images/image", image: image, editable: editable %>
+          <%= render 'components/lightbox/container', title: image.title, subtitle: "#{index + 1} / #{images.count}" do %>
+            <%= cl_image_tag image.picture.key, class: 'w-full h-full object-contain' %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

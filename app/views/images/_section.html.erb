@@ -25,13 +25,13 @@
   <% end %>
 
   <div class="-mx-2 relative">
-    <div class="hidden" data-tabs-target="panel">
-      Image
+    <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
+      <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
     </div>
-    <div class="hidden" data-tabs-target="panel">
-      Cover image
+    <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
+      <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
     </div>
-    <div class="hidden" data-tabs-target="panel">
+    <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
       <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
     </div>
   </div>
