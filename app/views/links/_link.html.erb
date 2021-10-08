@@ -33,7 +33,7 @@
       </div>
     <% end %>
     <%= render "components/lightbox/modal_container", title: link.title, subtitle: link.url do %>
-      <%= link_to link.url, target: :_blank, class: 'faded-link' do %>
+      <%= link_to link.url, target: :_blank, class: 'faded-link -ml-4' do %>
         <%= render 'icons/web', classes: 'w-4 h-4' %>
         Go to site
       <% end %>
@@ -48,7 +48,7 @@
           data-clipboard-target="source"
         />
 
-        <%= link_to link.url, class: 'faded-link', data: { clipboard_target: "button", action: "clipboard#copy" } do %>
+        <%= link_to link.url, class: 'faded-link -ml-4', data: { clipboard_target: "button", action: "clipboard#copy" } do %>
           <%= render 'icons/link', classes: 'w-4 h-4' %>
           <span data-clipboard-target="buttonText">Copy link</span>
         <% end %>
