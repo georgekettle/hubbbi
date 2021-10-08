@@ -25,52 +25,6 @@
   <% end %>
 
   <div class="-mx-2 relative">
-    <% if images.empty? && editable %>
-      <%= render 'components/carousel' do %>
-        <div class="p-2 w-2/3 sm:w-1/2">
-          <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-            <h4 class="tracking-tight text-center">Add a new image</h4>
-            <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
-            <%= link_to new_section_image_path(section), class: 'button' do %>
-              <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
-              Add image
-            <% end %>
-          </div>
-        </div>
-
-        <% heights = [96, 32, 64] %>
-        <% heights.each do |height| %>
-          <div class="p-2 w-2/3 sm:w-1/2">
-            <div class="w-full">
-              <div class="bg-black bg-opacity-5 mb-2 rounded-xl w-full h-<%= height %>"></div>
-              <div class="h-2 w-56 bg-black bg-opacity-5 rounded-full ml-0.5"></div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% else %>
-      <%= render 'components/carousel' do %>
-        <% images.each_with_index do |image, index| %>
-          <div data-controller="lightbox" class="p-2 w-2/3 sm:w-1/2">
-            <%= render "images/image", image: image, editable: editable %>
-            <%= render 'components/lightbox/container', title: image.title, subtitle: "#{index + 1} / #{images.count}" do %>
-              <%= cl_image_tag image.picture.key, class: 'w-full h-full object-contain' %>
-            <% end %>
-          </div>
-        <% end %>
-        <% if editable %>
-          <div class="p-2 w-2/3 sm:w-1/2">
-            <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-              <h4 class="tracking-tight text-center">Add a new image</h4>
-              <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
-              <%= link_to new_section_image_path(section), class: 'button' do %>
-                <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
-                Add image
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
   </div>
 </div>
