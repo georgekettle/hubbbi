@@ -1,0 +1,21 @@
+<% playing ||= false %>
+<% media_play = currently_playing %>
+
+<% if media_play.present? %>
+  <div class="relative">
+    <div class="relative w-9 h-9 bg-white rounded-full overflow-hidden flex items-center justify-center">
+      <% if media_play.mediable.cover.attached? %>
+        <%= cl_image_tag(media_play.mediable.cover.key, :width => 200, :height => 200, :crop => :fill) %>
+      <% else %>
+        <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-4 w-4" %>
+      <% end %>
+      <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+      <%= render 'icons/chevron_down', classes: "stroke-current text-white h-3 w-3 absolute transform -translate-x-1/2 left-1/2" %>
+    </div>
+    <% if playing %>
+      <div class="bg-contrast h-4 w-4 rounded-full absolute -top-1 -right-1 shadow-sm flex items-center justify-center">
+        <%= render "icons/cd", classes: "stroke-current text-white h-3 w-3 animate-spin" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
