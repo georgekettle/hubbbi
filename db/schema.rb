@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(version: 2021_10_09_055838) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "section_type", default: 0
-    t.jsonb "data"
     t.index ["page_id"], name: "index_sections_on_page_id"
   end
 
