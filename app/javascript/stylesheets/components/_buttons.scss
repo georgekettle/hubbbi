@@ -81,7 +81,7 @@
 }
 
 .icon-btn.darken {
-  @apply backdrop-filter backdrop-blur bg-black bg-opacity-20;
+  @apply backdrop-filter backdrop-blur bg-black bg-opacity-50;
 
   svg {
     @apply text-white;
