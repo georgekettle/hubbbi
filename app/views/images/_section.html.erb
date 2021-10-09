@@ -1,6 +1,12 @@
 <% editable ||= false %>
+<% selected_format = section.data.key?("format") ? section.data["format"] : 'normal' %>
+<% image_formats = {
+  normal: 0,
+  banner: 1,
+  slider: 2
+} %>
 
-<div class="section" data-controller="tabs" data-tabs-active-tab="bg-white text-gray-800 shadow-sm">
+<div class="section" data-controller="tabs" data-tabs-index="<%= image_formats[selected_format.to_sym] %>" data-tabs-active-tab="bg-white text-gray-800 shadow-sm" data-tabs-url-value="<%= section_url(section, format: :json) %>" data-tabs-method-value="PATCH">
   <% if editable %>
     <div class="w-full relative z-10">
       <%= render "components/headers/section_header", title: "Images", icon:"image" do %>
@@ -25,18 +31,32 @@
   <% end %>
 
   <div class="-mx-2 relative">
-    <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
-      <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
-    </div>
-    <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
-      <div class="w-full relative transform translate-x-1/2">
-        <div class="w-screen transform -translate-x-1/2 md:max-w-4xl">
-          <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+    <% if editable %>
+      <div class="hidden" data-tabs-target="panel">
+        <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+      </div>
+      <div class="hidden" data-tabs-target="panel">
+        <div class="w-full relative transform translate-x-1/2">
+          <div class="w-screen transform -translate-x-1/2 md:max-w-4xl">
+            <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="<%= 'hidden' if editable %>" data-tabs-target="panel">
-      <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
-    </div>
+      <div class="hidden" data-tabs-target="panel">
+        <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
+      </div>
+    <% else %>
+      <% if selected_format == "banner" %>
+        <div class="w-full relative transform translate-x-1/2">
+          <div class="w-screen transform -translate-x-1/2 md:max-w-4xl">
+            <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+          </div>
+        </div>
+      <% elsif selected_format == "slider" %>
+        <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
+      <% else %>
+        <%= render 'images/carousel/carousel', images: images, section: section %>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -31,6 +31,10 @@ import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
   static targets = ['tab', 'panel']
+  static values = {
+    url: String,
+    method: { type: String, default: 'GET' },
+  }
 
   connect() {
     this.activeTabClasses = (this.data.get('activeTab') || 'active').split(' ')
@@ -41,7 +45,6 @@ export default class extends Controller {
 
   change(event) {
     event.preventDefault()
-
 
     // If target specifies an index, use that
     if (event.currentTarget.dataset.index) {
@@ -57,6 +60,10 @@ export default class extends Controller {
     }
 
     window.dispatchEvent(new CustomEvent('tsc:tab-change'))
+
+    if (this.hasUrlValue && typeof this.index === 'number') {
+      this.sendRequest()
+    }
   }
 
   showTab() {
@@ -92,5 +99,23 @@ export default class extends Controller {
 
   get anchor() {
     return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+  }
+
+  sendRequest() {
+    let CSRFToken = document.querySelector('meta[name="csrf-token"]').content
+    const selectedTab = this.tabTargets[this.index]
+    const body = JSON.parse(selectedTab.dataset.requestBody)
+    fetch(this.urlValue, {
+      method: this.methodValue,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': CSRFToken
+      },
+      body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+
   }
 }

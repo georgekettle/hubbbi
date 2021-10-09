@@ -129,7 +129,6 @@ export default class extends Controller {
       body: JSON.stringify(sectionData),
     })
     .then(response => response.json())
-    // .then(data => console.log(data))
     .then(data => successCallback(data, target, controller))
     .catch(err => errorCallback(err));
   }
