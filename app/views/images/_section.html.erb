@@ -1,5 +1,5 @@
 <% editable ||= false %>
-<% selected_format = section.data.key?("format") ? section.data["format"] : 'normal' %>
+<% selected_format = section.data&.key?("format") ? section.data["format"] : 'normal' %>
 <% image_formats = {
   normal: 0,
   banner: 1,

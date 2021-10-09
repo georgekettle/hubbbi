@@ -2,7 +2,7 @@
 
 <div class="w-full overflow-hidden rounded-md">
   <% if images.empty? && editable %>
-    <%= render 'components/carousels/carousel' do %>
+    <%= render 'components/carousels/carousel', hide_arrows: true do %>
       <div class="p-2 w-full">
         <div class="p-4 rounded-md bg-white w-full border-dashed border flex flex-col items-center">
           <h4 class="tracking-tight text-center">Add a new image</h4>
@@ -15,7 +15,7 @@
       </div>
     <% end %>
   <% else %>
-    <%= render 'components/carousels/carousel' do %>
+    <%= render 'components/carousels/carousel', hide_arrows: images.count <= 1 do %>
       <% images.each_with_index do |image, index| %>
         <div data-controller="lightbox" class="p-2 w-full">
           <%= render "images/image", image: image, editable: editable, classes: 'aspect-w-16 aspect-h-9' %>
