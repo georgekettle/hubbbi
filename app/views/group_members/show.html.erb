@@ -27,12 +27,12 @@
     <div class="pb-4">
       <%= render "components/headers/section_header", title: "Courses", icon:"library" do %>
         <% if policy(@group_member).create? %>
-          <div data-controller="modal">
-            <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn faded", data: { action: "click->modal#open" } do %>
+          <div data-controller="lightbox">
+            <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn faded", data: { action: "click->lightbox#open" } do %>
               <%= render 'icons/plus_circle' %>
             <% end %>
 
-            <%= render 'components/modals/modal_container', header: "Add to courses", subheader: @group_member.user.full_name_or_email do %>
+            <%= render 'components/lightbox/modal_container', title: "Add to courses", subtitle: @group_member.user.full_name_or_email do %>
               <div class="h-96">
                 <%= render 'group_members/course_members/form', group_member: @group_member %>
               </div>

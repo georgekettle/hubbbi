@@ -35,7 +35,10 @@ export default class extends Controller {
     const _this = this
     this.closeTargets.forEach((close) => {
       close.addEventListener('click', (e) => {
-        _this.close(e)
+        if(e.currentTarget == e.target) {
+          e.preventDefault();
+          _this.close(e)
+        }
       })
     })
   }
@@ -55,6 +58,8 @@ export default class extends Controller {
 
   close(e) {
     e.preventDefault()
-    this.lightboxTarget.classList.remove('active')
+    if (e.target === e.currentTarget) {
+      this.lightboxTarget.classList.remove('active')
+    }
   }
 }

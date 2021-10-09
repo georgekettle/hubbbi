@@ -17,4 +17,6 @@
   input[type=range] {
     @apply ring-0;
   }
+
+  .plyr.plyr--stopped .plyr__controls { display: none }
 }
