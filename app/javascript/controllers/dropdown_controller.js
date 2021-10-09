@@ -10,7 +10,9 @@ export default class extends Controller {
   initialize () {
     this.placementValue ||= 'bottom-end'
     this.menu = this.menuTarget
+  }
 
+  connect() {
     if (this.hasMenuTarget && this.toggleTarget) {
       this.tippy = tippy(this.toggleTarget, {
         content: this.menuTarget,
