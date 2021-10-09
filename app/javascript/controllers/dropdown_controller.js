@@ -18,14 +18,14 @@ export default class extends Controller {
         content: this.menuTarget,
         arrow: false,
         interactive: true,
-        moveTransition: 'transform 0.2s ease-out',
+        moveTransition: 'transform 0.05s ease-out',
         offset: [0, 0],
         placement: this.placementValue,
         trigger: 'mouseenter click',
         hideOnClick: true,
         triggerTarget: this.toggleTargets,
         appendTo: this.element,
-        interactiveDebounce: 30,
+        interactiveDebounce: 15,
       });
     }
   }
