@@ -8,7 +8,7 @@ export default class extends Controller {
     this.player = new Plyr(this.containerTarget, {
       ratio: '16:9',
       captions: {active: true}
-    });
+    })
 
     const _this = this
     this.player.on('play', event => {
