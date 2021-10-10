@@ -2,7 +2,7 @@
 <% media_play = currently_playing %>
 
 <% if media_play.present? %>
-  <div class="mx-2 relative group">
+  <div class="mx-2 relative group cursor-pointer">
     <%= render 'audios/small_cover', audio: media_play.mediable, size: 10, classes:"rounded-full" %>
     <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 rounded-full transition-opacity duration-300">
       <%= render 'icons/chevron_down', classes:"stroke-current text-white h-3 w-3 transform scale-0 group-hover:scale-100 transition-transform duration-300" %>
