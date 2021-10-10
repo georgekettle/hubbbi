@@ -1,6 +1,12 @@
 <% editable ||= false %>
+<% selected_format = section.data&.key?("format") ? section.data["format"] : 'normal' %>
+<% image_formats = {
+  normal: 0,
+  banner: 1,
+  slider: 2
+} %>
 
-<div class="section">
+<div class="section" data-controller="tabs" data-tabs-index="<%= image_formats[selected_format.to_sym] %>" data-tabs-active-tab="bg-white text-gray-800 shadow-sm" data-tabs-url-value="<%= section_url(section, format: :json) %>" data-tabs-method-value="PATCH">
   <% if editable %>
     <div class="w-full relative z-10">
       <%= render "components/headers/section_header", title: "Images", icon:"image" do %>
@@ -9,14 +15,14 @@
             <div class="mr-2">
               <%= render "components/saving" %>
             </div>
-            <%= render "components/dropdowns/options_dropdown", button_classes: 'icon-btn faded' do %>
+            <%= render 'images/tabs' %>
+            <%= render "components/dropdowns/options_dropdown", button_classes: 'icon-btn' do %>
               <%= link_to "Add image", new_section_image_path(section), class: 'dropdown-link' %>
               <%= link_to "Reorder images", section_section_elements_path(section), class: 'dropdown-link' %>
               <%= link_to("Delete section", section_path(section), method: :delete, data: {confirm: "Are you sure you'd like to remove this section?"}, class: "dropdown-link-danger") %>
             <% end %>
-            <div class="handle icon-btn faded relative overflow-hidden">
-              <%= render "icons/handle", classes: "handle h-4 w-4" %>
-              <div class="handle absolute h-full w-full top-0 left-0"></div>
+            <div class="handle icon-btn relative overflow-hidden">
+              <%= render "icons/handle", classes: "pointer-events-none h-4 w-4" %>
             </div>
           <% end %>
         </div>
@@ -25,51 +31,31 @@
   <% end %>
 
   <div class="-mx-2 relative">
-    <% if images.empty? && editable %>
-      <%= render 'components/carousel' do %>
-        <div class="p-2 w-2/3 sm:w-1/2">
-          <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-            <h4 class="tracking-tight text-center">Add a new image</h4>
-            <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
-            <%= link_to new_section_image_path(section), class: 'button' do %>
-              <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
-              Add image
-            <% end %>
+    <% if editable %>
+      <div class="hidden" data-tabs-target="panel">
+        <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
+      </div>
+      <div class="hidden" data-tabs-target="panel">
+        <div class="w-full relative transform translate-x-1/2">
+          <div class="w-screen transform -translate-x-1/2 md:max-w-4xl">
+            <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
           </div>
         </div>
-
-        <% heights = [96, 32, 64] %>
-        <% heights.each do |height| %>
-          <div class="p-2 w-2/3 sm:w-1/2">
-            <div class="w-full">
-              <div class="bg-black bg-opacity-5 mb-2 rounded-xl w-full h-<%= height %>"></div>
-              <div class="h-2 w-56 bg-black bg-opacity-5 rounded-full ml-0.5"></div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+      </div>
+      <div class="hidden" data-tabs-target="panel">
+        <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
+      </div>
     <% else %>
-      <%= render 'components/carousel' do %>
-        <% images.each_with_index do |image, index| %>
-          <div data-controller="lightbox" class="p-2 w-2/3 sm:w-1/2">
-            <%= render "images/image", image: image, editable: editable %>
-            <%= render 'components/lightbox/container', title: image.title, subtitle: "#{index + 1} / #{images.count}" do %>
-              <%= cl_image_tag image.picture.key, class: 'w-full h-full object-contain' %>
-            <% end %>
+      <% if selected_format == "banner" %>
+        <div class="w-full relative transform translate-x-1/2">
+          <div class="w-screen transform -translate-x-1/2 md:max-w-4xl">
+            <%= render 'images/carousel/carousel', images: images, section: section, editable: editable %>
           </div>
-        <% end %>
-        <% if editable %>
-          <div class="p-2 w-2/3 sm:w-1/2">
-            <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
-              <h4 class="tracking-tight text-center">Add a new image</h4>
-              <p class="text-xs text-gray-400 mb-2 text-center">You can add one... or many</p>
-              <%= link_to new_section_image_path(section), class: 'button' do %>
-                <%= render "icons/image", classes: "stroke-current text-white mr-2" %>
-                Add image
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        </div>
+      <% elsif selected_format == "slider" %>
+        <%= render 'images/slider_carousel/carousel', images: images, section: section, editable: editable %>
+      <% else %>
+        <%= render 'images/carousel/carousel', images: images, section: section %>
       <% end %>
     <% end %>
   </div>

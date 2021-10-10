@@ -33,7 +33,7 @@
   </div>
   <% if invite.recipient || invite.status == 'pending' %>
     <div class="absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
-      <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn faded", direction: "right" do %>
+      <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn", direction: "right" do %>
         <%= link_to("See profile",
                       group_member_path(@group.group_members.find_by(user: invite.recipient)),
                       class: "dropdown-link") if invite.recipient %>

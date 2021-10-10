@@ -18,7 +18,7 @@
   <% end %>
   <% if course_member && (policy(group_member).admin_or_editor? || policy(group_member).belongs_to_user?) %>
     <div class="group-hover:opacity-100 opacity-100 md:opacity-0 absolute top-1/2 right-1 transform -translate-y-1/2 mr-2">
-      <%= render 'components/dropdowns/options_dropdown', button_classes: 'icon-btn faded' do %>
+      <%= render 'components/dropdowns/options_dropdown', button_classes: 'icon-btn' do %>
         <% if policy(group_member).belongs_to_user? %>
           <%= link_to "Leave course",
                       course_member_path(course_member),

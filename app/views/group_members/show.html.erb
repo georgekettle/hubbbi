@@ -28,7 +28,7 @@
       <%= render "components/headers/section_header", title: "Courses", icon:"library" do %>
         <% if policy(@group_member).create? %>
           <div data-controller="lightbox">
-            <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn faded", data: { action: "click->lightbox#open" } do %>
+            <%= link_to new_group_member_course_member_path(@group_member), class: "icon-btn", data: { action: "click->lightbox#open" } do %>
               <%= render 'icons/plus_circle' %>
             <% end %>
 
@@ -59,7 +59,7 @@
     <div>
       <%= render "components/headers/section_header", title: "Quick links", icon:"zap" do %>
         <% if policy(@group_member).links? %>
-          <%= link_to new_group_member_link_path(@group_member), class: "icon-btn faded" do %>
+          <%= link_to new_group_member_link_path(@group_member), class: "icon-btn" do %>
             <%= render 'icons/plus_circle' %>
           <% end %>
         <% end %>

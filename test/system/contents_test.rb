@@ -45,4 +45,27 @@ class ContentsTest < ApplicationSystemTestCase
     end
   end
 
+  test "user doesnt get a 500 error when creating an empty link" do
+    user = users(:user_2)
+    course = courses(:course_1)
+
+    login_as user, scope: :user
+
+    visit group_path(course.group)
+    visit edit_sections_page_path(course.page)
+
+    assert_difference 'course.page.sections.count', 1, 'New page section should be created in DB' do
+      source = page.find('.handle.item:last-child')
+      target = page.find('.dropzone[data-position="1"]', visible: false)
+      source.drag_to(target)
+      assert page.has_content?('Add a new link', wait: 15), 'Add new link title exists'
+    end
+
+    find(:link, 'Add link', match: :first).click
+    click_on 'Create Link'
+
+    assert page.has_content?('Url can\'t be blank and Url is invalid', wait: 15), 'URL is mandatory error appears'
+    assert page.has_content?('Title can\'t be blank', wait: 15), 'Title is mandatory error appears'
+  end
+
 end

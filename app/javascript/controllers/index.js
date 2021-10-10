@@ -9,6 +9,9 @@ application.register("alert", AlertController)
 import BreadcrumbsController from "./breadcrumbs_controller"
 application.register("breadcrumbs", BreadcrumbsController)
 
+import CarouselController from "./carousel_controller"
+application.register("carousel", CarouselController)
+
 import ClipboardController from "./clipboard_controller"
 application.register("clipboard", ClipboardController)
 
@@ -50,6 +53,9 @@ application.register("slider", SliderController)
 
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
+
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
 
 import TextTrixController from "./text_trix_controller"
 application.register("text-trix", TextTrixController)
