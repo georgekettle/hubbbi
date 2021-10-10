@@ -4,7 +4,7 @@
 
 <%= turbo_frame_tag "floating_media_player", class:'w-full flex justify-center' do %>
   <% if media_plays.present? %>
-    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg md:w-auto md:fixed md:right-4 md:bottom-4 md:block">
+    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg md:w-auto md:fixed md:right-4 md:bottom-4 md:block <%= 'hidden' if Current.group_member.hide_media_player %>">
       <div class="bg-white md:bg-contrast-400 md:border-0 rounded-lg md:rounded-full border border-gray-200 overflow-hidden relative block md:shadow-xl">
         <%= link_to "#", class: "group p-1 pr-12 flex items-center", data: { action: "click->modal#open" } do %>
           <div class="mr-3 md:mr-1 relative">
