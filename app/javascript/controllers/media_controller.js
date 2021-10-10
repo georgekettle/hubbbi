@@ -46,6 +46,7 @@ export default class extends Controller {
     if (this.hasAudioTarget) {
       this.audioTarget.dataset.mediaPlayingValue = value
     }
+    this.dispatchWindowPauseEvent(!value)
   }
 
   prepareControls() {
@@ -78,6 +79,9 @@ export default class extends Controller {
     this.sound.addEventListener('ended', (e) => {
       _this.playNextSong()
     })
+    document.addEventListener('turbo:load', () => {
+      _this.dispatchWindowPauseEvent(!_this.playingValue)
+    });
   }
 
   dismissLoadingControls() {
@@ -214,6 +218,12 @@ export default class extends Controller {
     this.updateProgressRequest(body)
     this.incomplete = false
     this.nextTargets[0].click()
+  }
+
+  dispatchWindowPauseEvent(status) {
+    // dispatch event (is paused) => so that media_player_toggle.html.erb can register changes
+    const pauseEvent = new CustomEvent('mediaPlayer:change', { detail: { paused: status } })
+    window.dispatchEvent(pauseEvent)
   }
 
   listenForToggleFloatingMediaPlayer() {

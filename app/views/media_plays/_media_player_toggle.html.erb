@@ -2,7 +2,13 @@
 <% media_play = currently_playing %>
 
 <% if media_play.present? %>
-  <div class="mx-2 relative cursor-pointer" onclick="window.dispatchEvent(new CustomEvent('toggleFloatingMediaPlayer'))">
+  <div class="mx-2 mr-3 relative cursor-pointer" onclick="window.dispatchEvent(new CustomEvent('toggleFloatingMediaPlayer'))">
     <%= render 'audios/small_cover', audio: media_play.mediable, size: 9, classes:"rounded-full" %>
+    <div id="media-player-playing" class="hidden absolute top-0 right-0">
+      <span class="flex h-3 w-3">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-contrast-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-3 w-3 bg-contrast-500"></span>
+      </span>
+    </div>
   </div>
 <% end %>
