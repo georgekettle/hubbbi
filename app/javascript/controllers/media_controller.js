@@ -7,6 +7,7 @@ export default class extends Controller {
   static values = {
     playing: Boolean,
     url: String,
+    groupMemberUrl: String,
     progress: Number
   }
 
@@ -216,9 +217,23 @@ export default class extends Controller {
   }
 
   listenForToggleFloatingMediaPlayer() {
+    const _this = this
     window.addEventListener('toggleFloatingMediaPlayer', (e) => {
       e.preventDefault()
-      this.floatingMediaPlayerTarget.classList.toggle('hidden')
+      const CSRFToken = document.querySelector('meta[name="csrf-token"]').content
+      _this.floatingMediaPlayerTarget.classList.toggle('hidden')
+      const isHidden = _this.floatingMediaPlayerTarget.classList.contains('hidden')
+      const body = {'group_member': {
+        'hide_media_player': isHidden
+      }}
+      fetch(_this.groupMemberUrlValue, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': CSRFToken,
+        },
+        body: JSON.stringify(body),
+      })
     })
   }
 }

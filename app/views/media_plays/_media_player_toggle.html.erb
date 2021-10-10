@@ -3,6 +3,6 @@
 
 <% if media_play.present? %>
   <div class="mx-2 relative cursor-pointer" onclick="window.dispatchEvent(new CustomEvent('toggleFloatingMediaPlayer'))">
-    <%= render 'audios/small_cover', audio: media_play.mediable, size: 10, classes:"rounded-full" %>
+    <%= render 'audios/small_cover', audio: media_play.mediable, size: 9, classes:"rounded-full" %>
   </div>
 <% end %>
