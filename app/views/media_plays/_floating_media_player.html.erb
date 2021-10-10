@@ -4,25 +4,28 @@
 
 <%= turbo_frame_tag "floating_media_player", class:'w-full flex justify-center' do %>
   <% if media_plays.present? %>
-    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg">
-      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden relative block">
-        <%= link_to "#", class: "p-1 flex items-center", data: { action: "click->modal#open" } do %>
-          <div class="mr-3">
-            <%= render 'audios/small_cover', audio: media_play.mediable %>
+    <div data-media-target="floatingMediaPlayer" class="animated fadeIn p-1 w-full max-w-lg md:w-auto md:fixed md:right-4 md:bottom-4">
+      <div class="bg-white md:bg-contrast-400 md:border-0 rounded-lg md:rounded-full border border-gray-200 overflow-hidden relative block md:inline-block shadow-xl">
+        <%= link_to "#", class: "group p-1 pr-12 flex items-center", data: { action: "click->modal#open" } do %>
+          <div class="mr-3 md:mr-1 relative">
+            <%= render 'audios/small_cover', audio: media_play.mediable, size: 10, classes:"md:rounded-full md:border md:border-white md:shadow-sm" %>
+            <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 md:border md:border-white rounded md:rounded-full transition-opacity duration-300">
+              <%= render 'icons/expand', classes:"stroke-current text-white h-3 w-3 transform scale-0 group-hover:scale-100 transition-transform duration-300" %>
+            </div>
           </div>
-          <div class="flex-grow">
-            <h4 class="tracking-tight"><%= media_play.mediable.title if media_play.mediable %></h4>
+          <div class="flex-grow md:hidden">
+            <h4 class="tracking-tight text-sm"><%= media_play.mediable.title if media_play.mediable %></h4>
             <div class="mt-2 w-2/3">
               <%= render 'audios/progress', progress: media_play.progress, no_touch: true %>
             </div>
           </div>
         <% end %>
-        <div class="group flex-shrink-0 absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full mr-2">
-          <%= link_to '#', data: {media_target: 'play', action: 'media#play'}, class:"group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer" do %>
-            <%= render 'icons/play_fill', classes: "fill-current text-gray-800" %>
+        <div class="text-gray-800 md:text-white group flex-shrink-0 absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full mr-2">
+          <%= link_to '#', data: {media_target: 'play', action: 'media#play'}, class:"group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer md:opacity-75 md:hover:opacity-100" do %>
+            <%= render 'icons/play_fill', classes: "fill-current" %>
           <% end %>
-          <%= link_to '#', data: {media_target: 'pause', action: 'media#pause'}, class:"hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer" do %>
-            <%= render 'icons/pause_fill', classes: "fill-current text-gray-800 h-3.5 w-3.5" %>
+          <%= link_to '#', data: {media_target: 'pause', action: 'media#pause'}, class:"hidden group-hover:scale-105 scale-100 h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 cursor-pointer md:opacity-75 md:hover:opacity-100" do %>
+            <%= render 'icons/pause_fill', classes: "fill-current h-3.5 w-3.5" %>
           <% end %>
         </div>
       </div>

@@ -2,20 +2,16 @@
 <% media_play = currently_playing %>
 
 <% if media_play.present? %>
-  <div class="relative">
-    <div class="relative w-9 h-9 bg-white rounded-full overflow-hidden flex items-center justify-center">
+  <div class="relative md:bg-black md:bg-opacity-25 md:text-white md:p-0.5 md:rounded-full flex items-center">
+    <div class="relative w-9 h-9 md:w-7 md:h-7 bg-white rounded-full overflow-hidden flex items-center justify-center">
       <% if media_play.mediable.cover.attached? %>
         <%= cl_image_tag(media_play.mediable.cover.key, :width => 200, :height => 200, :crop => :fill) %>
       <% else %>
         <%= render 'icons/audio', classes: "stroke-current text-gray-200 h-4 w-4" %>
       <% end %>
-      <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-      <%= render 'icons/chevron_down', classes: "stroke-current text-white h-3 w-3 absolute transform -translate-x-1/2 left-1/2" %>
     </div>
-    <% if playing %>
-      <div class="bg-contrast h-4 w-4 rounded-full absolute -top-1 -right-1 shadow-sm flex items-center justify-center">
-        <%= render "icons/cd", classes: "stroke-current text-white h-3 w-3 animate-spin" %>
-      </div>
+    <%= link_to '#', class: "hidden md:w-7 md:h-7 md:flex md:items-center md:justify-center md:opacity-50 md:hover:opacity-100" do %>
+      <%= render 'icons/play_fill', classes:"h-3 w-3 fill-current text-white" %>
     <% end %>
   </div>
 <% end %>
