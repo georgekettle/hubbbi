@@ -43,10 +43,6 @@ class SectionsController < ApplicationController
   end
 
   def section_params
-    params.require(:section).permit(:position, :section_type)
-  end
-
-  def element_params
-    params.require(:element).permit()
+    params.require(:section).permit(:position, :section_type, data: [:format])
   end
 end

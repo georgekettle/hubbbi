@@ -1,7 +1,8 @@
 <% editable ||= false %>
+<% classes ||= "" %>
 
 <div class="w-full relative">
-  <div class="overflow-hidden rounded-2xl relative">
+  <div class="overflow-hidden rounded-md relative <%= classes %>">
     <%= link_to image.picture.url, data:{ src: image.picture.url, action:"lightbox#open" } do %>
       <%= cl_image_tag image.picture.key, class: 'w-full' %>
     <% end %>
@@ -11,7 +12,7 @@
   <% end %>
 
   <% if editable %>
-    <div class="absolute top-4 left-4 flex items-center">
+    <div class="absolute top-2 left-2 flex items-center">
       <%= link_to edit_image_path(image), class: "icon-btn darken mr-2" do %>
         <%= render 'icons/edit', classes: "h-4 w-4" %>
       <% end %>

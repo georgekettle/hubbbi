@@ -1,10 +1,12 @@
 <%= simple_form_for image do |f| %>
   <%= f.label :picture, label: 'Image' %>
-  <%= f.file_field :picture,
-          direct_upload: true,
-          required: true,
-          accept:"image/png, image/jpeg, image/gif",
-          data: { controller: 'uploader' } %>
+  <%= render 'components/forms/image_upload', attachment: image.picture do %>
+    <%= f.file_field :picture,
+            direct_upload: true,
+            required: true,
+            accept:"image/png, image/jpeg, image/gif",
+            data: { controller: 'uploader' } %>
+  <% end %>
   <%= f.input :title %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>
