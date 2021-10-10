@@ -10,20 +10,22 @@ export default class extends Controller {
   initialize () {
     this.placementValue ||= 'bottom-end'
     this.menu = this.menuTarget
+  }
 
+  connect() {
     if (this.hasMenuTarget && this.toggleTarget) {
       this.tippy = tippy(this.toggleTarget, {
         content: this.menuTarget,
         arrow: false,
         interactive: true,
-        moveTransition: 'transform 0.2s ease-out',
+        moveTransition: 'transform 0.05s ease-out',
         offset: [0, 0],
         placement: this.placementValue,
         trigger: 'mouseenter click',
         hideOnClick: true,
         triggerTarget: this.toggleTargets,
         appendTo: this.element,
-        interactiveDebounce: 30,
+        interactiveDebounce: 15,
       });
     }
   }

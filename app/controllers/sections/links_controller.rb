@@ -8,11 +8,11 @@ module Sections
 
     def create
       @link = Link.new(link_params)
-      section_element = @section.section_elements.new(element: @link)
-      if @section.save
+      if @link.save
+        @section.links << @link
         redirect_to edit_sections_page_path(@section.page), notice: "New link successfully created"
       else
-        render :new, alert: "Oops... Something went wrong when creating link"
+        render :new, alert: "Oops... Something went wrong when creating link", status: :unprocessable_entity
       end
     end
 
