@@ -3,11 +3,15 @@ import { Controller } from "@hotwired/stimulus"
 const updateInterval = 30 // 30s between updates
 
 export default class extends Controller {
-  static targets = ["audio", "play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "mediaControlsContainer", "mediaControlsContainerLoading"]
+  static targets = ["audio", "play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "mediaControlsContainer", "mediaControlsContainerLoading", "floatingMediaPlayer"]
   static values = {
     playing: Boolean,
     url: String,
     progress: Number
+  }
+
+  initialize() {
+    this.listenForToggleFloatingMediaPlayer()
   }
 
   audioTargetConnected(element) {
@@ -209,5 +213,12 @@ export default class extends Controller {
     this.updateProgressRequest(body)
     this.incomplete = false
     this.nextTargets[0].click()
+  }
+
+  listenForToggleFloatingMediaPlayer() {
+    window.addEventListener('toggleFloatingMediaPlayer', (e) => {
+      e.preventDefault()
+      this.floatingMediaPlayerTarget.classList.toggle('hidden')
+    })
   }
 }
