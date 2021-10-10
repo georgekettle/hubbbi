@@ -1,14 +1,16 @@
 <% playing ||= false %>
 <% media_play = currently_playing %>
 
-<% if media_play.present? %>
-  <div id="media-player-toggle" class="<%= 'playing' if playing %> mx-2 mr-3 relative cursor-pointer" onclick="window.dispatchEvent(new CustomEvent('toggleFloatingMediaPlayer'))">
-    <%= render 'audios/small_cover', audio: media_play.mediable, size: 9, classes:"rounded-full" %>
-    <div id="media-player-toggle-darken" class="absolute bg-black opacity-50 inset-0 rounded-full"></div>
-    <div id="playing-icon" class="absolute top-0 right-0 inset-0">
-      <div class="flex items-center justify-center h-full w-full">
-        <%= render 'icons/music_bars', classes: 'bg-white', size: 6 %>
+<%= turbo_frame_tag "media_player_toggle", class: "#{'playing' if playing}" do %>
+  <% if media_play.present? %>
+    <div class="mx-2 mr-3 relative cursor-pointer" onclick="window.dispatchEvent(new CustomEvent('toggleFloatingMediaPlayer'))">
+      <%= render 'audios/small_cover', audio: media_play.mediable, size: 9, classes:"rounded-full" %>
+      <div id="media_player_toggle-darken" class="absolute bg-black opacity-50 inset-0 rounded-full"></div>
+      <div id="playing-icon" class="absolute top-0 right-0 inset-0">
+        <div class="flex items-center justify-center h-full w-full">
+          <%= render 'icons/music_bars', classes: 'bg-white', size: 6 %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

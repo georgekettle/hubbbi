@@ -1,15 +1,15 @@
 const initMediaPlayerPlayingStatus = () => {
-  const mediaPlayerToggle = document.querySelector('#media-player-toggle')
-  if (mediaPlayerToggle) {
-    window.addEventListener('mediaPlayer:change', (e) => {
-      const isPaused = e.detail.paused
+  window.addEventListener('mediaPlayer:change', (e) => {
+    const mediaPlayerToggle = document.querySelector('#media_player_toggle')
+    const isPaused = e.detail.paused
+    if (mediaPlayerToggle) {
       if (isPaused) {
         mediaPlayerToggle.classList.remove('playing')
       } else {
         mediaPlayerToggle.classList.add('playing')
       }
-    })
-  }
+    }
+  })
 }
 
 export { initMediaPlayerPlayingStatus }

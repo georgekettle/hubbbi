@@ -1,5 +1,5 @@
-#media-player-toggle {
-  #media-player-toggle-darken {
+#media_player_toggle {
+  #media_player_toggle-darken {
     @apply hidden
   }
 
@@ -8,8 +8,8 @@
   }
 }
 
-#media-player-toggle.playing {
-  #media-player-toggle-darken {
+#media_player_toggle.playing {
+  #media_player_toggle-darken {
     @apply block
   }
 
