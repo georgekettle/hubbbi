@@ -1,0 +1,10 @@
+<% size ||= 8 %>
+<% classes ||= "" %>
+
+<div id="music-bars" class="h-<%= size %> w-<%= size %> relative">
+  <div class="h-<%= size %> w-<%= size %> flex justify-center items-center transform translate-y-1/3">
+    <span class="bar n1 <%= classes %>"></span>
+    <span class="bar n2 <%= classes %>"></span>
+    <span class="bar n3 <%= classes %>"></span>
+  </div>
+</div>

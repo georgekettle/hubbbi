@@ -1,0 +1,51 @@
+.bar {
+  display: inline-block;
+  position: relative;
+  margin: 8%;
+  width: 2px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: black;
+  color: transparent;
+  animation-name: music-pulse;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  height: 0%;
+  margin-top: 0;
+}
+
+.n1 {
+  animation-delay: 0s;
+}
+.n2 {
+  animation-delay: 0.33s;
+}
+.n3 {
+  animation-delay: 0.66s;
+}
+@keyframes music-pulse {
+  0% {
+    height: 0%;
+    margin-top: 0;
+  }
+  10% {
+    height: calc(66% / 2);
+    margin-top: calc(-66% / 2);
+  }
+  50% {
+    height: calc(33% / 2);
+    margin-top: calc(-33% / 2);
+  }
+  60% {
+    height: calc(50% / 2);
+    margin-top: calc(-50% / 2);
+  }
+  80% {
+    height: calc(100% / 2);
+    margin-top: calc(-100% / 2);
+  }
+  100% {
+    height: 0%;
+    margin-top: 0;
+  }
+}
