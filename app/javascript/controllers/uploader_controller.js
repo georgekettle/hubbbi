@@ -22,13 +22,14 @@ let fileUploadingCount = 0
 export default class extends Controller {
   static targets = ["container"]
   static values = {
-    filetypes: Array,
+    filetypes: { type: Array, default: ['image/png', 'image/jpeg', 'image/gif'] },
     max: { type: String, default: '10MB' },
+    uploading: { type: Boolean, default: false }
   }
 
   initialize() {
     this.form = this.element.form;
-    this.filetypesValue ||= ['image/png', 'image/jpeg', 'image/gif'];
+    this.initSubmitButton()
 
     this.pond = FilePond.create(this.element, {
       labelIdle: `Drag & Drop your file or <span class="filepond--label-action">Browse</span>`,
@@ -37,33 +38,30 @@ export default class extends Controller {
           process: this.uploadFile,
       },
       maxFileSize: this.maxValue,
-      onaddfilestart: (file) => { this.isLoadingCheck() },
-      onprocessfile: (files) => { this.isLoadingCheck() }
+      onaddfilestart: this.disableSubmitButtons.bind(this),
+      onprocessfile: this.enableSubmitButtons.bind(this),
+      onerror: this.enableSubmitButtons.bind(this),
     });
     const pqinaLogo = document.querySelector('.filepond--credits');
     pqinaLogo && pqinaLogo.remove();
   }
 
-  isLoadingCheck() {
-    const isLoading = this.pond.getFiles().filter(x=>x.status !== 5).length !== 0
-    const submitButtons = this.form.querySelectorAll('[type="submit"]')
-    if(isLoading) {
-      fileUploadingCount += 1
-      submitButtons.forEach((submit) => {
-        submit.disabled = true
-        if (fileUploadingCount === 1) {
-          this.submitText = submit.value
-        }
-        submit.value = 'Uploading file...'
-      })
-    } else {
-      fileUploadingCount -= 1
-      if (fileUploadingCount === 0) {
-        submitButtons.forEach((submit) => {
-          submit.disabled = false
-          submit.value = this.submitText
-        })
-      }
+  initSubmitButton() {
+    this.submitBtn = this.form.querySelector('[type="submit"]')
+    this.submitText = this.submitBtn.value
+  }
+
+  disableSubmitButtons() {
+    fileUploadingCount += 1
+    this.submitBtn.disabled = true
+    this.submitBtn.value = 'Uploading file...'
+  }
+
+  enableSubmitButtons() {
+    fileUploadingCount -= 1
+    if (fileUploadingCount === 0) {
+      this.submitBtn.disabled = false
+      this.submitBtn.value = this.submitText
     }
   }
 
@@ -72,5 +70,5 @@ export default class extends Controller {
     const url = videoAudioRegex.test(file.type) ? '/cloudinary_video_direct_uploads' : '/rails/active_storage/direct_uploads'
     const uploader = new Uploader(file, url, progress, load)
     uploader.uploadFile()
-  };
+  }
 }
