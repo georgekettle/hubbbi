@@ -2,12 +2,17 @@
 
 <% if editable %>
   <div class="w-full relative">
-    <div class="w-full shadow-sm rounded-lg p-4 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
-      <div>
-        <h4 class="leading-tight"><%= link.title %></h4>
-        <% if link.subtitle.present? %>
-          <h6 class="text-xs text-gray-400"><%= link.subtitle %></h6>
+    <div class="w-full shadow-sm rounded-lg p-2 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
+      <div class="flex items-center">
+        <% if link.cover.attached? %>
+          <div class="rounded h-12 w-12 overflow-hidden mr-2 flex-shrink-0" style="background-size: cover; background-image: url(<%= cl_image_path(link.cover.key) %>)"></div>
         <% end %>
+        <div class="m-2 line-clamp-2">
+          <h4 class="leading-tight"><%= link.title %></h4>
+          <% if link.subtitle.present? %>
+            <h6 class="text-xs text-gray-400"><%= link.subtitle %></h6>
+          <% end %>
+        </div>
       </div>
     </div>
 
