@@ -75,6 +75,10 @@ Rails.application.routes.draw do
 
   resources :course_members, only: [:destroy]
   resources :attachments, only: :destroy
+
+  # video direct uploads require custom route for cloudinary_video service
+  resources :cloudinary_video_direct_uploads, only: :create
+
   # root directs to groups#index if logged in:
   root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   root to: 'home#home'
