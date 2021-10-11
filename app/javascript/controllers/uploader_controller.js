@@ -5,6 +5,7 @@ import * as FilePond from 'filepond';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 // Import the plugin styles
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
@@ -12,7 +13,8 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 FilePond.registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileEncode,
-  FilePondPluginFileValidateType
+  FilePondPluginFileValidateType,
+  FilePondPluginFileValidateSize
 );
 
 let fileUploadingCount = 0
@@ -20,7 +22,8 @@ let fileUploadingCount = 0
 export default class extends Controller {
   static targets = ["container"]
   static values = {
-    filetypes: Array
+    filetypes: Array,
+    max: { type: String, default: '10MB' },
   }
 
   initialize() {
@@ -33,6 +36,7 @@ export default class extends Controller {
       server: {
           process: this.uploadFile,
       },
+      maxFileSize: this.maxValue,
       onaddfilestart: (file) => { this.isLoadingCheck() },
       onprocessfile: (files) => { this.isLoadingCheck() }
     });
