@@ -3,7 +3,7 @@
 # ActiveStorage fix to support direct uploads with a custom per-model service
 # When https://github.com/rails/rails/pull/38957 gets released in a future version, we
 # should remove this fix.
-class CoudinaryVideoDirectUploadsController < ActiveStorage::DirectUploadsController
+class CloudinaryVideoDirectUploadsController < ActiveStorage::DirectUploadsController
   private
 
   def blob_args

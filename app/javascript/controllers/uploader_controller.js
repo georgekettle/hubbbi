@@ -64,7 +64,9 @@ export default class extends Controller {
   }
 
   uploadFile(fieldName, file, metadata, load, error, progress, abort) {
-    const uploader = new Uploader(file, '/rails/active_storage/direct_uploads', progress, load);
-    uploader.uploadFile();
+    const videoAudioRegex = /(audio\/|video\/).*/gm
+    const url = videoAudioRegex.test(file.type) ? '/cloudinary_video_direct_uploads' : '/rails/active_storage/direct_uploads'
+    const uploader = new Uploader(file, url, progress, load)
+    uploader.uploadFile()
   };
 }
