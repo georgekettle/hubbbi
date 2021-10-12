@@ -18,4 +18,10 @@ class Video < ApplicationRecord
 
     file.url.split(".")[0..-2].push("jpg")&.join(".")
   end
+
+  def vimeo_hash
+    # necessary to display private videos
+    return nil unless url.present?
+    url.split('/').last
+  end
 end

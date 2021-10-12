@@ -1,4 +1,4 @@
-<div class="video-player w-full" data-controller="video">
+<div class="video-player w-full" data-controller="video" data-video-vimeo-hash-value="<%= video.vimeo_hash %>">
   <div class="relative cursor-pointer">
     <% if video.url.present? %>
       <%= render 'videos/video_url', video: video %>
