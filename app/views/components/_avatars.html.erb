@@ -1,0 +1,15 @@
+<% size ||= 12 %>
+<% classes ||= "" %>
+
+<div class="flex items-center relative">
+  <% group_members.first(3).each_with_index do |group_member, index| %>
+    <% margin_left = index == 0 ? 0 : -(size / 3 * 0.25) %>
+    <div style="margin-left: <%= margin_left %>rem" class="inline-block h-<%= size %>">
+      <%= render "components/avatar", group_member: group_member, size: size, classes: classes %>
+    </div>
+  <% end %>
+  <% extra_count = group_members.count - 3 %>
+  <% if extra_count.positive? %>
+    <p class="text-xs text-gray-400" style="margin-left:<%= size / 6 * 0.25 %>rem">+<%= extra_count %> others</p>
+  <% end %>
+</div>
