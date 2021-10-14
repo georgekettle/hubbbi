@@ -18,7 +18,6 @@ const savingIcon = `<svg class="animate-spin stroke-current" width="20px" height
 </svg>`
 
 export default class extends Controller {
-  static targets = ["toggle", "menu"]
   static values = {
     loader: {
       type: String,
