@@ -2,6 +2,6 @@ module Progressable
   extend ActiveSupport::Concern
 
   included do
-    has_one :progression, :as => :progressable
+    has_many :progressions, :as => :progressable, dependent: :destroy
   end
 end

@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2021_10_14_050658) do
     t.integer "role", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "hide_media_player", default: false, null: false
     t.index ["group_id"], name: "index_group_members_on_group_id"
     t.index ["user_id"], name: "index_group_members_on_user_id"
   end
@@ -164,8 +163,10 @@ ActiveRecord::Schema.define(version: 2021_10_14_050658) do
     t.bigint "progressable_id", null: false
     t.integer "current", default: 0, null: false
     t.integer "total", default: 100, null: false
+    t.bigint "group_member_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_member_id"], name: "index_progressions_on_group_member_id"
     t.index ["progressable_type", "progressable_id"], name: "index_progressions_on_progressable"
   end
 
@@ -266,6 +267,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_050658) do
   add_foreign_key "group_members", "users"
   add_foreign_key "media_plays", "group_members"
   add_foreign_key "page_references", "pages"
+  add_foreign_key "progressions", "group_members"
   add_foreign_key "section_elements", "sections"
   add_foreign_key "sections", "pages"
   add_foreign_key "sub_invites", "invites"
