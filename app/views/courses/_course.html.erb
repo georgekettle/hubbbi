@@ -3,14 +3,11 @@
     <div class="h-full overflow-hidden w-1/3 bg-gray-200 flex-shrink-0">
       <%= cl_image_tag(course.cover.key, height: 500, width: 500, crop: :fill, class: "transition-transform duration-300 transform-gpu group-hover:scale-105") if course.cover.attached? %>
     </div>
-    <div class="flex flex-col justify-between w-full p-2 sm:p-4">
+    <div class="flex flex-col justify-between w-full p-4 xs:p-6">
       <div>
         <h4 class="leading-none mb-1"><%= course.title %></h4>
-        <p class="hidden sm:block text-xs text-gray-400 leading-tight mb-2">Nullam rutrum suscipit dapibus. Suspendisse potenti. Vivamus a tempor lectus, et tincidunt ligula. Duis id mollis ante. Fusce at magna ornare, feugiat leo eu, convallis purus.</p>
-        <div class="sm:hidden">
-          <%= render 'components/avatars', group_members: course.group_members, size: 5, classes: "border border-white shadow" %>
-        </div>
-        <div class="hidden sm:block">
+        <p class="hidden sm:block text-xs text-gray-400 leading-tight mb-2"><%= course.description %></p>
+        <div class="hidden xs:block">
           <%= render 'components/avatars', group_members: course.group_members, size: 6, classes: "border border-white shadow" %>
         </div>
       </div>
@@ -24,7 +21,7 @@
             <div class="progress" style="width: 76%"></div>
           </div>
         </div>
-        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-800 text-white flex items-center justify-center flex-shrink-0 ml-1 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 cursor-pointer">
+        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-800 text-white flex items-center justify-center flex-shrink-0 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 cursor-pointer">
           <%= render "icons/arrow_right", classes: 'stroke-current' %>
         </div>
       </div>
