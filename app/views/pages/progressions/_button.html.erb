@@ -2,13 +2,13 @@
   <% if progression.present? %>
     <%= turbo_frame_tag dom_id(progression, :page_button) do %>
       <% current = progression.complete? ? 0 : 100 %>
-      <%= link_to progression_path(progression, progression: { current: current }), method: :patch, class: "icon-btn #{'hover:bg-green-100 text-green-500' if progression.complete?}" do %>
+      <%= link_to progression_path(progression, progression: { current: current }), method: :patch, data: {controller: 'button', action: 'button#showLoader'}, class: "icon-btn #{'hover:bg-green-100 text-green-500' if progression.complete?}" do %>
         <%= render 'icons/check_circle' %>
       <% end %>
     <% end %>
   <% else %>
     <%= turbo_frame_tag 'create_page_progression' do %>
-      <%= link_to progressions_path(progression: { progressable_type: 'Page', progressable_id: @page.id, current: 100 }), method: :post, class: "icon-btn" do %>
+      <%= link_to progressions_path(progression: { progressable_type: 'Page', progressable_id: @page.id, current: 100 }), method: :post, data: {controller: 'button', action: 'button#showLoader'}, class: "icon-btn" do %>
         <%= render 'icons/check_circle' %>
       <% end %>
     <% end %>
