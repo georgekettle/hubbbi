@@ -1,4 +1,6 @@
 class Page < ApplicationRecord
+  include Progressable
+
   has_one :course
   # targeting child associations of pages
   has_many :sections, -> { order(:position) }, dependent: :destroy
