@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_002317) do
+ActiveRecord::Schema.define(version: 2021_10_14_050658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_002317) do
     t.integer "role", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "hide_media_player", default: false, null: false
     t.index ["group_id"], name: "index_group_members_on_group_id"
     t.index ["user_id"], name: "index_group_members_on_user_id"
   end
@@ -156,6 +157,16 @@ ActiveRecord::Schema.define(version: 2021_10_09_002317) do
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "progressions", force: :cascade do |t|
+    t.string "progressable_type", null: false
+    t.bigint "progressable_id", null: false
+    t.integer "current", default: 0, null: false
+    t.integer "total", default: 100, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["progressable_type", "progressable_id"], name: "index_progressions_on_progressable"
   end
 
   create_table "section_elements", force: :cascade do |t|
