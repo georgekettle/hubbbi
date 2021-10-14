@@ -1,14 +1,16 @@
 <% progression = page.progressions.find_by(group_member: Current.group_member) %>
-<%= turbo_frame_tag "floating_media_player", class:'w-full flex justify-center' do %>
   <% if progression.present? %>
-    <% current = progression.complete? ? 0 : 100 %>
-    <% text_color = progression.complete? ? 'text-green-500' : 'text-gray-400' %>
-    <%= link_to progression_path(progression, progression: { current: current }), method: :patch, class: "icon-btn" do %>
-      <%= render 'icons/check_circle', classes: "stroke-current #{text_color}" %>
+    <%= turbo_frame_tag dom_id(progression, :page_button) do %>
+      <% current = progression.complete? ? 0 : 100 %>
+      <% text_color = progression.complete? ? 'text-green-500' : 'text-gray-400' %>
+      <%= link_to progression_path(progression, progression: { current: current }), method: :patch, class: "icon-btn" do %>
+        <%= render 'icons/check_circle', classes: "stroke-current #{text_color}" %>
+      <% end %>
     <% end %>
   <% else %>
-    <%= link_to progressions_path(progression: { progressable_type: 'Page', progressable_id: @page.id, current: 100 }), method: :post, class: "icon-btn" do %>
-      <%= render 'icons/check_circle' %>
+    <%= turbo_frame_tag 'create_page_progression' do %>
+      <%= link_to progressions_path(progression: { progressable_type: 'Page', progressable_id: @page.id, current: 100 }), method: :post, class: "icon-btn" do %>
+        <%= render 'icons/check_circle' %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
