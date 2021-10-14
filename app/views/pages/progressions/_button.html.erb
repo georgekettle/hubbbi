@@ -2,9 +2,8 @@
   <% if progression.present? %>
     <%= turbo_frame_tag dom_id(progression, :page_button) do %>
       <% current = progression.complete? ? 0 : 100 %>
-      <% text_color = progression.complete? ? 'text-green-500' : 'text-gray-400' %>
-      <%= link_to progression_path(progression, progression: { current: current }), method: :patch, class: "icon-btn" do %>
-        <%= render 'icons/check_circle', classes: "stroke-current #{text_color}" %>
+      <%= link_to progression_path(progression, progression: { current: current }), method: :patch, class: "icon-btn #{'hover:bg-green-100 text-green-500' if progression.complete?}" do %>
+        <%= render 'icons/check_circle' %>
       <% end %>
     <% end %>
   <% else %>
