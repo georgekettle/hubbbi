@@ -3168,11 +3168,6 @@ filepond-plugin-image-edit@^1.6.3:
   resolved "https://registry.yarnpkg.com/filepond-plugin-image-edit/-/filepond-plugin-image-edit-1.6.3.tgz#c7d488ff005c227a494861e48470cda448275b43"
   integrity sha512-5q3RDaVlfvyI346ckF1DfKw4uN5rfAmUCv7HCG30jBZcGmepg8hFyjVM71uZXYeb4AgLhpCkSPP8Immwig8bzw==
 
-filepond-plugin-image-preview@^4.6.7:
-  version "4.6.10"
-  resolved "https://registry.yarnpkg.com/filepond-plugin-image-preview/-/filepond-plugin-image-preview-4.6.10.tgz#6e7ecc0997b1b6295e06d3824c37de3111a40c1f"
-  integrity sha512-C7Q5Sr/d4RQb2nMNQR93OiMt91OHxpvmIBGl+CO1dZE46lM49NUfI08dyElAOxTslDcA8pAfjFFCKo0sNYbrBg==
-
 filepond@^4.28.2:
   version "4.30.0"
   resolved "https://registry.yarnpkg.com/filepond/-/filepond-4.30.0.tgz#0b6f20129eb39d0b1ab26539eba6cb91b47f48b4"

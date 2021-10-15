@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import { Uploader } from "../components/uploader"
 import * as FilePond from 'filepond'
+
 // Import the plugin code
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode'
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
@@ -10,7 +10,7 @@ import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
 import { FilePondPluginImageEditor } from '../plugins/filepond-plugin-image-editor/FilePondPluginImageEditor.js'
 
 // Import the plugin styles
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 
 import {
     // Image editor
@@ -29,11 +29,11 @@ import {
 
 // Register the plugin
 FilePond.registerPlugin(
-  FilePondPluginImagePreview,
   FilePondPluginFileEncode,
   FilePondPluginFileValidateType,
   FilePondPluginFileValidateSize,
-  FilePondPluginImageEditor
+  FilePondPluginFilePoster,
+  FilePondPluginImageEditor,
 );
 
 let fileUploadingCount = 0
@@ -54,55 +54,64 @@ export default class extends Controller {
       labelIdle: `Drag & Drop your file or <span class="filepond--label-action">Browse</span>`,
       acceptedFileTypes: this.filetypesValue,
       server: {
-          process: this.uploadFile,
+        process: this.uploadFile,
+        // revert: null,
+        // restore: null,
+        // load: null,
+        // fetch: null,
       },
+      // open editor on image drop
+    imageEditInstantEdit: true,
+      imageCropAspectRatio: '1:1',
+      imageResizeTargetWidth: 200,
+      imageResizeTargetHeight: 200,
       maxFileSize: this.maxValue,
-      onaddfilestart: this.disableSubmitButtons.bind(this),
-      onprocessfile: this.enableSubmitButtons.bind(this),
+      onaddfilestart: this.onAddFileStart.bind(this),
+      onprocessfile: this.onProcessFile.bind(this),
       onerror: this.enableSubmitButtons.bind(this),
       // FilePond generic properties
-        filePosterMaxHeight: 256,
+      filePosterMaxHeight: 256,
 
-        // FilePond Image Editor plugin properties
-        imageEditor: {
-            // Maps legacy data objects to new imageState objects (optional)
-            legacyDataToImageState: legacyDataToImageState,
+      // FilePond Image Editor plugin properties
+      imageEditor: {
+          // Maps legacy data objects to new imageState objects (optional)
+          legacyDataToImageState: legacyDataToImageState,
 
-            // Used to create the editor (required)
-            createEditor: openEditor,
+          // Used to create the editor (required)
+          createEditor: openEditor,
 
-            // Used for reading the image data. See JavaScript installation for details on the `imageReader` property (required)
-            imageReader: [
-                createDefaultImageReader,
-                {
-                    // createDefaultImageReader options here
-                },
-            ],
+          // Used for reading the image data. See JavaScript installation for details on the `imageReader` property (required)
+          imageReader: [
+              createDefaultImageReader,
+              {
+                  // createDefaultImageReader options here
+              },
+          ],
 
-            // Can leave out when not generating a preview thumbnail and/or output image (required)
-            imageWriter: [
-                createDefaultImageWriter,
-                {
-                    // We'll resize images to fit a 512 × 512 square
-                    targetSize: {
-                        width: 512,
-                        height: 512,
-                    },
-                },
-            ],
+          // Can leave out when not generating a preview thumbnail and/or output image (required)
+          imageWriter: [
+              createDefaultImageWriter,
+              {
+                  // We'll resize images to fit a 512 × 512 square
+                  targetSize: {
+                      width: 512,
+                      height: 512,
+                  },
+              },
+          ],
 
-            // Used to poster and output images, runs an invisible "headless" editor instance.
-            imageProcessor: processImage,
+          // Used to poster and output images, runs an invisible "headless" editor instance.
+          imageProcessor: processImage,
 
-            // Pintura Image Editor options
-            editorOptions: {
-                // Pass the editor default configuration options
-                ...getEditorDefaults(),
+          // Pintura Image Editor options
+          editorOptions: {
+              // Pass the editor default configuration options
+              ...getEditorDefaults(),
 
-                // This will set a square crop aspect ratio
-                imageCropAspectRatio: 1,
-            },
-        },
+              // This will set a square crop aspect ratio
+              imageCropAspectRatio: 1,
+          },
+      },
     });
 
 
@@ -134,5 +143,13 @@ export default class extends Controller {
     const url = videoAudioRegex.test(file.type) ? '/cloudinary_video_direct_uploads' : '/rails/active_storage/direct_uploads'
     const uploader = new Uploader(file, url, progress, load)
     uploader.uploadFile()
+  }
+
+  onAddFileStart() {
+    this.disableSubmitButtons()
+  }
+
+  onProcessFile() {
+    this.enableSubmitButtons()
   }
 }
