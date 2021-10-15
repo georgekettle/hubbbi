@@ -20,6 +20,7 @@
     "file-saver": "^2.0.5",
     "filepond": "^4.28.2",
     "filepond-plugin-file-encode": "^2.1.10",
+    "filepond-plugin-file-poster": "^2.4.4",
     "filepond-plugin-file-validate-size": "^2.2.5",
     "filepond-plugin-file-validate-type": "^1.2.6",
     "filepond-plugin-image-edit": "^1.6.3",

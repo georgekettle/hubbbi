@@ -1,20 +1,39 @@
 import { Controller } from "@hotwired/stimulus"
 import { Uploader } from "../components/uploader"
-import * as FilePond from 'filepond';
+import * as FilePond from 'filepond'
 // Import the plugin code
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import FilePondPluginFileEncode from 'filepond-plugin-file-encode'
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
+import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
+import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
+import { FilePondPluginImageEditor } from '../plugins/filepond-plugin-image-editor/FilePondPluginImageEditor.js'
+
 // Import the plugin styles
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+
+import {
+    // Image editor
+    openEditor,
+    processImage,
+    createDefaultImageReader,
+    createDefaultImageWriter,
+    createDeafultImageOrienter,
+
+    // Only needed if loading legacy image editor data
+    legacyDataToImageState,
+
+    // Import the editor default configuration
+    getEditorDefaults,
+} from '../plugins/pintura/pintura.js';
 
 // Register the plugin
 FilePond.registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileEncode,
   FilePondPluginFileValidateType,
-  FilePondPluginFileValidateSize
+  FilePondPluginFileValidateSize,
+  FilePondPluginImageEditor
 );
 
 let fileUploadingCount = 0
@@ -41,7 +60,52 @@ export default class extends Controller {
       onaddfilestart: this.disableSubmitButtons.bind(this),
       onprocessfile: this.enableSubmitButtons.bind(this),
       onerror: this.enableSubmitButtons.bind(this),
+      // FilePond generic properties
+        filePosterMaxHeight: 256,
+
+        // FilePond Image Editor plugin properties
+        imageEditor: {
+            // Maps legacy data objects to new imageState objects (optional)
+            legacyDataToImageState: legacyDataToImageState,
+
+            // Used to create the editor (required)
+            createEditor: openEditor,
+
+            // Used for reading the image data. See JavaScript installation for details on the `imageReader` property (required)
+            imageReader: [
+                createDefaultImageReader,
+                {
+                    // createDefaultImageReader options here
+                },
+            ],
+
+            // Can leave out when not generating a preview thumbnail and/or output image (required)
+            imageWriter: [
+                createDefaultImageWriter,
+                {
+                    // We'll resize images to fit a 512 × 512 square
+                    targetSize: {
+                        width: 512,
+                        height: 512,
+                    },
+                },
+            ],
+
+            // Used to poster and output images, runs an invisible "headless" editor instance.
+            imageProcessor: processImage,
+
+            // Pintura Image Editor options
+            editorOptions: {
+                // Pass the editor default configuration options
+                ...getEditorDefaults(),
+
+                // This will set a square crop aspect ratio
+                imageCropAspectRatio: 1,
+            },
+        },
     });
+
+
     const pqinaLogo = document.querySelector('.filepond--credits');
     pqinaLogo && pqinaLogo.remove();
   }

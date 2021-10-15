@@ -595,3 +595,5 @@ var FilePondPluginImageEditor = (function () {
     return plugin;
 
 }());
+
+export { FilePondPluginImageEditor };
