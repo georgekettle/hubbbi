@@ -63,6 +63,7 @@ export default class extends Controller {
       maxFileSize: this.maxValue,
       // filepond events
       onaddfilestart: this.onAddFileStart.bind(this),
+      onprocessfilestart: this.onProcessFileStart.bind(this),
       onprocessfile: this.onProcessFile.bind(this),
       onerror: this.enableSubmitButtons.bind(this),
       // max height of image poster shown to user in input
@@ -119,9 +120,11 @@ export default class extends Controller {
   }
 
   disableSubmitButtons() {
-    fileUploadingCount += 1
-    this.submitBtn.disabled = true
-    this.submitBtn.value = 'Uploading file...'
+    if (this.uploadingValue === false) {
+      fileUploadingCount += 1
+      this.submitBtn.disabled = true
+      this.submitBtn.value = 'Uploading file...'
+    }
   }
 
   enableSubmitButtons() {
@@ -141,9 +144,16 @@ export default class extends Controller {
 
   onAddFileStart() {
     this.disableSubmitButtons()
+    this.uploadingValue = true
+  }
+
+  onProcessFileStart() {
+    this.disableSubmitButtons()
+    this.uploadingValue = true
   }
 
   onProcessFile() {
+    this.uploadingValue = false
     this.enableSubmitButtons()
   }
 }
