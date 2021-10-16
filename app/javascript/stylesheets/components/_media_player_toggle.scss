@@ -1,0 +1,19 @@
+#media_player_toggle {
+  #media_player_toggle-darken {
+    @apply hidden
+  }
+
+  #playing-icon {
+    @apply hidden;
+  }
+}
+
+#media_player_toggle.playing {
+  #media_player_toggle-darken {
+    @apply block
+  }
+
+  #playing-icon {
+    @apply block;
+  }
+}
