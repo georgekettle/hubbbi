@@ -37,6 +37,20 @@ FilePond.registerPlugin(
   FilePondPluginImageEditor,
 );
 
+const editIcon = `<svg class="stroke-current text-white h-3.5 w-3.5" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Interface,-Essential/Pen,-Edit" transform="translate(-2.000000, -2.000000)">
+            <g id="Group" transform="translate(-0.000000, -0.000000)">
+                <g id="Path">
+                    <polygon stroke="none" points="0 0 24.0000001 0 24.0000001 24.0000001 0 24.0000001"></polygon>
+                    <path d="M17.5400001,10.12 L13.8800001,6.46000003" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M6.25100003,21.0000001 L3.00000001,21.0000001 L3.00000001,17.7490001 C3.00000001,17.4840001 3.10500001,17.2290001 3.29300001,17.0420001 L16.6270001,3.70700002 C17.0180001,3.31600001 17.6510001,3.31600001 18.0410001,3.70700002 L20.2920001,5.95800002 C20.6830001,6.34900003 20.6830001,6.98200003 20.2920001,7.37200003 L6.95800003,20.7070001 C6.77100003,20.8950001 6.51600003,21.0000001 6.25100003,21.0000001 L6.25100003,21.0000001 Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>`
+
 let fileUploadingCount = 0
 
 export default class extends Controller {
@@ -69,6 +83,8 @@ export default class extends Controller {
       onerror: this.enableSubmitButtons.bind(this),
       // max height of image poster shown to user in input
       filePosterMaxHeight: 256,
+      // edit icon
+      imageEditorIconEdit: editIcon,
       // FilePond Image Editor plugin properties
       imageEditor: {
           // Maps legacy data objects to new imageState objects (optional)
@@ -108,12 +124,6 @@ export default class extends Controller {
               // This will set a square crop aspect ratio
               imageCropAspectRatio: this.widthAspectValue / this.heightAspectValue,
           },
-
-          markupEditorToolbar: [
-              ['sharpie', 'Sharpie', { disabled: true, icon: '<g></g>' }],
-              ['eraser', 'Eraser', { disabled: false, icon: '<g></g>' }],
-              ['rectangle', 'Rectangle', { disabled: false, icon: '<g></g>' }],
-          ],
       },
     });
 
