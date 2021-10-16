@@ -58,8 +58,7 @@ export default class extends Controller {
     filetypes: { type: Array, default: ['image/png', 'image/jpeg', 'image/gif'] },
     max: { type: String, default: '10MB' },
     uploading: { type: Boolean, default: false },
-    heightAspect: Number,
-    widthAspect: Number,
+    aspect: Number,
     maxRes: { type: Number, default: 3000 },
   }
 
@@ -67,7 +66,7 @@ export default class extends Controller {
     this.form = this.element.form;
     this.initSubmitButton()
 
-    const aspectRatio = (this.hasWidthAspectValue && this.hasHeightAspectValue) ? this.widthAspectValue / this.heightAspectValue : null
+    // const setAspectRatio = this.hasAspectValue ? this.aspectValue : undefined
 
     this.pond = FilePond.create(this.element, {
       labelIdle: `Drag & Drop your file or <span class="filepond--label-action">Browse</span>`,
@@ -118,13 +117,7 @@ export default class extends Controller {
           imageProcessor: processImage,
 
           // Pintura Image Editor options
-          editorOptions: {
-              // Pass the editor default configuration options
-              ...getEditorDefaults(),
-
-              // This will set a square crop aspect ratio
-              imageCropAspectRatio: aspectRatio,
-          },
+          editorOptions: this.editorOptions(),
       },
     });
 
@@ -173,5 +166,28 @@ export default class extends Controller {
   onProcessFile() {
     this.uploadingValue = false
     this.enableSubmitButtons()
+  }
+
+  editorOptions() {
+    if (this.hasAspectValue) {
+      return({
+          // Pass the editor default configuration options
+          ...getEditorDefaults(),
+          // This will set a square crop aspect ratio
+          imageCropAspectRatio: this.aspectValue,
+      })
+    } else {
+      return({
+          // Pass the editor default configuration options
+          ...getEditorDefaults(),
+          // set available crop options
+          cropSelectPresetOptions: [
+              [undefined, 'Custom'],
+              [1, 'Square'],
+              [16 / 9, 'Landscape'],
+              [3 / 4, 'Portrait'],
+          ],
+      })
+    }
   }
 }
