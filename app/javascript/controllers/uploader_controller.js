@@ -9,7 +9,6 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
 import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
 import { FilePondPluginImageEditor } from '../plugins/filepond-plugin-image-editor/FilePondPluginImageEditor.js'
 
-// Import the plugin styles
 import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 
 import {
