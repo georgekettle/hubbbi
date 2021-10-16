@@ -44,8 +44,8 @@ export default class extends Controller {
     filetypes: { type: Array, default: ['image/png', 'image/jpeg', 'image/gif'] },
     max: { type: String, default: '10MB' },
     uploading: { type: Boolean, default: false },
-    height: { type: Number, default: 9 },
-    width: { type: Number, default: 16 }
+    heightAspect: { type: Number, default: 9 },
+    widthAspect: { type: Number, default: 16 }
   }
 
   initialize() {
@@ -60,7 +60,7 @@ export default class extends Controller {
       },
       // open editor on image drop
       imageEditInstantEdit: true,
-      imageCropAspectRatio: `${this.widthValue}:${this.heightValue}`,
+      imageCropAspectRatio: `${this.widthAspectValue}:${this.heightAspectValue}`,
       imageResizeTargetWidth: 200,
       imageResizeTargetHeight: 200,
       maxFileSize: this.maxValue,
@@ -107,7 +107,7 @@ export default class extends Controller {
               ...getEditorDefaults(),
 
               // This will set a square crop aspect ratio
-              imageCropAspectRatio: this.widthValue / this.heightValue,
+              imageCropAspectRatio: this.widthAspectValue / this.heightAspectValue,
           },
       },
     });
