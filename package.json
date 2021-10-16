@@ -23,7 +23,7 @@
     "filepond-plugin-file-validate-size": "^2.2.5",
     "filepond-plugin-file-validate-type": "^1.2.6",
     "filepond-plugin-image-edit": "^1.6.3",
-    "filepond-plugin-image-preview": "^4.6.7",
+    "filepond-plugin-image-preview": "^4.6.10",
     "flickity": "^2.2.2",
     "flickity-imagesloaded": "^2.0.0",
     "isotope-layout": "^3.0.6",

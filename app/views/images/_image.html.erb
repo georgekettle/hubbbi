@@ -4,7 +4,7 @@
 <div class="w-full relative">
   <div class="overflow-hidden rounded-md relative <%= classes %>">
     <%= link_to image.picture.url, data:{ src: image.picture.url, action:"lightbox#open" } do %>
-      <%= cl_image_tag image.picture.key, class: 'w-full' %>
+      <%= cl_image_tag image.picture.key, class: 'w-full', loading: "lazy" %>
     <% end %>
   </div>
   <% if image.title.present? %>

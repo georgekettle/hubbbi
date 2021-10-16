@@ -38,7 +38,10 @@ export default class extends Controller {
     window.addEventListener('tsc:tab-change', e => this.flkty.resize())
 
     // resize on document load
-    document.addEventListener('turbo:load', e => this.flkty.resize());
+    document.addEventListener('turbo:load', e => this.flkty.resize())
+
+    // reize on turbo:render
+    document.addEventListener('turbo:render', e => this.flkty.resize())
   }
 
   moveNavButtons() {
