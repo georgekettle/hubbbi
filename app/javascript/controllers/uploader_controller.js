@@ -58,14 +58,16 @@ export default class extends Controller {
     filetypes: { type: Array, default: ['image/png', 'image/jpeg', 'image/gif'] },
     max: { type: String, default: '10MB' },
     uploading: { type: Boolean, default: false },
-    heightAspect: { type: Number, default: 9 },
-    widthAspect: { type: Number, default: 16 },
+    heightAspect: Number,
+    widthAspect: Number,
     maxRes: { type: Number, default: 3000 },
   }
 
   initialize() {
     this.form = this.element.form;
     this.initSubmitButton()
+
+    const aspectRatio = (this.hasWidthAspectValue && this.hasHeightAspectValue) ? this.widthAspectValue / this.heightAspectValue : null
 
     this.pond = FilePond.create(this.element, {
       labelIdle: `Drag & Drop your file or <span class="filepond--label-action">Browse</span>`,
@@ -121,7 +123,7 @@ export default class extends Controller {
               ...getEditorDefaults(),
 
               // This will set a square crop aspect ratio
-              imageCropAspectRatio: this.widthAspectValue / this.heightAspectValue,
+              imageCropAspectRatio: aspectRatio,
           },
       },
     });
