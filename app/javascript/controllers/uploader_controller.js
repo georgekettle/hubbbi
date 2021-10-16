@@ -15,6 +15,7 @@ import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 import {
     // Image editor
     openEditor,
+    markupEditorToolbar,
     processImage,
     createDefaultImageReader,
     createDefaultImageWriter,
@@ -107,6 +108,12 @@ export default class extends Controller {
               // This will set a square crop aspect ratio
               imageCropAspectRatio: this.widthAspectValue / this.heightAspectValue,
           },
+
+          markupEditorToolbar: [
+              ['sharpie', 'Sharpie', { disabled: true, icon: '<g></g>' }],
+              ['eraser', 'Eraser', { disabled: false, icon: '<g></g>' }],
+              ['rectangle', 'Rectangle', { disabled: false, icon: '<g></g>' }],
+          ],
       },
     });
 
