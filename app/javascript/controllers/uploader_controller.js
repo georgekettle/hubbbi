@@ -45,7 +45,8 @@ export default class extends Controller {
     max: { type: String, default: '10MB' },
     uploading: { type: Boolean, default: false },
     heightAspect: { type: Number, default: 9 },
-    widthAspect: { type: Number, default: 16 }
+    widthAspect: { type: Number, default: 16 },
+    maxRes: { type: Number, default: 3000 },
   }
 
   initialize() {
@@ -58,18 +59,14 @@ export default class extends Controller {
       server: {
         process: this.uploadFile,
       },
-      // open editor on image drop
-      imageEditInstantEdit: true,
-      imageCropAspectRatio: `${this.widthAspectValue}:${this.heightAspectValue}`,
-      imageResizeTargetWidth: 200,
-      imageResizeTargetHeight: 200,
+      // set max file size to be allowed
       maxFileSize: this.maxValue,
+      // filepond events
       onaddfilestart: this.onAddFileStart.bind(this),
       onprocessfile: this.onProcessFile.bind(this),
       onerror: this.enableSubmitButtons.bind(this),
-      // FilePond generic properties
+      // max height of image poster shown to user in input
       filePosterMaxHeight: 256,
-
       // FilePond Image Editor plugin properties
       imageEditor: {
           // Maps legacy data objects to new imageState objects (optional)
@@ -92,8 +89,8 @@ export default class extends Controller {
               {
                   // We'll resize images to fit a 512 × 512 square
                   targetSize: {
-                      width: 512,
-                      height: 512,
+                      width: this.maxResValue,
+                      height: this.maxResValue,
                   },
               },
           ],
