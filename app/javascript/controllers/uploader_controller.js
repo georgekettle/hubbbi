@@ -43,7 +43,9 @@ export default class extends Controller {
   static values = {
     filetypes: { type: Array, default: ['image/png', 'image/jpeg', 'image/gif'] },
     max: { type: String, default: '10MB' },
-    uploading: { type: Boolean, default: false }
+    uploading: { type: Boolean, default: false },
+    height: { type: Number, default: 9 },
+    width: { type: Number, default: 16 }
   }
 
   initialize() {
@@ -55,14 +57,10 @@ export default class extends Controller {
       acceptedFileTypes: this.filetypesValue,
       server: {
         process: this.uploadFile,
-        // revert: null,
-        // restore: null,
-        // load: null,
-        // fetch: null,
       },
       // open editor on image drop
-    imageEditInstantEdit: true,
-      imageCropAspectRatio: '1:1',
+      imageEditInstantEdit: true,
+      imageCropAspectRatio: `${this.widthValue}:${this.heightValue}`,
       imageResizeTargetWidth: 200,
       imageResizeTargetHeight: 200,
       maxFileSize: this.maxValue,
@@ -109,11 +107,10 @@ export default class extends Controller {
               ...getEditorDefaults(),
 
               // This will set a square crop aspect ratio
-              imageCropAspectRatio: 1,
+              imageCropAspectRatio: this.widthValue / this.heightValue,
           },
       },
     });
-
 
     const pqinaLogo = document.querySelector('.filepond--credits');
     pqinaLogo && pqinaLogo.remove();
