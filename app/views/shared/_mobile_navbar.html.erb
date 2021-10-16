@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
   <div class="md:hidden w-full bg-white border-t flex items-center justify-center p-2 pb-3 fixed bottom-0 left-0" style="z-index: 999">
+    <%= render 'media_plays/media_player_toggle' %>
     <%= link_to Current.group, class: "mx-2 h-10 w-10 stroke-current text-gray-400 hover:text-gray-900 flex items-center justify-center rounded-full" do %>
       <%= render "icons/library", classes: "h-7 w-7" %>
     <% end %>

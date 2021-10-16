@@ -17,10 +17,12 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { initTippy } from '../components/tippy';
+import { initMediaPlayerPlayingStatus } from '../components/media_player_playing_status';
 
 document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
   initTippy()
+  initMediaPlayerPlayingStatus()
 });
 
 import "stylesheets/application"

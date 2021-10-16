@@ -17,7 +17,7 @@
   <% end %>
   <div class="flex items-center" style="z-index: 1000">
     <% if user_signed_in? %>
-      <%= link_to group_path(Current.group), class:'opacity-50 hover:opacity-100 transition duration-300 ease-in-out flex items-center text-white mr-4 inline-block p-2 px-3 rounded-md hover:bg-white bg-opacity-5 hover:bg-opacity-5 cursor-pointer tracking-tight' do %>
+      <%= link_to group_path(Current.group), class:'opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out flex items-center text-white mr-4 inline-block p-2 px-3 rounded-md hover:bg-white bg-opacity-5 hover:bg-opacity-5 cursor-pointer tracking-tight' do %>
         <%= render "icons/library", classes: 'w-5 h-5 stroke-current text-white mr-2' %>
         Courses
       <% end %>

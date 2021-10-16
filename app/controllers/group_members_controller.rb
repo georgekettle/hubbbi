@@ -15,10 +15,14 @@ class GroupMembersController < ApplicationController
   end
 
   def update
-    if @group_member.update(group_member_params)
-      redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "#{@group_member.user.full_name_or_email} was successfully updated"
-    else
-      redirect_back fallback_location: group_group_members_path(@group_member.group), alert: "Oops, there was an error updating user #{@group_member.user.full_name_or_email}"
+    respond_to do |format|
+      if @group_member.update(group_member_params)
+        format.html { redirect_back fallback_location: group_group_members_path(@group_member.group), notice: "#{@group_member.user.full_name_or_email} was successfully updated" }
+        format.json { render json: @group_member }
+      else
+        format.html { redirect_back fallback_location: group_group_members_path(@group_member.group), alert: "Oops, there was an error updating user #{@group_member.user.full_name_or_email}" }
+        format.json { render json: @group_member }
+      end
     end
   end
 
@@ -55,6 +59,6 @@ class GroupMembersController < ApplicationController
   end
 
   def group_member_params
-    params.require(:group_member).permit(:role, :email, :avatar, user_attributes: [ :id, :full_name, :display_name ])
+    params.require(:group_member).permit(:role, :email, :avatar, :hide_media_player, user_attributes: [ :id, :full_name, :display_name ])
   end
 end
