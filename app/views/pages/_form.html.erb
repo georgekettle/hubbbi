@@ -5,7 +5,7 @@
           direct_upload: true,
           required: true,
           accept:"image/png, image/jpeg, image/gif",
-          data: { controller: 'uploader' } %>
+          data: { controller: 'uploader', uploader_aspect_value: 16.fdiv(9) } %>
   <% end %>
   <%= f.input :title %>
   <%= f.input :subtitle %>
