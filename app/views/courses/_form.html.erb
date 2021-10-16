@@ -7,7 +7,7 @@
           direct_upload: true,
           required: true,
           accept:"image/png, image/jpeg, image/gif",
-          data: { controller: 'uploader' } %>
+          data: { controller: 'uploader', uploader_height_aspect_value: 1, uploader_width_aspect_value: 1 } %>
   <% end %>
   <%= f.input :title %>
   <div class="form-actions">
