@@ -52,7 +52,7 @@ jobs:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Yarn install
-        run: yarn install
+        run: yarn install --force
       - name: Prepare DB
         run: |
           cp config/database.github.yml config/database.yml
