@@ -32,6 +32,11 @@ class CourseMembersController < ApplicationController
     end
   end
 
+  def reorder
+    @course_members = Current.group_member.course_members
+    authorize Current.group_member, :update?
+  end
+
   private
 
   def add_participants

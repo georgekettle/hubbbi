@@ -18,11 +18,16 @@
 
 <%= render "shared/container", classes: "p-4" do %>
   <%= render "components/headers/section_header", title: "Your courses", icon:"library" do %>
-    <% if policy(Current.group_member).admin_or_editor? %>
-      <%= link_to new_group_course_path(@group), class: "icon-btn" do %>
-        <%= render 'icons/plus_circle' %>
+    <div class="flex items-center">
+      <%= link_to reorder_course_members_path, class: "icon-btn" do %>
+          <%= render 'icons/reorder' %>
+        <% end %>
+      <% if policy(Current.group_member).admin_or_editor? %>
+        <%= link_to new_group_course_path(@group), class: "icon-btn" do %>
+          <%= render 'icons/plus_circle' %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   <% end %>
   <% if @courses.any? %>
     <%= render :partial => "courses/course", :collection => @courses %>
