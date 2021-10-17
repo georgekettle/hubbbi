@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :course_members, only: [:destroy] do
+  resources :course_members, only: [:update, :destroy] do
     collection do
       get :reorder
     end

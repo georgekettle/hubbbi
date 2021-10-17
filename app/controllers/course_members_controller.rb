@@ -21,6 +21,20 @@ class CourseMembersController < ApplicationController
     end
   end
 
+  def update
+    @course_member = CourseMember.find(params[:id])
+    authorize @course_member.group_member, :update?
+    respond_to do |format|
+      if @course_member.update(course_member_params)
+        format.html { redirect_back fallback_location: reorder_course_members_path, notice: "#{@course_member.user.full_name_or_email} was successfully updated" }
+        format.json { render json: @course_member }
+      else
+        format.html { redirect_back fallback_location: reorder_course_members_path, alert: "Oops, there was an error updating user #{@course_member.user.full_name_or_email}" }
+        format.json { render json: @course_member }
+      end
+    end
+  end
+
   def destroy
     @course_member = CourseMember.find(params[:id])
     authorize @course_member
@@ -50,5 +64,9 @@ class CourseMembersController < ApplicationController
   def set_course
     @course = Course.find(params[:course_id])
     authorize @course
+  end
+
+  def course_member_params
+    params.require(:course_member).permit(:position)
   end
 end
