@@ -73,7 +73,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :course_members, only: [:destroy]
+  resources :course_members, only: [:update, :destroy] do
+    collection do
+      get :reorder
+    end
+  end
   resources :attachments, only: :destroy
 
   # video direct uploads require custom route for cloudinary_video service
