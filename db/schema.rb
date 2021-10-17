@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_054238) do
     t.bigint "group_member_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["course_id"], name: "index_course_members_on_course_id"
     t.index ["group_member_id"], name: "index_course_members_on_group_member_id"
   end

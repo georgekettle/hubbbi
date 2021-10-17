@@ -10,11 +10,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @current_user_group_member = current_user.group_members.find_by(group: @group)
-    @courses = @current_user_group_member.courses
-    @courses = @group.courses if @current_user_group_member.role == ('admin' || 'editor')
     session[:selected_group_id] = @group.id
     set_current_group
+    @courses = Current.group_member.courses
   end
 
   def new
