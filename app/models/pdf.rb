@@ -4,6 +4,7 @@ class Pdf < ApplicationRecord
   has_one :page, through: :section
 
   has_one_attached :file
+  has_one_attached :cover
 
   validates :title, presence: true
 end

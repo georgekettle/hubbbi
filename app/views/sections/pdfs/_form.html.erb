@@ -5,6 +5,14 @@
           required: true,
           accept:"application/pdf",
           data: { controller: 'uploader' } %>
+  <%= f.label :cover, label: 'Display image' %>
+  <%= render 'components/forms/image_upload', attachment: pdf.cover do %>
+    <%= f.file_field :cover,
+          direct_upload: true,
+          required: true,
+          accept:"image/png, image/jpeg, image/gif",
+          data: { controller: 'uploader' } %>
+  <% end %>
   <%= f.input :title %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>
