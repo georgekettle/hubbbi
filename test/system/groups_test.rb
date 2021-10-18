@@ -7,6 +7,7 @@ class GroupsTest < ApplicationSystemTestCase
 
     visit new_group_path
     fill_in 'Name *', with: 'Test Group'
+    fill_in 'Subdomain *', with: 'testgroup'
     assert_difference 'Group.count', 1, 'New group should be created in DB' do
       click_on 'Create Group'
       assert page.has_content?('Your group has successfully been created', wait: 15)
@@ -38,8 +39,7 @@ class GroupsTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(group)
-    visit group_group_members_path(group)
+    visit group_group_members_url(group, subdomain: group.subdomain)
     assert_difference 'group.group_members.count', -1, 'Group member should be deleted' do
       find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click
       assert page.has_content?('Remove from group', wait: 15), 'Link to delete user from group appears'
@@ -55,8 +55,7 @@ class GroupsTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(group)
-    visit group_group_members_path(group)
+    visit group_group_members_url(group, subdomain: group.subdomain)
     find(:xpath, '//*[@id="course_members"]/div[1]/div/a').click
     assert page.has_content?('George Kettle', wait: 15), 'Show page loads correctly'
 

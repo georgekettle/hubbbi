@@ -37,8 +37,7 @@ class SignUpsTest < ApplicationSystemTestCase
     new_user_email = 'miguelistheking@gmail.com'
 
     login_as user, scope: :user
-    visit group_path(group)
-    visit new_group_invite_path(group)
+    visit new_group_invite_url(group, subdomain: group.subdomain)
 
     assert_difference 'Invite.count', 1, 'New invite should be created in DB' do
       find('div.choices', wait: 15).click
@@ -70,7 +69,7 @@ class SignUpsTest < ApplicationSystemTestCase
 
   def retrieve_invitation_token(mail)
     body = mail.body.encoded.gsub("\r","").gsub("\n","")
-    body.match(/http:[^ ]+localhost:#{Regexp.quote(Capybara.current_session.server.port.to_s)}\/users\/sign_up\?invite_token\=[^ ]+/)[0]
+    body.match(/http:[^ ]+lvh.me:#{Regexp.quote(Capybara.current_session.server.port.to_s)}\/users\/sign_up\?invite_token\=[^ ]+/)[0]
         .split("invite_token=")
         .last[0..-7]
   end

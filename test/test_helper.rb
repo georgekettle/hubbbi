@@ -8,7 +8,7 @@ class ActiveSupport::TestCase
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
+  Capybara.app_host = 'http://lvh.me'
   # Add more helper methods to be used by all tests here...
   include Warden::Test::Helpers
   Warden.test_mode!

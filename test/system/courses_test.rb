@@ -7,8 +7,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(group)
-    visit new_group_course_path(group)
+    visit new_group_course_url(group, subdomain: group.subdomain)
 
     fill_in 'Title *', with: 'Test Course'
 
@@ -26,8 +25,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(group)
-    visit new_group_course_path(group)
+    visit new_group_course_url(group, subdomain: group.subdomain)
 
     assert_no_difference 'group.courses.count', 'No new course should be created in DB' do
       click_on 'Create Course'
@@ -42,16 +40,16 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(group)
+    visit authenticated_root_url(subdomain: group.subdomain)
     assert page.has_content?('You are not authorized to perform this action.', wait: 15), 'Error should appear in the page'
-    visit new_group_course_path(group)
-    assert current_path == authenticated_root_path
+    visit new_group_course_url(group, subdomain: group.subdomain)
+    assert current_path == groups_path
   end
 
   test "user can not create a course without login in" do
     group = groups(:group_2)
 
-    visit new_group_course_path(group)
+    visit new_group_course_url(group, subdomain: group.subdomain)
 
     assert current_path == new_user_session_path
     assert page.has_content?('You need to sign in or sign up before continuing.', wait: 15), 'Error should appear in the page'
@@ -63,8 +61,7 @@ class CoursesTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(course.group)
-    visit course_course_members_path(course)
+    visit course_course_members_url(course, subdomain: course.group.subdomain)
     assert_difference 'course.course_members.count', -1, 'Course member should be deleted' do
       page.assert_selector(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button')
       find(:xpath, '//*[@id="course_members"]/div[1]/div/div/div/button').click
