@@ -1,18 +1,25 @@
+require "subdomain_required"
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "sessions",
     passwords: "passwords" }
 
-  resources :groups do
-    resources :group_members, only: [:index]
-    resources :courses, only: [:new, :create]
-    resources :invites, only: [:new, :create], module: "groups"
-    member do
-      get :settings
+  constraints(SubdomainRequired) do
+    resources :groups, except: %i[index new create] do
+      resources :group_members, only: [:index]
+      resources :courses, only: [:new, :create]
+      resources :invites, only: [:new, :create], module: "groups"
+      member do
+        get :settings
+      end
     end
+
+    root "groups#show", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   end
 
+  resources :groups, only: %i[index new create]
   resources :invites, only: [:destroy]
 
   resources :pages, only: [:edit, :update, :show, :destroy] do
@@ -80,7 +87,6 @@ Rails.application.routes.draw do
   resources :cloudinary_video_direct_uploads, only: :create
 
   # root directs to groups#index if logged in:
-  root to: "groups#index", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   root to: 'home#home'
 
   match "/404", to: "errors#not_found", via: :all
