@@ -1,6 +1,6 @@
 <%= render "components/headers/header", header: @course.title, subheader: "Course", back_link: group_path(@course.group) do %>
   <%= link_to course_course_members_path(@course), class: 'icon-btn' do %>
-    <%= render 'icons/members', classes:"text-gray-900 stroke-current" %>
+    <%= render 'icons/members' %>
   <% end %>
   <%= render 'components/dropdowns/options_dropdown' do %>
     <%= link_to("Edit content", edit_sections_page_path(@course.page), class: "dropdown-link") if policy(@course.page).update? %>
