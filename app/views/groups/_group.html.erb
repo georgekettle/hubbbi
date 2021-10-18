@@ -1,4 +1,4 @@
-<%= link_to group, class: "mb-2 block p-1 md:pr-3 rounded-md hover:bg-black hover:bg-opacity-5" do %>
+<%= link_to authenticated_root_url(subdomain: group.subdomain), class: "mb-2 block p-1 md:pr-3 rounded-md hover:bg-black hover:bg-opacity-5" do %>
   <div class="flex items-center justify-between">
     <div class="flex items-center">
       <%= render 'groups/avatar', group: group, size: 12 %>
