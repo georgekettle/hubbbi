@@ -1,4 +1,4 @@
-<%= simple_form_for @group do |f| %>
+<%= simple_form_for @group, html: { "data-turbo": false } do |f| %>
   <%= f.label :cover, label: 'Cover image' %>
   <%= render 'components/forms/image_upload', attachment: @group.cover do %>
     <%= f.file_field :cover,
@@ -8,6 +8,7 @@
             data: { controller: 'uploader' } %>
   <% end %>
   <%= f.input :name, required: true %>
+  <%= f.input :subdomain, required: true %>
   <div class="form-actions">
     <%= f.submit class: 'w-full' %>
   </div>
