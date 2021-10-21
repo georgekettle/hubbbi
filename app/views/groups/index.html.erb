@@ -9,7 +9,7 @@
   <% if @groups.any? %>
     <%= render :partial => "group", :collection => @groups %>
     <div class="p-1">
-      <%= link_to new_group_path, class: 'button-list-add' do %>
+      <%= link_to new_group_url(subdomain: 'www'), class: 'button-list-add' do %>
         <%= render "icons/plus", classes: "stroke-current mr-2 h-3 w-3" %>
         Create a group
       <% end %>
@@ -18,7 +18,7 @@
     <div class="p-4 rounded-xl bg-white w-full border-dashed border flex flex-col items-center">
       <h4 class="tracking-tight text-center">Create a group to get started</h4>
       <p class="text-xs text-gray-400 mb-2 text-center">Once you've created a group, you can build courses and start attracting your community</p>
-      <%= link_to new_group_path, class: 'button' do %>
+      <%= link_to new_group_url(subdomain: 'www'), class: 'button' do %>
         <%= render "icons/members", classes: "stroke-current text-white mr-2" %>
         Add a group
       <% end %>
