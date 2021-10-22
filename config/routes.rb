@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     root "groups#show", constraints: -> (r) { r.env["warden"].authenticate? }, as: :authenticated_root
   end
 
-  resources :groups, only: %i[index new create]
+  resources :groups, only: %i[index new create show]
   resources :invites, only: [:destroy]
 
   resources :pages, only: [:edit, :update, :show, :destroy] do

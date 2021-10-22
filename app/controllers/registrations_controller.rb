@@ -51,7 +51,7 @@ class RegistrationsController < Devise::RegistrationsController
     @token = params[:invite_token]
     if @token
       invite = Invite.find_by_token(@token)
-      flash[:alert] = "This invite is invalid! But you can still sign up ☺️" unless invite
+      flash[:alert] = "This invite is invalid!" unless invite
     end
   end
 end

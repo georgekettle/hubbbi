@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    session[:selected_group_id] = @group.id
     set_current_group
     @courses = Current.group_member.courses
   end
