@@ -6,10 +6,10 @@ import * as FilePond from 'filepond'
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode'
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size'
-// import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
+import FilePondPluginFilePoster from 'filepond-plugin-file-poster'
 import { FilePondPluginImageEditor } from '../plugins/filepond-plugin-image-editor/FilePondPluginImageEditor.js'
 
-// import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
+import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 
 
 import {
@@ -33,7 +33,7 @@ FilePond.registerPlugin(
   FilePondPluginFileEncode,
   FilePondPluginFileValidateType,
   FilePondPluginFileValidateSize,
-  // FilePondPluginFilePoster,
+  FilePondPluginFilePoster,
   FilePondPluginImageEditor,
 );
 
