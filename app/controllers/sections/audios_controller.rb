@@ -19,7 +19,7 @@ module Sections
     private
 
     def audio_params
-      params.require(:audio).permit(:title, :file, :cover)
+      params.require(:audio).permit(:title, :file, :cover, :tag_list)
     end
 
     def set_section
