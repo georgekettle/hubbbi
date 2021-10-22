@@ -11,6 +11,7 @@ import { FilePondPluginImageEditor } from '../plugins/filepond-plugin-image-edit
 
 import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 
+
 import {
     // Image editor
     openEditor,
