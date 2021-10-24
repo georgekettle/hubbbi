@@ -2,13 +2,21 @@
   <div class="h-full flex items-center flex-shrink-0 pr-4">
     <%= render 'icons/tag', classes:"stroke-current text-gray-400 h-4 w-4" %>
   </div>
-  <div class="w-full flex overflow-x-scroll no-scrollbar">
-    <% tags.each_with_index do |tag, index| %>
-      <div class="mb-1 mr-1" data-action="click->filter#toggleFilter" data-filter-target="toggle" data-filters="[<%= tag.id %>]">
-        <%= render 'components/tags/tag', tag: tag %>
-      </div>
-    <% end %>
-    <div class="w-10 h-full"></div>
+
+  <div data-controller="carousel" data-carousel-group-cells-value="true" class="tags-carousel relative w-full">
+    <div class="w-full overflow-hidden outline-none opacity-0 relative" data-carousel-target="container">
+      <% tags.each_with_index do |tag, index| %>
+        <div class="mr-1" data-action="click->filter#toggleFilter" data-filter-target="toggle" data-filters="[<%= tag.id %>]">
+          <%= render 'components/tags/tag', tag: tag %>
+        </div>
+      <% end %>
+      <div class="w-20 h-full"></div>
+    </div>
+    <!-- disappearing gradient -->
+    <div class="absolute right-0 top-0 bg-gradient-to-l from-contrast-50 h-full w-20 pointer-events-none"></div>
+    <!-- buttons container -->
+    <div class="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none w-full">
+      <div data-carousel-target="buttons" class="flex items-center justify-between"></div>
+    </div>
   </div>
-  <div class="absolute right-0 top-0 bg-gradient-to-l from-contrast-50 h-full w-10 pointer-events-none"></div>
 </div>
