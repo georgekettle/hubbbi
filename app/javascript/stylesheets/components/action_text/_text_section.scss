@@ -15,7 +15,7 @@ trix-editor {
   }
 
   div {
-    @apply text-gray-600 font-light leading-snug;
+    @apply text-gray-800 leading-snug;
 
     strong {
       @apply text-gray-800 font-medium;
@@ -24,15 +24,30 @@ trix-editor {
 
   ul,
   ol {
-    @apply pl-2 list-inside text-gray-600 font-light leading-relaxed;
+    @apply list-outside text-gray-800 leading-relaxed my-1;
+
+    li {
+      @apply leading-snug mb-0.5;
+    }
   }
 
   ul {
-    @apply list-disc;
+    @apply pl-5 list-disc;
   }
 
   ol {
-    @apply list-decimal;
+    @apply list-none;
+    counter-reset: my-awesome-counter;
+  }
+
+  ol li {
+    counter-increment: my-awesome-counter;
+    @apply pl-5 relative;
+  }
+
+  ol li::before {
+    content: counter(my-awesome-counter) ". ";
+    @apply font-medium text-xs absolute left-0 top-1.5;
   }
 
   * {
