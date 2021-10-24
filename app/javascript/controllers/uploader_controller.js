@@ -2,16 +2,16 @@ import { Controller } from "@hotwired/stimulus"
 import { Uploader } from "../components/uploader"
 import * as FilePond from 'filepond';
 // Import the plugin code
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+// import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 // Import the plugin styles
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+// import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 // Register the plugin
 FilePond.registerPlugin(
-  FilePondPluginImagePreview,
+  // FilePondPluginImagePreview,
   FilePondPluginFileEncode,
   FilePondPluginFileValidateType,
   FilePondPluginFileValidateSize
