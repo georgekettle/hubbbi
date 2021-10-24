@@ -15,11 +15,24 @@ trix-editor {
   }
 
   div {
-    @apply text-gray-400 font-light leading-snug;
+    @apply text-gray-600 font-light leading-snug;
 
     strong {
       @apply text-gray-800 font-medium;
     }
+  }
+
+  ul,
+  ol {
+    @apply pl-2 list-inside text-gray-600 font-light leading-relaxed;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
   }
 
   * {
