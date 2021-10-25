@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_025433) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "subdomain"
   end
 
   create_table "images", force: :cascade do |t|

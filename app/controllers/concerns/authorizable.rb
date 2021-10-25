@@ -11,7 +11,7 @@ module Authorizable
 
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
-    redirect_back fallback_location: root_path
+    redirect_to groups_url(subdomain: 'www')
   end
 
   private

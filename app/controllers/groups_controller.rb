@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    session[:selected_group_id] = @group.id
     set_current_group
     @courses = Current.group_member.courses
   end
@@ -26,7 +25,7 @@ class GroupsController < ApplicationController
     @group.group_members.new(user: current_user, role: :admin)
     authorize @group
     if @group.save
-      redirect_to group_path(@group), notice: "Your group has successfully been created"
+      redirect_to authenticated_root_url(subdomain: @group.subdomain), notice: "Your group has successfully been created"
     else
       hide_all_navbars
       hide_media_player
@@ -59,11 +58,13 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :cover)
+    params.require(:group).permit(:name, :cover, :subdomain)
   end
 
   def set_group
-    @group = Group.find(params[:id])
+    @group = Group.find_by_subdomain(request.subdomain)
+    return redirect_to groups_path(subdomain: 'www') unless @group.present?
+
     authorize @group
   end
 end

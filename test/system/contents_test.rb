@@ -15,8 +15,7 @@ class ContentsTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(course.group)
-    visit edit_sections_page_path(course)
+    visit edit_sections_page_url(course, subdomain: course.group.subdomain)
 
     assert_difference 'course.page.sections.count', 1, 'New page section should be created in DB' do
       source = page.find('.handle.item:first-child')
@@ -51,8 +50,7 @@ class ContentsTest < ApplicationSystemTestCase
 
     login_as user, scope: :user
 
-    visit group_path(course.group)
-    visit edit_sections_page_path(course.page)
+    visit edit_sections_page_url(course.page, subdomain: course.group.subdomain)
 
     assert_difference 'course.page.sections.count', 1, 'New page section should be created in DB' do
       source = page.find('.handle.item:last-child')

@@ -1,6 +1,6 @@
 <div class="hidden md:flex bg-primary-600 justify-between items-center p-4 sm:px-6" style="z-index: 999">
   <% if Current.group %>
-    <%= link_to groups_path, class: "group flex items-center transition duration-300 ease-in-out p-1 pr-4 rounded-md hover:bg-white bg-opacity-10 hover:bg-opacity-5 cursor-pointer" do %>
+    <%= link_to groups_url(subdomain: 'www'), class: "group flex items-center transition duration-300 ease-in-out p-1 pr-4 rounded-md hover:bg-white bg-opacity-10 hover:bg-opacity-5 cursor-pointer" do %>
       <div class="relative">
         <%= render 'groups/avatar', group: Current.group, size: 10 %>
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 border border-white rounded-md transition-opacity duration-300">

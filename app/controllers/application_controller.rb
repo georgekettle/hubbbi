@@ -9,7 +9,15 @@ class ApplicationController < ActionController::Base
   before_action :set_body_padding
 
   def default_url_options
-    { host: ENV["DOMAIN"] || "localhost:3000" }
+    { host: ENV["DOMAIN"] || "lvh.me:3000" }
+  end
+
+  # protected
+
+  def after_sign_in_path_for(resource)
+    return signed_in_root_path(resource) if request.subdomain
+
+    super
   end
 
   private

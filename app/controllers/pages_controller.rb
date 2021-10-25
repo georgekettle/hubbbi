@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:edit, :update, :show, :destroy, :edit_sections, :settings]
 
   def show
-    redirect_to @page.course if @page.course
+    redirect_to course_path(@page.course) if @page.course
     set_breadcrumbs
   end
 

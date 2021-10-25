@@ -2,8 +2,10 @@
 group_1:
   id: 1
   name: Yogi bears
+  subdomain: yogibears
   created_at: 2021-09-10 01:58:57.259195000 Z
   updated_at: 2021-09-10 01:58:58.094871000 Z
 
 group_2:
   name: Group Without Group Members
+  subdomain: groupwithoutgroupmembers
