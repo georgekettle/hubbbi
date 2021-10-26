@@ -1,0 +1,21 @@
+[data-tippy-root] {
+  z-index: 1000;
+  @apply pb-1;
+
+  .tippy-box {
+    @apply rounded bg-white p-2 py-1.5 text-xs;
+
+    .tippy-arrow::before {
+      border-top-color: white;
+    }
+    .tippy-arrow::before {
+      border-bottom-color: white;
+    }
+    .tippy-arrow::before {
+      border-left-color: white;
+    }
+    .tippy-arrow::before {
+      border-right-color: white;
+    }
+  }
+}
