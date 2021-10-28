@@ -4,7 +4,7 @@
 <div class="w-full relative">
   <%= link_to page, class: "w-full" do %>
     <% if page.cover.attached? %>
-      <%= render "components/card", title: page.title, subtitle: page.subtitle, image: cl_image_path(page.cover.key) %>
+      <%= render "components/card", contain: true, title: page.title, subtitle: page.subtitle, image: cl_image_path(page.cover.key) %>
     <% else %>
       <%= render "components/card", title: page.title, subtitle: page.subtitle, image: asset_path('default_cover.svg'), no_shadow: true %>
     <% end %>

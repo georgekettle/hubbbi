@@ -37,3 +37,17 @@
     @apply ml-0.5;
   }
 }
+
+.tags-carousel {
+  .flickity-button {
+    @apply w-6 h-6 transform-gpu hover:scale-125 duration-100 flex items-center justify-center bg-white border-gray-200 rounded-full text-gray-800 cursor-pointer pointer-events-auto shadow;
+
+    svg {
+      @apply h-4 w-4 stroke-2 fill-current stroke-current;
+    }
+  }
+
+  .flickity-button:disabled {
+    @apply opacity-0 pointer-events-none;
+  }
+}

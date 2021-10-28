@@ -1,5 +1,5 @@
 <% content_for :header_left do %>
-  <%= link_to @page, class: 'button button-sm' do %>
+  <%= link_to @page, class: 'button button-sm', data: {turbo: false} do %>
     <%= render 'icons/check', classes: "mr-2 h-3.5 w-3.5" %>
     Done
   <% end %>

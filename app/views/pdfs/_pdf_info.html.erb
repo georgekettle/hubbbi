@@ -1,6 +1,10 @@
 <div class="flex pr-10">
-  <div class="w-12 h-12 rounded bg-gray-200 flex-shrink-0 flex items-center justify-center mr-4">
-    <%= render 'icons/pdf', classes: 'stroke-current text-gray-800 h-5 w-5 m-0' %>
+  <div class="w-12 h-12 rounded bg-gray-200 flex-shrink-0 flex items-center justify-center overflow-hidden mr-4">
+    <% if pdf.cover.attached? %>
+      <%= cl_image_tag pdf.cover.key, height: 150, width: 150, :crop => :fill %>
+    <% else %>
+      <%= render 'icons/pdf', classes: 'stroke-current text-gray-800 h-5 w-5 m-0' %>
+    <% end %>
   </div>
   <div class="pt-1.5">
     <h4 class="leading-none mb-1 text-base"><%= pdf.title %></h4>

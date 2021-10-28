@@ -6,7 +6,7 @@
 
 <%= render "components/headers/header", header: @group.name, subheader: "Group", hide_back_link: true do %>
   <%= link_to group_group_members_path(@group), class: 'icon-btn' do %>
-    <%= render 'icons/members', classes:"text-gray-900 stroke-current" %>
+    <%= render 'icons/members' %>
   <% end %>
   <%= render 'components/dropdowns/options_dropdown' do %>
     <% if policy(@group).update? %>
