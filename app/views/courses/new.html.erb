@@ -1,4 +1,4 @@
-<%= render "components/headers/header", header: "Create course", subheader: "For #{@group.name}" %>
+<%= render "components/headers/header", header: "Create course", subheader: "For #{@group.name}", back_link: @group %>
 <%= render "shared/container", classes: "p-4" do %>
   <%= render 'form', course: @course %>
 <% end %>

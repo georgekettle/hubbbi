@@ -18,7 +18,7 @@
     <%= render 'components/carousels/carousel', hide_arrows: images.count <= 1 do %>
       <% images.each_with_index do |image, index| %>
         <div data-controller="lightbox" class="p-2 w-full">
-          <%= render "images/image", image: image, editable: editable, classes: 'aspect-w-16 aspect-h-9' %>
+          <%= render "images/image", image: image, editable: editable, classes: 'aspect-w-16 aspect-h-9 bg-gray-800' %>
           <%= render 'components/lightbox/container', title: image.title, subtitle: "#{index + 1} / #{images.count}" do %>
             <%= cl_image_tag image.picture.key, class: 'w-full h-full object-contain' %>
           <% end %>

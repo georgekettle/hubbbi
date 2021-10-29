@@ -2,8 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+// plugins
+@import "../plugins/pintura/pintura";
+
 @import "config/index";
 @import "components/index";
 @import "page_references/index";
 @import "home/index";
 @import "audios/index";
+
