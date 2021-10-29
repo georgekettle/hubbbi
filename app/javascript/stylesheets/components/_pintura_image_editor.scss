@@ -1,0 +1,24 @@
+.pintura-editor {
+    --font-family: 'Shape', 'Helvetica', 'San Serif'!important;
+    --font-size: 16px;
+}
+
+.PinturaRoot .PinturaButtonExport {
+  @apply bg-contrast-500 hover:bg-contrast-600 border border-contrast-500 hover:border-contrast-600 text-white;
+}
+
+// buttons
+.PinturaRoot > .PinturaNav .PinturaButton:only-of-type {
+  @apply rounded;
+}
+
+// done button
+.PinturaRoot > .PinturaNav .PinturaButton:not(.PinturaButtonIconOnly):not(.PinturaDropdownIconOnly) {
+  @apply shadow-none;
+}
+
+// Side options (crop, filter etc)
+.PinturaUtilFooter .PinturaControlList [role=tab][aria-selected=true] button,
+.PinturaRoot > .PinturaNavMain [aria-selected=true] button {
+  @apply bg-gray-200;
+}
