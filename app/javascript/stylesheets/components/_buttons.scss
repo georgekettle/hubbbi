@@ -40,6 +40,7 @@
   @apply p-3 rounded-md border border-dashed hover:border-transparent hover:bg-black hover:bg-opacity-5 w-full flex items-center justify-center tracking-tight text-sm text-gray-400 hover:text-gray-600 transition ease-in-out duration-300;
 }
 
+// ====== ICON BUTTONS ======
 .icon-btn {
   @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-black bg-opacity-0 hover:bg-opacity-5 transition duration-100 text-gray-400 hover:text-gray-800 cursor-pointer;
 
