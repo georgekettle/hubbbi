@@ -51,6 +51,7 @@ module.exports = {
     extend: {
       scale: ['group-hover'],
       height: ['group-hover'],
+      display: ['group-hover'],
     }
   },
   plugins: [
