@@ -19,9 +19,11 @@
 <%= render "shared/container", classes: "p-4" do %>
   <%= render "components/headers/section_header", title: "Your courses", icon:"library" do %>
     <div class="flex items-center">
-      <%= link_to reorder_course_members_path, class: "icon-btn" do %>
+      <% if @courses.length > 1 %>
+        <%= link_to reorder_course_members_path, class: "icon-btn" do %>
           <%= render 'icons/reorder' %>
         <% end %>
+      <% end %>
       <% if policy(Current.group_member).admin_or_editor? %>
         <%= link_to new_group_course_path(@group), class: "icon-btn" do %>
           <%= render 'icons/plus_circle' %>
