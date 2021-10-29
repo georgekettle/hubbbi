@@ -8,4 +8,7 @@ class Audio < ApplicationRecord
   has_one_attached :cover
 
   validates :title, presence: true
+
+  # tags
+  acts_as_taggable_on :tags
 end

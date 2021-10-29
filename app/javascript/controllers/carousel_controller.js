@@ -4,6 +4,12 @@ require('flickity-imagesloaded');
 
 export default class extends Controller {
   static targets = ["container", "buttons", "loader"]
+  static values = {
+    groupCells: {
+      type: Boolean,
+      default: false
+    }
+  }
 
   connect() {
     this.initSlider()
@@ -18,6 +24,7 @@ export default class extends Controller {
     const _this = this
     this.flkty = new Flickity(this.containerTarget, {
       // options
+      groupCells: this.groupCellsValue,
       cellAlign: 'left',
       contain: true,
       imagesLoaded: true,

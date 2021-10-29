@@ -20,6 +20,7 @@
 
   <%= f.input :title %>
   <%= f.input :subtitle %>
+  <%= f.input :tag_list, label: 'Tags', input_html: { data: { controller: "multi-select" } } %>
   <div class="form-actions">
     <%= f.submit class: "w-full" %>
   </div>
