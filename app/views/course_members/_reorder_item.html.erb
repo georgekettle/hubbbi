@@ -1,0 +1,14 @@
+<% course = course_member.course %>
+
+<div class="w-full flex items-center justify-between p-1">
+  <div class="w-full flex items-center justify-between">
+    <div class="flex items-center">
+      <!-- avatar -->
+      <%= render "courses/avatar", course: course %>
+      <div class="ml-2">
+        <h4 class="leading-tight mb-0.5 line-clamp-1"><%= course.title %></h4>
+        <p class="text-xs text-gray-400"><%= course.course_members.count %> members</p>
+      </div>
+    </div>
+  </div>
+</div>

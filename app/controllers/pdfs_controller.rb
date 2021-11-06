@@ -25,6 +25,6 @@ class PdfsController < ApplicationController
   end
 
   def pdf_params
-    params.require(:pdf).permit(:title, :file)
+    params.require(:pdf).permit(:title, :file, :cover)
   end
 end

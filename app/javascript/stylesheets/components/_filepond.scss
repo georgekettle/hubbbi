@@ -70,3 +70,23 @@
 .filepond--panel-root {
   @apply bg-white border border-gray-200;
 }
+
+.filepond--action-edit-item-alt {
+  display: none;
+}
+
+.filepond--action-edit-item.filepond--action-edit-item {
+  @apply w-8 h-8 rounded-full flex items-center justify-center hover:bg-black hover:bg-opacity-5 transition duration-100 text-gray-400 hover:text-gray-800 cursor-pointer backdrop-filter backdrop-blur bg-black bg-opacity-50;
+
+  svg {
+    @apply h-5 w-5 stroke-2 stroke-current pointer-events-none text-white;
+  }
+
+  &:hover {
+    @apply bg-black bg-opacity-50;
+
+    svg {
+      @apply text-white;
+    }
+  }
+}

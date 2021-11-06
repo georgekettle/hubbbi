@@ -14,7 +14,7 @@ module Groups
       add_courses
       invitable_name = @group.name
       if @invite.save
-        if @invite.recipient != nil
+        if !!@invite.recipient
           InviteMailer.existing_user_invite(@invite, invitable_name).deliver
           group_member = @group.add_user(@invite.recipient)
           @invite.sub_invites.each do |sub_invite|

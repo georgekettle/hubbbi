@@ -3,8 +3,10 @@
 <% background_style = no_shadow ? "background-image: url(#{image})" : "background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.7)), url(#{image})" %>
 <% subtitle ||= nil %>
 <% icon ||= 'arrow_right' %>
+<% contain ||= false %>
+<% classes ||= 'h-40' %>
 
-<div class="group w-full rounded-2xl h-40 flex items-end bg-center bg-cover" style="<%= background_style %>">
+<div class="group w-full rounded-2xl flex items-end bg-center bg-no-repeat <%= contain ? 'bg-contain' : 'bg-cover' %> <%= classes %>" style="<%= background_style %>">
   <div class="flex items-end justify-between w-full p-4">
     <div class="pr-4">
       <h4 class="text-white leading-tight"><%= title %></h4>

@@ -17,10 +17,14 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { initTippy } from '../components/tippy';
+import { initMediaPlayerPlayingStatus } from '../components/media_player_playing_status';
+import { sendAuthenticatedPostMessage } from '../components/authenticated_post_message';
 
 document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
+  sendAuthenticatedPostMessage()
   initTippy()
+  initMediaPlayerPlayingStatus()
 });
 
 import "stylesheets/application"

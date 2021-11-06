@@ -8,6 +8,9 @@ class Video < ApplicationRecord
 
   has_one_attached :file, :service => :cloudinary_video
 
+  # tags
+  acts_as_taggable_on :tags
+
   def info
     return nil unless url.present?
     video = VideoInfo.new(url)

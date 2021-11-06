@@ -1,0 +1,12 @@
+<%= render "components/headers/header", header: "Reorder courses", back_link: Current.group %>
+<%= render "shared/container", classes: "p-4" do %>
+  <div data-controller="sortable" data-sortable-target="container" data-sortable-handle-value="sortable-handle">
+    <% @course_members.each do |course_member| %>
+      <div data-sortable-target="item" data-url="<%= course_member_path(course_member) %>" data-element-name="course_member">
+        <%= render "components/reorder_item" do %>
+          <%= render 'course_members/reorder_item', course_member: course_member %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

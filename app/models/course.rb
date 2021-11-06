@@ -12,6 +12,7 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { minimum: 50, maximum: 200 }
 
   def add_user(group_member)
-    CourseMember.create(group_member: group_member, course: self) unless CourseMember.find_by(group_member: group_member, course: self)
+    existing_member = CourseMember.find_by(group_member: group_member, course: self)
+    existing_member ? existing_member : CourseMember.create(group_member: group_member, course: self)
   end
 end

@@ -3,11 +3,16 @@ import { Controller } from "@hotwired/stimulus"
 const updateInterval = 30 // 30s between updates
 
 export default class extends Controller {
-  static targets = ["audio", "play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "mediaControlsContainer", "mediaControlsContainerLoading"]
+  static targets = ["audio", "play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "mediaControlsContainer", "mediaControlsContainerLoading", "floatingMediaPlayer"]
   static values = {
     playing: Boolean,
     url: String,
+    groupMemberUrl: String,
     progress: Number
+  }
+
+  initialize() {
+    this.listenForToggleFloatingMediaPlayer()
   }
 
   audioTargetConnected(element) {
@@ -41,6 +46,7 @@ export default class extends Controller {
     if (this.hasAudioTarget) {
       this.audioTarget.dataset.mediaPlayingValue = value
     }
+    this.dispatchWindowPauseEvent(!value)
   }
 
   prepareControls() {
@@ -73,6 +79,9 @@ export default class extends Controller {
     this.sound.addEventListener('ended', (e) => {
       _this.playNextSong()
     })
+    document.addEventListener('turbo:load', () => {
+      _this.dispatchWindowPauseEvent(!_this.playingValue)
+    });
   }
 
   dismissLoadingControls() {
@@ -209,5 +218,32 @@ export default class extends Controller {
     this.updateProgressRequest(body)
     this.incomplete = false
     this.nextTargets[0].click()
+  }
+
+  dispatchWindowPauseEvent(status) {
+    // dispatch event (is paused) => so that media_player_toggle.html.erb can register changes
+    const pauseEvent = new CustomEvent('mediaPlayer:change', { detail: { paused: status } })
+    window.dispatchEvent(pauseEvent)
+  }
+
+  listenForToggleFloatingMediaPlayer() {
+    const _this = this
+    window.addEventListener('toggleFloatingMediaPlayer', (e) => {
+      e.preventDefault()
+      const CSRFToken = document.querySelector('meta[name="csrf-token"]').content
+      _this.floatingMediaPlayerTarget.classList.toggle('hidden')
+      const isHidden = _this.floatingMediaPlayerTarget.classList.contains('hidden')
+      const body = {'group_member': {
+        'hide_media_player': isHidden
+      }}
+      fetch(_this.groupMemberUrlValue, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': CSRFToken,
+        },
+        body: JSON.stringify(body),
+      })
+    })
   }
 }
