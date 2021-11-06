@@ -2,8 +2,8 @@
 <% size ||= 12 %>
 <% classes ||= "" %>
 
-<div class="w-<%= size %> h-<%= size %> relative inline-block overflow-hidden <%= classes %>">
-  <div class="w-full h-full rounded-full border border-white overflow-hidden text-center bg-contrast-light flex justify-center items-center">
+<div class="w-<%= size %> h-<%= size %> relative inline-block">
+  <div class="w-full h-full rounded-full border border-white overflow-hidden text-center bg-contrast-light flex justify-center items-center <%= classes %>">
     <% if group_member && group_member.avatar.attached? %>
       <%= cl_image_tag(group_member.avatar.key, :width => 200, :height => 200, :crop => :fill) %>
     <% else %>
