@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
+// pdfjs-dist imported in HTML 'shared/_head.html.erb'
 
 export default class extends Controller {
   static targets = ['container', 'pageNum', 'pageCount']
