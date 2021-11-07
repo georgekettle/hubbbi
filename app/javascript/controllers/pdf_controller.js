@@ -6,12 +6,8 @@ export default class extends Controller {
     url: String
   }
 
-  connect() {
+  initialize() {
     this.hasUrlValue && this.displayPdf()
-  }
-
-  disconnect() {
-    this.pdfDoc && this.pdfDoc.remove()
   }
 
   displayPdf() {
