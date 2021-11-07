@@ -1,7 +1,30 @@
-<%= link_to course, class: "mb-2 block" do %>
-  <% if course.cover.attached? %>
-    <%= render "components/card", title: course.title, subtitle: pluralize(course.course_members.count, "participant"), image: cl_image_path(course.cover.key) %>
-  <% else %>
-    <%= render "components/card", title: course.title, subtitle: pluralize(course.course_members.count, "participant"), no_shadow: true %>
-  <% end %>
+<%= link_to course, class: "mb-2 aspect-w-3 aspect-h-1 block" do %>
+  <div class="group h-full w-full bg-white flex border border-gray-200 shadow-sm rounded-md overflow-hidden">
+    <div class="h-full overflow-hidden w-1/3 bg-gray-200 flex-shrink-0">
+      <%= cl_image_tag(course.cover.key, height: 500, width: 500, crop: :fill, class: "transition-transform duration-300 transform-gpu group-hover:scale-105") if course.cover.attached? %>
+    </div>
+    <div class="flex flex-col justify-between w-full p-4 xs:p-6">
+      <div>
+        <h4 class="leading-none mb-1"><%= course.title %></h4>
+        <p class="hidden sm:block text-xs text-gray-400 leading-tight mb-2 w-3/4"><%# course.description %></p>
+        <div class="hidden xs:block">
+          <%= render 'components/avatars', group_members: course.group_members, size: 6, classes: "border border-white shadow" %>
+        </div>
+      </div>
+      <div class="flex items-center space-between">
+        <div class="w-full pr-8 invisible">
+          <div class="w-full flex items-center justify-between text-xs mb-1">
+            <h6>Progress</h6>
+            <h6>76%</h6>
+          </div>
+          <div class="progress-container">
+            <div class="progress" style="width: 76%"></div>
+          </div>
+        </div>
+        <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-800 text-white flex items-center justify-center flex-shrink-0 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 cursor-pointer">
+          <%= render "icons/arrow_right", classes: 'stroke-current' %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

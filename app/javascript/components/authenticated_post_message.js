@@ -10,11 +10,16 @@ function getCookie(name) {
 }
 
 const sendAuthenticatedPostMessage = () => {
-  const isSignedIn = getCookie('signed_in')
-  const data = {
-    isSignedIn: Boolean(isSignedIn)
+  const isLoggedIn = getCookie('signed_in')
+
+  if (window.ReactNativeWebView) {
+    window.ReactNativeWebView.postMessage(
+      JSON.stringify({
+        type: 'session-status',
+        isLoggedIn: Boolean(isLoggedIn)
+      })
+    );
   }
-  window.ReactNativeWebView && window.ReactNativeWebView.postMessage(data)
 }
 
 export { sendAuthenticatedPostMessage }
