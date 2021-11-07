@@ -11,14 +11,11 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.pdfDoc.remove()
+    this.pdfDoc && this.pdfDoc.remove()
   }
 
   displayPdf() {
     const _this = this
-    // If absolute URL from the remote server is provided, configure the CORS
-    // header on that server.
-    var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
 
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -37,7 +34,7 @@ export default class extends Controller {
     /**
      * Asynchronously downloads PDF.
      */
-    pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+    pdfjsLib.getDocument(this.urlValue).promise.then(function(pdfDoc_) {
       const pdfDocExists = _this.pdfDoc
       _this.pdfDoc = pdfDoc_
       _this.pageCountTarget.textContent = _this.pdfDoc.numPages
@@ -110,7 +107,6 @@ export default class extends Controller {
    * Displays previous page.
    */
   prevPage() {
-    console.log('prevPage')
     if (this.pageNum <= 1) {
       return;
     }
