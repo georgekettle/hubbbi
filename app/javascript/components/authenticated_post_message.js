@@ -11,12 +11,16 @@ function getCookie(name) {
 
 const sendAuthenticatedPostMessage = () => {
   const isLoggedIn = getCookie('signed_in')
+  const sessionCookie = document.body.dataset.cookieSession
+  const sessionId = document.body.dataset.sessionId
 
   if (window.ReactNativeWebView) {
     window.ReactNativeWebView.postMessage(
       JSON.stringify({
         type: 'session-status',
-        isLoggedIn: Boolean(isLoggedIn)
+        isLoggedIn: Boolean(isLoggedIn),
+        sessionCookie: sessionCookie,
+        sessionId: sessionId
       })
     );
   }
