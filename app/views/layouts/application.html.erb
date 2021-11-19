@@ -10,7 +10,7 @@
     <% end %>
   </head>
 
-  <body class="bg-contrast-50">
+  <body class="bg-contrast-50" data-cookie-session="<%= cookies['_hubbbi_session'] %>" data-session-id="<%= session.id %>">
     <%= render 'shared/desktop_navbar' unless @hide_desktop_navbar %>
 
     <div class="body-content <%= 'pb-48' unless @no_body_padding %>">
