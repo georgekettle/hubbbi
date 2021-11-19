@@ -3,6 +3,7 @@
     <%= render 'components/dropdowns/options_dropdown' do %>
       <% if @current_user_group_member == @group_member %>
         <%= link_to "Update profile", edit_group_member_path(@group_member), class: "dropdown-link" %>
+        <%= link_to "Contact support", 'https://5d0zcscek39.typeform.com/to/a7wELBjg', class: "dropdown-link", target: :_blank%>
         <%= link_to "Leave group", group_member_path(@group_member), method: :delete, data: {confirm: "Are you sure you'd like to leave the group"}, class: "dropdown-link-danger" %>
       <% else %>
         <%= link_to("Remove all permissions", group_member_path(@group_member, group_member: { :role => "member" }), method: :patch, class: "dropdown-link") unless @group_member.role == "member" %>
