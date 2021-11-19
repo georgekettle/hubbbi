@@ -59,6 +59,6 @@ class GroupMembersController < ApplicationController
   end
 
   def group_member_params
-    params.require(:group_member).permit(:role, :email, :avatar, :hide_media_player, user_attributes: [ :id, :full_name, :display_name ])
+    params.require(:group_member).permit(:role, :email, :avatar, :hide_media_player, user_attributes: [ :id, :full_name ])
   end
 end

@@ -9,7 +9,6 @@ user_1:
   created_at: 2021-09-10 01:58:02.894475000 Z
   updated_at: 2021-09-10 01:58:08.775680000 Z
   full_name: George Kettle
-  display_name: George
   selected_group_member_id:
 user_3:
   id: 3
@@ -21,7 +20,6 @@ user_3:
   created_at: 2021-09-10 01:58:03.322184000 Z
   updated_at: 2021-09-10 01:58:13.478821000 Z
   full_name: Filia Birkners
-  display_name: Filia
   selected_group_member_id:
 user_4:
   id: 4
@@ -33,7 +31,6 @@ user_4:
   created_at: 2021-09-10 01:58:03.533940000 Z
   updated_at: 2021-09-10 01:58:14.902504000 Z
   full_name: Ante Strika
-  display_name: Ante
   selected_group_member_id:
 user_5:
   id: 5
@@ -45,7 +42,6 @@ user_5:
   created_at: 2021-09-10 01:58:04.047145000 Z
   updated_at: 2021-09-10 01:58:16.956806000 Z
   full_name: Pres. Dario Kilback
-  display_name: Pres.
   selected_group_member_id:
 user_6:
   id: 6
@@ -57,7 +53,6 @@ user_6:
   created_at: 2021-09-10 01:58:04.259592000 Z
   updated_at: 2021-09-10 01:58:18.722545000 Z
   full_name: Ms. Brittney Beer
-  display_name: Ms.
   selected_group_member_id:
 user_7:
   id: 7
@@ -69,7 +64,6 @@ user_7:
   created_at: 2021-09-10 01:58:04.471126000 Z
   updated_at: 2021-09-10 01:58:21.036084000 Z
   full_name: Eveline Crooks
-  display_name: Eveline
   selected_group_member_id:
 user_8:
   id: 8
@@ -81,7 +75,6 @@ user_8:
   created_at: 2021-09-10 01:58:04.679495000 Z
   updated_at: 2021-09-10 01:58:22.626268000 Z
   full_name: Gustavo Feest
-  display_name: Gustavo
   selected_group_member_id:
 user_9:
   id: 9
@@ -93,7 +86,6 @@ user_9:
   created_at: 2021-09-10 01:58:04.892181000 Z
   updated_at: 2021-09-10 01:58:24.300296000 Z
   full_name: Galina Bosco
-  display_name: Galina
   selected_group_member_id:
 user_10:
   id: 10
@@ -105,7 +97,6 @@ user_10:
   created_at: 2021-09-10 01:58:05.106897000 Z
   updated_at: 2021-09-10 01:58:25.827983000 Z
   full_name: Everett Koch
-  display_name: Everett
   selected_group_member_id:
 user_11:
   id: 11
@@ -117,7 +108,6 @@ user_11:
   created_at: 2021-09-10 01:58:05.322186000 Z
   updated_at: 2021-09-10 01:58:29.786116000 Z
   full_name: Amb. Monte Collins
-  display_name: Amb.
   selected_group_member_id:
 user_12:
   id: 12
@@ -129,7 +119,6 @@ user_12:
   created_at: 2021-09-10 01:58:05.529665000 Z
   updated_at: 2021-09-10 01:58:31.318567000 Z
   full_name: Amb. Mary Conn
-  display_name: Amb.
   selected_group_member_id:
 user_13:
   id: 13
@@ -141,7 +130,6 @@ user_13:
   created_at: 2021-09-10 01:58:05.737266000 Z
   updated_at: 2021-09-10 01:58:32.843750000 Z
   full_name: Daria Beer
-  display_name: Daria
   selected_group_member_id:
 user_14:
   id: 14
@@ -153,7 +141,6 @@ user_14:
   created_at: 2021-09-10 01:58:05.943905000 Z
   updated_at: 2021-09-10 01:58:37.106262000 Z
   full_name: Gov. Dannette Gusikowski
-  display_name: Gov.
   selected_group_member_id:
 user_15:
   id: 15
@@ -165,7 +152,6 @@ user_15:
   created_at: 2021-09-10 01:58:06.151856000 Z
   updated_at: 2021-09-10 01:58:38.578309000 Z
   full_name: Jenice Mayer
-  display_name: Jenice
   selected_group_member_id:
 user_16:
   id: 16
@@ -177,7 +163,6 @@ user_16:
   created_at: 2021-09-10 01:58:06.360786000 Z
   updated_at: 2021-09-10 01:58:41.008041000 Z
   full_name: Annemarie Miller
-  display_name: Annemarie
   selected_group_member_id:
 user_17:
   id: 17
@@ -189,7 +174,6 @@ user_17:
   created_at: 2021-09-10 01:58:06.567704000 Z
   updated_at: 2021-09-10 01:58:43.195183000 Z
   full_name: Lindsay Mosciski
-  display_name: Lindsay
   selected_group_member_id:
 user_18:
   id: 18
@@ -201,7 +185,6 @@ user_18:
   created_at: 2021-09-10 01:58:06.784441000 Z
   updated_at: 2021-09-10 01:58:44.781627000 Z
   full_name: Agustin Ruecker
-  display_name: Agustin
   selected_group_member_id:
 user_19:
   id: 19
@@ -213,7 +196,6 @@ user_19:
   created_at: 2021-09-10 01:58:06.996761000 Z
   updated_at: 2021-09-10 01:58:46.717271000 Z
   full_name: Gidget Herzog III
-  display_name: Gidget
   selected_group_member_id:
 user_20:
   id: 20
@@ -225,7 +207,6 @@ user_20:
   created_at: 2021-09-10 01:58:07.211671000 Z
   updated_at: 2021-09-10 01:58:48.975258000 Z
   full_name: Tera Kirlin
-  display_name: Tera
   selected_group_member_id:
 user_21:
   id: 21
@@ -237,7 +218,6 @@ user_21:
   created_at: 2021-09-10 01:58:07.426234000 Z
   updated_at: 2021-09-10 01:58:51.118574000 Z
   full_name: Salvador Langosh
-  display_name: Salvador
   selected_group_member_id:
 user_22:
   id: 22
@@ -249,7 +229,6 @@ user_22:
   created_at: 2021-09-10 01:58:07.640751000 Z
   updated_at: 2021-09-10 01:58:52.674568000 Z
   full_name: Duncan Schowalter
-  display_name: Duncan
   selected_group_member_id:
 user_23:
   id: 23
@@ -261,7 +240,6 @@ user_23:
   created_at: 2021-09-10 01:58:07.884675000 Z
   updated_at: 2021-09-10 01:58:54.316216000 Z
   full_name: Mr. Isreal Schuppe
-  display_name: Mr.
   selected_group_member_id:
 user_24:
   id: 24
@@ -273,7 +251,6 @@ user_24:
   created_at: 2021-09-10 01:58:08.096752000 Z
   updated_at: 2021-09-10 01:58:56.009979000 Z
   full_name: Regenia Deckow Ret.
-  display_name: Regenia
   selected_group_member_id:
 user_2:
   id: 2
@@ -285,5 +262,4 @@ user_2:
   created_at: 2021-09-10 01:58:03.100913000 Z
   updated_at: 2021-09-10 02:00:40.767212000 Z
   full_name: Jason Irving
-  display_name: Jason
   selected_group_member_id: 2

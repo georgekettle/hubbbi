@@ -2,10 +2,10 @@ require 'faker'
 require "open-uri"
 
 puts "Creating users"
-  george = User.create!(email: "george@gmail.com", password: "secret", full_name: "George Kettle", display_name: "George")
-  jason = User.create!(email: "jason@gmail.com", password: "secret", full_name: "Jason Irving", display_name: "Jason")
-  filia = User.create!(email: "filia@gmail.com", password: "secret", full_name: "Filia Birkners", display_name: "Filia")
-  ante = User.create!(email: "ante@gmail.com", password: "secret", full_name: "Ante Strika", display_name: "Ante")
+  george = User.create!(email: "george@gmail.com", password: "secret", full_name: "George Kettle")
+  jason = User.create!(email: "jason@gmail.com", password: "secret", full_name: "Jason Irving")
+  filia = User.create!(email: "filia@gmail.com", password: "secret", full_name: "Filia Birkners")
+  ante = User.create!(email: "ante@gmail.com", password: "secret", full_name: "Ante Strika")
 
   users = [george, jason, filia, ante]
 puts "Finished creating users"
@@ -13,8 +13,7 @@ puts "Finished creating users"
 puts "Creating faker users"
   20.times do
     full_name = Faker::Name.name
-    display_name = full_name.split.first
-    users << User.create!(email: Faker::Internet.email, password: "secret", full_name: full_name, display_name: display_name)
+    users << User.create!(email: Faker::Internet.email, password: "secret", full_name: full_name)
   end
 puts "Finished creating faker users"
 
