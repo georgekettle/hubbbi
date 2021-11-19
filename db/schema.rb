@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_025433) do
+ActiveRecord::Schema.define(version: 2021_11_19_025701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_025433) do
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
     t.index ["group_id"], name: "index_courses_on_group_id"
     t.index ["page_id"], name: "index_courses_on_page_id"
   end
@@ -160,6 +161,18 @@ ActiveRecord::Schema.define(version: 2021_10_17_025433) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "progressions", force: :cascade do |t|
+    t.string "progressable_type", null: false
+    t.bigint "progressable_id", null: false
+    t.integer "current", default: 0, null: false
+    t.integer "total", default: 100, null: false
+    t.bigint "group_member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_member_id"], name: "index_progressions_on_group_member_id"
+    t.index ["progressable_type", "progressable_id"], name: "index_progressions_on_progressable"
+  end
+
   create_table "section_elements", force: :cascade do |t|
     t.bigint "section_id", null: false
     t.string "element_type", null: false
@@ -232,7 +245,6 @@ ActiveRecord::Schema.define(version: 2021_10_17_025433) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "full_name"
-    t.string "display_name"
     t.bigint "selected_group_member_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -257,6 +269,7 @@ ActiveRecord::Schema.define(version: 2021_10_17_025433) do
   add_foreign_key "group_members", "users"
   add_foreign_key "media_plays", "group_members"
   add_foreign_key "page_references", "pages"
+  add_foreign_key "progressions", "group_members"
   add_foreign_key "section_elements", "sections"
   add_foreign_key "sections", "pages"
   add_foreign_key "sub_invites", "invites"
