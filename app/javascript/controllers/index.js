@@ -39,9 +39,6 @@ application.register("modal", ModalController)
 import MultiSelectController from "./multi_select_controller"
 application.register("multi-select", MultiSelectController)
 
-import PdfController from "./pdf_controller"
-application.register("pdf", PdfController)
-
 import SearchFilterController from "./search_filter_controller"
 application.register("search-filter", SearchFilterController)
 
