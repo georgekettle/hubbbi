@@ -27,6 +27,7 @@
     "isotope-layout": "^3.0.6",
     "jquery": "^3.6.0",
     "overlayscrollbars": "^1.13.1",
+    "pdfjs-dist": "^2.10.377",
     "plyr": "^3.6.8",
     "popper.js": "^1.16.1",
     "postcss": "^7",

@@ -1,8 +1,9 @@
 <% title ||= nil %>
 <% subtitle ||= nil %>
+<% download_link ||= nil %>
 
 <div class="hidden" data-lightbox-target="content">
-  <div class="w-screen h-screen flex items-center flex-col bg-gray-800">
+  <div class="w-screen h-screen flex items-center flex-col bg-gray-800 relative">
     <div class="flex-shrink-0 p-4 w-full border-b border-gray-700 flex items-center justify-between">
       <div class="text-white">
         <% if title %>
@@ -12,13 +13,18 @@
           <h6 class="text-xs opacity-50"><%= subtitle %></h6>
         <% end %>
       </div>
-      <div>
+      <div class="flex items-center">
+        <% if download_link %>
+          <%= link_to download_link, download:true, class: 'w-8 h-8 rounded-full flex items-center justify-center hover:bg-white hover:bg-opacity-20 cursor-pointer mr-2' do %>
+            <%= render 'icons/download_circle', classes: 'h-5 w-5 stroke-2 stroke-current text-white pointer-events-none' %>
+          <% end %>
+        <% end %>
         <%= link_to '#', data: { lightbox_target: 'close' }, class: 'w-8 h-8 rounded-full flex items-center justify-center hover:bg-white hover:bg-opacity-20 cursor-pointer' do %>
           <%= render 'icons/close', classes: 'h-3.5 w-3.5 stroke-2 stroke-current text-white pointer-events-none' %>
         <% end %>
       </div>
     </div>
-    <div class="h-full w-full flex-grow w-full">
+    <div class="w-full h-full overflow-hidden">
       <%= yield %>
     </div>
   </div>
