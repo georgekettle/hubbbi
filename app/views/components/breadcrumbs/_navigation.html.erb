@@ -1,5 +1,7 @@
 <nav aria-label="breadcrumb" data-controller="breadcrumbs" class="flex items-center pl-4">
-  <%= render 'components/breadcrumbs/dropdown_navigation' %>
+  <% if @course && @course.page.child_pages.length > 1 %>
+    <%= render 'components/breadcrumbs/dropdown_navigation' %>
+  <% end %>
   <ol class="breadcrumbs no-scrollbar">
     <% hidden_crumbs = (1...breadcrumb_trail.count - 2) %>
     <% breadcrumb_trail.each_with_index do |crumb, index| %>

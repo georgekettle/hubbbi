@@ -6,7 +6,7 @@
 <div class="hidden" data-lightbox-target="content">
   <div data-lightbox-target="close" class="animated fadeIn fixed inset-0 overflow-y-auto flex sm:items-center items-end justify-center" style="z-index: 9999;">
     <!-- Modal Inner Container -->
-    <div class="max-h-screen w-full max-w-xl relative pt-10 md:pt-0">
+    <div class="max-h-screen w-full max-w-xl relative pt-10 md:py-10">
       <!-- Modal Card -->
       <div class="bg-contrast-50 rounded-t-lg sm:rounded-lg shadow overflow-hidden">
         <div class="w-full bg-white px-4 sm:px-8 py-4 flex items-center justify-between border-b border-gray-200">
@@ -28,6 +28,7 @@
           <%= yield %>
         </div>
       </div>
+      <div class="md:h-10"></div>
     </div>
   </div>
 
