@@ -1,0 +1,31 @@
+<% page.child_pages.each do |child_page| %>
+	<% if child_page.child_pages.length > 0 %>
+		<div data-controller="slide-menu">
+		  <div> <!-- parent must be a div -->
+		  	<div data-action="click->slide-menu#open" class="p-4 hover:bg-black hover:bg-opacity-5 rounded flex items-center justify-between">
+		    	<span class="flex items-center">
+			    	<%= child_page.title %>
+		    	</span>
+		    	<span class="flex-grow flex justify-end items-center">
+		    		<%= render 'icons/chevron_right', classes:'stroke-current w-2.5 h-2.5' %>
+		    	</span>
+		    </div>
+		    <div class="transform transition-transform duration-500 absolute top-0 left-0 translate-x-full w-full overflow-hidden bg-contrast-50 h-full" data-slide-menu-target="source">
+		    	<div class="bg-white border-b border-gray-200 w-full p-2 flex items-center justify-between flex-shrink-0">
+		    		<span class="icon-btn" data-action="click->slide-menu#close">
+			    		<%= render 'icons/arrow_left', classes:'stroke-current' %>
+		    		</span>
+			    	<%= link_to page_path(child_page), class: 'p-2 px-4 hover:bg-black hover:bg-opacity-5 rounded flex items-center justify-end text-sm' do %>
+				    	<span class="text-gray-400 mr-2">Go to</span> <%= child_page.title %>
+				    <% end %>
+		    	</div>
+		      <%= render 'components/breadcrumbs/dropdown_menu', page: child_page %>
+		    </div>
+		  </div>
+		</div>
+	<% else %>
+		<%= link_to page_path(child_page), class: 'p-4 hover:bg-black hover:bg-opacity-5 flex items-center' do %>
+    	<%= child_page.title %>
+    <% end %>
+	<% end %>
+<% end %>

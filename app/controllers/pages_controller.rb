@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def show
     redirect_to @page.course if @page.course
+    @course = @page.belonging_to_course
     set_breadcrumbs
   end
 

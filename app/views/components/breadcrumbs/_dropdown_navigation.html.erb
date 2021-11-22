@@ -1,0 +1,13 @@
+<% tippy_placement = "bottom-start" %>
+
+<div data-controller="lightbox">
+	<button type="button" class="icon-btn white shadow-sm" data-action="lightbox#open">
+    <%= render 'icons/menu', classes: 'stroke-current h-3.5 w-3.5' %>
+  </button>
+  <%= render "components/lightbox/modal_container", title: @course.title, subtitle: 'Course', no_padding: true, classes: "h-96" do %>
+    <div class="relative h-full">
+  	  <%= render 'components/breadcrumbs/dropdown_menu', page: @course.page %>
+    </div>
+  <% end %>
+</div>
+

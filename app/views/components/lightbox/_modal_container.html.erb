@@ -1,13 +1,14 @@
 <% title ||= nil %>
 <% subtitle ||= nil %>
 <% no_padding ||= false %>
+<% classes ||= '' %>
 
 <div class="hidden" data-lightbox-target="content">
-  <div data-lightbox-target="close" class="animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" style="z-index: 9999;">
+  <div data-lightbox-target="close" class="animated fadeIn fixed inset-0 overflow-y-auto flex sm:items-center items-end justify-center" style="z-index: 9999;">
     <!-- Modal Inner Container -->
     <div class="max-h-screen w-full max-w-xl relative">
       <!-- Modal Card -->
-      <div class="m-1 bg-contrast-50 rounded-lg shadow overflow-hidden">
+      <div class="bg-contrast-50 rounded-t-lg sm:rounded-lg shadow overflow-hidden">
         <div class="w-full bg-white px-4 sm:px-8 py-4 flex items-center justify-between border-b border-gray-200">
           <div>
             <h4 class="text-lg"><%= title %></h4>
@@ -20,9 +21,9 @@
           <% end %>
         </div>
         <% if no_padding %>
-          <div class="relative">
+          <div class="relative <%= classes %>">
         <% else %>
-          <div class="p-4 sm:p-8 relative">
+          <div class="p-2 sm:p-8 relative <%= classes %>">
         <% end %>
           <%= yield %>
         </div>

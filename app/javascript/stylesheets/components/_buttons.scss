@@ -66,14 +66,14 @@
 }
 
 .icon-btn.white {
-  @apply bg-white bg-opacity-20;
+  @apply bg-white border border-gray-200 hover:border-gray-300;
 
   svg {
-    @apply text-white;
+    @apply text-gray-400;
   }
 
   &:hover {
-    @apply bg-white bg-opacity-90;
+    @apply bg-white;
 
     svg {
       @apply text-gray-800;

@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
 
   def show
     @current_user_course_member = @course.course_members.find_by(group_member: current_user.group_members)
+    @page = @course.page
     set_breadcrumbs
   end
 

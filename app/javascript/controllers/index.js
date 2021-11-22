@@ -3,6 +3,9 @@
 
 import { application } from "./application"
 
+import AccordionController from "./accordion_controller"
+application.register("accordion", AccordionController)
+
 import AlertController from "./alert_controller"
 application.register("alert", AlertController)
 
@@ -47,6 +50,9 @@ application.register("section-sortable", SectionSortableController)
 
 import SegmentedControlController from "./segmented_control_controller"
 application.register("segmented-control", SegmentedControlController)
+
+import SlideMenuController from "./slide_menu_controller"
+application.register("slide-menu", SlideMenuController)
 
 import SliderController from "./slider_controller"
 application.register("slider", SliderController)
