@@ -19,9 +19,11 @@ import "bootstrap";
 import { initTippy } from '../components/tippy';
 import { initMediaPlayerPlayingStatus } from '../components/media_player_playing_status';
 import { sendAuthenticatedPostMessage } from '../components/authenticated_post_message';
+import { initReceivePostMessage } from '../components/receive_post_message';
 
 document.addEventListener('turbo:load', () => {
   // Call your functions here, e.g:
+  initReceivePostMessage()
   sendAuthenticatedPostMessage()
   initTippy()
   initMediaPlayerPlayingStatus()
