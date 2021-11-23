@@ -35,7 +35,7 @@
         </div>
       <% end %>
       <% if page_references.count > shown_count %>
-        <%= render 'page_references/show_more.html.erb' %>
+        <%= render 'page_references/show_more', hidden_count: page_references.count - shown_count + 1 %>
       <% end %>
     </div>
   </div>
