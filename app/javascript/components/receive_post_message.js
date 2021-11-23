@@ -2,7 +2,7 @@ let eventListenerAdded = false
 
 const initReceivePostMessage = () => {
 	if (!eventListenerAdded) {
-		window.addEventListener("message", (event)=>{
+		document.addEventListener("message", (event)=>{
 			if (event.data && event.data.type === 'expo:safe-area-insets') {
 				receiveSafeAreaInsets(event)
 			}
