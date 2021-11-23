@@ -16,6 +16,7 @@ class Uploader {
       if (error) {
         console.log(error)
       } else {
+        debugger
         this.onLoad(blob.signed_id)
       }
     })

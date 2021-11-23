@@ -2,7 +2,7 @@
   @apply p-1 w-1/2 cursor-pointer;
 
   .show-more-card {
-    @apply border border-gray-200 w-full rounded-2xl h-40 flex items-end bg-white border-dashed;
+    @apply border border-gray-200 w-full h-full rounded-xl flex items-end bg-white border-dashed;
 
     .show-more-card-info {
       @apply flex items-center justify-between w-full p-4;
