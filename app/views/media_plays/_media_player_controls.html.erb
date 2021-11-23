@@ -7,7 +7,9 @@
       <h6 data-media-target='timeLeft' class="text-xs text-gray-400 tracking-wider">0:00</h6>
     </div>
   </div>
-  <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-media-target="audio" data-media-playing-value="<%= playing %>" data-media-url-value="<%= media_play_url(media_play) %>" data-media-progress-value="<%= media_play.progress %>" class="hidden"></audio>
+  <audio src="<%= cl_video_path(media_play.mediable.file.key) %>" data-media-target="audio" data-media-playing-value="<%= playing %>" data-media-url-value="<%= media_play_url(media_play) %>" data-media-progress-value="<%= media_play.progress %>" class="hidden">
+    <source src="<%= cl_video_path(media_play.mediable.file.key) %>" type="audio/mp3" />
+  </audio>
   <div class="flex items-center justify-between mx-auto w-64">
     <%= link_to '#', data: {media_target: 'rev15', action: 'media#rev15'}, class:"h-16 w-16 rounded-full flex items-center justify-center flex-shrink-0 text-gray-400 hover:text-gray-800" do %>
       <%= render 'icons/rev_15', classes: "stroke-current h-8 w-8" %>

@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import Plyr from 'plyr';
 
 const updateInterval = 30 // 30s between updates
 
@@ -13,6 +14,7 @@ export default class extends Controller {
 
   initialize() {
     this.listenForToggleFloatingMediaPlayer()
+    this.player = new Plyr(this.audioTarget);
   }
 
   audioTargetConnected(element) {
@@ -69,7 +71,7 @@ export default class extends Controller {
       _this.updateProgress()
     });
     // remove loading screen when can play
-    this.sound.addEventListener('canplay', (e) => {
+    this.audioTarget.addEventListener('ready', (e) => {
       _this.prepareControls()
     })
     this.sound.addEventListener('durationchange', (e) => {
