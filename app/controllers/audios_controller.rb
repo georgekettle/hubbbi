@@ -1,5 +1,5 @@
 class AudiosController < ApplicationController
-  before_action :set_audio, only: [:edit, :update]
+  before_action :set_audio, only: [:edit, :update, :destroy]
 
   def edit
   end
@@ -10,6 +10,11 @@ class AudiosController < ApplicationController
     else
       render :edit, alert: "Oops... Something went wrong when updating audio"
     end
+  end
+
+  def destroy
+    @audio.destroy
+    redirect_to edit_sections_page_path(@audio.page), notice: "Audio successfully deleted"
   end
 
   private
