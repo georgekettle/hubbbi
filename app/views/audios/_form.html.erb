@@ -1,4 +1,7 @@
-<%= simple_form_for audio do |f| %>
+<% section ||= nil %>
+<% path = section ? [section, audio] : audio %>
+
+<%= simple_form_for path do |f| %>
   <%= f.label :file, label: 'Audio' %>
   <%= f.file_field :file,
           direct_upload: true,

@@ -2,7 +2,7 @@
 <% classes ||= "" %>
 
 <div class="w-<%= size %> h-<%= size %> rounded bg-gray-200 flex-shrink-0 flex items-center justify-center overflow-hidden <%= classes %>">
-  <% if audio.cover.attached? %>
+  <% if audio && audio.cover.attached? %>
     <%= cl_image_tag(audio.cover.key, :width => 200, :height => 200, :crop => :fill) %>
   <% else %>
     <%= render 'icons/audio', classes: 'stroke-current text-gray-800 h-4 w-4' %>

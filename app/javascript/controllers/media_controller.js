@@ -14,10 +14,10 @@ export default class extends Controller {
 
   initialize() {
     this.listenForToggleFloatingMediaPlayer()
-    this.player = new Plyr(this.audioTarget);
   }
 
   audioTargetConnected(element) {
+    this.player = new Plyr(this.audioTarget)
     this.sound = this.audioTarget
     this.sound.readyState >= 2 && this.prepareControls()
     this.initValues()
