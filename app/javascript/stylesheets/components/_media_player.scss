@@ -1,5 +1,27 @@
 #modal_media_player {
 	.plyr {
-		@apply hidden;
+		.plyr__controls {
+			@apply p-0;
+
+			& > * {
+				@apply hidden;
+			}
+
+			.plyr__controls__item {
+				@apply p-0;
+			}
+
+			.plyr__progress__container {
+				@apply block w-full m-0;
+
+				input {
+					@apply ring-0 text-gray-800;
+				}
+
+				.plyr__progress__buffer {
+					@apply bg-gray-50 text-gray-400 border border-gray-50;
+				}
+			}
+		}
 	}
 }
