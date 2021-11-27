@@ -4,7 +4,7 @@ import Plyr from 'plyr';
 const updateInterval = 30 // 30s between updates
 
 export default class extends Controller {
-  static targets = ["audio", "play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "mediaControlsContainer", "mediaControlsContainerLoading", "floatingMediaPlayer"]
+  static targets = ["audio", "play", "pause", "next", "progress", "progressContainer", "currentTime", "timeLeft", "ffwd15", "rev15", "floatingMediaPlayer"]
   static values = {
     playing: Boolean,
     url: String,
@@ -18,11 +18,9 @@ export default class extends Controller {
 
   audioTargetConnected(element) {
     this.player = new Plyr(this.audioTarget)
-    this.sound = this.audioTarget
-    this.sound.readyState >= 2 && this.prepareControls()
     this.initValues()
     this.initEventListeners()
-    this.playingValue && this.sound.play()
+    this.playingValue && this.player.play()
     this.incomplete = true
   }
 
@@ -53,32 +51,28 @@ export default class extends Controller {
 
   prepareControls() {
     this.updateProgress()
-    this.dismissLoadingControls()
   }
 
   initEventListeners() {
     const _this = this
     // listen to play
-    this.sound.addEventListener('play', (e) => {
+    this.player.on('play', (e) => {
       _this.updateControls()
     })
-    this.sound.addEventListener('pause', (e) => {
+    this.player.on('pause', (e) => {
       _this.updateControls()
     })
     // update progress as song plays
-    this.sound.addEventListener('timeupdate', (e) => {
+    this.player.on('timeupdate', (e) => {
       // console.log('timeupdate')
       _this.updateProgress()
     });
     // remove loading screen when can play
     this.audioTarget.addEventListener('ready', (e) => {
       _this.prepareControls()
-    })
-    this.sound.addEventListener('durationchange', (e) => {
-      // console.log('durationchange')
       _this.setStartingProgress()
     })
-    this.sound.addEventListener('ended', (e) => {
+    this.player.on('ended', (e) => {
       _this.playNextSong()
     })
     document.addEventListener('turbo:load', () => {
@@ -86,23 +80,14 @@ export default class extends Controller {
     });
   }
 
-  dismissLoadingControls() {
-    this.mediaControlsContainerLoadingTargets.forEach((loadingTarget) => {
-      loadingTarget.classList.add('hidden')
-    })
-    this.mediaControlsContainerTargets.forEach((mediaContainerTarget) => {
-      mediaContainerTarget.classList.remove('hidden')
-    })
-  }
-
   updateControls() {
     this.playTargets.forEach((play) => {
-      this.sound.paused && play.classList.remove('hidden')
-      !this.sound.paused && play.classList.add('hidden')
+      this.player.paused && play.classList.remove('hidden')
+      !this.player.paused && play.classList.add('hidden')
     })
     this.pauseTargets.forEach((pause) => {
-      this.sound.paused && pause.classList.add('hidden')
-      !this.sound.paused && pause.classList.remove('hidden')
+      this.player.paused && pause.classList.add('hidden')
+      !this.player.paused && pause.classList.remove('hidden')
     })
   }
 
@@ -121,9 +106,9 @@ export default class extends Controller {
   }
 
   setStartingProgress() {
-    const currentTime = this.sound.duration * (this.progressValue / 100)
+    const currentTime = this.player.duration * (this.progressValue / 100)
     if (isFinite(currentTime)) {
-      this.sound.currentTime = currentTime
+      this.player.currentTime = currentTime
     }
     this.lastSavedTime = currentTime
   }
@@ -132,9 +117,9 @@ export default class extends Controller {
   updateProgress() {
     // set progress bar
     const _this = this
-    const { duration, currentTime } = this.sound
-    const progressPercent = (currentTime / duration) * 100
-    const timeLeft = duration - currentTime
+    const { duration, currentTime } = this.player
+    const progressPercent = (this.player.currentTime / this.player.duration) * 100
+    const timeLeft = this.player.duration - this.player.currentTime
     // set progress percent
     this.progressTargets.forEach((progress) => {
       progress.style.width = `${progressPercent}%`
@@ -162,9 +147,9 @@ export default class extends Controller {
     const clickX = e.offsetX
     // set currentTime
     if (width > 0) {
-      this.sound.currentTime = (clickX / width) * this.sound.duration
+      this.player.currentTime = (clickX / width) * this.player.duration
     }
-    if (this.sound.paused) {
+    if (this.player.paused) {
       this.pause()
     } else {
       this.play()
@@ -173,22 +158,22 @@ export default class extends Controller {
 
   play(e) {
     e && e.preventDefault()
-    this.sound.play()
+    this.player.play()
     this.playingValue = true
     this.updateControls()
   }
 
   pause(e) {
     e && e.preventDefault()
-    this.sound.pause()
+    this.player.pause()
     this.playingValue = false
     this.updateControls()
   }
 
   ffwd15(e) {
     e.preventDefault()
-    this.sound.currentTime += 15
-    if (this.sound.currentTime === this.sound.duration && this.incomplete) {
+    this.player.currentTime += 15
+    if (this.player.currentTime === this.player.duration && this.incomplete) {
       this.updateProgress()
       this.playNextSong()
     }
@@ -196,9 +181,9 @@ export default class extends Controller {
 
   rev15(e) {
     e.preventDefault()
-    const startOfSong = this.sound.currentTime === 0
+    const startOfSong = this.player.currentTime === 0
     if (!startOfSong) {
-      this.sound.currentTime = this.sound.currentTime -= 15
+      this.player.currentTime = this.player.currentTime -= 15
     }
   }
 
