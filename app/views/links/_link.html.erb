@@ -5,7 +5,7 @@
     <div class="w-full shadow-sm rounded-lg p-2 pr-12 flex items-center justify-between border border-gray-200 hover:border-gray-300 bg-white inline-block">
       <div class="flex items-center">
         <% if link.cover.attached? %>
-          <div class="rounded h-12 w-12 overflow-hidden mr-2 flex-shrink-0" style="background-size: cover; background-image: url(<%= cl_image_path(link.cover.key) %>)"></div>
+          <div class="rounded h-12 w-12 overflow-hidden mr-2 flex-shrink-0 bg-gray-200" style="background-size: cover; background-image: url(<%= cl_image_path(link.cover.key, height: 200, width: 200, crop:  :fill) %>)"></div>
         <% end %>
         <div class="m-2 line-clamp-2">
           <h4 class="leading-tight"><%= link.title %></h4>
