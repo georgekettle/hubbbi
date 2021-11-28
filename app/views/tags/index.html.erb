@@ -1,10 +1,11 @@
 <%= render "components/headers/header", header: "#{params[:name]}", subheader: "Tag results" %>
 <%= render "shared/container", classes: "p-4 flex flex-col items-center" do %>
 	<div data-controller="segmented-control" class="w-full">
-		<div class="mb-4 max-w-lg mx-auto">
+		<div class="mb-4">
 	    <%= render 'components/segmented_control',
 	                  options: [
 	                        {title: "Pages (#{@pages.length})", name:'tags', value:'true', id: 'pages', checked: true},
+	                        {title: "Videos (#{@videos.length})", name:'tags', value:'false', id: 'videos', checked: false},
 	                        {title: "Audios (#{@audios.length})", name:'tags', value:'false', id: 'audios', checked: false},
 	                    ] %>
 	  </div>
@@ -12,6 +13,12 @@
 			<%= render "components/headers/section_header", title: "Pages", icon:"library" %>
 			<% @pages.each do |page| %>
 				<%= render 'pages/list_item', page: page %>
+			<% end %>
+		</div>
+		<div id="videos-toggle-content" class="segmented-option-content">
+			<%= render "components/headers/section_header", title: "Videos", icon:"video" %>
+			<% @videos.each do |video| %>
+				<%= render 'videos/list_item', video: video %>
 			<% end %>
 		</div>
 		<div id="audios-toggle-content" class="segmented-option-content">

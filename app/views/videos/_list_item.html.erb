@@ -1,0 +1,17 @@
+<%= link_to page_path(video.page, anchor: "video-#{video.id}"), class: "group w-full relative hover:bg-black hover:bg-opacity-5 rounded-lg inline-block" do %>
+  <div class="w-full flex items-center justify-between p-1">
+		<div class="flex items-center">
+		  <% image_path = video.url.present? ? video.info.thumbnail_small : video.image_preview_url %>
+		  <div class="rounded h-12 w-12 overflow-hidden bg-center bg-cover" style="background-image: url(<%= image_path %>)"></div>
+		  <div class="ml-2">
+		    <h4 class="line-clamp-1"><%= video.title %></h4>
+		    <% if video.subtitle %>
+		      <p class="text-xs text-gray-400 line-clamp-1"><%= video.subtitle %></p>
+		    <% end %>
+		  </div>
+		</div>
+		<div class="h-8 w-8 hover:shadow rounded-full flex items-center justify-center flex-shrink-0 mr-1 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 group-hover:bg-white cursor-pointer">
+      <%= render "icons/arrow_right" %>
+    </div>
+  </div>
+<% end %>
