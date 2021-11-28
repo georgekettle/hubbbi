@@ -69,6 +69,12 @@ export default class extends Controller {
     }
 
     this.applyFilters()
+    this.dispatchCarouselResizeEvent()
+  }
+
+  dispatchCarouselResizeEvent() {
+    let event = new Event("carousel-resize");
+    window.dispatchEvent(event);
   }
 
   hideExtras() {
