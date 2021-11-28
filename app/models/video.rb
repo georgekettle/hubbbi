@@ -14,6 +14,8 @@ class Video < ApplicationRecord
   def info
     return nil unless url.present?
     video = VideoInfo.new(url)
+  rescue
+    return nil
   end
 
   def image_preview_url
