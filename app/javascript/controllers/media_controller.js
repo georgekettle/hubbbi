@@ -62,11 +62,10 @@ export default class extends Controller {
     })
     // update progress as song plays
     this.player.on('timeupdate', (e) => {
-      // console.log('timeupdate')
       _this.updateProgress()
     });
     // remove loading screen when can play
-    this.audioTarget.addEventListener('ready', (e) => {
+    this.audioTarget.addEventListener('durationchange', (e) => {
       _this.setStartingProgress()
     })
     this.player.on('ended', (e) => {
