@@ -17,7 +17,9 @@ export default class extends Controller {
   }
 
   audioTargetConnected(element) {
-    this.player = new Plyr(this.audioTarget)
+    this.player = new Plyr(this.audioTarget, {
+      hideControls: false
+    })
     this.initValues()
     this.initEventListeners()
     this.playingValue && this.player.play()
@@ -49,10 +51,6 @@ export default class extends Controller {
     this.dispatchWindowPauseEvent(!value)
   }
 
-  prepareControls() {
-    this.updateProgress()
-  }
-
   initEventListeners() {
     const _this = this
     // listen to play
@@ -69,10 +67,13 @@ export default class extends Controller {
     });
     // remove loading screen when can play
     this.audioTarget.addEventListener('ready', (e) => {
-      _this.prepareControls()
       _this.setStartingProgress()
     })
     this.player.on('ended', (e) => {
+      console.log('ended')
+      console.log(this.player.currentTime)
+      console.log(this.player.duration)
+      debugger
       _this.playNextSong()
     })
     document.addEventListener('turbo:load', () => {
@@ -111,13 +112,13 @@ export default class extends Controller {
       this.player.currentTime = currentTime
     }
     this.lastSavedTime = currentTime
+    this.updateProgress()
   }
 
   // Update progress bar
   updateProgress() {
     // set progress bar
     const _this = this
-    const { duration, currentTime } = this.player
     const progressPercent = (this.player.currentTime / this.player.duration) * 100
     const timeLeft = this.player.duration - this.player.currentTime
     // set progress percent
@@ -126,15 +127,15 @@ export default class extends Controller {
     })
     // set currentTime
     this.currentTimeTargets.forEach((currentTimeTarget) => {
-      currentTimeTarget.innerText = this.secondsToTime(currentTime)
+      currentTimeTarget.innerText = this.secondsToTime(this.player.currentTime)
     })
     // set timeLeft
     this.timeLeftTargets.forEach((timeLeftTarget) => {
       timeLeftTarget.innerText = '-' + _this.secondsToTime(timeLeft)
     })
     // update media play if complete or more than 30s diff
-    if (currentTime != 100 && (Math.abs(currentTime - this.lastSavedTime)) > updateInterval) {
-      this.lastSavedTime = currentTime
+    if (this.player.currentTime != 100 && (Math.abs(this.player.currentTime - this.lastSavedTime)) > updateInterval) {
+      this.lastSavedTime = this.player.currentTime
       const body = { "media_play": { "progress": progressPercent } }
       this.updateProgressRequest(body)
     }
@@ -173,10 +174,6 @@ export default class extends Controller {
   ffwd15(e) {
     e.preventDefault()
     this.player.currentTime += 15
-    if (this.player.currentTime === this.player.duration && this.incomplete) {
-      this.updateProgress()
-      this.playNextSong()
-    }
   }
 
   rev15(e) {

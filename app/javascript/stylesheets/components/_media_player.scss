@@ -1,7 +1,16 @@
 #modal_media_player {
 	.plyr {
+		@apply bg-none;
+		background: none;
+
+		.plyr__video-wrapper,
+		.plyr__control--overlaid {
+			@apply hidden;
+		}
+
 		.plyr__controls {
-			@apply p-0;
+			@apply p-0 relative block bg-none w-full;
+			padding: 0px 1px;
 
 			& > * {
 				@apply hidden;
