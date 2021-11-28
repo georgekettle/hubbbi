@@ -69,10 +69,6 @@ export default class extends Controller {
       _this.setStartingProgress()
     })
     this.player.on('ended', (e) => {
-      console.log('ended')
-      console.log(this.player.currentTime)
-      console.log(this.player.duration)
-      debugger
       _this.playNextSong()
     })
     document.addEventListener('turbo:load', () => {
@@ -173,6 +169,10 @@ export default class extends Controller {
   ffwd15(e) {
     e.preventDefault()
     this.player.currentTime += 15
+    if (this.player.currentTime === this.player.duration && this.incomplete) {
+      this.updateProgress()
+      this.playNextSong()
+    }
   }
 
   rev15(e) {
@@ -230,3 +230,4 @@ export default class extends Controller {
     })
   }
 }
+
