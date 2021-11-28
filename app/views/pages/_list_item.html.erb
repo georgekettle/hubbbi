@@ -1,8 +1,10 @@
 <%= link_to page_path(page), class: "group w-full relative hover:bg-black hover:bg-opacity-5 rounded-lg inline-block" do %>
   <div class="w-full flex items-center justify-between p-1">
 		<div class="flex items-center">
-		  <% image_path = page.cover.attached? ? cl_image_path(page.cover.key, height: 200, width: 200, crop: :fill) : asset_path('default_cover.svg') %>
-		  <div class="rounded h-12 w-12 overflow-hidden" style="background-size: cover; background-image: url(<%= image_path %>)"></div>
+		  <% image_path = page.cover.attached? ? cl_image_path(page.cover.key, height: 200, width: 200, crop: :fill) : '' %>
+		  <div class="rounded h-12 w-12 overflow-hidden bg-center bg-cover bg-gray-200 group-hover:bg-white text-gray-400 flex items-center justify-center" style="background-image: url(<%= image_path %>)">
+		  	<%= render('icons/page', classes: 'stroke-current h-4 w-4') unless page.cover.attached? %>
+		  </div>
 		  <div class="ml-2">
 		    <h4 class="line-clamp-1"><%= page.title %></h4>
 		    <% if page.subtitle %>
