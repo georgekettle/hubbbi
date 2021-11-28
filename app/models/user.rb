@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :group_members, dependent: :destroy
   has_many :groups, through: :group_members
+  has_many :course_members, through: :group_members
+  has_many :courses, through: :course_members
 
   belongs_to :selected_group_member, class_name: 'GroupMember', :foreign_key => 'selected_group_member_id', optional: true
   has_one :selected_group, through: :selected_group_member, :source => :group

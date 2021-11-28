@@ -11,4 +11,8 @@ class Audio < ApplicationRecord
 
   # tags
   acts_as_taggable_on :tags
+
+  def course
+    page.course || page.belonging_to_course
+  end
 end

@@ -1,0 +1,14 @@
+<%= link_to page_path(audio.page, anchor: "audio-#{audio.id}"), class: "group w-full relative hover:bg-black hover:bg-opacity-5 rounded-lg inline-block" do %>
+  <div class="w-full flex items-center justify-between p-1">
+		<div class="flex items-center">
+		  <% image_path = audio.cover.attached? ? cl_image_path(audio.cover.key, height: 200, width: 200, crop: :fill) : asset_path('default_cover.svg') %>
+		  <div class="rounded h-12 w-12 overflow-hidden" style="background-size: cover; background-image: url(<%= image_path %>)"></div>
+		  <div class="ml-2">
+		    <h4 class="line-clamp-1"><%= audio.title %></h4>
+		  </div>
+		</div>
+		<div class="h-8 w-8 hover:shadow rounded-full flex items-center justify-center flex-shrink-0 mr-1 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 group-hover:bg-white cursor-pointer">
+      <%= render "icons/arrow_right" %>
+    </div>
+  </div>
+<% end %>
