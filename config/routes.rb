@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     sessions: "sessions",
     passwords: "passwords" }
 
+  get 'tags/:name', to: 'tags#index', as: :tags
+
   resources :groups do
     resources :group_members, only: [:index]
     resources :courses, only: [:new, :create]

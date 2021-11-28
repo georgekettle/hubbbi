@@ -1,15 +1,27 @@
 .tag {
-  @apply py-1.5 px-2.5 rounded-lg cursor-pointer border-2 border-gray-100 hover:border-gray-200 whitespace-nowrap;
+  @apply py-1.5 px-2.5 rounded-lg cursor-pointer border-2 border-gray-100 hover:border-gray-200 whitespace-nowrap flex items-center justify-center;
 
   h4 {
     @apply text-sm;
   }
+
+  a {
+    @apply bg-white text-gray-800 h-0 w-0 items-center justify-center ml-0 rounded-full transform transition-transform duration-200 scale-0 invisible;
+  
+    svg {
+      @apply h-5 w-5 stroke-current
+    }
+  }
 }
 
 .active .tag {
-  @apply bg-gray-800 border-gray-800;
+  @apply bg-gray-800 border-gray-800 py-1 pr-1.5;
 
   h4 {
     @apply text-white;
+  }
+
+  a {
+    @apply h-6 w-6 flex ml-2 scale-100 visible;
   }
 }

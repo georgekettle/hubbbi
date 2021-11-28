@@ -44,6 +44,9 @@ export default class extends Controller {
     // Listen for when a tab changes and resize carousel
     window.addEventListener('tsc:tab-change', e => this.flkty.resize())
 
+    // Listen for when a tab changes and resize carousel
+    window.addEventListener('carousel-resize', e => this.flkty.resize())
+
     // resize on document load
     document.addEventListener('turbo:load', e => this.flkty.resize());
   }

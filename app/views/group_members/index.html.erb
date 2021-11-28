@@ -20,7 +20,7 @@
   <% if policy(@group).update? %>
     <div data-controller="segmented-control">
       <div class="mb-4">
-        <%= render 'videos/segmented_control',
+        <%= render 'components/segmented_control',
                     options: [
                           { title: "Members", id: 'members', checked: ['members', nil].include?(params[:section]) },
                           { title: "Invites", id: 'invites', checked: params[:section] == 'invites' },

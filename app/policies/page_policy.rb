@@ -1,4 +1,12 @@
 class PagePolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.select do |page|
+        user.courses.include?(page.belonging_to_course)
+      end
+    end
+  end
+
   def show?
     course_member? || admin_or_editor?
   end
