@@ -14,7 +14,9 @@ class Video < ApplicationRecord
   def info
     return nil unless url.present?
     video = VideoInfo.new(url)
-  rescue
+  rescue OpenURI::HTTPError => e
+    return nil
+  rescue VideoInfo::HttpError => e
     return nil
   end
 
