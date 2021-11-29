@@ -1,7 +1,7 @@
 <% size ||= 12 %>
 <% classes ||= "" %>
 
-<div class="w-<%= size %> h-<%= size %> rounded bg-gray-200 flex-shrink-0 flex items-center justify-center overflow-hidden <%= classes %>">
+<div class="w-<%= size %> h-<%= size %> rounded bg-gray-200 border border-white flex-shrink-0 flex items-center justify-center overflow-hidden <%= classes %>">
   <% if audio && audio.cover.attached? %>
     <%= cl_image_tag(audio.cover.key, :width => 200, :height => 200, :crop => :fill) %>
   <% else %>

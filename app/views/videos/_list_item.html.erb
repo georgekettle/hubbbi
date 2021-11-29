@@ -1,7 +1,7 @@
 <%= link_to page_path(video.page, anchor: "video-#{video.id}"), class: "group w-full relative hover:bg-black hover:bg-opacity-5 rounded-lg inline-block" do %>
   <div class="w-full flex items-center justify-between p-1">
 		<div class="flex items-center">
-		  <div class="rounded h-12 w-12 overflow-hidden bg-center bg-cover bg-gray-200 group-hover:bg-white text-gray-400 flex items-center justify-center">
+		  <div class="rounded h-12 w-12 overflow-hidden bg-center bg-cover bg-gray-200 border border-white text-gray-800 flex items-center justify-center">
 		  	<%= render('icons/video', classes: 'stroke-current h-4 w-4') %>
 		  </div>
 		  <div class="ml-2">
