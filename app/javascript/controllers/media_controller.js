@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import Plyr from 'plyr';
+import { v4 as uuidv4 } from 'uuid';
 
 const updateInterval = 30 // 30s between updates
 
@@ -9,7 +10,7 @@ export default class extends Controller {
     playing: Boolean,
     url: String,
     groupMemberUrl: String,
-    progress: Number
+    progress: Number,
   }
 
   initialize() {
@@ -17,13 +18,27 @@ export default class extends Controller {
   }
 
   audioTargetConnected(element) {
+    const hasId = element.dataset.uuid
+    if (!hasId) {
+      element.dataset.uuid = uuidv4()
+      this.initPlayer()
+    }
+  }
+
+  initPlayer() {
     this.player = new Plyr(this.audioTarget, {
       hideControls: false
     })
+    this.currentMediaTarget = this.audioTarget
     this.initValues()
     this.initEventListeners()
     this.playingValue && this.player.play()
     this.incomplete = true
+  }
+
+  audioTargetDisconnected(element) {
+    console.log('disconnecting')
+    console.log(element)
   }
 
   initValues() {
