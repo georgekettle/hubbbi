@@ -1,21 +1,27 @@
 let eventListenerAdded = false
+let spacerEventListenerAdded = false
 
 const initReceivePostMessage = () => {
 	if (!eventListenerAdded) {
-		document.addEventListener("message", (event)=>{
-			if (event.data && event.data.type === 'expo:safe-area-insets') {
-				receiveSafeAreaInsets(event)
+		window.addEventListener("message", (event)=>{
+			const data = JSON.parse(event.data)
+			if (data && data["type"] === 'expo:safe-area-insets') {
+				receiveSafeAreaInsets(data)
 			}
 		})
 		eventListenerAdded = true
 	}
 }
 
-const receiveSafeAreaInsets = (event) => {
-	console.log("initReceivePostMessage")
-	console.log(event)
-	console.log(event.data)
-	alert(event.data)
+const receiveSafeAreaInsets = (data) => {
+	if (!spacerEventListenerAdded) {
+		document.addEventListener('turbo:render', (event) => {
+			document.querySelectorAll('#native-spacer__top').forEach((spacer) => {
+				spacer.style.height = `${data.insets.top}px`
+			})
+		})
+		spacerEventListenerAdded = true
+	}
 }
 
 export { initReceivePostMessage }

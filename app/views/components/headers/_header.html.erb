@@ -3,25 +3,28 @@
 <% subheader ||= nil %>
 <% header_link ||= nil %>
 
-<div id="header" class="shadow-sm bg-white top-0 w-full flex-shrink-0 h-14 top-0 sticky" style="z-index: 998">
-  <%= render 'shared/container', classes: 'flex items-center px-2' do %>
-    <div class="w-full flex items-center justify-between relative py-3 px-2 lg:px-0">
+<div id="header" class="shadow-sm bg-white top-0 w-full flex-shrink-0 top-0 sticky" style="z-index: 998">
+  <div id="native-spacer__top" class="w-full"></div>
+  <div class="h-14 w-full">
+    <%= render 'shared/container', classes: 'flex items-center px-2' do %>
+      <div class="w-full flex items-center justify-between relative py-3 px-2 lg:px-0">
 
-      <div id='header-left'>
-        <% unless hide_back_link %>
-          <%= link_to back_link, class: 'icon-btn' do %>
-            <%= render 'icons/arrow_left' %>
+        <div id='header-left'>
+          <% unless hide_back_link %>
+            <%= link_to back_link, class: 'icon-btn' do %>
+              <%= render 'icons/arrow_left' %>
+            <% end %>
           <% end %>
-        <% end %>
 
-        <%= yield(:header_left) if content_for?(:header_left) %>
-      </div>
+          <%= yield(:header_left) if content_for?(:header_left) %>
+        </div>
 
-      <div id="header-right" class="flex items-center">
-        <%= yield %>
+        <div id="header-right" class="flex items-center">
+          <%= yield %>
+        </div>
       </div>
-    </div>
-    <!-- header title (in center) -->
-    <%= render 'components/headers/header_title', header: header, subheader: subheader %>
-  <% end %>
+      <!-- header title (in center) -->
+      <%= render 'components/headers/header_title', header: header, subheader: subheader %>
+    <% end %>
+  </div>
 </div>
