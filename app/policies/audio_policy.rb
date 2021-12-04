@@ -6,4 +6,14 @@ class AudioPolicy < ApplicationPolicy
       end
     end
   end
+
+  def update?
+    group_admin_or_editor?
+  end
+
+  private
+
+  def group_admin_or_editor?
+    record.course.group.group_members.find_by(role: ["admin", "editor"], user: user).present?
+  end
 end
