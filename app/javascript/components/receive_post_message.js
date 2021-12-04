@@ -19,6 +19,9 @@ const receiveSafeAreaInsets = (data) => {
 			document.querySelectorAll('#native-spacer__top').forEach((spacer) => {
 				spacer.style.height = `${data.insets.top}px`
 			})
+			document.querySelectorAll('#native-spacer__bottom').forEach((spacer) => {
+				spacer.style.height = `${data.insets.bottom}px`
+			})
 		})
 		spacerEventListenerAdded = true
 	}
