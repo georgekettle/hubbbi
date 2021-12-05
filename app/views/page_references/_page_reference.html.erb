@@ -18,7 +18,7 @@
       <% end %>
     <% else %>
       <% is_complete = Current.group_member.progress_percent(page).round() == 100 %>
-      <div class="bg-white rounded p-1 px-1.5 flex items-center <%= is_complete ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 transition-opacity duration-300 transition-transform transform scale-50 group-hover:scale-100' %>">
+      <div class="bg-white rounded-full p-1 px-1.5 flex items-center shadow-sm <%= is_complete ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 transition-opacity duration-300 transition-transform transform scale-50 group-hover:scale-100' %>">
         <div class="<%= is_complete ? 'bg-green-800 border-2 border-white' : 'bg-green-100' %> rounded-full w-5 h-5 flex items-center justify-cente relative">
           <%= render 'components/progress_circle', progress: Current.group_member.progress_percent(page).round(), classes: "text-green-800 w-6" %>
           <%= render('icons/check', classes: "w-2 h-2 stroke-current text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 absolute", stroke: 3) if is_complete %>
