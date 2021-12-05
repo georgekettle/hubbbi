@@ -1,5 +1,7 @@
 class Course < ApplicationRecord
   include SubInvitable
+  include PgSearch::Model
+  multisearchable against: [:title, :description]
 
   belongs_to :group
   belongs_to :page, dependent: :destroy
