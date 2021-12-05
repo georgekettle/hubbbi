@@ -89,3 +89,5 @@ gem 'acts_as_list'
 gem 'video_info'
 # for breadcrumb navigation on pages
 gem "loaf"
+# recursive pages
+gem 'closure_tree'

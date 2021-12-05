@@ -1,4 +1,6 @@
 class Page < ApplicationRecord
+  has_closure_tree
+  
   has_one :course
   # targeting child associations of pages
   has_many :sections, -> { order(:position) }, dependent: :destroy

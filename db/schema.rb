@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_025701) do
+ActiveRecord::Schema.define(version: 2021_12_05_014523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 2021_11_19_025701) do
     t.index ["mediable_type", "mediable_id"], name: "index_media_plays_on_mediable"
   end
 
+  create_table "page_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id", null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations", null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "page_anc_desc_idx", unique: true
+    t.index ["descendant_id"], name: "page_desc_idx"
+  end
+
   create_table "page_references", force: :cascade do |t|
     t.bigint "page_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -153,6 +161,7 @@ ActiveRecord::Schema.define(version: 2021_11_19_025701) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parent_id"
   end
 
   create_table "pdfs", force: :cascade do |t|
