@@ -1,0 +1,3 @@
+<% if @progression.progressable_type == 'Page' %>
+  <%= turbo_stream.replace dom_id(@progression, :page_button), partial: "pages/progressions/button", locals: { page: @progression.progressable } %>
+<% end %>

@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     end
   end
   resources :attachments, only: :destroy
+  resources :progressions, only: [:create, :update]
 
   # video direct uploads require custom route for cloudinary_video service
   resources :cloudinary_video_direct_uploads, only: :create

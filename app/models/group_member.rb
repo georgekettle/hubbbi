@@ -9,6 +9,7 @@ class GroupMember < ApplicationRecord
   has_many :courses, through: :course_members
   has_one :selected_user, class_name: 'User', :foreign_key => 'selected_group_member_id', dependent: :nullify
   has_many :media_plays, -> { order(:position) }, dependent: :destroy
+  has_many :progressions, dependent: :destroy
 
   has_one_attached :avatar
 
