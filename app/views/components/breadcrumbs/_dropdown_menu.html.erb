@@ -1,8 +1,8 @@
 <% parent_selector ||= "" %>
 
-<% page.child_pages.each do |child_page| %>
+<% page.children.each do |child_page| %>
 	<% is_active = @page.ancestors.include?(child_page) || @page == child_page %>
-	<% if child_page.child_pages.length > 0 %>
+	<% if child_page.children.length > 0 %>
 		<div data-controller="slide-menu" data-slide-menu-active-value="<%= is_active %>" data-slide-menu-parent-selector-value="<%= parent_selector %>">
 		  <div> <!-- parent must be a div -->
 		  	<div data-action="click->slide-menu#open" class="p-4 hover:bg-black hover:bg-opacity-5 rounded flex items-center justify-between">

@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb" data-controller="breadcrumbs" class="flex items-center pl-4">
-  <% if @course && @course.page.child_pages.length > 1 %>
+  <% if @course && @course.page.children.length > 1 %>
     <%= render 'components/breadcrumbs/dropdown_navigation' %>
   <% end %>
   <ol class="breadcrumbs no-scrollbar">

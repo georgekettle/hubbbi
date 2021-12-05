@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 
   def destroy
     @page.destroy
-    redirect_path = @page.has_parent? ? @page.parent_page : @page.belonging_to_course
+    redirect_path = @page.parent ? @page.parent : @page.belonging_to_course
     redirect_to redirect_path, notice: "You successfully deleted your page"
   end
 
