@@ -1,5 +1,5 @@
 <%= render "components/headers/header", header: @page.title, subheader: @page.subtitle, back_link: @page.parent_page || @page.belonging_to_course do %>
-  <%= render 'pages/progressions/button', page: @page %>
+  <%= render('pages/progressions/button', page: @page) if @page.leaf? %>
   <% if policy(@page).update? %>
     <%= render 'components/dropdowns/options_dropdown' do %>
       <%= link_to "Edit content", edit_sections_page_path(@page), class: "dropdown-link" %>
