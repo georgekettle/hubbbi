@@ -9,13 +9,15 @@
       <%= render "components/card", title: page.title, subtitle: page.subtitle, image: asset_path('default_cover.svg'), no_shadow: true, classes: 'aspect-h-9 aspect-w-16' %>
     <% end %>
   <% end %>
-  <% if editable %>
-    <div class="absolute top-4 left-4">
+  <div class="absolute top-4 left-4">
+    <% if editable %>
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn darken", direction: "left" do %>
         <%= link_to "Edit content", edit_sections_page_path(page), class: "dropdown-link" %>
         <%= link_to "Settings", settings_page_path(page), class: "dropdown-link" %>
         <%= link_to("Delete page", page_path(page), method: :delete, data: {confirm: "Are you sure you'd like to delete this page?"}, class: "dropdown-link-danger") %>
       <% end %>
-    </div>
-  <% end %>
+    <% else %>
+      <%= render 'components/progress_circle', progress: Current.group_member.progress_percent(page).round() %>
+    <% end %>
+  </div>
 </div>

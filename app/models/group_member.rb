@@ -28,9 +28,9 @@ class GroupMember < ApplicationRecord
     media_plays.where(complete: false)
   end
 
-  def progress_percent(course)
-    course_progressions = progressions.where(progressable: course.page.leaves)
-    course_progressions.sum(:current).fdiv(course.page.leaves.count)
+  def progress_percent(page)
+    course_progressions = progressions.where(progressable: page.leaves)
+    course_progressions.sum(:current).fdiv(page.leaves.count)
   end
 
   private

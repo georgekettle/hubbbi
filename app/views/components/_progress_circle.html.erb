@@ -1,0 +1,11 @@
+<% remaining_progress = 100 - progress %>
+<% stroke_dasharray = "#{251.2 * progress / 100},#{251.2 * remaining_progress / 100}" %>
+<svg viewbox="0 0 100 100" class="w-10">
+  <circle cx="50" cy="50" r="45" fill="#FDB900"/>
+  <path fill="none" stroke-linecap="round" stroke-width="5" stroke="#fff"
+        stroke-dasharray="<%= stroke_dasharray %>"
+        d="M50 10
+           a 40 40 0 0 1 0 80
+           a 40 40 0 0 1 0 -80"/>
+  <text x="50" y="50" text-anchor="middle" dy="7" font-size="20">100%</text>
+</svg>
