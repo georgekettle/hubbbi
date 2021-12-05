@@ -13,7 +13,6 @@ class GroupsController < ApplicationController
     session[:selected_group_id] = @group.id
     set_current_group
     @courses = Current.group_member.courses
-    @current_group = Current.group
   end
 
   def new
