@@ -15,10 +15,10 @@
         <div class="w-full pr-8">
           <div class="w-full flex items-center justify-between text-xs mb-1">
             <h6>Progress</h6>
-            <h6>76%</h6>
+            <h6><%= Current.group_member.progress_percent(course).round() %>%</h6>
           </div>
           <div class="progress-container">
-            <div class="progress" style="width: 76%"></div>
+            <div class="progress" style="width: <%= Current.group_member.progress_percent(course).round() %>%"></div>
           </div>
         </div>
         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-800 text-white flex items-center justify-center flex-shrink-0 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 cursor-pointer">

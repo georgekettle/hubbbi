@@ -10,6 +10,7 @@ module Sections
     def create
       authorize @section.page
       @page = Page.new(page_params)
+      @page.parent_id = @section.page.id
       page_reference = PageReference.new(page: @page)
       section_element = @section.section_elements.new(element: page_reference)
       if @section.save
