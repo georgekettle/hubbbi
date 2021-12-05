@@ -3,3 +3,4 @@ class AddParentIdToPages < ActiveRecord::Migration[6.1]
     add_column :pages, :parent_id, :integer
   end
 end
+
