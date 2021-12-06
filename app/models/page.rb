@@ -21,6 +21,18 @@ class Page < ApplicationRecord
   # tags
   acts_as_taggable_on :tags
 
+  def parent_page
+    page
+  end
+
+  def child_pages
+    pages
+  end
+
+  def has_parent?
+    !!page
+  end
+
   def belonging_to_course
     self.root.course
   end
