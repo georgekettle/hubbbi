@@ -9,6 +9,7 @@ class Course < ApplicationRecord
   has_one_attached :cover
 
   validates :title, presence: true
+  validates :description, presence: true, length: { minimum: 50, maximum: 200 }
 
   def add_user(group_member)
     existing_member = CourseMember.find_by(group_member: group_member, course: self)

@@ -6,19 +6,19 @@
     <div class="flex flex-col justify-between w-full p-4 xs:p-6">
       <div>
         <h4 class="leading-none mb-1"><%= course.title %></h4>
-        <p class="hidden sm:block text-xs text-gray-400 leading-tight mb-2 w-3/4"><%# course.description %></p>
+        <p class="hidden sm:block text-xs text-gray-400 leading-tight mb-2 w-3/4"><%= course.description %></p>
         <div class="hidden xs:block">
           <%= render 'components/avatars', group_members: course.group_members, size: 6, classes: "border border-white shadow" %>
         </div>
       </div>
       <div class="flex items-center space-between">
-        <div class="w-full pr-8 invisible">
+        <div class="w-full pr-8">
           <div class="w-full flex items-center justify-between text-xs mb-1">
             <h6>Progress</h6>
-            <h6>76%</h6>
+            <h6><%= Current.group_member.progress_percent(course.page).round() %>%</h6>
           </div>
           <div class="progress-container">
-            <div class="progress" style="width: 76%"></div>
+            <div class="progress" style="width: <%= Current.group_member.progress_percent(course.page).round() %>%"></div>
           </div>
         </div>
         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-800 text-white flex items-center justify-center flex-shrink-0 transform transition-transform duration-300 ease-in-out hover:scale-110 group-hover:scale-110 cursor-pointer">

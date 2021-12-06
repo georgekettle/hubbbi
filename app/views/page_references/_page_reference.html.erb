@@ -1,21 +1,34 @@
 <% editable ||= false %>
 <% page = page_reference.page %>
 
-<div class="w-full relative">
+<div class="w-full relative group">
   <%= link_to page, class: "w-full" do %>
     <% if page.cover.attached? %>
-      <%= render "components/card", contain: true, title: page.title, subtitle: page.subtitle, image: cl_image_path(page.cover.key), classes: 'aspect-h-9 aspect-w-16' %>
+      <%= render "components/card", contain: true, title: page.title, image: cl_image_path(page.cover.key), classes: 'aspect-h-9 aspect-w-16' %>
     <% else %>
-      <%= render "components/card", title: page.title, subtitle: page.subtitle, image: asset_path('default_cover.svg'), no_shadow: true, classes: 'aspect-h-9 aspect-w-16' %>
+      <%= render "components/card", title: page.title, image: asset_path('default_cover.svg'), no_shadow: true, classes: 'aspect-h-9 aspect-w-16' %>
     <% end %>
   <% end %>
-  <% if editable %>
-    <div class="absolute top-4 left-4">
+  <div class="absolute top-4 left-4">
+    <% if editable %>
       <%= render "components/dropdowns/options_dropdown", button_classes: "icon-btn darken", direction: "left" do %>
         <%= link_to "Edit content", edit_sections_page_path(page), class: "dropdown-link" %>
         <%= link_to "Settings", settings_page_path(page), class: "dropdown-link" %>
         <%= link_to("Delete page", page_path(page), method: :delete, data: {confirm: "Are you sure you'd like to delete this page?"}, class: "dropdown-link-danger") %>
       <% end %>
-    </div>
-  <% end %>
+    <% else %>
+      <% is_complete = Current.group_member.progress_percent(page).round() == 100 %>
+      <div class="bg-white rounded-full p-1 px-1.5 flex items-center shadow-sm opacity-100 delay-100 <%= is_complete ? 'opacity-100' : 'opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 transition-transform transform scale-100 md:scale-0 group-hover:scale-100' %>">
+        <div class="<%= is_complete ? 'bg-green-800 border-2 border-white' : 'bg-green-100' %> rounded-full w-5 h-5 flex items-center justify-cente relative">
+          <%= render 'components/progress_circle', progress: Current.group_member.progress_percent(page).round(), classes: "text-green-800 w-6" %>
+          <%= render('icons/check', classes: "w-2 h-2 stroke-current text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 absolute", stroke: 3) if is_complete %>
+        </div>
+        <% if is_complete %>
+          <h6 class="text-xs text-gray-400 ml-1">Done</h6>
+        <% else %>
+          <h6 class="text-xs text-gray-400 ml-1"><%= Current.group_member.progress_percent(page).round() %>%</h6>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
