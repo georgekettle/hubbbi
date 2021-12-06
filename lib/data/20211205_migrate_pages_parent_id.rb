@@ -4,7 +4,7 @@
 pp Page.all.map{ |page| [page.id, page.parent_id] }
 
 Page.all.each do |page|
-	page.parent_id = page.parent.id if page.parent
+	page.parent_id = page.parent_page.id if page.has_parent?
 	page.save
 end
 
