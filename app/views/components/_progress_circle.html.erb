@@ -1,15 +1,12 @@
-<% classes ||= "" %>
+<% classes ||= '' %>
 <% remaining_progress = 100 - progress %>
-<% stroke_dasharray = "#{251.2 * progress / 100},#{251.2 * remaining_progress / 100}" %>
-<% display_text ||= false %>
-<svg viewbox="0 0 100 100" class="fill-current stroke-current <%= classes %>">
+<% stroke ||= 8 %>
+
+<svg id="svg" class="fill-current stroke-current <%= classes %>" viewbox="0 0 100 100">
   <circle cx="50" cy="50" r="45" fill="none" stroke="none"/>
-  <path fill="none" stroke-linecap="round" stroke-width="8"
-        stroke-dasharray="<%= stroke_dasharray %>"
+  <path fill="none" stroke-linecap="round" stroke-width="<%= stroke %>"
+        stroke-dasharray="<%= progress.fdiv(100) * 251.2 %>,<%= remaining_progress.fdiv(100) * 251.2 %>"
         d="M50 10
            a 40 40 0 0 1 0 80
            a 40 40 0 0 1 0 -80"/>
-   <% if display_text %>
-  	<text x="50" y="50" text-anchor="middle" dy="7" font-size="20" stroke="none"><%= progress %>%</text>
-   <% end %>
 </svg>
