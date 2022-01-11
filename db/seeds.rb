@@ -61,7 +61,7 @@ puts "Finished attaching group member photos"
 
 puts "Creating courses for group"
   foundations_page = Page.create!(title: "Foundations", status: "published")
-  foundations_course = yogi_bears_group.courses.create!(title: "Foundations", page: foundations_page)
+  foundations_course = yogi_bears_group.courses.create!(title: "Foundations", page: foundations_page, description: 'Learn the foundations of becoming a yogi. Everything from Salute the sun to downward dog.')
 
   foundations_cover_image = 'https://images.unsplash.com/photo-1611094601537-cdbb75b979cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
   foundations_cover = URI.open(foundations_cover_image)
