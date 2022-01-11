@@ -76,9 +76,19 @@ puts "Creating course members"
 puts "Finished creating course members"
 
 puts "Creating pages for foundations course"
-  morning_yoga_movement = Page.create!(title: "Morning Yoga Movement", subtitle:"Practice yoga every single day - all you need is 10 minutes! Enjoy this full body yoga stretches to help you wake up and prepare for the day ahead.", status: "published")
-  yin_yoga = Page.create!(title: "Yin Yoga", subtitle:"Welcome to the Morning Yoga Movement - your free 30 day challenge where we will practice 10 minutes of yoga every day. Start your morning with purpose and intention through gentle yoga", status: "published")
-  vinyasa_flow = Page.create!(title: "Vinyasa Flow", subtitle:"Yin Yoga is a style of yoga in which poses are held for 3-5 minutes on each side. Instead of focusing on building strength, Yin focuses on flexibility and relaxation by targeting deep", status: "draft")
+  morning_yoga_movement = Page.create!(
+                                  title: "Morning Yoga Movement",
+                                  subtitle:"Practice yoga every single day - all you need is 10 minutes! Enjoy this full body yoga stretches to help you wake up and prepare for the day ahead.",
+                                  status: "published",
+                                  parent_id: foundations_page.id)
+  yin_yoga = Page.create!(title: "Yin Yoga",
+                                  subtitle:"Welcome to the Morning Yoga Movement - your free 30 day challenge where we will practice 10 minutes of yoga every day. Start your morning with purpose and intention through gentle yoga",
+                                  status: "published",
+                                  parent_id: foundations_page.id)
+  vinyasa_flow = Page.create!(title: "Vinyasa Flow",
+                                  subtitle:"Yin Yoga is a style of yoga in which poses are held for 3-5 minutes on each side. Instead of focusing on building strength, Yin focuses on flexibility and relaxation by targeting deep",
+                                  status: "draft",
+                                  parent_id: foundations_page.id)
 puts "Finished creating pages for foundations course"
 
 puts "Adding cover photos to each page"
