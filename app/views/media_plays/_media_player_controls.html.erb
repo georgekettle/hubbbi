@@ -3,7 +3,18 @@
   <!-- <video controls="" autoplay="" name="media">
     <source src="https://res.cloudinary.com/hubbbi/video/upload/jtx0qd5quecttgcyy08o44xprbxm" type="video/mp4">
   </video> -->
-  <%= cl_video_tag media_play.mediable.file.key,:source_types => [:mp3],:controls => true,:poster => false, data: {media_target: 'audio', media_playing_value:"#{playing}", media_url_value:"#{media_play_url(media_play)}", media_progress_value:"#{media_play.progress}"}%>
+
+
+  <video data-media-target="audio"
+          data-media-playing-value="<%= playing %>"
+          data-media-url-value="<%= media_play_url(media_play) %>"
+          data-media-progress-value="<%= media_play.progress %>" 
+          playsinline
+          controls="controls"
+          src="<%= cl_video_path media_play.mediable.file.key,:source_types => [:mp3] %>"></video>
+
+
+  <%# cl_video_tag media_play.mediable.file.key,:source_types => [:mp3],:controls => true,:poster => false, data: {media_target: 'audio', media_playing_value:"#{playing}", media_url_value:"#{media_play_url(media_play)}", media_progress_value:"#{media_play.progress}"}, plays_inline: true%>
   
   <div class="mb-4">
     <div class="flex justify-between mt-1">
